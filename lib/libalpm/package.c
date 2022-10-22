@@ -86,6 +86,7 @@ static off_t _pkg_get_isize(alpm_pkg_t *pkg)             { return pkg->isize; }
 static alpm_pkgreason_t _pkg_get_reason(alpm_pkg_t *pkg) { return pkg->reason; }
 static int _pkg_get_validation(alpm_pkg_t *pkg) { return pkg->validation; }
 static int _pkg_has_scriptlet(alpm_pkg_t *pkg)           { return pkg->scriptlet; }
+static const char *_pkg_get_installed_db(alpm_pkg_t *pkg) { return pkg->installed_db; }
 
 static alpm_list_t *_pkg_get_licenses(alpm_pkg_t *pkg)   { return pkg->licenses; }
 static alpm_list_t *_pkg_get_groups(alpm_pkg_t *pkg)     { return pkg->groups; }
@@ -150,6 +151,7 @@ const struct pkg_operations default_pkg_ops = {
 	.get_reason      = _pkg_get_reason,
 	.get_validation  = _pkg_get_validation,
 	.has_scriptlet   = _pkg_has_scriptlet,
+	.get_installed_db = _pkg_get_installed_db,
 
 	.get_licenses    = _pkg_get_licenses,
 	.get_groups      = _pkg_get_groups,
@@ -210,6 +212,13 @@ alpm_pkgfrom_t SYMEXPORT alpm_pkg_get_origin(alpm_pkg_t *pkg)
 	ASSERT(pkg != NULL, return -1);
 	pkg->handle->pm_errno = ALPM_ERR_OK;
 	return pkg->origin;
+}
+
+const char SYMEXPORT *alpm_pkg_get_installed_db(alpm_pkg_t *pkg)
+{
+	ASSERT(pkg != NULL, return NULL);
+	pkg->handle->pm_errno = ALPM_ERR_OK;
+	return pkg->ops->get_installed_db(pkg);
 }
 
 const char SYMEXPORT *alpm_pkg_get_desc(alpm_pkg_t *pkg)
@@ -609,6 +618,7 @@ int _alpm_pkg_dup(alpm_pkg_t *pkg, alpm_pkg_t **new_ptr)
 	STRDUP(newpkg->name, pkg->name, goto cleanup);
 	STRDUP(newpkg->version, pkg->version, goto cleanup);
 	STRDUP(newpkg->desc, pkg->desc, goto cleanup);
+	STRDUP(newpkg->installed_db, pkg->installed_db, goto cleanup);
 	STRDUP(newpkg->url, pkg->url, goto cleanup);
 	newpkg->builddate = pkg->builddate;
 	newpkg->installdate = pkg->installdate;
@@ -682,6 +692,7 @@ void _alpm_pkg_free(alpm_pkg_t *pkg)
 	FREE(pkg->name);
 	FREE(pkg->version);
 	FREE(pkg->desc);
+	FREE(pkg->installed_db);
 	FREE(pkg->url);
 	FREE(pkg->packager);
 	FREE(pkg->md5sum);

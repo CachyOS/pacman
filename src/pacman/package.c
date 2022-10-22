@@ -64,6 +64,7 @@ enum {
 	T_PROVIDES,
 	T_REPLACES,
 	T_REPOSITORY,
+	T_FROM_DB,
 	T_REQUIRED_BY,
 	T_SHA_256_SUM,
 	T_SIGNATURES,
@@ -118,6 +119,7 @@ static void make_aligned_titles(void)
 	buf[T_PROVIDES] = _("Provides");
 	buf[T_REPLACES] = _("Replaces");
 	buf[T_REPOSITORY] = _("Repository");
+	buf[T_FROM_DB] = _("Installed From");
 	buf[T_REQUIRED_BY] = _("Required By");
 	buf[T_SHA_256_SUM] = _("SHA-256 Sum");
 	buf[T_SIGNATURES] = _("Signatures");
@@ -261,6 +263,10 @@ void dump_pkg_full(alpm_pkg_t *pkg, int extra)
 	if(from == ALPM_PKG_FROM_SYNCDB) {
 		string_display(titles[T_REPOSITORY],
 				alpm_db_get_name(alpm_pkg_get_db(pkg)), cols);
+	}
+	if(from == ALPM_PKG_FROM_LOCALDB) {
+		string_display(titles[T_FROM_DB],
+				alpm_pkg_get_installed_db(pkg), cols);
 	}
 	string_display(titles[T_NAME], alpm_pkg_get_name(pkg), cols);
 	string_display(titles[T_VERSION], alpm_pkg_get_version(pkg), cols);

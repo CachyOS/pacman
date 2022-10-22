@@ -195,6 +195,12 @@ static alpm_list_t *_cache_get_backup(alpm_pkg_t *pkg)
 	return pkg->backup;
 }
 
+static const char *_cache_get_installed_db(alpm_pkg_t *pkg)
+{
+	LAZY_LOAD(INFRQ_DESC);
+	return pkg->installed_db;
+}
+
 /**
  * Open a package changelog for reading. Similar to fopen in functionality,
  * except that the returned 'file stream' is from the database.
@@ -337,6 +343,7 @@ static const struct pkg_operations local_pkg_ops = {
 	.get_isize = _cache_get_isize,
 	.get_reason = _cache_get_reason,
 	.get_validation = _cache_get_validation,
+	.get_installed_db = _cache_get_installed_db,
 	.has_scriptlet = _cache_has_scriptlet,
 	.get_licenses = _cache_get_licenses,
 	.get_groups = _cache_get_groups,
@@ -756,6 +763,8 @@ static int local_db_read(alpm_pkg_t *info, int inforeq)
 				READ_AND_STORE_ALL(info->licenses);
 			} else if(strcmp(line, "%ARCH%") == 0) {
 				READ_AND_STORE(info->arch);
+			} else if(strcmp(line, "%INSTALLED_DB%") == 0) {
+				READ_AND_STORE(info->installed_db);
 			} else if(strcmp(line, "%BUILDDATE%") == 0) {
 				READ_NEXT();
 				info->builddate = _alpm_parsedate(line);
@@ -979,6 +988,10 @@ int _alpm_local_db_write(alpm_db_t *db, alpm_pkg_t *info, int inforeq)
 		if(info->arch) {
 			fprintf(fp, "%%ARCH%%\n"
 							"%s\n\n", info->arch);
+		}
+		if(info->installed_db) {
+			fprintf(fp, "%%INSTALLED_DB%%\n"
+							"%s\n\n", info->installed_db);
 		}
 		if(info->builddate) {
 			fprintf(fp, "%%BUILDDATE%%\n"

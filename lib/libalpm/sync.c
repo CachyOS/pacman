@@ -240,6 +240,12 @@ int SYMEXPORT alpm_sync_sysupgrade(alpm_handle_t *handle, int enable_downgrade)
 				alpm_pkg_t *spkg = _alpm_db_get_pkgfromcache(sdb, lpkg->name);
 				if(spkg) {
 					if(check_literal(handle, lpkg, spkg, enable_downgrade)) {
+						const char* sdb_name = alpm_db_get_name(sdb);
+						if (spkg->installed_db != NULL) {
+							free(spkg->installed_db);
+						}
+
+						spkg->installed_db = (sdb_name) ? strdup(sdb_name) : NULL;
 						trans->add = alpm_list_add(trans->add, spkg);
 					}
 					/* jump to next local package */
@@ -1092,6 +1098,7 @@ static int load_packages(alpm_handle_t *handle, alpm_list_t **data,
 			_alpm_log(handle, ALPM_LOG_DEBUG, "failed to load pkgfile internal\n");
 			error = 1;
 		} else {
+			pkgfile->installed_db = (spkg->installed_db) ? strdup(spkg->installed_db) : NULL;
 			if(strcmp(spkg->name, pkgfile->name) != 0) {
 				_alpm_log(handle, ALPM_LOG_DEBUG,
 						"internal package name mismatch, expected: '%s', actual: '%s'\n",
