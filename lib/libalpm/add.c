@@ -69,6 +69,13 @@ int SYMEXPORT alpm_add_pkg(alpm_handle_t *handle, alpm_pkg_t *pkg)
 	pkgver = pkg->version;
 
 	_alpm_log(handle, ALPM_LOG_DEBUG, "adding package '%s'\n", pkgname);
+	const char* pkg_db_name = alpm_db_get_name(alpm_pkg_get_db(pkg));
+	if(pkg_db_name != NULL) {
+		if(pkg->installed_db != NULL) {
+			free(pkg->installed_db);
+		}
+		pkg->installed_db = strdup(pkg_db_name);
+	}
 
 	if((dup = alpm_pkg_find(trans->add, pkgname))) {
 		if(dup == pkg) {

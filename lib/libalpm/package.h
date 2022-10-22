@@ -54,6 +54,7 @@ struct pkg_operations {
 	alpm_pkgreason_t (*get_reason) (alpm_pkg_t *);
 	int (*get_validation) (alpm_pkg_t *);
 	int (*has_scriptlet) (alpm_pkg_t *);
+	const char *(*get_installed_db) (alpm_pkg_t *);
 
 	alpm_list_t *(*get_licenses) (alpm_pkg_t *);
 	alpm_list_t *(*get_groups) (alpm_pkg_t *);
@@ -100,6 +101,7 @@ struct _alpm_pkg_t {
 	char *sha256sum;
 	char *base64_sig;
 	char *arch;
+	char *installed_db;
 
 	alpm_time_t builddate;
 	alpm_time_t installdate;
