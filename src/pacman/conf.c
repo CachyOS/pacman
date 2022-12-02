@@ -28,7 +28,6 @@
 #include <string.h> /* strdup */
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <sys/utsname.h> /* uname */
 #include <sys/wait.h>
 #include <unistd.h>
 #include <signal.h>
@@ -399,12 +398,19 @@ cleanup:
 int config_add_architecture(char *arch)
 {
 	if(strcmp(arch, "auto") == 0) {
-		struct utsname un;
-		char *newarch;
-		uname(&un);
-		newarch = strdup(un.machine);
-		free(arch);
-		arch = newarch;
+        free(arch);
+
+        alpm_list_t *physical_arches;
+        physical_arches = alpm_option_get_physical_architectures(config->handle);
+
+	    alpm_list_t *i;
+    	for(i = physical_arches; i; i = alpm_list_next(i)) {
+		    char *physical_arch = i->data;
+	        pm_printf(ALPM_LOG_DEBUG, "config: arch: %s\n", physical_arch);
+	        config->architectures = alpm_list_add(config->architectures, physical_arch);
+        }
+	    alpm_list_free(physical_arches);
+        return 0;
 	}
 
 	pm_printf(ALPM_LOG_DEBUG, "config: arch: %s\n", arch);

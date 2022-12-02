@@ -8,6 +8,7 @@ libalpm_sources = files('''
   be_package.c
   be_sync.c
   conflict.h conflict.c
+  cpu_capabilities.c
   db.h db.c
   deps.h deps.c
   diskspace.h diskspace.c

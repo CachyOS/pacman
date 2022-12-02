@@ -2077,6 +2077,13 @@ int alpm_option_remove_assumeinstalled(alpm_handle_t *handle, const alpm_depend_
  * @{
  */
 
+
+/** Returns the allowed physical architectures.
+ * @param handle the context handle
+ * @return the list of physical architectures (caller is responsible for alpm_list_free)
+ */
+alpm_list_t *alpm_option_get_physical_architectures(alpm_handle_t *handle);
+
 /** Returns the allowed package architecture.
  * @param handle the context handle
  * @return the configured package architectures
