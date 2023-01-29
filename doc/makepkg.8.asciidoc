@@ -146,6 +146,10 @@ Options
 *-C, \--cleanbuild*::
 	Remove the $srcdir before building the package.
 
+*-D* <dir>, *\--dir* <dir> ::
+	Cd into <dir> before building the package. Files that would be created in
+	the currently directory will instead be created in the specified directory.
+
 *\--allsource*::
 	Do not actually build the package, but build a source-only tarball that
 	includes all sources, including those that are normally downloaded via
