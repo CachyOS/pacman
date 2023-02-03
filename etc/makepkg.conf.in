@@ -35,6 +35,8 @@ VCSCLIENTS=('bzr::breezy'
 #
 CARCH="@CARCH@"
 CHOST="@CHOST@"
+#-- That will be applied only at the package() stage.
+PACKAGECARCH="@CARCH@"
 
 #NPROC=2
 
