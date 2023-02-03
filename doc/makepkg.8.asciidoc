@@ -269,6 +269,10 @@ Environment Variables
 	Force build for a specific architecture. Useful for cross-compiling.
 	Overrides the corresponding value defined in linkman:makepkg.conf[5].
 
+**PACKAGECARCH=**"(x86_64|x86_64_v3)"::
+	Force package to be packaged for a specific architecture.
+	Overrides the corresponding value defined in linkman:makepkg.conf[5].
+
 **PKGEXT=**".pkg.tar.gz", **SRCEXT=**".src.tar.gz"::
 	Sets the compression used when making compiled or source packages.
 	Overrides the corresponding value defined in linkman:makepkg.conf[5].

@@ -35,6 +35,8 @@ VCSCLIENTS=('bzr::bzr'
 #
 CARCH="@CARCH@"
 CHOST="@CHOST@"
+#-- That will be applied only at the package() stage.
+PACKAGECARCH="@CARCH@"
 
 #-- Compiler and Linker Flags
 #CPPFLAGS=""

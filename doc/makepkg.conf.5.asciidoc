@@ -59,6 +59,11 @@ Options
 	A string such as ``i686-pc-linux-gnu''; do not touch this unless you know what
 	you are doing. This can be commented out by most users if desired.
 
+**PACKAGECARCH=**"packagecarch"::
+	Specifies extended computer architecture; possible values include such things
+	as ``x86_64_v2'', ``x86_64_v3'', ``x86_64_v4'', etc. This can be commented
+	out by most users if desired.
+
 **CPPFLAGS=**"cppflags"::
 	Flags used for the C preprocessor; see CFLAGS for more information.
 
