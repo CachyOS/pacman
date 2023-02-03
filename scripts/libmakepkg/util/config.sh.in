@@ -64,7 +64,7 @@ load_makepkg_config() {
 
 	# preserve environment variables to override makepkg.conf
 	local restore_envvars=$(
-		for var in PKGDEST SRCDEST SRCPKGDEST LOGDEST BUILDDIR PKGEXT SRCEXT GPGKEY PACKAGER CARCH; do
+		for var in PKGDEST SRCDEST SRCPKGDEST LOGDEST BUILDDIR PKGEXT SRCEXT GPGKEY PACKAGER CARCH PACKAGECARCH; do
 			# the output of 'declare -p' results in locally scoped values when used within a function
 			[[ -v $var ]] && printf '%s=%s\n' "$var" "${!var@Q}"
 		done

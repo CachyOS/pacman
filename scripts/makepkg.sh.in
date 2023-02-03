@@ -687,6 +687,9 @@ create_package() {
 		exit $E_MISSING_PKGDIR
 	fi
 
+	local _saved_arch="${CARCH}"
+	[[ "x${PACKAGECARCH}" != "x" ]] && CARCH="${PACKAGECARCH}"
+
 	cd_safe "$pkgdir"
 	msg "$(gettext "Creating package \"%s\"...")" "$pkgname"
 
@@ -734,6 +737,9 @@ create_package() {
 		compress_as "$PKGEXT" > "${pkg_file}" || ret=$?
 
 	shopt -u -o pipefail
+
+	# Restore CARCH
+	CARCH="${_saved_arch}"
 
 	if (( ret )); then
 		error "$(gettext "Failed to create package file.")"
