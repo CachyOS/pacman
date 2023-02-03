@@ -766,6 +766,9 @@ install_package() {
 	(( ASDEPS )) && pkglist+=('--asdeps')
 	(( NEEDED )) && pkglist+=('--needed')
 
+	local _saved_arch="${CARCH}"
+	[[ "x${PACKAGECARCH}" != "x" ]] && CARCH="${PACKAGECARCH}"
+
 	for pkg in ${pkgname[@]}; do
 		fullver=$(get_full_version)
 		# Split package not relevant for current CARCH
@@ -778,6 +781,9 @@ install_package() {
 			pkglist+=("$PKGDEST/${pkg}-@DEBUGSUFFIX@-${fullver}-${pkgarch}${PKGEXT}")
 		fi
 	done
+
+	# Restore CARCH
+	CARCH="${_saved_arch}"
 
 	if ! run_pacman -U "${pkglist[@]}"; then
 		warning "$(gettext "Failed to install built package(s).")"
