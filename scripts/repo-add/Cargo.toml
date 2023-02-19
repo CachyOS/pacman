@@ -1,0 +1,34 @@
+[package]
+name = "repo-add"
+version = "0.0.1"
+authors = ["Vladislav Nepogodin <nepogodin.vlad@gmail.com>"]
+license = "GPLv3"
+edition = "2021"
+
+[dependencies]
+log = "0.4"
+subprocess = "0.2.9"
+once_cell = "1.17.0"
+lazy_static = "1.4.0"
+gettext-rs = { version = "0.7", features = ["gettext-system"] }
+#async_zip = { version = "0.0.11", features = ["full"] }
+#tokio = { version = "1.25.0", features = ["full"] }
+akv = "0.1.0"
+fern = { version = "0.6.1", features = ["colored", "chrono"] }
+chrono = "0.4.23"
+rand = "0.8.5"
+path-absolutize = "3.0.14"
+rayon = "1.6.1"
+md-5 = "0.10.5"
+sha2 = "0.10.6"
+fs_extra = "1.3.0"
+signal-hook = "0.3.15"
+#tar = "0.4.38"
+#clap = { version = "4.1.4", features = ["derive"] }
+
+[profile.release]
+strip = "symbols"
+panic = "abort"
+lto = true
+opt-level = 3
+codegen-units = 1
