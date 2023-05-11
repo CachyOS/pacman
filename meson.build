@@ -347,7 +347,7 @@ pacman_bin = executable(
   pacman_sources,
   include_directories : includes,
   link_with : [libalpm, libcommon],
-  dependencies : [libarchive],
+  dependencies : [libarchive, libcurl],
   install : true,
 )
 
