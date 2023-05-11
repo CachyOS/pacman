@@ -13,6 +13,7 @@ pacman_sources = files('''
   callback.h callback.c
   upgrade.c
   util.h util.c
+  update-notice.h update-notice.c
 '''.split())
 
 pacman_conf_sources = files('''
