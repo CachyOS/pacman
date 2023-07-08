@@ -723,6 +723,11 @@ msgstr "Repozytorium"
 msgid "Required By"
 msgstr "Wymagany przez"
 
+#: src/pacman/package.c:122
+#, c-format
+msgid "Installed From"
+msgstr "Zainstalowano z"
+
 #: src/pacman/package.c:122 src/pacman/package.c:242
 #, c-format
 msgid "SHA-256 Sum"
