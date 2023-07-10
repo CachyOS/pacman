@@ -668,6 +668,11 @@ msgstr ""
 msgid "Required By"
 msgstr ""
 
+#: src/pacman/package.c:122
+#, c-format
+msgid "Installed From"
+msgstr ""
+
 #: src/pacman/package.c:122 src/pacman/package.c:242
 #, c-format
 msgid "SHA-256 Sum"
