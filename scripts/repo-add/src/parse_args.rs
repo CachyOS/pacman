@@ -9,6 +9,7 @@ pub struct ArgStruct {
     pub clean_lock: bool,
     pub use_colors: bool,
     pub prevent_downgrade: bool,
+    pub use_new_db_format: bool,
 
     pub cmd_line: String,
 
@@ -31,6 +32,7 @@ impl ArgStruct {
             clean_lock: false,
             use_colors: true,
             prevent_downgrade: false,
+            use_new_db_format: false,
 
             cmd_line: String::new(),
 
@@ -70,6 +72,8 @@ pub fn parse_args<'a>(pargs: &'a [String]) -> (Option<&[String]>, ArgStruct) {
             argstruct.verify = true;
         } else if argument == "--prevent-downgrade" || argument == "-p" {
             argstruct.prevent_downgrade = true;
+        } else if argument == "--use-new-db-format" {
+            argstruct.use_new_db_format = true;
         } else if argument == "--" {
             i += 1;
             break;

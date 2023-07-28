@@ -23,6 +23,8 @@ md-5 = "0.10.5"
 sha2 = "0.10"
 fs_extra = "1.3.0"
 signal-hook = "0.3"
+rusqlite = { version = "0.29.0", features = ["bundled", "column_decltype"], default-features = false }
+anyhow = { version = "1.0.72", features = ["std"], default-features = false }
 #tar = "0.4.38"
 #clap = { version = "4.1.4", features = ["derive"] }
 

@@ -1,6 +1,6 @@
+mod config;
 mod parse_args;
 mod pkginfo;
-mod config;
 mod utils;
 
 use config::VERSION;
@@ -11,9 +11,6 @@ use rand::Rng;
 use rayon::prelude::*;
 use signal_hook::consts::{SIGABRT, SIGINT, SIGTERM};
 use signal_hook::iterator::Signals;
-use std::collections::HashSet;
-use std::fs::File;
-use std::io::Write;
 use std::path::Path;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex};
@@ -68,6 +65,7 @@ fn print_usage(cmd_line: &str) {
         println!("Please move along, there is nothing to see here.");
         return;
     }
+    println!("  --use-new-db-format      use new DB format");
     println!("  --nocolor         turn off color in output");
     println!("  -q, --quiet       minimize output");
     println!("  -s, --sign        sign database with GnuPG after update");
@@ -112,29 +110,6 @@ fn print_elephant() {
     );
 }
 
-// format a metadata entry
-#[inline]
-fn format_entry(field_name: &str, value: &Option<String>) -> String {
-    if value.is_none() {
-        return String::new();
-    }
-    format!("%{}%\n{}\n\n", field_name, value.as_ref().unwrap())
-}
-
-fn format_entry_mul(field_name: &str, values: &[String]) -> String {
-    if values.is_empty() {
-        return String::new();
-    }
-
-    let mut result = String::from(&format!("%{}%\n", field_name));
-    for value in values.iter() {
-        result.push_str(&format!("{}\n", value));
-    }
-
-    result += "\n";
-    result
-}
-
 fn find_pkgentry(pkgname: &str) -> Option<String> {
     let workingdb_path = format!("{}/db", *G_TMPWORKINGDIR.lock().unwrap());
     for dir_entry in fs::read_dir(workingdb_path).unwrap() {
@@ -144,6 +119,17 @@ fn find_pkgentry(pkgname: &str) -> Option<String> {
             return Some(dir_entry_path.to_str().unwrap().to_owned());
         }
     }
+    None
+}
+
+fn find_pkgentry_nf(
+    conn: &rusqlite::Connection,
+    pkg_info: &pkginfo::PkgInfo,
+) -> Option<(String, String, String)> {
+    if let Some(package_id) = utils::make_lookup_pkgentry_nf(conn, pkg_info) {
+        return utils::get_old_entryval_nf(conn, package_id);
+    }
+
     None
 }
 
@@ -314,47 +300,31 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
                 )
                 .0,
             );
-            oldfile = Some(
-                utils::exec(
-                    &format!(
-                        "{}/{}",
-                        Path::new(pkgpath).parent().unwrap().to_string_lossy(),
-                        oldfilename.as_ref().unwrap()
-                    ),
-                    None,
-                )
-                .0,
-            );
+            oldfile = oldfilename.clone();
+
+            let parent_path = Path::new(pkgpath).parent().unwrap().to_string_lossy();
+            if !parent_path.is_empty() {
+                oldfile = Some(format!("{}/{}", parent_path, oldfilename.as_ref().unwrap()));
+            }
         }
     }
 
-    // compute base64'd PGP signature
+    // generate package integrity
+    let mut csize = String::new();
+    let mut pkg_md5sum: Option<String> = None;
+    let mut pkg_sha256sum: Option<String> = None;
     let mut pkg_pgpsig: Option<String> = None;
-    if Path::new(&format!("{}.sig", pkginfo.pkgname.as_ref().unwrap())).exists() {
-        let sig_filename = format!("{}.sig", pkginfo.pkgname.as_ref().unwrap());
-        if utils::exec(&format!("grep -q 'BEGIN PGP SIGNATURE' \"{}\"", &sig_filename), Some(true))
-            .1
-        {
-            log::error!("Cannot use armored signatures for packages: {}", &sig_filename);
-            return false;
-        }
 
-        let pgpsigsize = fs::metadata(&sig_filename).unwrap().len();
-        if pgpsigsize > 16384 {
-            log::error!("Invalid package signature file '{}'.", &sig_filename);
-            return false;
-        }
-        log::info!("Adding package signature...");
-        pkg_pgpsig =
-            Some(utils::exec(&format!("base64 \"{}\" | tr -d '\n'", sig_filename), None).0);
+    if !utils::gen_pkg_integrity(
+        pkgpath,
+        &pkginfo,
+        &mut csize,
+        &mut pkg_md5sum,
+        &mut pkg_sha256sum,
+        &mut pkg_pgpsig,
+    ) {
+        return false;
     }
-
-    let csize = format!("{}", fs::metadata(pkgpath).unwrap().len());
-
-    // compute checksums
-    log::info!("Computing checksums...");
-    let pkg_md5sum = utils::generate_md5sum(pkgpath);
-    let pkg_sha256sum = utils::generate_sha256sum(pkgpath);
 
     // remove an existing entry if it exists, ignore failures
     db_remove_entry(pkginfo.pkgname.as_ref().unwrap());
@@ -365,43 +335,16 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
     // create desc entry
     log::info!("Creating 'desc' db entry...");
     {
-        let mut desc_content = String::new();
-        desc_content.push_str(&format_entry(
-            "FILENAME",
-            &Some(Path::new(pkgpath).file_name().unwrap().to_string_lossy().to_string()),
-        ));
-        desc_content.push_str(&format_entry("NAME", &pkginfo.pkgname));
-        desc_content.push_str(&format_entry("BASE", &pkginfo.pkgbase));
-        desc_content.push_str(&format_entry("VERSION", &pkginfo.pkgver));
-        desc_content.push_str(&format_entry("DESC", &pkginfo.pkgdesc));
-        desc_content.push_str(&format_entry_mul("GROUPS", &pkginfo.groups));
-        desc_content.push_str(&format_entry("CSIZE", &Some(csize)));
-        desc_content.push_str(&format_entry("ISIZE", &pkginfo.pkg_isize));
-
-        // add checksums
-        desc_content.push_str(&format_entry("MD5SUM", &pkg_md5sum));
-        desc_content.push_str(&format_entry("SHA256SUM", &pkg_sha256sum));
-
-        // add PGP sig
-        desc_content.push_str(&format_entry("PGPSIG", &pkg_pgpsig));
-
-        desc_content.push_str(&format_entry("URL", &pkginfo.url));
-        desc_content.push_str(&format_entry_mul("LICENSE", &pkginfo.licenses));
-        desc_content.push_str(&format_entry("ARCH", &pkginfo.arch));
-        desc_content.push_str(&format_entry("BUILDDATE", &pkginfo.builddate));
-        desc_content.push_str(&format_entry("PACKAGER", &pkginfo.packager));
-        desc_content.push_str(&format_entry_mul("REPLACES", &pkginfo.replaces));
-        desc_content.push_str(&format_entry_mul("CONFLICTS", &pkginfo.conflicts));
-        desc_content.push_str(&format_entry_mul("PROVIDES", &pkginfo.provides));
-
-        desc_content.push_str(&format_entry_mul("DEPENDS", &pkginfo.depends));
-        desc_content.push_str(&format_entry_mul("OPTDEPENDS", &pkginfo.optdepends));
-        desc_content.push_str(&format_entry_mul("MAKEDEPENDS", &pkginfo.makedepends));
-        desc_content.push_str(&format_entry_mul("CHECKDEPENDS", &pkginfo.checkdepends));
-
-        let mut desc_entry_file =
-            File::create(&format!("{}/{}/desc", &workingdb_path, &pkg_entrypath)).unwrap();
-        let _ = desc_entry_file.write_all(desc_content.as_bytes());
+        utils::create_db_desc_entry(
+            &pkgpath,
+            &pkg_entrypath,
+            &workingdb_path,
+            &pkginfo,
+            csize,
+            pkg_md5sum,
+            pkg_sha256sum,
+            pkg_pgpsig,
+        );
     }
 
     // copy updated package entry into "files" database
@@ -419,11 +362,7 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
     log::info!("Creating 'files' db entry...");
     let files_path = format!("{}/files/{}/files", *G_TMPWORKINGDIR.lock().unwrap(), &pkg_entrypath);
 
-    let mut file_list = pkginfo::list_archive(pkgpath);
-    file_list.sort();
-    let mut sorted_files =
-        file_list.into_iter().collect::<HashSet<String>>().into_iter().collect::<Vec<String>>();
-    sorted_files.sort();
+    let sorted_files = utils::get_pkg_files(pkgpath);
     let _ = utils::write_to_file(&files_path, &format!("%FILES%\n{}\n", sorted_files.join("\n")));
 
     if argstruct.rm_existing && oldfile.is_some() {
@@ -435,7 +374,134 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
     true
 }
 
+fn db_write_entry_nf(
+    connections: &mut Arc<Mutex<(&mut rusqlite::Connection, &mut rusqlite::Connection)>>,
+    pkgpath: &str,
+    argstruct: &Arc<parse_args::ArgStruct>,
+) -> bool {
+    // read info from the zipped package
+    let pkginfo = pkginfo::PkgInfo::from_archive(pkgpath);
+
+    // ensure 'pkgname' and 'pkgver' variables were found
+    if !pkginfo.pkgname.is_some() || !pkginfo.pkgver.is_some() {
+        log::error!("Invalid package file '{}'.", pkgpath);
+        return false;
+    }
+
+    let mut oldfilename: Option<String> = None;
+    let mut oldfile: Option<String> = None;
+
+    // let workingdb_path = G_TMPWORKINGDIR.lock().unwrap();
+    {
+        let conn_lock = connections.lock().unwrap();
+        if utils::get_pkgentry_nf(conn_lock.0, &pkginfo).is_some() {
+            log::warn!(
+                "An entry for '{}-{}' already existed",
+                pkginfo.pkgname.as_ref().unwrap(),
+                pkginfo.pkgver.as_ref().unwrap()
+            );
+            if argstruct.only_add_new {
+                return true;
+            }
+        } else if let Some((_, pkgver, pkg_filename)) = find_pkgentry_nf(conn_lock.0, &pkginfo) {
+            let vercmp = utils::exec(
+                &format!("vercmp \"{}\" \"{}\"", pkgver, pkginfo.pkgver.as_ref().unwrap()),
+                None,
+            )
+            .0;
+            if vercmp.parse::<i32>().unwrap() > 0 {
+                log::warn!(
+                    "A newer version for '{}' is already present in database",
+                    pkginfo.pkgname.as_ref().unwrap()
+                );
+                if argstruct.prevent_downgrade {
+                    return true;
+                }
+            }
+            if argstruct.rm_existing {
+                oldfilename = Some(pkg_filename);
+                oldfile = oldfilename.clone();
+
+                let parent_path = Path::new(pkgpath).parent().unwrap().to_string_lossy();
+                if !parent_path.is_empty() {
+                    oldfile = Some(format!("{}/{}", parent_path, oldfilename.as_ref().unwrap()));
+                }
+            }
+        }
+    }
+
+    // generate package integrity
+    let mut csize = String::new();
+    let mut pkg_md5sum: Option<String> = None;
+    let mut pkg_sha256sum: Option<String> = None;
+    let mut pkg_pgpsig: Option<String> = None;
+
+    if !utils::gen_pkg_integrity(
+        pkgpath,
+        &pkginfo,
+        &mut csize,
+        &mut pkg_md5sum,
+        &mut pkg_sha256sum,
+        &mut pkg_pgpsig,
+    ) {
+        return false;
+    }
+
+    // Insert the package entry into the database
+    log::info!("Inserting pkg into db...");
+    {
+        let mut connection_lock = connections.lock().unwrap();
+        utils::create_db_entry_nf(
+            connection_lock.0,
+            pkgpath,
+            &pkginfo,
+            csize.clone(),
+            &pkg_md5sum,
+            &pkg_sha256sum,
+            &pkg_pgpsig,
+        )
+        .expect("Failed to insert");
+
+        utils::create_db_entry_nf(
+            connection_lock.1,
+            pkgpath,
+            &pkginfo,
+            csize,
+            &pkg_md5sum,
+            &pkg_sha256sum,
+            &pkg_pgpsig,
+        )
+        .expect("Failed to insert");
+    }
+
+    // Insert files info
+    utils::create_db_files_entry_nf(connections.lock().unwrap().1, pkgpath, &pkginfo);
+
+    if argstruct.rm_existing && oldfile.is_some() {
+        log::info!("Removing old package file '{}'", oldfilename.as_ref().unwrap());
+        let _ = fs::remove_file(oldfile.as_ref().unwrap());
+        let _ = fs::remove_file(&format!("{}.sig", oldfile.as_ref().unwrap()));
+    }
+
+    true
+}
+
 fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool {
+    if argstruct.use_new_db_format {
+        if let Ok(status) = prepare_repo_db_nf(cmd_line, &argstruct) {
+            if !status {
+                return false;
+            }
+        }
+        if let Ok(status) = create_needed_repo_db_nf(cmd_line) {
+            if !status {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     // ensure the path to the DB exists; LOCKFILE is always an absolute path
     let repodir = Path::new(argstruct.lockfile.as_ref().unwrap()).parent();
     if !repodir.as_ref().unwrap().exists() {
@@ -502,6 +568,145 @@ fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bo
         }
     }
     true
+}
+
+fn prepare_repo_db_nf(
+    cmd_line: &str,
+    argstruct: &Arc<parse_args::ArgStruct>,
+) -> anyhow::Result<bool> {
+    // ensure the path to the DB exists; LOCKFILE is always an absolute path
+    let repodir = Path::new(argstruct.lockfile.as_ref().unwrap()).parent();
+    if !repodir.as_ref().unwrap().exists() {
+        log::error!("{} does not exist.", repodir.as_ref().unwrap().to_string_lossy());
+        return Ok(false);
+    }
+    let repos = ["db", "files"];
+    for repo in repos {
+        let dbfile = format!(
+            "{}/{}.{}.{}",
+            repodir.as_ref().unwrap().to_string_lossy(),
+            argstruct.repo_db_prefix.as_ref().unwrap(),
+            repo,
+            argstruct.repo_db_suffix.as_ref().unwrap()
+        );
+
+        if Path::new(&dbfile).exists() {
+            // there are two situations we can have here:
+            // a DB with some entries, or a DB with no contents at all.
+            if !utils::exec(
+                &format!("bsdtar -tqf \"{}\" 'pacman.db' >/dev/null 2>&1", &dbfile),
+                Some(true),
+            )
+            .1
+            {
+                // check empty case
+                if !utils::exec(&format!("bsdtar -tqf \"{}\" '*' 2>/dev/null", &dbfile), None)
+                    .0
+                    .is_empty()
+                {
+                    log::error!("Repository file '{}' is not a proper pacman database.", &dbfile);
+                    return Ok(false);
+                }
+            }
+            if !verify_signature(&dbfile, argstruct) {
+                return Ok(false);
+            }
+            log::info!(
+                "Extracting {} to a temporary location...",
+                Path::new(&dbfile).file_name().unwrap().to_str().unwrap()
+            );
+            utils::exec(
+                &format!(
+                    "bsdtar -xf \"{}\" -C \"{}/{}\"",
+                    dbfile,
+                    *G_TMPWORKINGDIR.lock().unwrap(),
+                    repo
+                ),
+                None,
+            );
+
+            // Check the actual pacman db
+            let conn = rusqlite::Connection::open_with_flags(
+                format!("{}/{}", *G_TMPWORKINGDIR.lock().unwrap(), repo),
+                rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY,
+            )?;
+
+            // Check if the database has the proper format
+            if conn
+                .execute("SELECT name FROM sqlite_master WHERE type='table' AND name='packages'", [
+                ])
+                .is_err()
+            {
+                log::error!("Repository file '{}' is not a proper pacman database.", &dbfile);
+                return Ok(false);
+            }
+
+            // Check if the database is not empty
+            let mut stmt = conn.prepare("SELECT COUNT(*) FROM packages")?;
+            let count: i64 = stmt.query_row([], |row| row.get(0))?;
+            if count <= 0 {
+                log::error!("Repository file '{}' is not a proper pacman database.", &dbfile);
+                return Ok(false);
+            }
+        } else {
+            // only a missing "db" database is currently an error
+            if cmd_line.ends_with("repo-remove") && repo == "db" {
+                log::error!("Repository file '{}' was not found.", dbfile);
+                return Ok(false);
+            } else if cmd_line.ends_with("repo-add") {
+                // check if the file can be created (write permission, directory existence, etc)
+                if !utils::exec(&format!("touch \"{}\" &>/dev/null", &dbfile), Some(true)).1 {
+                    log::error!("Repository file '{}' could not be created.", &dbfile);
+                    return Ok(false);
+                }
+                let _ = fs::remove_file(dbfile);
+            }
+        }
+    }
+    Ok(true)
+}
+
+fn create_needed_repo_db_nf(cmd_line: &str) -> anyhow::Result<bool> {
+    const K_CREATE_TABLE: &'static str = r#"
+CREATE TABLE IF NOT EXISTS packages (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    version TEXT NOT NULL,
+    filename TEXT NOT NULL,
+    base TEXT,
+    desc TEXT,
+    groups TEXT,
+    url TEXT,
+    license TEXT,
+    arch TEXT,
+    builddate TEXT,
+    packager TEXT,
+    csize TEXT,
+    isize TEXT,
+    md5sum TEXT,
+    sha256sum TEXT,
+    pgpsig TEXT,
+    replaces TEXT,
+    depends TEXT,
+    optdepends TEXT,
+    makedepends TEXT,
+    checkdepends TEXT,
+    conflicts TEXT,
+    provides TEXT,
+    files TEXT
+)"#;
+
+    let repos = ["db", "files"];
+    for repo in repos {
+        let dbfile_path = format!("{}/{}/pacman.db", *G_TMPWORKINGDIR.lock().unwrap(), repo);
+
+        if cmd_line.ends_with("repo-add") {
+            let conn = rusqlite::Connection::open(dbfile_path)?;
+            // Create the packages table if it doesn't exist
+            conn.execute(K_CREATE_TABLE, []).unwrap();
+        }
+    }
+    Ok(true)
 }
 
 fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBool>) {
@@ -661,9 +866,62 @@ fn add_pkg_to_db(pkgfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool 
     db_write_entry(pkgfile, argstruct)
 }
 
+fn add_pkg_to_db_nf(
+    connections: &mut Arc<Mutex<(&mut rusqlite::Connection, &mut rusqlite::Connection)>>,
+    pkgfile: &str,
+    argstruct: &Arc<parse_args::ArgStruct>,
+) -> bool {
+    if !Path::new(pkgfile).exists() {
+        log::error!("File '{}' not found.", pkgfile);
+        return false;
+    }
+
+    if !utils::exec(&format!("bsdtar -tqf \"{}\" .PKGINFO >/dev/null 2>&1", pkgfile), Some(true)).1
+    {
+        log::error!("'{}' is not a package file, skipping", pkgfile);
+        return false;
+    }
+
+    log::info!("Adding package '{}'", pkgfile);
+    db_write_entry_nf(connections, pkgfile, argstruct)
+}
+
 fn remove_pkg_from_db(pkgname: &str, _argstruct: &Arc<parse_args::ArgStruct>) -> bool {
     log::info!("Searching for package '{}'...", pkgname);
     db_remove_entry(pkgname)
+}
+
+fn remove_pkg_from_db_nf(
+    connections: &mut Arc<Mutex<(&mut rusqlite::Connection, &mut rusqlite::Connection)>>,
+    pkgname: &str,
+    _argstruct: &Arc<parse_args::ArgStruct>,
+) -> bool {
+    log::info!("Searching for package '{}'...", pkgname);
+    let remove_one_pkg = |conn: &mut rusqlite::Connection, needle| {
+        if let Some(package_id) = utils::make_simple_lookup_pkgentry_nf(conn, needle) {
+            utils::remove_from_db_by_id_nf(conn, package_id);
+            return true;
+        }
+
+        false
+    };
+
+    let mut is_found = false;
+    log::info!("Removing existing entry '{}'...", pkgname);
+    {
+        let mut connection_lock = connections.lock().unwrap();
+        while remove_one_pkg(connection_lock.0, pkgname) {
+            is_found = true;
+        }
+    }
+    {
+        let mut connection_lock = connections.lock().unwrap();
+        while remove_one_pkg(connection_lock.1, pkgname) {
+            is_found = true;
+        }
+    }
+
+    is_found
 }
 
 fn main() {
@@ -781,7 +1039,7 @@ fn main() {
 
     // Prepare DB
     let arg_struct = Arc::new(arg_struct);
-    if !prepare_repo_db(pos_args.unwrap()[0].as_str(), &arg_struct) {
+    if !prepare_repo_db(args[0].as_str(), &arg_struct) {
         clean_up();
         std::process::exit(1);
     }
@@ -789,14 +1047,45 @@ fn main() {
     let pos_args = pos_args.unwrap().get(1..);
 
     let is_fail = AtomicBool::new(false);
-    pos_args.unwrap().into_par_iter().for_each(|elem| {
-        let action_func =
-            if arg_struct.cmd_line == "repo-remove" { remove_pkg_from_db } else { add_pkg_to_db };
-        handle_signal!(is_signaled);
-        if !action_func(&elem, &arg_struct) {
-            is_fail.store(true, Ordering::Relaxed);
+    if arg_struct.use_new_db_format {
+        // Open the SQLite database connections
+        let db_connections = utils::make_db_connections(&*G_TMPWORKINGDIR.lock().unwrap());
+        if let Err(err) = db_connections {
+            log::error!("Sqlite error: {:?}", err);
+            clean_up();
+            std::process::exit(1);
         }
-    });
+
+        let db_connections = db_connections.unwrap();
+        let db_conn = &mut db_connections.0.unwrap();
+        let files_conn = &mut db_connections.1.unwrap();
+        let connections = Arc::new(Mutex::from((db_conn, files_conn)));
+
+        pos_args.unwrap().into_par_iter().for_each(|elem| {
+            let action_func = if arg_struct.cmd_line == "repo-remove" {
+                remove_pkg_from_db_nf
+            } else {
+                add_pkg_to_db_nf
+            };
+            handle_signal!(is_signaled);
+            let mut conn_handle = Arc::clone(&connections);
+            if !action_func(&mut conn_handle, &elem, &arg_struct) {
+                is_fail.store(true, Ordering::Relaxed);
+            }
+        });
+    } else {
+        pos_args.unwrap().into_par_iter().for_each(|elem| {
+            let action_func = if arg_struct.cmd_line == "repo-remove" {
+                remove_pkg_from_db
+            } else {
+                add_pkg_to_db
+            };
+            handle_signal!(is_signaled);
+            if !action_func(&elem, &arg_struct) {
+                is_fail.store(true, Ordering::Relaxed);
+            }
+        });
+    }
     handle_signal_ext!(is_signaled, sig_handle);
 
     // if the whole operation was a success, re-zip and rotate databases
@@ -806,6 +1095,7 @@ fn main() {
         std::process::exit(1);
     }
     handle_signal_ext!(is_signaled, sig_handle);
+
     log::info!("Creating updated database file '{}'", arg_struct.repo_db_file.as_ref().unwrap());
     if !create_db(&arg_struct, &is_signaled) {
         clean_up();
@@ -819,9 +1109,8 @@ fn main() {
     // log::info!("pos_args: {:?}\n", pos_args);
     //
     // let pkg_info = pkginfo::PkgInfo::from_file("../.PKGINFO");
-    // let pkg_info = pkginfo::PkgInfo::from_archive(
-    // "../firefox-developer-edition-110.0b2-1.1-x86_64.pkg.tar.zst",
-    // );
+    // let pkgpath = "firefox-developer-edition-116.0b8-1.1-x86_64.pkg.tar.zst";
+    // let pkg_info = pkginfo::PkgInfo::from_archive(pkgpath);
     // log::info!("pkginfo: {:?}", pkg_info);
     clean_up();
 }
