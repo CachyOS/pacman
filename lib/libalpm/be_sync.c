@@ -29,6 +29,11 @@
 #include <archive.h>
 #include <archive_entry.h>
 
+#ifdef HAVE_LIBSQLITE
+/* sqlite */
+#include <sqlite3.h>
+#endif
+
 /* libalpm */
 #include "util.h"
 #include "log.h"
@@ -262,6 +267,11 @@ cleanup:
 static int sync_db_read(alpm_db_t *db, struct archive *archive,
 		struct archive_entry *entry, alpm_pkg_t **likely_pkg);
 
+#ifdef HAVE_LIBSQLITE
+static int sync_db_read_nf(alpm_db_t *db, struct archive *archive,
+		struct archive_entry *entry);
+#endif
+
 static int _sync_get_validation(alpm_pkg_t *pkg)
 {
 	if(pkg->validation) {
@@ -443,6 +453,18 @@ static int sync_db_populate(alpm_db_t *db)
 	while((archive_ret = archive_read_next_header(archive, &entry)) == ARCHIVE_OK) {
 		mode_t mode = archive_entry_mode(entry);
 		if(!S_ISDIR(mode)) {
+#ifdef HAVE_LIBSQLITE
+			/* new db format */
+			if(strcmp(archive_entry_pathname(entry), "pacman.db") == 0) {
+				if(sync_db_read_nf(db, archive, entry) != 0) {
+					_alpm_log(db->handle, ALPM_LOG_ERROR,
+							_("could not parse package description file '%s' from db '%s'\n"),
+							archive_entry_pathname(entry), db->treename);
+					ret = -1;
+				}
+				continue;
+			}
+#endif
 			/* we have desc or depends - parse it */
 			if(sync_db_read(db, archive, entry, &pkg) != 0) {
 				_alpm_log(db->handle, ALPM_LOG_ERROR,
@@ -683,6 +705,190 @@ error:
 	_alpm_log(db->handle, ALPM_LOG_DEBUG, "error parsing database file: %s\n", filename);
 	return -1;
 }
+
+
+#ifdef HAVE_LIBSQLITE
+
+#define READ_SQL_TEXT_AND_STORE(f, col_num) do { \
+    char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
+    if (text_val != NULL) { \
+        STRDUP(f, text_val, ret = -1; GOTO_ERR(db->handle, ALPM_ERR_MEMORY, cleanup)); \
+    } \
+} while(0)
+
+#define READ_SQL_DATE_AND_STORE(f, col_num) do { \
+    const char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
+    if (text_val != NULL) { f = _alpm_parsedate(text_val); } \
+} while(0)
+
+#define READ_SQL_SIZE_AND_STORE(f, col_num) do { \
+    const char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
+    if (text_val != NULL) { f = _alpm_strtoofft(text_val); } \
+} while(0)
+
+#define READ_SQL_AND_STORE_ALL(f, col_num) do { \
+	char *i, *save = NULL; \
+    char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
+	if(text_val != NULL) { for(i = strtok_r(text_val, ",", &save); i; i = strtok_r(NULL, ",", &save)) { \
+		f = alpm_list_add(f, strdup(i)); \
+	} } \
+} while(0)
+
+#define READ_SQL_AND_SPLITDEP(f, col_num) do { \
+	char *i, *save = NULL; \
+    char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
+	if(text_val != NULL) { for(i = strtok_r(text_val, ",", &save); i; i = strtok_r(NULL, ",", &save)) { \
+		f = alpm_list_add(f, alpm_dep_from_string(i)); \
+	} } \
+} while(0)
+
+#define READ_SQL_AND_SPLIT_FILE(f, col_num) do { \
+	char *i, *save = NULL; \
+    size_t files_count = 0, files_size = 0; \
+    alpm_file_t *files = NULL; \
+    char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
+	if(text_val != NULL) { for(i = strtok_r(text_val, ",", &save); i; i = strtok_r(NULL, ",", &save)) { \
+        if(!_alpm_greedy_grow((void **)&files, &files_size, \
+            (files_count ? (files_count + 1) * sizeof(alpm_file_t) : 8 * sizeof(alpm_file_t)))) { \
+            ret = -1; \
+            GOTO_ERR(db->handle, ALPM_ERR_MEMORY, cleanup); \
+        } \
+        STRDUP(files[files_count].name, i, ret = -1; GOTO_ERR(db->handle, ALPM_ERR_MEMORY, cleanup)); \
+        files_count++; \
+    } \
+    /* attempt to hand back any memory we don't need */ \
+    if(files_count > 0) { \
+        REALLOC(files, sizeof(alpm_file_t) * files_count, (void)0); \
+    } else { \
+        FREE(files); \
+    } \
+    f.count = files_count; \
+    f.files = files; \
+    _alpm_filelist_sort(&f); } \
+} while(0)
+
+static int sync_db_read_nf(alpm_db_t *db, struct archive *archive,
+		struct archive_entry *entry)
+{
+	const char* entryname;
+	int ret = 0;
+	alpm_pkg_t *pkg;
+
+	entryname = archive_entry_pathname(entry);
+	if(entryname == NULL) {
+		_alpm_log(db->handle, ALPM_LOG_DEBUG,
+				"invalid archive entry provided to _alpm_sync_db_read, skipping\n");
+		return -1;
+	}
+
+	_alpm_log(db->handle, ALPM_LOG_FUNCTION, "loading package data from sqlite db\n");
+
+	const int archive_flags = ARCHIVE_EXTRACT_OWNER |
+						ARCHIVE_EXTRACT_PERM |
+						ARCHIVE_EXTRACT_TIME |
+						ARCHIVE_EXTRACT_SECURE_SYMLINKS;
+
+	char template_directory_name[] = "/tmp/pacman-db-temp.XXXXXX";
+	char* temp_dir = mkdtemp(template_directory_name);
+	if(temp_dir == NULL) {
+		_alpm_log(db->handle, ALPM_LOG_DEBUG,
+				"failed to create temp directory\n");
+		return -1;
+	}
+	char* filepath = NULL;
+	const size_t bufsize = sizeof(template_directory_name) + strlen(entryname) + 1;
+
+	MALLOC(filepath, bufsize, RET_ERR(db->handle, ALPM_ERR_MEMORY, -1));
+	snprintf(filepath, bufsize, "%s/%s", temp_dir, entryname);
+
+	archive_entry_set_pathname(entry, filepath);
+	archive_read_extract(archive, entry, archive_flags);
+
+	sqlite3 *sqlite_db = NULL;
+	sqlite3_stmt *sqlite_res = NULL;
+	int rc = sqlite3_open_v2(filepath, &sqlite_db, SQLITE_OPEN_READONLY, NULL);
+	if (rc != SQLITE_OK) {
+		ret = -1;
+		_alpm_log(db->handle, ALPM_LOG_DEBUG,
+				"could not open db: '%s'\n", sqlite3_errmsg(sqlite_db));
+		GOTO_ERR(db->handle, ALPM_ERR_MEMORY, cleanup);
+	}
+
+	const char select_query[] = "SELECT * FROM packages";
+	rc = sqlite3_prepare_v2(sqlite_db, select_query, -1, &sqlite_res, 0);
+	if (rc != SQLITE_OK) {
+		ret = -1;
+		_alpm_log(db->handle, ALPM_LOG_DEBUG,
+				"could not open db: '%s'\n", sqlite3_errmsg(sqlite_db));
+		GOTO_ERR(db->handle, ALPM_ERR_MEMORY, cleanup);
+	}
+	while (sqlite3_step(sqlite_res) == SQLITE_ROW) {
+		pkg = _alpm_pkg_new();
+		if(pkg == NULL) {
+			ret = -1;
+			GOTO_ERR(db->handle, ALPM_ERR_MEMORY, cleanup);
+		}
+
+		READ_SQL_TEXT_AND_STORE(pkg->name, 1);
+		READ_SQL_TEXT_AND_STORE(pkg->version, 2);
+		pkg->name_hash = _alpm_hash_sdbm(pkg->name);
+
+		READ_SQL_TEXT_AND_STORE(pkg->filename, 3);
+		if(_alpm_validate_filename(db, pkg->name, pkg->filename) < 0) {
+			ret = -1;
+			GOTO_ERR(db->handle, ALPM_ERR_MEMORY, cleanup);
+		}
+		READ_SQL_TEXT_AND_STORE(pkg->base, 4);
+		READ_SQL_TEXT_AND_STORE(pkg->desc, 5);
+		READ_SQL_AND_STORE_ALL(pkg->groups, 6);
+		READ_SQL_TEXT_AND_STORE(pkg->url, 7);
+		READ_SQL_AND_STORE_ALL(pkg->licenses, 8);
+		READ_SQL_TEXT_AND_STORE(pkg->arch, 9);
+		READ_SQL_DATE_AND_STORE(pkg->builddate, 10);
+		READ_SQL_TEXT_AND_STORE(pkg->packager, 11);
+		READ_SQL_SIZE_AND_STORE(pkg->size, 12);
+		READ_SQL_SIZE_AND_STORE(pkg->isize, 13);
+		READ_SQL_TEXT_AND_STORE(pkg->md5sum, 14);
+		READ_SQL_TEXT_AND_STORE(pkg->sha256sum, 15);
+		READ_SQL_TEXT_AND_STORE(pkg->base64_sig, 16);
+		READ_SQL_AND_SPLITDEP(pkg->replaces, 17);
+		READ_SQL_AND_SPLITDEP(pkg->depends, 18);
+		READ_SQL_AND_SPLITDEP(pkg->optdepends, 19);
+		READ_SQL_AND_SPLITDEP(pkg->makedepends, 20);
+		READ_SQL_AND_SPLITDEP(pkg->checkdepends, 21);
+		READ_SQL_AND_SPLITDEP(pkg->conflicts, 22);
+		READ_SQL_AND_SPLITDEP(pkg->provides, 23);
+		READ_SQL_AND_SPLIT_FILE(pkg->files, 24);
+
+		pkg->origin = ALPM_PKG_FROM_SYNCDB;
+		pkg->origin_data.db = db;
+		pkg->ops = get_sync_pkg_ops();
+		pkg->handle = db->handle;
+
+		/* add to the collection */
+		_alpm_log(db->handle, ALPM_LOG_FUNCTION, "adding '%s' to package cache for db '%s'\n",
+				pkg->name, db->treename);
+		if(_alpm_pkghash_add(&db->pkgcache, pkg) == NULL) {
+			_alpm_pkg_free(pkg);
+			ret = -1;
+			GOTO_ERR(db->handle, ALPM_ERR_MEMORY, cleanup);
+		}
+	}
+
+cleanup:
+	if (sqlite_res != NULL) {
+		sqlite3_finalize(sqlite_res);
+	}
+	sqlite3_close(sqlite_db);
+
+	if(unlink(filepath) != 0 || rmdir(temp_dir) != 0) {
+		ret = -1;
+	}
+	free(filepath);
+
+	return ret;
+}
+#endif
 
 struct db_operations sync_db_ops = {
 	.validate         = sync_db_validate,
