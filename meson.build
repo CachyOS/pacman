@@ -93,6 +93,11 @@ else
   bsdtar_no_read_sparse = ''
 endif
 
+libsqlite = dependency('sqlite3',
+                        version : '>=3.42.0',
+                        static : get_option('buildstatic'))
+conf.set('HAVE_LIBSQLITE', libsqlite.found())
+
 libcurl = dependency('libcurl',
                      version : '>=7.55.0',
                      required : get_option('curl'),
@@ -332,7 +337,7 @@ libcommon = static_library(
   gnu_symbol_visibility : 'hidden',
   install : false)
 
-alpm_deps = [crypto_provider, libarchive, libcurl, libintl, libseccomp, gpgme]
+alpm_deps = [crypto_provider, libarchive, libcurl, libsqlite, libintl, libseccomp, gpgme]
 
 libalpm_a = static_library(
   'alpm_objlib',
