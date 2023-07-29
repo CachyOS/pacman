@@ -6,27 +6,20 @@ license = "GPLv3"
 edition = "2021"
 
 [dependencies]
-log = "0.4"
-subprocess = "0.2.9"
-once_cell = "1.18"
-lazy_static = "1.4"
-gettext-rs = { version = "0.7", features = ["gettext-system"] }
-#async_zip = { version = "0.0.11", features = ["full"] }
-#tokio = { version = "1.25.0", features = ["full"] }
-akv = "0.1.0"
-fern = { version = "0.6", features = ["colored", "chrono"] }
-chrono = "0.4"
-rand = "0.8.5"
-path-absolutize = "3.1"
-rayon = "1.7"
-md-5 = "0.10.5"
-sha2 = "0.10"
-fs_extra = "1.3.0"
-signal-hook = "0.3"
-rusqlite = { version = "0.29.0", features = ["bundled", "column_decltype"], default-features = false }
-anyhow = { version = "1.0.72", features = ["std"], default-features = false }
-#tar = "0.4.38"
-#clap = { version = "4.1.4", features = ["derive"] }
+log = { version = "0.4", default-features = false }
+subprocess = { version = "0.2", default-features = false }
+lazy_static = { version = "1", default-features = false }
+akv = { version = "0.1.0", default-features = false }
+fern = { version = "0.6", features = ["colored"], default-features = false }
+rand = { version = "0.8", features = ["std", "std_rng", "packed_simd"], default-features = false }
+path-absolutize = { version = "3", default-features = false }
+rayon = { version = "1.7", default-features = false }
+md-5 = { version = "0.10", features = ["std"], default-features = false }
+sha2 = { version = "0.10", default-features = false }
+fs_extra = { version = "1.3", default-features = false }
+signal-hook = { version = "0.3", features = ["iterator"], default-features = false }
+rusqlite = { version = "0.29", features = ["bundled"], default-features = false }
+anyhow = { version = "1.0", features = ["std"], default-features = false }
 
 [profile.release]
 strip = "symbols"
