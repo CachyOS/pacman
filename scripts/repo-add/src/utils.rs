@@ -66,12 +66,33 @@ pub fn create_temporary_directory(max_tries: Option<u32>) -> Option<String> {
     }
 }
 
+pub fn create_tempfile(max_tries: Option<u32>) -> Option<(File, String)> {
+    let tmp_dir = env::temp_dir();
+    let max_tries = max_tries.unwrap_or(1000);
+
+    let mut i: u32 = 0;
+    let mut rng = rand::thread_rng();
+    loop {
+        let res_path = format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.gen::<u64>());
+        if !Path::new(&res_path).exists() {
+            if let Ok(file_obj) = File::options().write(true).create_new(true).open(&res_path) {
+				return Some((file_obj, res_path))
+			}
+        }
+        if i == max_tries {
+            return None;
+        }
+        i += 1;
+    }
+}
+
 pub fn exec(command: &str, interactive: Option<bool>) -> (String, bool) {
     let interactive = interactive.unwrap_or(false);
     if interactive {
         let ret_code = Exec::shell(command).join().unwrap();
         return (String::new(), ret_code.success());
     }
+	println!("exec cmd := '{}'", command);
     let child_proc = Exec::shell(command).stdout(Redirection::Pipe).capture().unwrap();
     let mut child_out = child_proc.stdout_str();
     if child_out.ends_with('\n') {

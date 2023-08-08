@@ -825,22 +825,34 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
                 res.map(|e| String::from(e.path().file_name().unwrap().to_str().unwrap())).unwrap()
             })
             .collect::<Vec<String>>()
-            .join(" ");
-        if files.is_empty() {
+            .join("\n");
+
+		let mut tmpfile_path: Option<String> = None;
+		let working_tar_arg = if files.is_empty() {
             // we have no packages remaining? zip up some emptyness
             log::warn!("No packages remain, creating empty database.");
-            files = "-T /dev/null".to_owned();
-        }
+            "-T /dev/null".to_owned()
+        } else {
+			use std::io::Write;
+        	let (mut tmpfile, filepath) = utils::create_tempfile(None).expect("Failed to create tmpfile");
+			tmpfile.write_all(files.as_bytes()).unwrap();
+			tmpfile_path = Some(filepath);
+			format!("$(cat {})", &tmpfile_path.as_ref().unwrap())
+		};
 
         let compress_cmd =
             utils::get_compression_command(argstruct.repo_db_suffix.as_ref().unwrap());
         utils::exec(
             &format!(
                 "cd \"{}\"; bsdtar -cf - {} | {} > \"{}\"",
-                &workingdb_path, files, compress_cmd, tempname
+                &workingdb_path, working_tar_arg, compress_cmd, tempname
             ),
             None,
         );
+
+		if let Some(tmpfile_path) = tmpfile_path {
+			let _ = fs::remove_file(&tmpfile_path);
+		}
 
         if !create_signature(&tempname, argstruct) {
             is_fail.store(true, Ordering::Relaxed);
