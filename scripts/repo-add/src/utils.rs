@@ -92,7 +92,6 @@ pub fn exec(command: &str, interactive: Option<bool>) -> (String, bool) {
         let ret_code = Exec::shell(command).join().unwrap();
         return (String::new(), ret_code.success());
     }
-	println!("exec cmd := '{}'", command);
     let child_proc = Exec::shell(command).stdout(Redirection::Pipe).capture().unwrap();
     let mut child_out = child_proc.stdout_str();
     if child_out.ends_with('\n') {
