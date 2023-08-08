@@ -11,7 +11,7 @@ subprocess = { version = "0.2", default-features = false }
 lazy_static = { version = "1", default-features = false }
 akv = { version = "0.1.0", default-features = false }
 fern = { version = "0.6", features = ["colored"], default-features = false }
-rand = { version = "0.8", features = ["std", "std_rng", "packed_simd"], default-features = false }
+rand = { version = "0.8", features = ["std", "std_rng"], default-features = false }
 path-absolutize = { version = "3", default-features = false }
 rayon = { version = "1.7", default-features = false }
 md-5 = { version = "0.10", features = ["std"], default-features = false }
