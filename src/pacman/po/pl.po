@@ -21,6 +21,7 @@
 # Piotr Strębski <strebski@gmail.com>, 2013
 # Sebastian Jakubiak, 2019
 # Sebastian Jakubiak, 2019
+# Piotr Gorski <piotrgorski@cachyos.org>, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
@@ -279,22 +280,22 @@ msgstr "Łącznie"
 #: src/pacman/callback.c:884
 #, c-format
 msgid " %s downloading...\n"
-msgstr ""
+msgstr " %s pobieranie...\n"
 
 #: src/pacman/callback.c:1051
 #, c-format
 msgid " %s is up to date"
-msgstr ""
+msgstr " %s jest aktualne"
 
 #: src/pacman/callback.c:1077
 #, c-format
 msgid " %s failed to download"
-msgstr ""
+msgstr " %s nie zostało zaktualizowane"
 
 #: src/pacman/callback.c:1126
 #, c-format
 msgid "unknown callback event type %d for %s\n"
-msgstr ""
+msgstr "nieznany typ wywołania zwrotnego %d dla %s\n"
 
 #: src/pacman/check.c:63 src/pacman/check.c:291
 #, c-format
@@ -344,17 +345,17 @@ msgstr "%s: %s (niespójność rozmiaru)\n"
 #: src/pacman/check.c:185
 #, c-format
 msgid "%s: %s (failed to calculate %s checksum)\n"
-msgstr ""
+msgstr "%s: %s (nie udało się obliczyć sumy kontrolnej %s)\n"
 
 #: src/pacman/check.c:193
 #, c-format
 msgid "%s: %s (%s checksum information not available)\n"
-msgstr ""
+msgstr "%s: %s (informacja o sumie kontrolnej %s nie jest dostępna)\n"
 
 #: src/pacman/check.c:204 src/pacman/check.c:210
 #, c-format
 msgid "%s: %s (%s checksum mismatch)\n"
-msgstr ""
+msgstr "%s: %s (%s suma kontrolna nie zgadza się)\n"
 
 #: src/pacman/check.c:266 src/pacman/check.c:281 src/pacman/check.c:325
 #: src/pacman/check.c:379
@@ -463,12 +464,12 @@ msgstr ""
 #: src/pacman/conf.c:734
 #, c-format
 msgid "config file %s, line %d: value for '%s' has to be positive : '%s'\n"
-msgstr ""
+msgstr "plik konfiguracyjny %s, linia %d: wartość dla '%s' musi być dodatnia: '%s'\n"
 
 #: src/pacman/conf.c:741
 #, c-format
 msgid "config file %s, line %d: value for '%s' is too large : '%s'\n"
-msgstr ""
+msgstr "plik konfiguracyjny %s, linia %d: wartość dla '%s' jest zbyt duża: '%s'\n"
 
 #: src/pacman/conf.c:761
 #, c-format
@@ -494,6 +495,9 @@ msgid ""
 "(root: %s, dbpath: %s)\n"
 "%s\n"
 msgstr ""
+"Nie udało się zainicjować biblioteki alpm:\n"
+"(root: %s, dbpath: %s)\n"
+"%s\n"
 
 #: src/pacman/conf.c:842
 #, c-format
@@ -591,7 +595,7 @@ msgstr "%s należy do %s%s/%s%s %s%s%s\n"
 #: src/pacman/files.c:129
 #, c-format
 msgid "invalid regular expression '%s'\n"
-msgstr ""
+msgstr "nieprawidłowe wyrażenie regularne '%s'\n"
 
 #: src/pacman/files.c:253
 #, c-format
@@ -1928,7 +1932,7 @@ msgstr "ostrzeżenie: nieznana dyrektywa  '%s'\n"
 #: src/pacman/pacman-conf.c:439
 #, c-format
 msgid "error: directives may not be specified with %s\n"
-msgstr ""
+msgstr "błąd: dyrektywy nie mogą być określone za pomocą %s\n"
 
 #: src/util/testpkg.c:56
 #, c-format
@@ -1977,4 +1981,24 @@ msgstr "Pakiet jest poprawny.\n"
 #: src/util/testpkg.c:99
 #, c-format
 msgid "error releasing alpm\n"
-msgstr ""
+msgstr "błąd podczas otwierania alpm\n"
+
+#: src/pacman/update-notice.c:214
+#, c-format
+msgid "invalid update notice server response\n"
+msgstr "nieprawidłowe powiadomienie o aktualizacji w odpowiedzi serwera\n"
+
+#: src/pacman/update-notice.c:233
+#, c-format
+msgid "%sUpdate notice: %s%s\n"
+msgstr "%sPowiadomienie o aktualizacji: %s%s\n"
+
+#: src/pacman/update-notice.c:235
+#, c-format
+msgid "Do you want to continue?"
+msgstr "Czy chcesz kontynuować?"
+
+#: src/pacman/update-notice.c:240
+#, c-format
+msgid "could not save notice id: %s\n"
+msgstr "nie udało się zachować powiadomienia: %s\n"
