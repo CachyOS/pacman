@@ -230,7 +230,7 @@ int do_update_notice(void) {
         /* cover case when we receive multiline message */
         replace_all_chars(msg_body, "\\n", '\n');
 
-        printf("%sUpdate notice: %s%s\n", config->colstr.warn,
+        printf(_("%sUpdate notice: %s%s\n"), config->colstr.warn,
                             config->colstr.nocolor, msg_body);
         if (yesno(_("Do you want to continue?")) == 0) {
             ret = -1;
