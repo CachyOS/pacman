@@ -17,6 +17,7 @@
 # Piotr Strębski <strebski@gmail.com>, 2013
 # Sebastian Jakubiak, 2019
 # Sebastian Jakubiak, 2019
+# Piotr Gorski <piotrgorski@cachyos.org>, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
@@ -360,6 +361,7 @@ msgstr "Partycja %s jest zamontowana tylko do odczytu\n"
 msgid ""
 "too many errors from %s, skipping for the remainder of this transaction\n"
 msgstr ""
+"zbyt wiele błędów z %s, pomijanie do końca tej transakcji\n"
 
 #: lib/libalpm/dload.c:220
 #, c-format
@@ -396,17 +398,17 @@ msgstr "url '%s' jest błędny\n"
 #: lib/libalpm/dload.c:893
 #, c-format
 msgid "failed to setup a download payload for %s\n"
-msgstr ""
+msgstr "Nie udało się skonfigurować modułu pobierania dla %s\n"
 
 #: lib/libalpm/dload.c:905
 #, c-format
 msgid "curl returned error %d from transfer\n"
-msgstr ""
+msgstr "curl zwrócił błąd %d transferu\n"
 
 #: lib/libalpm/dload.c:929
 #, c-format
 msgid "curl transfer error: %d\n"
-msgstr ""
+msgstr "błąd transferu curl: %d\n"
 
 #: lib/libalpm/dload.c:1055 lib/libalpm/sync.c:840
 #, c-format
@@ -546,7 +548,7 @@ msgstr "duplikat celu"
 #: lib/libalpm/error.c:94
 #, c-format
 msgid "duplicate filename"
-msgstr ""
+msgstr "zduplikowana nazwa pliku"
 
 #: lib/libalpm/error.c:98
 #, c-format
@@ -702,69 +704,69 @@ msgstr "nie udało się usunąć pliku blokującego %s\n"
 #: lib/libalpm/hook.c:95
 #, c-format
 msgid "Missing trigger targets in hook: %s\n"
-msgstr ""
+msgstr "Brakujące cele wyzwalacza w pliku hook: %s\n"
 
 #: lib/libalpm/hook.c:101
 #, c-format
 msgid "Missing trigger type in hook: %s\n"
-msgstr ""
+msgstr "Brakujący typ wyzwalacza w pliku hook: %s\n"
 
 #: lib/libalpm/hook.c:107
 #, c-format
 msgid "Missing trigger operation in hook: %s\n"
-msgstr ""
+msgstr "Brakująca operacja wyzwalacza w pliku hook: %s\n"
 
 #: lib/libalpm/hook.c:134
 #, c-format
 msgid "Missing Exec option in hook: %s\n"
-msgstr ""
+msgstr "Brakująca opcja Exec w pliku hook: %s\n"
 
 #: lib/libalpm/hook.c:140
 #, c-format
 msgid "Missing When option in hook: %s\n"
-msgstr ""
+msgstr "Brakująca opcja When w pliku hook: %s\n"
 
 #: lib/libalpm/hook.c:143
 #, c-format
 msgid "AbortOnFail set for PostTransaction hook: %s\n"
-msgstr ""
+msgstr "AbortOnFail ustawiony dla wyzwalacza PostTransaction: %s\n"
 
 #: lib/libalpm/hook.c:160
 #, c-format
 msgid "error while reading hook %s: %s\n"
-msgstr ""
+msgstr "błąd podczas odczytu wyzwalacza %s: %s\n"
 
 #: lib/libalpm/hook.c:162 lib/libalpm/hook.c:206 lib/libalpm/hook.c:248
 #, c-format
 msgid "hook %s line %d: invalid option %s\n"
-msgstr ""
+msgstr "hook %s linia %d: nieprawidłowa opcja %s\n"
 
 #: lib/libalpm/hook.c:172
 #, c-format
 msgid "hook %s line %d: invalid section %s\n"
-msgstr ""
+msgstr "hook %s linia %d: nieprawidłowa sekcja %s\n"
 
 #: lib/libalpm/hook.c:184 lib/libalpm/hook.c:199 lib/libalpm/hook.c:218
 #: lib/libalpm/hook.c:241
 #, c-format
 msgid "hook %s line %d: invalid value %s\n"
-msgstr ""
+msgstr "hook %s linia %d: nieprawidłowa wartość %s\n"
 
 #: lib/libalpm/hook.c:188 lib/libalpm/hook.c:211 lib/libalpm/hook.c:222
 #: lib/libalpm/hook.c:236
 #, c-format
 msgid "hook %s line %d: overwriting previous definition of %s\n"
-msgstr ""
+msgstr "hook %s linia %d: nadpisanie poprzedniej definicji %s\n"
 
 #: lib/libalpm/hook.c:243
 #, c-format
 msgid "hook %s line %d: unable to set option (%s)\n"
-msgstr ""
+msgstr "hook %s linia %d: nie można ustawić opcji (%s)\n"
 
 #: lib/libalpm/hook.c:513
 #, c-format
 msgid "unable to run hook %s: %s\n"
-msgstr ""
+msgstr "Nie można uruchomić hook %s: %s\n"
 
 #: lib/libalpm/hook.c:547 lib/libalpm/hook.c:559 lib/libalpm/remove.c:378
 #, c-format
@@ -953,7 +955,7 @@ msgstr "nie udało się zastąpić %s przez %s\n"
 #: lib/libalpm/sync.c:476
 #, c-format
 msgid "packages %s and %s have the same filename: %s\n"
-msgstr ""
+msgstr "pakiety %s i %s mają tę samą nazwę pliku: %s\n"
 
 #: lib/libalpm/sync.c:542 lib/libalpm/sync.c:612
 #, c-format
