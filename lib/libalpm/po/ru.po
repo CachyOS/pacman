@@ -715,17 +715,17 @@ msgstr ""
 #: lib/libalpm/hook.c:134
 #, c-format
 msgid "Missing Exec option in hook: %s\n"
-msgstr ""
+msgstr "Отсутствует параметр Exec в сценарии: %s\n"
 
 #: lib/libalpm/hook.c:140
 #, c-format
 msgid "Missing When option in hook: %s\n"
-msgstr ""
+msgstr "Отсутствует параметр When в сценарии: %s\n"
 
 #: lib/libalpm/hook.c:143
 #, c-format
 msgid "AbortOnFail set for PostTransaction hook: %s\n"
-msgstr ""
+msgstr "AbortOnFail установлен для PostTransaction hook: %s\n"
 
 #: lib/libalpm/hook.c:160
 #, c-format
@@ -872,17 +872,17 @@ msgstr "%s: не найдена необходимая подпись\n"
 #: lib/libalpm/signing.c:941
 #, c-format
 msgid "%s: signature from \"%s\" is marginal trust\n"
-msgstr ""
+msgstr "%s: подпись от \"%s\" имеет маргинальное доверие\n"
 
 #: lib/libalpm/signing.c:949
 #, c-format
 msgid "%s: signature from \"%s\" is unknown trust\n"
-msgstr ""
+msgstr "%s: подпись от \"%s\" неизвестна\n"
 
 #: lib/libalpm/signing.c:956
 #, c-format
 msgid "%s: signature from \"%s\" should never be trusted\n"
-msgstr ""
+msgstr "%s: подпись от \"%s\" не должна быть доверенной\n"
 
 #: lib/libalpm/signing.c:968
 #, c-format
