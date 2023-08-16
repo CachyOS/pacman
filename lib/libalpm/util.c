@@ -1118,11 +1118,6 @@ int _alpm_archive_fgets(struct archive *a, struct archive_read_buffer *b)
 			block_remaining = b->block + b->block_size - b->block_offset;
 		}
 
-		/* skip nil block */
-		if(!b->block_offset) {
-			continue;
-		}
-
 		/* look through the block looking for EOL characters */
 		eol = memchr(b->block_offset, '\n', block_remaining);
 		if(!eol) {
