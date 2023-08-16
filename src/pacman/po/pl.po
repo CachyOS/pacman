@@ -44,7 +44,6 @@ msgstr ""
 msgid "Running pre-transaction hooks...\n"
 msgstr ""
 "Uruchamianie przed-transakcji...\n"
-"\n"
 
 #: src/pacman/callback.c:247
 #, c-format
