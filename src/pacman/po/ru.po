@@ -207,12 +207,12 @@ msgstr ""
 #: src/pacman/callback.c:543
 #, c-format
 msgid "Import PGP key %s?"
-msgstr ""
+msgstr "Импортировать PGP ключ %s?"
 
 #: src/pacman/callback.c:546
 #, c-format
 msgid "Import PGP key %s, \"%s\"?"
-msgstr ""
+msgstr "Импортировать PGP ключ %s, \"%s\"?"
 
 #: src/pacman/callback.c:608
 #, c-format
@@ -267,22 +267,22 @@ msgstr "загрузка файлов пакетов"
 #: src/pacman/callback.c:756
 #, c-format
 msgid "Total"
-msgstr ""
+msgstr "Всего"
 
 #: src/pacman/callback.c:887
 #, c-format
 msgid " %s downloading...\n"
-msgstr ""
+msgstr " %s загружаем...\n"
 
 #: src/pacman/callback.c:1057
 #, c-format
 msgid " %s is up to date"
-msgstr ""
+msgstr " %s актуальный"
 
 #: src/pacman/callback.c:1083
 #, c-format
 msgid " %s failed to download"
-msgstr ""
+msgstr " %s не удалось загрузить"
 
 #: src/pacman/callback.c:1133
 #, c-format
