@@ -360,7 +360,7 @@ msgstr "Раздел %s смонтирован только для чтения\
 #, c-format
 msgid ""
 "too many errors from %s, skipping for the remainder of this transaction\n"
-msgstr ""
+msgstr "слишком много ошибок от %s, пропуск оставшейся части транзакции\n"
 
 #: lib/libalpm/dload.c:220
 #, c-format
@@ -395,17 +395,17 @@ msgstr "ссылка '%s' некорректна\n"
 #: lib/libalpm/dload.c:893
 #, c-format
 msgid "failed to setup a download payload for %s\n"
-msgstr ""
+msgstr "не удалось установить payload для загрузки %s\n"
 
 #: lib/libalpm/dload.c:905
 #, c-format
 msgid "curl returned error %d from transfer\n"
-msgstr ""
+msgstr "curl вернул ошибку %d при передаче\n"
 
 #: lib/libalpm/dload.c:929
 #, c-format
 msgid "curl transfer error: %d\n"
-msgstr ""
+msgstr "curl ошибка передачи: %d\n"
 
 #: lib/libalpm/dload.c:1055 lib/libalpm/sync.c:840
 #, c-format
@@ -415,7 +415,7 @@ msgstr "не удалось получить некоторые файлы\n"
 #: lib/libalpm/dload.c:1078
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
-msgstr ""
+msgstr "загрузка завершена успешно, но в кэше нет файла\n"
 
 #: lib/libalpm/error.c:40
 #, c-format
@@ -545,7 +545,7 @@ msgstr "повторение целей"
 #: lib/libalpm/error.c:94
 #, c-format
 msgid "duplicate filename"
-msgstr ""
+msgstr "повторяющееся имя файла"
 
 #: lib/libalpm/error.c:98
 #, c-format
@@ -680,7 +680,7 @@ msgstr "ошибка вызова внешнего менеджера загру
 #: lib/libalpm/error.c:159
 #, c-format
 msgid "compiled without signature support"
-msgstr ""
+msgstr "скомпилирован без поддержки подписи"
 
 #: lib/libalpm/error.c:162
 #, c-format
@@ -695,7 +695,7 @@ msgstr "не найден lock-файл %s\n"
 #: lib/libalpm/handle.c:148
 #, c-format
 msgid "could not remove lock file %s\n"
-msgstr "не удалось удалить  локфайл %s\n"
+msgstr "не удалось удалить lock-файл %s\n"
 
 #: lib/libalpm/hook.c:95
 #, c-format
@@ -735,29 +735,29 @@ msgstr "ошибка чтения сценария %s: %s\n"
 #: lib/libalpm/hook.c:162 lib/libalpm/hook.c:206 lib/libalpm/hook.c:248
 #, c-format
 msgid "hook %s line %d: invalid option %s\n"
-msgstr ""
+msgstr "сценарий %s строка %d: недопустимый параметр %s\n"
 
 #: lib/libalpm/hook.c:172
 #, c-format
 msgid "hook %s line %d: invalid section %s\n"
-msgstr ""
+msgstr "сценарий %s строка %d: недопустимый раздел %s\n"
 
 #: lib/libalpm/hook.c:184 lib/libalpm/hook.c:199 lib/libalpm/hook.c:218
 #: lib/libalpm/hook.c:241
 #, c-format
 msgid "hook %s line %d: invalid value %s\n"
-msgstr ""
+msgstr "сценарий %s строка %d: недопустимое значение %s\n"
 
 #: lib/libalpm/hook.c:188 lib/libalpm/hook.c:211 lib/libalpm/hook.c:222
 #: lib/libalpm/hook.c:236
 #, c-format
 msgid "hook %s line %d: overwriting previous definition of %s\n"
-msgstr ""
+msgstr "сценарий %s строка %d: перезапись предыдущего определения %s\n"
 
 #: lib/libalpm/hook.c:243
 #, c-format
 msgid "hook %s line %d: unable to set option (%s)\n"
-msgstr ""
+msgstr "сценарий %s строка %d: не удалось установить параметр (%s)\n"
 
 #: lib/libalpm/hook.c:513
 #, c-format
@@ -827,7 +827,7 @@ msgstr "не удалось удалить запись '%s' из кэша\n"
 #: lib/libalpm/signing.c:163
 #, c-format
 msgid "Public keyring not found; have you run '%s'?\n"
-msgstr ""
+msgstr "Публичные ключи не найдены; вы запустили '%s'?\n"
 
 #: lib/libalpm/signing.c:199 lib/libalpm/signing.c:767
 #, c-format
@@ -837,22 +837,22 @@ msgstr "ошибка GPGME: %s\n"
 #: lib/libalpm/signing.c:274
 #, c-format
 msgid "looking up key %s using WKD\n"
-msgstr ""
+msgstr "поиск ключа %s с помощью WKD\n"
 
 #: lib/libalpm/signing.c:283
 #, c-format
 msgid "gpg error: %s\n"
-msgstr ""
+msgstr "ошибка gpg: %s\n"
 
 #: lib/libalpm/signing.c:430 lib/libalpm/signing.c:503
 #, c-format
 msgid "keyring is not writable\n"
-msgstr ""
+msgstr "ключи недоступны для записи\n"
 
 #: lib/libalpm/signing.c:531
 #, c-format
 msgid "key \"%s\" on keyserver\n"
-msgstr ""
+msgstr "ключ \"%s\" на сервере ключей\n"
 
 #: lib/libalpm/signing.c:536
 #, c-format
@@ -862,7 +862,7 @@ msgstr "не удалось импортировать ключ \"%s\"\n"
 #: lib/libalpm/signing.c:540
 #, c-format
 msgid "key \"%s\" could not be looked up remotely\n"
-msgstr ""
+msgstr "не удалось найти удаленно ключ \"%s\"\n"
 
 #: lib/libalpm/signing.c:926 lib/libalpm/sync.c:1022
 #, c-format
@@ -892,7 +892,7 @@ msgstr "%s: неизвестный ключ \"%s\"\n"
 #: lib/libalpm/signing.c:977
 #, c-format
 msgid "%s: key \"%s\" is disabled\n"
-msgstr ""
+msgstr "%s: ключ \"%s\" отключен\n"
 
 #: lib/libalpm/signing.c:981
 #, c-format
@@ -949,7 +949,7 @@ msgstr "не удалось заменить %s на %s\n"
 #: lib/libalpm/sync.c:476
 #, c-format
 msgid "packages %s and %s have the same filename: %s\n"
-msgstr ""
+msgstr "пакеты %s и %s имеют одинаковое имя файла: %s\n"
 
 #: lib/libalpm/sync.c:542 lib/libalpm/sync.c:612
 #, c-format
@@ -964,7 +964,7 @@ msgstr "удаление '%s' из списка целей, поскольку �
 #: lib/libalpm/sync.c:1036
 #, c-format
 msgid "failed to read file %s: %s\n"
-msgstr ""
+msgstr "не удалось прочитать файл %s: %s\n"
 
 #: lib/libalpm/sync.c:1223
 #, c-format
