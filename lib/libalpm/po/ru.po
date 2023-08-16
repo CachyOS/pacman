@@ -15,6 +15,7 @@
 # Sergiy Tereshchenko <serg.partizan@gmail.com>, 2012
 # be1bb8e720f95f5c175a5f1f3aa8f780, 2015
 # Анатолий Валерианович <ffox909@mail.ru>, 2016
+# Владислав Непогодин <vnepogodin@cachyos.org>, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
