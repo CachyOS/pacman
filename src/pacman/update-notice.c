@@ -147,7 +147,7 @@ static int check_cachyos_repos(void) {
     return -1;
 }
 
-static int retrive_data_from_json(const char* jsondata, char** msg_id, char** msg_body) {
+static int retrieve_data_from_json(const char* jsondata, char** msg_id, char** msg_body) {
     jsmn_parser p;
     jsmntok_t t[128]; /* We expect no more than 4 tokens */
 
@@ -210,7 +210,7 @@ int do_update_notice(void) {
 
     char* msg_id = NULL;
     char* msg_body = NULL;
-    if (retrive_data_from_json(data, &msg_id, &msg_body) != 0) {
+    if (retrieve_data_from_json(data, &msg_id, &msg_body) != 0) {
         pm_printf(ALPM_LOG_ERROR, _("invalid update notice server response\n"));
         ret = -1;
         goto cleanup;
