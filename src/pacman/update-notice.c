@@ -157,8 +157,13 @@ static int retrieve_data_from_json(const char* jsondata, char** msg_id, char** m
         return -1;
     }
 
+    /* We have empty JSON object -> skip */
+    if (key_count == 0) {
+        return 0;
+    }
+
     /* Assume the top-level element is an object */
-    if (key_count < 1 || t[0].type != JSMN_OBJECT) {
+    if (t[0].type != JSMN_OBJECT) {
         return -1;
     }
 
@@ -205,6 +210,9 @@ int do_update_notice(void) {
 
     char* data = handle_url("https://iso-stats.cachyos.org/api/v2/last_update_notice");
     if (!data) {
+        return 0;
+    }
+    if (strcmp(data, "No notice found") == 0) {
         return 0;
     }
 
