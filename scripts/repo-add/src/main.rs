@@ -770,9 +770,9 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
         let _ = fs::remove_file(&dblink);
         let _ = fs::remove_file(&sig_dblink);
 
-        if !utils::exec(&format!("ln -s \"{}\" \"{}\" 2>/dev/null", filename, dblink), Some(true)).1
+        if !utils::exec(&format!("ln -sf \"{}\" \"{}\" 2>/dev/null", filename, dblink), Some(true)).1
         {
-            if !utils::exec(&format!("ln \"{}\" \"{}\" 2>/dev/null", filename, dblink), Some(true))
+            if !utils::exec(&format!("ln -f \"{}\" \"{}\" 2>/dev/null", filename, dblink), Some(true))
                 .1
             {
                 let _ = fs::copy(&filename, &dblink);
@@ -781,13 +781,13 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
 
         if Path::new(&sig_filename).exists() {
             if !utils::exec(
-                &format!("ln -s \"{}\" \"{}\" 2>/dev/null", sig_filename, sig_dblink),
+                &format!("ln -sf \"{}\" \"{}\" 2>/dev/null", sig_filename, sig_dblink),
                 Some(true),
             )
             .1
             {
                 if !utils::exec(
-                    &format!("ln \"{}\" \"{}\" 2>/dev/null", sig_filename, sig_dblink),
+                    &format!("ln -f \"{}\" \"{}\" 2>/dev/null", sig_filename, sig_dblink),
                     Some(true),
                 )
                 .1
@@ -834,7 +834,7 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
             "-T /dev/null".to_owned()
         } else {
 			use std::io::Write;
-        	let (mut tmpfile, filepath) = utils::create_tempfile(None).expect("Failed to create tmpfile");
+			let (mut tmpfile, filepath) = utils::create_tempfile(None).expect("Failed to create tmpfile");
 			tmpfile.write_all(files.as_bytes()).unwrap();
 			tmpfile_path = Some(filepath);
 			format!("$(cat {})", &tmpfile_path.as_ref().unwrap())
