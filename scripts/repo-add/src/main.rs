@@ -114,7 +114,7 @@ fn find_pkgentry(pkgname: &str) -> Option<String> {
     let workingdb_path = format!("{}/db", *G_TMPWORKINGDIR.lock().unwrap());
     for dir_entry in fs::read_dir(workingdb_path).unwrap() {
         let dir_entry_path = dir_entry.as_ref().unwrap().path();
-        let entry_pkgname = utils::get_name_of_pkg(&dir_entry_path.to_str().unwrap(), true);
+        let entry_pkgname = utils::get_name_of_pkg(dir_entry_path.to_str().unwrap(), true);
         if entry_pkgname == pkgname {
             return Some(dir_entry_path.to_str().unwrap().to_owned());
         }
@@ -238,7 +238,7 @@ fn verify_signature(dbfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> boo
 }
 
 fn verify_repo_extension(dbpath: &str) -> bool {
-    if dbpath.find(".db.tar").is_some() {
+    if dbpath.contains(".db.tar") {
         let strpos = dbpath.find(".db").unwrap();
         let extension = utils::string_substr(dbpath, strpos + 4, usize::MAX).unwrap();
         if !utils::get_compression_command(extension).is_empty() {
@@ -256,7 +256,7 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
     let pkginfo = pkginfo::PkgInfo::from_archive(pkgpath);
 
     // ensure 'pkgname' and 'pkgver' variables were found
-    if !pkginfo.pkgname.is_some() || !pkginfo.pkgver.is_some() {
+    if pkginfo.pkgname.is_none() || pkginfo.pkgver.is_none() {
         log::error!("Invalid package file '{}'.", pkgpath);
         return false;
     }
@@ -336,7 +336,7 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
     log::info!("Creating 'desc' db entry...");
     {
         utils::create_db_desc_entry(
-            &pkgpath,
+            pkgpath,
             &pkg_entrypath,
             &workingdb_path,
             &pkginfo,
@@ -368,7 +368,7 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
     if argstruct.rm_existing && oldfile.is_some() {
         log::info!("Removing old package file '{}'", oldfilename.as_ref().unwrap());
         let _ = fs::remove_file(oldfile.as_ref().unwrap());
-        let _ = fs::remove_file(&format!("{}.sig", oldfile.as_ref().unwrap()));
+        let _ = fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap()));
     }
 
     true
@@ -383,7 +383,7 @@ fn db_write_entry_nf(
     let pkginfo = pkginfo::PkgInfo::from_archive(pkgpath);
 
     // ensure 'pkgname' and 'pkgver' variables were found
-    if !pkginfo.pkgname.is_some() || !pkginfo.pkgver.is_some() {
+    if pkginfo.pkgname.is_none() || pkginfo.pkgver.is_none() {
         log::error!("Invalid package file '{}'.", pkgpath);
         return false;
     }
@@ -480,7 +480,7 @@ fn db_write_entry_nf(
     if argstruct.rm_existing && oldfile.is_some() {
         log::info!("Removing old package file '{}'", oldfilename.as_ref().unwrap());
         let _ = fs::remove_file(oldfile.as_ref().unwrap());
-        let _ = fs::remove_file(&format!("{}.sig", oldfile.as_ref().unwrap()));
+        let _ = fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap()));
     }
 
     true
@@ -488,7 +488,7 @@ fn db_write_entry_nf(
 
 fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool {
     if argstruct.use_new_db_format {
-        if let Ok(status) = prepare_repo_db_nf(cmd_line, &argstruct) {
+        if let Ok(status) = prepare_repo_db_nf(cmd_line, argstruct) {
             if !status {
                 return false;
             }
@@ -667,7 +667,7 @@ fn prepare_repo_db_nf(
 }
 
 fn create_needed_repo_db_nf(cmd_line: &str) -> anyhow::Result<bool> {
-    const K_CREATE_TABLE: &'static str = r#"
+    const K_CREATE_TABLE: &str = r#"
 CREATE TABLE IF NOT EXISTS packages (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
@@ -713,7 +713,7 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
     let saved_dir = env::current_dir().unwrap_or("".into());
     {
         let dirname = Path::new(argstruct.lockfile.as_ref().unwrap()).parent();
-        let _ = env::set_current_dir(&dirname.unwrap());
+        let _ = env::set_current_dir(dirname.unwrap());
     }
 
     let repos = ["db", "files"];
@@ -770,34 +770,24 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
         let _ = fs::remove_file(&dblink);
         let _ = fs::remove_file(&sig_dblink);
 
-        if !utils::exec(&format!("ln -sf \"{}\" \"{}\" 2>/dev/null", filename, dblink), Some(true)).1
-        {
-            if !utils::exec(&format!("ln -f \"{}\" \"{}\" 2>/dev/null", filename, dblink), Some(true))
-                .1
-            {
-                let _ = fs::copy(&filename, &dblink);
-            }
+        if !utils::exec(&format!("ln -sf \"{}\" \"{}\" 2>/dev/null", filename, dblink), Some(true)).1 && !utils::exec(&format!("ln -f \"{}\" \"{}\" 2>/dev/null", filename, dblink), Some(true))
+                .1 {
+            let _ = fs::copy(&filename, &dblink);
         }
 
-        if Path::new(&sig_filename).exists() {
-            if !utils::exec(
+        if Path::new(&sig_filename).exists() && !utils::exec(
                 &format!("ln -sf \"{}\" \"{}\" 2>/dev/null", sig_filename, sig_dblink),
                 Some(true),
             )
-            .1
-            {
-                if !utils::exec(
+            .1 && !utils::exec(
                     &format!("ln -f \"{}\" \"{}\" 2>/dev/null", sig_filename, sig_dblink),
                     Some(true),
                 )
-                .1
-                {
-                    let _ = fs::copy(&sig_filename, &sig_dblink);
-                }
-            }
+                .1 {
+            let _ = fs::copy(&sig_filename, &sig_dblink);
         }
     });
-    let _ = env::set_current_dir(&saved_dir);
+    let _ = env::set_current_dir(saved_dir);
 }
 
 fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBool>) -> bool {
@@ -819,7 +809,7 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
             format!("{}/.tmp.{}", dirname.as_ref().unwrap().to_string_lossy(), &filename);
 
         let workingdb_path = format!("{}/{}", *G_TMPWORKINGDIR.lock().unwrap(), repo);
-        let mut files = fs::read_dir(&workingdb_path)
+        let files = fs::read_dir(&workingdb_path)
             .unwrap()
             .map(|res| {
                 res.map(|e| String::from(e.path().file_name().unwrap().to_str().unwrap())).unwrap()
@@ -851,7 +841,7 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
         );
 
 		if let Some(tmpfile_path) = tmpfile_path {
-			let _ = fs::remove_file(&tmpfile_path);
+			let _ = fs::remove_file(tmpfile_path);
 		}
 
         if !create_signature(&tempname, argstruct) {
@@ -859,7 +849,7 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
         }
     });
 
-    is_fail.load(Ordering::Acquire) == false
+    !is_fail.load(Ordering::Acquire)
 }
 
 fn add_pkg_to_db(pkgfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool {
@@ -979,7 +969,7 @@ fn main() {
     let signal_clone = Arc::clone(&is_signaled);
 
     // Set up signal handlers
-    let signals = Signals::new(&[SIGINT, SIGTERM, SIGABRT]);
+    let signals = Signals::new([SIGINT, SIGTERM, SIGABRT]);
     if signals.is_err() {
         log::error!("can't set signal handler: {:?}", signals);
         clean_up();
@@ -1061,7 +1051,7 @@ fn main() {
     let is_fail = AtomicBool::new(false);
     if arg_struct.use_new_db_format {
         // Open the SQLite database connections
-        let db_connections = utils::make_db_connections(&*G_TMPWORKINGDIR.lock().unwrap());
+        let db_connections = utils::make_db_connections(&G_TMPWORKINGDIR.lock().unwrap());
         if let Err(err) = db_connections {
             log::error!("Sqlite error: {:?}", err);
             clean_up();
@@ -1081,7 +1071,7 @@ fn main() {
             };
             handle_signal!(is_signaled);
             let mut conn_handle = Arc::clone(&connections);
-            if !action_func(&mut conn_handle, &elem, &arg_struct) {
+            if !action_func(&mut conn_handle, elem, &arg_struct) {
                 is_fail.store(true, Ordering::Relaxed);
             }
         });
@@ -1093,7 +1083,7 @@ fn main() {
                 add_pkg_to_db
             };
             handle_signal!(is_signaled);
-            if !action_func(&elem, &arg_struct) {
+            if !action_func(elem, &arg_struct) {
                 is_fail.store(true, Ordering::Relaxed);
             }
         });
@@ -1153,7 +1143,7 @@ fn set_up_logging(is_colored: bool) {
         // depending on the terminals color scheme, this is the same as the background color
         .trace(Color::BrightBlack);
 
-        let colors_level = colors_line.clone().info(Color::Green);
+        let colors_level = colors_line.info(Color::Green);
         fern::Dispatch::new()
         .format(move |out, message, record| {
             out.finish(format_args!(
