@@ -2,7 +2,7 @@ use std::fs;
 use std::fs::File;
 
 use akv::reader::ArchiveReader;
-use log;
+
 
 #[derive(Debug)]
 pub struct PkgInfo {
@@ -56,7 +56,7 @@ impl PkgInfo {
         }
     }
 
-    pub fn parse_line(self: &mut Self, line: &str) -> bool {
+    pub fn parse_line(&mut self, line: &str) -> bool {
         let split_line = line.split('=').collect::<Vec<&str>>();
 
         // Just drop the line, if the line is not pair separated by '='.
@@ -95,11 +95,11 @@ impl PkgInfo {
         res_status
     }
 
-    pub fn from_string(content: &String) -> Self {
+    pub fn from_string(content: &str) -> Self {
         let mut pkginfo = PkgInfo::new();
 
         let lines =
-            content.lines().into_iter().filter(|line| !(line.is_empty() || line.starts_with('#')));
+            content.lines().filter(|line| !(line.is_empty() || line.starts_with('#')));
         for line in lines {
             pkginfo.parse_line(line);
         }

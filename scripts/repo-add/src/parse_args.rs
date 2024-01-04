@@ -45,7 +45,7 @@ impl ArgStruct {
     }
 }
 
-pub fn parse_args<'a>(pargs: &'a [String]) -> (Option<&[String]>, ArgStruct) {
+pub fn parse_args(pargs: &[String]) -> (Option<&[String]>, ArgStruct) {
     let mut argstruct = ArgStruct::new();
     argstruct.cmd_line = crate::utils::get_current_cmdname(pargs[0].as_str()).to_owned();
 

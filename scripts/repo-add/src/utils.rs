@@ -39,9 +39,9 @@ pub fn get_current_cmdname(cmd_line: &str) -> &str {
 }
 
 pub fn write_to_file(filepath: &str, data: &str) -> bool {
-    let file = File::create(&filepath);
-    if file.is_ok() {
-        let _ = file.unwrap().write_all(data.as_bytes());
+    let file = File::create(filepath);
+    if let Ok(mut file) = file {
+        let _ = file.write_all(data.as_bytes());
         return true;
     }
     log::error!("'{}' open failed: {:?}", filepath, file.err());
@@ -76,8 +76,8 @@ pub fn create_tempfile(max_tries: Option<u32>) -> Option<(File, String)> {
         let res_path = format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.gen::<u64>());
         if !Path::new(&res_path).exists() {
             if let Ok(file_obj) = File::options().write(true).create_new(true).open(&res_path) {
-				return Some((file_obj, res_path))
-			}
+                return Some((file_obj, res_path));
+            }
         }
         if i == max_tries {
             return None;
@@ -206,7 +206,7 @@ pub fn get_compression_command(db_extension: &str) -> String {
     };
 
     let db_extension = if let Some(strpos) = db_extension.find("tar.") {
-        string_substr(&db_extension, strpos + 4, db_extension.len() - 4).unwrap()
+        string_substr(db_extension, strpos + 4, db_extension.len() - 4).unwrap()
     } else {
         ""
     };
@@ -218,7 +218,6 @@ pub fn get_compression_command(db_extension: &str) -> String {
     if let Ok(makepkgconfig_content) = fs::read_to_string("/etc/makepkg.conf") {
         let temp_compress_cmd = makepkgconfig_content
             .lines()
-            .into_iter()
             .filter(|elem| elem.starts_with(&format!("COMPRESS{}", db_extension.to_uppercase())))
             .last()
             .unwrap_or("")
@@ -294,7 +293,7 @@ pub fn create_db_desc_entry(
     desc_content.push_str(&format_entry_mul("CHECKDEPENDS", &pkginfo.checkdepends));
 
     let mut desc_entry_file =
-        File::create(&format!("{}/{}/desc", &workingdb_path, &pkg_entrypath)).unwrap();
+        File::create(format!("{}/{}/desc", &workingdb_path, &pkg_entrypath)).unwrap();
     let _ = desc_entry_file.write_all(desc_content.as_bytes());
 }
 
@@ -366,11 +365,11 @@ pub fn create_db_entry_nf(
     insert_entry_nf(&mut insert_fields, &mut insert_params, "isize", &pkg_info.pkg_isize);
 
     // add checksums
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "md5sum", &pkg_md5sum);
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "sha256sum", &pkg_sha256sum);
+    insert_entry_nf(&mut insert_fields, &mut insert_params, "md5sum", pkg_md5sum);
+    insert_entry_nf(&mut insert_fields, &mut insert_params, "sha256sum", pkg_sha256sum);
 
     // add PGP sig
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "pgpsig", &pkg_pgpsig);
+    insert_entry_nf(&mut insert_fields, &mut insert_params, "pgpsig", pkg_pgpsig);
 
     insert_entry_nf(&mut insert_fields, &mut insert_params, "url", &pkg_info.url);
     insert_entry_mul_nf(&mut insert_fields, &mut insert_params, "license", &pkg_info.licenses);
@@ -418,7 +417,7 @@ pub fn create_db_entry_nf(
     let mut stmt = conn.prepare(&insert_query)?;
     let row = stmt.execute(rusqlite::params_from_iter(insert_params.clone()))?;
 
-    if row <= 0 {
+    if row == 0 {
         anyhow::bail!("ZERO rows inserted!");
     }
 
@@ -465,7 +464,7 @@ pub fn get_old_entryval_nf(
     if let Ok(mut stmt) = conn.prepare_cached(select_query) {
         return stmt
             .query_row([package_id], |row| {
-                return Ok((row.get(0).unwrap(), row.get(1).unwrap(), row.get(2).unwrap()));
+                Ok((row.get(0).unwrap(), row.get(1).unwrap(), row.get(2).unwrap()))
             })
             .ok();
     }
