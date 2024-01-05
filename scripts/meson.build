@@ -1,8 +1,7 @@
 wrapped_scripts = [
   'makepkg.sh.in',
   'pacman-db-upgrade.sh.in',
-  'pacman-key.sh.in',
-  'repo-add.sh.in'
+  'pacman-key.sh.in'
 ]
 
 scripts = [
@@ -26,6 +25,7 @@ foreach script : scripts
     install_dir : get_option('bindir'))
 endforeach
 
+subdir('repo-add')
 script_wrappers = []
 foreach script : wrapped_scripts
   script_shortname = script.split('.')[0]
@@ -39,10 +39,6 @@ foreach script : wrapped_scripts
     install_dir : BINDIR)
 
   script_wrappers += [[ script_shortname, internal_script, meson.current_build_dir() ]]
-
-  if script_shortname == 'repo-add'
-    repo_add = internal_script
-  endif
 endforeach
 
 foreach symlink : ['repo-remove', 'repo-elephant']
@@ -63,10 +59,10 @@ endforeach
 subdir('libmakepkg')
 
 configure_file(
-	configuration : { 'libmakepkgdir': LIBMAKEPKGDIR, 'PACKAGE_VERSION': PACKAGE_VERSION },
-	input : 'libmakepkg.pc.in',
-	output : '@BASENAME@',
-	install_dir : join_paths(DATAROOTDIR, 'pkgconfig'))
+  configuration : { 'libmakepkgdir': LIBMAKEPKGDIR, 'PACKAGE_VERSION': PACKAGE_VERSION },
+  input : 'libmakepkg.pc.in',
+  output : '@BASENAME@',
+  install_dir : join_paths(DATAROOTDIR, 'pkgconfig'))
 
 custom_target(
   'bash_completion',
