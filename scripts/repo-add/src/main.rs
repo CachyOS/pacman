@@ -770,20 +770,29 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
         let _ = fs::remove_file(&dblink);
         let _ = fs::remove_file(&sig_dblink);
 
-        if !utils::exec(&format!("ln -sf \"{}\" \"{}\" 2>/dev/null", filename, dblink), Some(true)).1 && !utils::exec(&format!("ln -f \"{}\" \"{}\" 2>/dev/null", filename, dblink), Some(true))
-                .1 {
+        if !utils::exec(&format!("ln -sf \"{}\" \"{}\" 2>/dev/null", filename, dblink), Some(true))
+            .1
+            && !utils::exec(
+                &format!("ln -f \"{}\" \"{}\" 2>/dev/null", filename, dblink),
+                Some(true),
+            )
+            .1
+        {
             let _ = fs::copy(&filename, &dblink);
         }
 
-        if Path::new(&sig_filename).exists() && !utils::exec(
+        if Path::new(&sig_filename).exists()
+            && !utils::exec(
                 &format!("ln -sf \"{}\" \"{}\" 2>/dev/null", sig_filename, sig_dblink),
                 Some(true),
             )
-            .1 && !utils::exec(
-                    &format!("ln -f \"{}\" \"{}\" 2>/dev/null", sig_filename, sig_dblink),
-                    Some(true),
-                )
-                .1 {
+            .1
+            && !utils::exec(
+                &format!("ln -f \"{}\" \"{}\" 2>/dev/null", sig_filename, sig_dblink),
+                Some(true),
+            )
+            .1
+        {
             let _ = fs::copy(&sig_filename, &sig_dblink);
         }
     });
@@ -817,18 +826,19 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
             .collect::<Vec<String>>()
             .join("\n");
 
-		let mut tmpfile_path: Option<String> = None;
-		let working_tar_arg = if files.is_empty() {
+        let mut tmpfile_path: Option<String> = None;
+        let working_tar_arg = if files.is_empty() {
             // we have no packages remaining? zip up some emptyness
             log::warn!("No packages remain, creating empty database.");
             "-T /dev/null".to_owned()
         } else {
-			use std::io::Write;
-			let (mut tmpfile, filepath) = utils::create_tempfile(None).expect("Failed to create tmpfile");
-			tmpfile.write_all(files.as_bytes()).unwrap();
-			tmpfile_path = Some(filepath);
-			format!("$(cat {})", &tmpfile_path.as_ref().unwrap())
-		};
+            use std::io::Write;
+            let (mut tmpfile, filepath) =
+                utils::create_tempfile(None).expect("Failed to create tmpfile");
+            tmpfile.write_all(files.as_bytes()).unwrap();
+            tmpfile_path = Some(filepath);
+            format!("$(cat {})", &tmpfile_path.as_ref().unwrap())
+        };
 
         let compress_cmd =
             utils::get_compression_command(argstruct.repo_db_suffix.as_ref().unwrap());
@@ -840,9 +850,9 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
             None,
         );
 
-		if let Some(tmpfile_path) = tmpfile_path {
-			let _ = fs::remove_file(tmpfile_path);
-		}
+        if let Some(tmpfile_path) = tmpfile_path {
+            let _ = fs::remove_file(tmpfile_path);
+        }
 
         if !create_signature(&tempname, argstruct) {
             is_fail.store(true, Ordering::Relaxed);

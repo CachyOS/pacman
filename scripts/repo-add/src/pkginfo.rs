@@ -3,7 +3,6 @@ use std::fs::File;
 
 use akv::reader::ArchiveReader;
 
-
 #[derive(Debug)]
 pub struct PkgInfo {
     pub pkgname: Option<String>,
@@ -98,8 +97,7 @@ impl PkgInfo {
     pub fn from_string(content: &str) -> Self {
         let mut pkginfo = PkgInfo::new();
 
-        let lines =
-            content.lines().filter(|line| !(line.is_empty() || line.starts_with('#')));
+        let lines = content.lines().filter(|line| !(line.is_empty() || line.starts_with('#')));
         for line in lines {
             pkginfo.parse_line(line);
         }
