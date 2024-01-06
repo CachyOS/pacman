@@ -1,9 +1,9 @@
-use std::fs;
 use std::fs::File;
+use std::{fs, io};
 
 use akv::reader::ArchiveReader;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct PkgInfo {
     pub pkgname: Option<String>,
     pub pkgbase: Option<String>,
@@ -59,12 +59,14 @@ impl PkgInfo {
         let split_line = line.split('=').collect::<Vec<&str>>();
 
         // Just drop the line, if the line is not pair separated by '='.
-        if split_line.len() != 2 {
+        if split_line.len() < 2 {
             return false;
         }
 
+        let right_part = split_line[1..].join("=");
+
         let key = split_line[0].trim();
-        let value = split_line[1].trim();
+        let value = right_part.trim();
 
         let mut res_status = true;
         match key {
@@ -135,7 +137,7 @@ impl PkgInfo {
                 continue;
             }
             let entry_reader = entry.into_reader();
-            let entry_content = std::io::read_to_string(entry_reader).unwrap();
+            let entry_content = io::read_to_string(entry_reader).unwrap();
             for content_line in entry_content.lines() {
                 pkginfo.parse_line(content_line);
             }
@@ -175,4 +177,42 @@ pub fn list_archive(file_path: &str) -> Vec<String> {
     }
 
     arc_files
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::pkginfo::PkgInfo;
+
+    #[test]
+    fn basic_xz() {
+        let pkgpath = "xz-5.4.5-2-x86_64.pkg.tar.zst";
+        let pkg_info = PkgInfo::from_archive(pkgpath);
+
+        let pkg_info_expected = PkgInfo {
+            pkgname: Some("xz".to_owned()),
+            pkgbase: Some("xz".to_owned()),
+            pkgver: Some("5.4.5-2".to_owned()),
+            pkgdesc: Some(
+                "Library and command line tools for XZ and LZMA compressed files".to_owned(),
+            ),
+            basever: None,
+            url: Some("https://tukaani.org/xz/".to_owned()),
+            builddate: Some("1704482661".to_owned()),
+            packager: Some("CachyOS <admin@cachyos.org>".to_owned()),
+            arch: Some("x86_64".to_owned()),
+            pkg_isize: Some("2513790".to_owned()),
+            groups: vec![],
+            licenses: vec!["GPL".to_owned(), "LGPL".to_owned(), "custom".to_owned()],
+            depends: vec!["sh".to_owned()],
+            optdepends: vec![],
+            makedepends: vec![],
+            checkdepends: vec![],
+            conflicts: vec![],
+            replaces: vec![],
+            provides: vec!["liblzma.so=5-64".to_owned()],
+            backup: vec![],
+        };
+
+        assert_eq!(pkg_info, pkg_info_expected);
+    }
 }
