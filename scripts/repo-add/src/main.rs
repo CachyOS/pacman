@@ -203,7 +203,7 @@ fn create_signature(dbfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> boo
 
     let (_, ret_code) = utils::exec(
         &format!(
-            "gpg --detach-sign --use-agent --no-armor {} \"{}\" &>/dev/null",
+            "gpg --batch --yes --detach-sign --use-agent --no-armor {} \"{}\" &>/dev/null",
             signwithkey, dbfile
         ),
         Some(true),
