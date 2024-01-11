@@ -278,12 +278,10 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
             None,
         )
         .0;
-        let vercmp = utils::exec(
-            &format!("vercmp \"{}\" \"{}\"", version, pkginfo.pkgver.as_ref().unwrap()),
-            None,
-        )
-        .0;
-        if vercmp.parse::<i32>().unwrap() > 0 {
+        // "version" is newer than version from pkginfo(incomming package)
+        if alpm::Version::new(version)
+            > alpm::Version::new(pkginfo.pkgver.as_ref().unwrap().as_bytes())
+        {
             log::warn!(
                 "A newer version for '{}' is already present in database",
                 pkginfo.pkgname.as_ref().unwrap()
@@ -404,12 +402,10 @@ fn db_write_entry_nf(
                 return true;
             }
         } else if let Some((_, pkgver, pkg_filename)) = find_pkgentry_nf(conn_lock.0, &pkginfo) {
-            let vercmp = utils::exec(
-                &format!("vercmp \"{}\" \"{}\"", pkgver, pkginfo.pkgver.as_ref().unwrap()),
-                None,
-            )
-            .0;
-            if vercmp.parse::<i32>().unwrap() > 0 {
+            // "pkgver" is newer than version from pkginfo(incomming package)
+            if alpm::Version::new(pkgver)
+                > alpm::Version::new(pkginfo.pkgver.as_ref().unwrap().as_bytes())
+            {
                 log::warn!(
                     "A newer version for '{}' is already present in database",
                     pkginfo.pkgname.as_ref().unwrap()
