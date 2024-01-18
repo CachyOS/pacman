@@ -83,3 +83,103 @@ pub fn parse_args(pargs: &mut Vec<String>) -> (Option<&[String]>, ArgStruct) {
 
     (Some(pargs), argstruct)
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn sign_after_pos() {
+        let mut args: Vec<String> = vec![
+            "./repo-add".to_owned(),
+            "-v".to_owned(),
+            "-p".to_owned(),
+            "-n".to_owned(),
+            "core.db.tar.zst".to_owned(),
+            "pacman-6.0.2-8-x86_64.pkg.tar.zst".to_owned(),
+            "pacman-6.0.2-9-x86_64.pkg.tar.zst".to_owned(),
+            "-s".to_owned(),
+        ];
+        let (pos_args, argstruct) = crate::parse_args::parse_args(&mut args);
+
+        let expected_pos = vec![
+            "core.db.tar.zst".to_owned(),
+            "pacman-6.0.2-8-x86_64.pkg.tar.zst".to_owned(),
+            "pacman-6.0.2-9-x86_64.pkg.tar.zst".to_owned(),
+        ];
+        assert_eq!(pos_args, Some(expected_pos.as_slice()));
+        assert_eq!(argstruct.sign, true);
+        assert_eq!(argstruct.verify, true);
+        assert_eq!(argstruct.prevent_downgrade, true);
+        assert_eq!(argstruct.only_add_new, true);
+        assert_eq!(argstruct.quiet, false);
+    }
+
+    #[test]
+    fn sign_after_pos_tailing() {
+        let mut args: Vec<String> = vec![
+            "./repo-add".to_owned(),
+            "-v".to_owned(),
+            "-p".to_owned(),
+            "-n".to_owned(),
+            "core.db.tar.zst".to_owned(),
+            "pacman-6.0.2-8-x86_64.pkg.tar.zst".to_owned(),
+            "pacman-6.0.2-9-x86_64.pkg.tar.zst".to_owned(),
+            "--".to_owned(),
+            "-s".to_owned(),
+        ];
+        let (pos_args, argstruct) = crate::parse_args::parse_args(&mut args);
+
+        let expected_pos = vec![
+            "core.db.tar.zst".to_owned(),
+            "pacman-6.0.2-8-x86_64.pkg.tar.zst".to_owned(),
+            "pacman-6.0.2-9-x86_64.pkg.tar.zst".to_owned(),
+            "-s".to_owned(),
+        ];
+        assert_eq!(pos_args, Some(expected_pos.as_slice()));
+        assert_eq!(argstruct.sign, false);
+        assert_eq!(argstruct.verify, true);
+        assert_eq!(argstruct.prevent_downgrade, true);
+        assert_eq!(argstruct.only_add_new, true);
+        assert_eq!(argstruct.quiet, false);
+    }
+
+    #[test]
+    fn no_pos_pkgs() {
+        let mut args: Vec<String> = vec![
+            "./repo-add".to_owned(),
+            "-v".to_owned(),
+            "-p".to_owned(),
+            "-n".to_owned(),
+            "-s".to_owned(),
+            "core.db.tar.zst".to_owned(),
+        ];
+        let (pos_args, argstruct) = crate::parse_args::parse_args(&mut args);
+
+        let expected_pos = vec!["core.db.tar.zst".to_owned()];
+        assert_eq!(pos_args, Some(expected_pos.as_slice()));
+        assert_eq!(argstruct.sign, true);
+        assert_eq!(argstruct.verify, true);
+        assert_eq!(argstruct.prevent_downgrade, true);
+        assert_eq!(argstruct.only_add_new, true);
+        assert_eq!(argstruct.quiet, false);
+    }
+
+    #[test]
+    fn no_pos_args() {
+        let mut args: Vec<String> = vec![
+            "./repo-add".to_owned(),
+            "-v".to_owned(),
+            "-p".to_owned(),
+            "-n".to_owned(),
+            "-s".to_owned(),
+        ];
+        let (pos_args, argstruct) = crate::parse_args::parse_args(&mut args);
+
+        let expected_pos = vec![];
+        assert_eq!(pos_args, Some(expected_pos.as_slice()));
+        assert_eq!(argstruct.sign, true);
+        assert_eq!(argstruct.verify, true);
+        assert_eq!(argstruct.prevent_downgrade, true);
+        assert_eq!(argstruct.only_add_new, true);
+        assert_eq!(argstruct.quiet, false);
+    }
+}
