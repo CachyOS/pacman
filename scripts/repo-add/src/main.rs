@@ -42,7 +42,6 @@ lazy_static! {
 
 // print usage instructions
 fn print_usage(cmd_line: &str) {
-    let cmd_line = utils::get_current_cmdname(cmd_line);
     println!("{} (pacman) {}\n", cmd_line, VERSION);
     if cmd_line == "repo-add" {
         println!("Usage: repo-add [options] <path-to-db> <package> ...\n");
@@ -82,7 +81,6 @@ fn print_usage(cmd_line: &str) {
 
 // print version
 fn print_version(cmd_line: &str) {
-    let cmd_line = utils::get_current_cmdname(cmd_line);
     println!("{} (pacman) {}\n", cmd_line, VERSION);
     println!("Copyright (c) 2023 CachyOS Team.\n");
     println!("This is free software; see the source for copying conditions.");
@@ -550,10 +548,10 @@ fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bo
             );
         } else {
             // only a missing "db" database is currently an error
-            if cmd_line.ends_with("repo-remove") && repo == "db" {
+            if cmd_line == "repo-remove" && repo == "db" {
                 log::error!("Repository file '{}' was not found.", dbfile);
                 return false;
-            } else if cmd_line.ends_with("repo-add") {
+            } else if cmd_line == "repo-add" {
                 // check if the file can be created (write permission, directory existence, etc)
                 if !utils::exec(&format!("touch \"{}\" &>/dev/null", &dbfile), Some(true)).1 {
                     log::error!("Repository file '{}' could not be created.", &dbfile);
@@ -646,10 +644,10 @@ fn prepare_repo_db_nf(
             }
         } else {
             // only a missing "db" database is currently an error
-            if cmd_line.ends_with("repo-remove") && repo == "db" {
+            if cmd_line == "repo-remove" && repo == "db" {
                 log::error!("Repository file '{}' was not found.", dbfile);
                 return Ok(false);
-            } else if cmd_line.ends_with("repo-add") {
+            } else if cmd_line == "repo-add" {
                 // check if the file can be created (write permission, directory existence, etc)
                 if !utils::exec(&format!("touch \"{}\" &>/dev/null", &dbfile), Some(true)).1 {
                     log::error!("Repository file '{}' could not be created.", &dbfile);
@@ -696,7 +694,7 @@ CREATE TABLE IF NOT EXISTS packages (
     for repo in repos {
         let dbfile_path = format!("{}/{}/pacman.db", *G_TMPWORKINGDIR.lock().unwrap(), repo);
 
-        if cmd_line.ends_with("repo-add") {
+        if cmd_line == "repo-add" {
             let conn = rusqlite::Connection::open(dbfile_path)?;
             // Create the packages table if it doesn't exist
             conn.execute(K_CREATE_TABLE, []).unwrap();
@@ -933,20 +931,21 @@ fn remove_pkg_from_db_nf(
 }
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
+    let mut args: Vec<String> = env::args().collect();
+    let cmd_line = utils::get_current_cmdname(args[0].as_str()).to_owned();
+
     if args.len() > 1 {
         let argument = args[1].as_str();
         if argument == "--help" || argument == "-h" {
-            print_usage(args[0].as_str());
+            print_usage(&cmd_line);
             return;
         } else if argument == "--version" || argument == "-V" {
-            print_version(args[0].as_str());
+            print_version(&cmd_line);
             return;
         }
     }
 
     // figure out what program we are
-    let cmd_line = utils::get_current_cmdname(args[0].as_str());
     if cmd_line == "repo-elephant" {
         print_elephant();
         return;
@@ -1000,10 +999,10 @@ fn main() {
         }
     });
 
-    let (pos_args, mut arg_struct) = parse_args::parse_args(&args);
+    let (pos_args, mut arg_struct) = parse_args::parse_args(&mut args);
     set_up_logging(arg_struct.use_colors);
     if pos_args.is_none() || pos_args.unwrap().is_empty() {
-        print_usage(args[0].as_str());
+        print_usage(&cmd_line);
         clean_up();
         return;
     }
@@ -1047,7 +1046,7 @@ fn main() {
 
     // Prepare DB
     let arg_struct = Arc::new(arg_struct);
-    if !prepare_repo_db(args[0].as_str(), &arg_struct) {
+    if !prepare_repo_db(&cmd_line, &arg_struct) {
         clean_up();
         std::process::exit(1);
     }
@@ -1070,7 +1069,7 @@ fn main() {
         let connections = Arc::new(Mutex::from((db_conn, files_conn)));
 
         pos_args.unwrap().into_par_iter().for_each(|elem| {
-            let action_func = if arg_struct.cmd_line == "repo-remove" {
+            let action_func = if cmd_line == "repo-remove" {
                 remove_pkg_from_db_nf
             } else {
                 add_pkg_to_db_nf
@@ -1083,7 +1082,7 @@ fn main() {
         });
     } else {
         pos_args.unwrap().into_par_iter().for_each(|elem| {
-            let action_func = if arg_struct.cmd_line == "repo-remove" {
+            let action_func = if cmd_line == "repo-remove" {
                 remove_pkg_from_db
             } else {
                 add_pkg_to_db
