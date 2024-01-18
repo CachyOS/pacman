@@ -1069,11 +1069,8 @@ fn main() {
         let connections = Arc::new(Mutex::from((db_conn, files_conn)));
 
         pos_args.unwrap().into_par_iter().for_each(|elem| {
-            let action_func = if cmd_line == "repo-remove" {
-                remove_pkg_from_db_nf
-            } else {
-                add_pkg_to_db_nf
-            };
+            let action_func =
+                if cmd_line == "repo-remove" { remove_pkg_from_db_nf } else { add_pkg_to_db_nf };
             handle_signal!(is_signaled);
             let mut conn_handle = Arc::clone(&connections);
             if !action_func(&mut conn_handle, elem, &arg_struct) {
@@ -1082,11 +1079,8 @@ fn main() {
         });
     } else {
         pos_args.unwrap().into_par_iter().for_each(|elem| {
-            let action_func = if cmd_line == "repo-remove" {
-                remove_pkg_from_db
-            } else {
-                add_pkg_to_db
-            };
+            let action_func =
+                if cmd_line == "repo-remove" { remove_pkg_from_db } else { add_pkg_to_db };
             handle_signal!(is_signaled);
             if !action_func(elem, &arg_struct) {
                 is_fail.store(true, Ordering::Relaxed);
