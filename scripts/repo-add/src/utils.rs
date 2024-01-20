@@ -529,3 +529,29 @@ pub fn make_db_connections(
         Some(rusqlite::Connection::open(format!("{}/files/pacman.db", tmp_work_dir))?),
     ))
 }
+
+#[cfg(test)]
+mod tests {
+    use std::fs;
+
+    const PKGPATH: &str = "xz-5.4.5-2-x86_64.pkg.tar.zst";
+
+    #[test]
+    fn getting_pkgname_from_path() {
+        assert_eq!(crate::utils::get_name_of_pkg(PKGPATH, false), "xz");
+    }
+    #[test]
+    fn getting_pkgname_from_dbentry() {
+        assert_eq!(crate::utils::get_name_of_pkg(PKGPATH, true), "xz-5.4.5");
+    }
+    #[test]
+    fn getting_pkgfiles() {
+        let expected_pkgfiles = fs::read_to_string("xz-files")
+            .unwrap()
+            .lines()
+            .filter(|x| *x != "%FILES%" && !x.is_empty())
+            .map(String::from)
+            .collect::<Vec<_>>();
+        assert_eq!(crate::utils::get_pkg_files(PKGPATH), expected_pkgfiles);
+    }
+}
