@@ -48,3 +48,18 @@ repo_add = custom_target(
     'cp', 'src' / rust_target / 'repo-add', '@OUTPUT@',
   ]
 )
+
+repo_add_test = custom_target(
+  'cargo-test-run',
+  build_by_default: false,
+  build_always_stale: false,
+  output: 'repo-add-test',
+  console: true,
+  install: false,
+  command: [
+    'env',
+    cargo_env,
+    cargo, 'test',
+    cargo_options,
+  ]
+)
