@@ -1,7 +1,7 @@
 /*
  *  callback.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -150,19 +150,12 @@ static int64_t get_update_timediff(int first_call)
 }
 
 /* refactored from cb_trans_progress */
-static void fill_progress(const int bar_percent, const int disp_percent,
-		const int proglen)
+static void fill_progress(const int percent, const int proglen)
 {
 	/* 8 = 1 space + 1 [ + 1 ] + 5 for percent */
 	const int hashlen = proglen > 8 ? proglen - 8 : 0;
-	const int hash = bar_percent * hashlen / 100;
-	static int lasthash = 0, mouth = 0;
+	const int hash = percent * hashlen / 100;
 	int i;
-
-	if(bar_percent == 0) {
-		lasthash = 0;
-		mouth = 0;
-	}
 
 	if(hashlen > 0) {
 		fputs(" [", stdout);
@@ -172,20 +165,10 @@ static void fill_progress(const int bar_percent, const int disp_percent,
 				if(i > hashlen - hash) {
 					putchar('-');
 				} else if(i == hashlen - hash) {
-					if(lasthash == hash) {
-						if(mouth) {
-							fputs("\033[1;33mC\033[m", stdout);
-						} else {
-							fputs("\033[1;33mc\033[m", stdout);
-						}
+					if(percent % 2 == 0) {
+						fputs("\033[1;33mC\033[m", stdout);
 					} else {
-						lasthash = hash;
-						mouth = mouth == 1 ? 0 : 1;
-						if(mouth) {
-							fputs("\033[1;33mC\033[m", stdout);
-						} else {
-							fputs("\033[1;33mc\033[m", stdout);
-						}
+						fputs("\033[1;33mc\033[m", stdout);
 					}
 				} else if(i % 3 == 0) {
 					fputs("\033[0;37mo\033[m", stdout);
@@ -204,7 +187,7 @@ static void fill_progress(const int bar_percent, const int disp_percent,
 	/* print display percent after progress bar */
 	/* 5 = 1 space + 3 digits + 1 % */
 	if(proglen >= 5) {
-		printf(" %3d%%", disp_percent);
+		printf(" %3d%%", percent);
 	}
 
 	putchar('\r');
@@ -252,7 +235,7 @@ void cb_event(void *ctx, alpm_event_t *event)
 				alpm_event_hook_run_t *e = &event->hook_run;
 				int digits = number_length(e->total);
 				printf("(%*zu/%*zu) %s\n", digits, e->position,
-						digits, e->total, 
+						digits, e->total,
 						e->desc ? e->desc : e->name);
 			}
 			break;
@@ -440,6 +423,8 @@ void cb_event(void *ctx, alpm_event_t *event)
 void cb_question(void *ctx, alpm_question_t *question)
 {
 	(void)ctx;
+	const colstr_t *colstr = &config->colstr;
+
 	if(config->print) {
 		switch(question->type) {
 			case ALPM_QUESTION_INSTALL_IGNOREPKG:
@@ -477,18 +462,30 @@ void cb_question(void *ctx, alpm_question_t *question)
 			{
 				alpm_question_conflict_t *q = &question->conflict;
 				/* print conflict only if it contains new information */
-				if(strcmp(q->conflict->package1, q->conflict->reason->name) == 0
-						|| strcmp(q->conflict->package2, q->conflict->reason->name) == 0) {
-					q->remove = noyes(_("%s and %s are in conflict. Remove %s?"),
-							q->conflict->package1,
-							q->conflict->package2,
-							q->conflict->package2);
+				if(strcmp(alpm_pkg_get_name(q->conflict->package1), q->conflict->reason->name) == 0
+						|| strcmp(alpm_pkg_get_name(q->conflict->package2), q->conflict->reason->name) == 0) {
+					q->remove = noyes(_("%s-%s%s%s and %s-%s%s%s are in conflict. Remove %s?"),
+							alpm_pkg_get_name(q->conflict->package1),
+							colstr->faint,
+							alpm_pkg_get_version(q->conflict->package1),
+							colstr->nocolor,
+							alpm_pkg_get_name(q->conflict->package2),
+							colstr->faint,
+							alpm_pkg_get_version(q->conflict->package2),
+							colstr->nocolor,
+							alpm_pkg_get_name(q->conflict->package2));
 				} else {
-					q->remove = noyes(_("%s and %s are in conflict (%s). Remove %s?"),
-							q->conflict->package1,
-							q->conflict->package2,
+					q->remove = noyes(_("%s-%s%s%s and %s-%s%s%s are in conflict (%s). Remove %s?"),
+							alpm_pkg_get_name(q->conflict->package1),
+							colstr->faint,
+							alpm_pkg_get_version(q->conflict->package1),
+							colstr->nocolor,
+							alpm_pkg_get_name(q->conflict->package2),
+							colstr->faint,
+							alpm_pkg_get_version(q->conflict->package2),
+							colstr->nocolor,
 							q->conflict->reason->name,
-							q->conflict->package2);
+							alpm_pkg_get_name(q->conflict->package2));
 				}
 			}
 			break;
@@ -541,12 +538,12 @@ void cb_question(void *ctx, alpm_question_t *question)
 			{
 				alpm_question_import_key_t *q = &question->import_key;
 				/* the uid is unknown with db signatures */
-				if (q->key->uid == NULL) {
+				if (q->uid == NULL) {
 					q->import = yesno(_("Import PGP key %s?"),
-							q->key->fingerprint);
+							q->fingerprint);
 				} else {
 					q->import = yesno(_("Import PGP key %s, \"%s\"?"),
-							q->key->fingerprint, q->key->uid);
+							q->fingerprint, q->uid);
 				}
 			}
 			break;
@@ -572,6 +569,7 @@ void cb_progress(void *ctx, alpm_progress_t event, const char *pkgname,
 	/* used for wide character width determination and printing */
 	int len, wclen, wcwid, padwid;
 	wchar_t *wcstr;
+	int has_pkgname = (pkgname && pkgname[0] != '\0' ? 1 : 0);
 
 	const unsigned short cols = getcols();
 
@@ -592,7 +590,7 @@ void cb_progress(void *ctx, alpm_progress_t event, const char *pkgname,
 	} else {
 		if(current != prevcurrent) {
 			/* update always */
-		} else if(!pkgname || percent == prevpercent ||
+		} else if(has_pkgname || percent == prevpercent ||
 				get_update_timediff(0) < UPDATE_SPEED_MS) {
 			/* only update the progress bar when we have a package name, the
 			 * percentage has changed, and it has been long enough. */
@@ -656,19 +654,25 @@ void cb_progress(void *ctx, alpm_progress_t event, const char *pkgname,
 	 * by the output, and then pad it accordingly so we fill the terminal.
 	 */
 	/* len = opr len + pkgname len (if available) + space + null */
-	len = strlen(opr) + ((pkgname) ? strlen(pkgname) : 0) + 2;
+	len = strlen(opr) + (has_pkgname ? strlen(pkgname) + 1 : 0) + 1;
 	wcstr = calloc(len, sizeof(wchar_t));
 	/* print our strings to the alloc'ed memory */
 #if defined(HAVE_SWPRINTF)
-	wclen = swprintf(wcstr, len, L"%s %s", opr, pkgname);
+	if(has_pkgname) {
+		wclen = swprintf(wcstr, len, L"%s %s", opr, pkgname);
+	} else {
+		wclen = swprintf(wcstr, len, L"%s", opr);
+	}
 #else
 	/* because the format string was simple, we can easily do this without
 	 * using swprintf, although it is probably not as safe/fast. The max
 	 * chars we can copy is decremented each time by subtracting the length
 	 * of the already printed/copied wide char string. */
 	wclen = mbstowcs(wcstr, opr, len);
-	wclen += mbstowcs(wcstr + wclen, " ", len - wclen);
-	wclen += mbstowcs(wcstr + wclen, pkgname, len - wclen);
+	if(has_pkgname) {
+		wclen += mbstowcs(wcstr + wclen, " ", len - wclen);
+		wclen += mbstowcs(wcstr + wclen, pkgname, len - wclen);
+	}
 #endif
 	wcwid = wcswidth(wcstr, wclen);
 	padwid = textlen - wcwid;
@@ -693,7 +697,7 @@ void cb_progress(void *ctx, alpm_progress_t event, const char *pkgname,
 	free(wcstr);
 
 	/* call refactored fill progress function */
-	fill_progress(percent, percent, cols - infolen);
+	fill_progress(percent, cols - infolen);
 
 	if(percent == 100) {
 		putchar('\n');
@@ -757,14 +761,11 @@ static void init_total_progressbar(void)
 
 static char *clean_filename(const char *filename)
 {
-	int len = strlen(filename);
 	char *p;
-	char *fname = malloc(len + 1);
-	memcpy(fname, filename, len + 1);
+	char *fname = strdup(filename);
 	/* strip package or DB extension for cleaner look */
 	if((p = strstr(fname, ".pkg")) || (p = strstr(fname, ".db")) || (p = strstr(fname, ".files"))) {
-		len = p - fname;
-		fname[len] = '\0';
+		fname[p - fname] = '\0';
 	}
 
 	return fname;
@@ -871,7 +872,7 @@ static void draw_pacman_progress_bar(struct pacman_progress_bar *bar)
 	free(fname);
 	free(wcfname);
 
-	fill_progress(file_percent, file_percent, cols - infolen);
+	fill_progress(file_percent, cols - infolen);
 	return;
 }
 
@@ -904,6 +905,8 @@ static void dload_init_event(const char *filename, alpm_download_event_init_t *d
 		printf("\n");
 		multibar_ui.cursor_lineno++;
 	}
+
+	free(cleaned_filename);
 }
 
 /* Update progress bar rate/eta stats.

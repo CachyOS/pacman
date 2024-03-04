@@ -2,7 +2,7 @@
 #
 #   @PROGNAME@ - a wrapper for running the real @PROGNAME@ in the source tree
 #
-#   Copyright (c) 2013-2021 Pacman Development Team <pacman-dev@archlinux.org>
+#   Copyright (c) 2013-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
 #
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -20,4 +20,4 @@
 
 DIR="@PWD@"
 
-LIBRARY="$DIR"/libmakepkg exec bash -$- "$DIR"/.lib/@PROGNAME@ "$@"
+MAKEPKG_LIBRARY="$DIR"/libmakepkg exec bash -$- "$DIR"/.lib/@PROGNAME@ "$@"

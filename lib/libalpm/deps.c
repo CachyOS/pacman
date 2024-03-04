@@ -1,7 +1,7 @@
 /*
  *  deps.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *  Copyright (c) 2005 by Aurelien Foret <orelien@chez.com>
  *  Copyright (c) 2005, 2006 by Miklos Vajna <vmiklos@frugalware.org>
@@ -556,7 +556,7 @@ static void _alpm_select_depends(alpm_list_t **from, alpm_list_t **to,
 	for(i = *from; i; i = next) {
 		alpm_pkg_t *deppkg = i->data;
 		next = i->next;
-		if((explicit || alpm_pkg_get_reason(deppkg) != ALPM_PKG_REASON_EXPLICIT)
+		if((explicit || alpm_pkg_get_reason(deppkg) == ALPM_PKG_REASON_DEPEND)
 				&& _alpm_pkg_depends_on(pkg, deppkg)) {
 			*to = alpm_list_add(*to, deppkg);
 			*from = alpm_list_remove_item(*from, i);

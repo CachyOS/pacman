@@ -1,7 +1,7 @@
 /*
  *  handle.h
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 
 #include "alpm_list.h"
 #include "alpm.h"
+#include "trans.h"
 
 #ifdef HAVE_LIBCURL
 #include <curl/curl.h>
@@ -50,7 +51,7 @@ do { \
 	} \
 } while(0)
 
-struct __alpm_handle_t {
+struct _alpm_handle_t {
 	/* internal usage */
 	alpm_db_t *db_local;    /* local db pointer */
 	alpm_list_t *dbs_sync;  /* List of (alpm_db_t *) */

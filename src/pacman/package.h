@@ -1,7 +1,7 @@
 /*
  *  package.h
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 
 void dump_pkg_full(alpm_pkg_t *pkg, int extra);
 
-void dump_pkg_backups(alpm_pkg_t *pkg);
+void dump_pkg_backups(alpm_pkg_t *pkg, unsigned short cols);
 void dump_pkg_files(alpm_pkg_t *pkg, int quiet);
 void dump_pkg_changelog(alpm_pkg_t *pkg);
 

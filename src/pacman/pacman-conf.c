@@ -1,7 +1,7 @@
 /*
  *  pacman-conf.c - parse pacman configuration files
  *
- *  Copyright (c) 2013-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2013-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -44,6 +44,7 @@ static void usage(int ret)
 	fputs(_("options:\n"), stream);
 	fputs(_("  -c, --config=<path>  set an alternate configuration file\n"), stream);
 	fputs(_("  -R, --rootdir=<path> set an alternate installation root\n"), stream);
+	fputs(_("  -S, --sysroot=<path> set an alternate system root\n"), stream);
 	fputs(_("  -r, --repo=<remote>  query options for a specific repo\n"), stream);
 	fputs(_("  -v, --verbose        always show directive names\n"), stream);
 	fputs(_("  -l, --repo-list      list configured repositories\n"), stream);
@@ -58,10 +59,11 @@ static void parse_opts(int argc, char **argv)
 	int c;
 	config_file = CONFFILE;
 
-	const char *short_opts = "c:hlR:r:Vv";
+	const char *short_opts = "c:hlR:S:r:Vv";
 	struct option long_opts[] = {
 		{ "config"    , required_argument , NULL , 'c' },
 		{ "rootdir"   , required_argument , NULL , 'R' },
+		{ "sysroot"   , required_argument , NULL , 'S' },
 		{ "repo"      , required_argument , NULL , 'r' },
 		{ "repo-list" , no_argument       , NULL , 'l' },
 		{ "verbose"   , no_argument       , NULL , 'v' },
@@ -79,6 +81,14 @@ static void parse_opts(int argc, char **argv)
 				free(config->rootdir);
 				if ((config->rootdir = strdup(optarg)) == NULL) {
 					fprintf(stderr, _("error setting rootdir '%s': out of memory\n"), optarg);
+					cleanup();
+					exit(1);
+				}
+				break;
+			case 'S':
+				free(config->sysroot);
+				if((config->sysroot = strdup(optarg)) == NULL) {
+					fprintf(stderr, _("error setting sysroot '%s': out of memory\n"), optarg);
 					cleanup();
 					exit(1);
 				}
@@ -236,6 +246,7 @@ static void dump_repo(config_repo_t *repo)
 {
 	show_usage("Usage", repo->usage);
 	show_siglevel("SigLevel", repo->siglevel, 0);
+	show_list_str("CacheServer", repo->cache_servers);
 	show_list_str("Server", repo->servers);
 }
 
@@ -310,6 +321,8 @@ static int list_repo_directives(void)
 	for(i = directives; i; i = i->next) {
 		if(strcasecmp(i->data, "Server") == 0) {
 			show_list_str("Server", repo->servers);
+		} else if(strcasecmp(i->data, "CacheServer") == 0) {
+			show_list_str("CacheServer", repo->cache_servers);
 		} else if(strcasecmp(i->data, "SigLevel") == 0) {
 			show_siglevel("SigLevel", repo->siglevel, 0);
 		} else if(strcasecmp(i->data, "Usage") == 0) {

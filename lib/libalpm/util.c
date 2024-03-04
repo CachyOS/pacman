@@ -1,7 +1,7 @@
 /*
  *  util.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *  Copyright (c) 2005 by Aurelien Foret <orelien@chez.com>
  *  Copyright (c) 2005 by Christian Hamar <krics@linuxforum.hu>
@@ -31,6 +31,7 @@
 #include <limits.h>
 #include <sys/wait.h>
 #include <sys/socket.h>
+#include <fcntl.h>
 #include <fnmatch.h>
 #include <poll.h>
 #include <signal.h>
@@ -40,8 +41,7 @@
 #include <archive_entry.h>
 
 #ifdef HAVE_LIBSSL
-#include <openssl/md5.h>
-#include <openssl/sha.h>
+#include <openssl/evp.h>
 #endif
 
 #ifdef HAVE_LIBNETTLE
@@ -349,6 +349,11 @@ int _alpm_unpack(alpm_handle_t *handle, const char *path, const char *prefix,
 
 		entryname = archive_entry_pathname(entry);
 
+		if(entryname == NULL) {
+			ret = 1;
+			goto cleanup;
+		}
+
 		/* If specific files were requested, skip entries that don't match. */
 		if(list) {
 			char *entry_prefix = NULL;
@@ -650,7 +655,9 @@ int _alpm_run_chroot(alpm_handle_t *handle, const char *cmd, char *const argv[],
 		}
 
 		/* use fprintf instead of _alpm_log to send output through the parent */
-		if(chroot(handle->root) != 0) {
+		/* don't chroot() to "/": this allows running with less caps when the
+		 * caller puts us in the right root */
+		if(strcmp(handle->root, "/") != 0 && chroot(handle->root) != 0) {
 			fprintf(stderr, _("could not change the root directory (%s)\n"), strerror(errno));
 			exit(1);
 		}
@@ -659,8 +666,16 @@ int _alpm_run_chroot(alpm_handle_t *handle, const char *cmd, char *const argv[],
 					"/", strerror(errno));
 			exit(1);
 		}
+		/* bash assumes it's being run under rsh/ssh if stdin is a socket and
+		 * sources ~/.bashrc if it thinks it's the top-level shell.
+		 * set SHLVL before running to indicate that it's a child shell and
+		 * disable this behavior */
+		setenv("SHLVL", "1", 0);
+		/* bash sources $BASH_ENV when run non-interactively */
+		unsetenv("BASH_ENV");
 		umask(0022);
 		_alpm_reset_signals();
+		_alpm_handle_free(handle);
 		execv(cmd, argv);
 		/* execv only returns if there was an error */
 		fprintf(stderr, _("call to execv failed (%s)\n"), strerror(errno));
@@ -831,10 +846,17 @@ char *_alpm_filecache_find(alpm_handle_t *handle, const char *filename)
 	for(i = handle->cachedirs; i; i = i->next) {
 		snprintf(path, PATH_MAX, "%s%s", (char *)i->data,
 				filename);
-		if(stat(path, &buf) == 0 && S_ISREG(buf.st_mode)) {
-			retpath = strdup(path);
-			_alpm_log(handle, ALPM_LOG_DEBUG, "found cached pkg: %s\n", retpath);
-			return retpath;
+		if(stat(path, &buf) == 0) {
+			if(S_ISREG(buf.st_mode)) {
+				retpath = strdup(path);
+				_alpm_log(handle, ALPM_LOG_DEBUG, "found cached pkg: %s\n", retpath);
+				return retpath;
+			} else {
+				_alpm_log(handle, ALPM_LOG_WARNING,
+						"cached pkg '%s' is not a regular file: mode=%i\n", path, buf.st_mode);
+			}
+		} else if(errno != ENOENT) {
+			_alpm_log(handle, ALPM_LOG_WARNING, "could not open '%s'\n: %s", path, strerror(errno));
 		}
 	}
 	/* package wasn't found in any cachedir */
@@ -916,7 +938,8 @@ const char *_alpm_filecache_setup(alpm_handle_t *handle)
 static int md5_file(const char *path, unsigned char output[16])
 {
 #if HAVE_LIBSSL
-	MD5_CTX ctx;
+	EVP_MD_CTX *ctx;
+	const EVP_MD *md = EVP_get_digestbyname("MD5");
 #else /* HAVE_LIBNETTLE */
 	struct md5_ctx ctx;
 #endif
@@ -933,7 +956,8 @@ static int md5_file(const char *path, unsigned char output[16])
 	}
 
 #if HAVE_LIBSSL
-	MD5_Init(&ctx);
+	ctx = EVP_MD_CTX_create();
+	EVP_DigestInit_ex(ctx, md, NULL);
 #else /* HAVE_LIBNETTLE */
 	md5_init(&ctx);
 #endif
@@ -943,7 +967,7 @@ static int md5_file(const char *path, unsigned char output[16])
 			continue;
 		}
 #if HAVE_LIBSSL
-		MD5_Update(&ctx, buf, n);
+		EVP_DigestUpdate(ctx, buf, n);
 #else /* HAVE_LIBNETTLE */
 		md5_update(&ctx, n, buf);
 #endif
@@ -957,7 +981,8 @@ static int md5_file(const char *path, unsigned char output[16])
 	}
 
 #if HAVE_LIBSSL
-	MD5_Final(output, &ctx);
+	EVP_DigestFinal_ex(ctx, output, NULL);
+	EVP_MD_CTX_destroy(ctx);
 #else /* HAVE_LIBNETTLE */
 	md5_digest(&ctx, MD5_DIGEST_SIZE, output);
 #endif
@@ -972,7 +997,8 @@ static int md5_file(const char *path, unsigned char output[16])
 static int sha256_file(const char *path, unsigned char output[32])
 {
 #if HAVE_LIBSSL
-	SHA256_CTX ctx;
+	EVP_MD_CTX *ctx;
+	const EVP_MD *md = EVP_get_digestbyname("SHA256");
 #else /* HAVE_LIBNETTLE */
 	struct sha256_ctx ctx;
 #endif
@@ -989,7 +1015,8 @@ static int sha256_file(const char *path, unsigned char output[32])
 	}
 
 #if HAVE_LIBSSL
-	SHA256_Init(&ctx);
+	ctx = EVP_MD_CTX_create();
+	EVP_DigestInit_ex(ctx, md, NULL);
 #else /* HAVE_LIBNETTLE */
 	sha256_init(&ctx);
 #endif
@@ -999,7 +1026,7 @@ static int sha256_file(const char *path, unsigned char output[32])
 			continue;
 		}
 #if HAVE_LIBSSL
-		SHA256_Update(&ctx, buf, n);
+		EVP_DigestUpdate(ctx, buf, n);
 #else /* HAVE_LIBNETTLE */
 		sha256_update(&ctx, n, buf);
 #endif
@@ -1013,7 +1040,8 @@ static int sha256_file(const char *path, unsigned char output[32])
 	}
 
 #if HAVE_LIBSSL
-	SHA256_Final(output, &ctx);
+	EVP_DigestFinal_ex(ctx, output, NULL);
+	EVP_MD_CTX_destroy(ctx);
 #else /* HAVE_LIBNETTLE */
 	sha256_digest(&ctx, SHA256_DIGEST_SIZE, output);
 #endif
@@ -1335,6 +1363,11 @@ int _alpm_access(alpm_handle_t *handle, const char *dir, const char *file, int a
 	size_t len = 0;
 	int ret = 0;
 
+	int flag = 0;
+#ifdef AT_SYMLINK_NOFOLLOW
+	flag |= AT_SYMLINK_NOFOLLOW;
+#endif
+
 	if(dir) {
 		char *check_path;
 
@@ -1342,11 +1375,11 @@ int _alpm_access(alpm_handle_t *handle, const char *dir, const char *file, int a
 		CALLOC(check_path, len, sizeof(char), RET_ERR(handle, ALPM_ERR_MEMORY, -1));
 		snprintf(check_path, len, "%s%s", dir, file);
 
-		ret = access(check_path, amode);
+		ret = faccessat(AT_FDCWD, check_path, amode, flag);
 		free(check_path);
 	} else {
 		dir = "";
-		ret = access(file, amode);
+		ret = faccessat(AT_FDCWD, file, amode, flag);
 	}
 
 	if(ret != 0) {

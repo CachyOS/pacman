@@ -1,5 +1,6 @@
 pacman_tests = [
   'tests/backup001.py',
+  'tests/cache-server-basic.py',
   'tests/clean001.py',
   'tests/clean002.py',
   'tests/clean003.py',
@@ -96,6 +97,9 @@ pacman_tests = [
   'tests/pacman003.py',
   'tests/pacman004.py',
   'tests/pacman005.py',
+  'tests/pkg-meta-invalid-name-file.py',
+  'tests/pkg-meta-invalid-name-local.py',
+  'tests/pkg-meta-invalid-name-sync.py',
   'tests/provision001.py',
   'tests/provision002.py',
   'tests/provision003.py',
@@ -354,7 +358,7 @@ foreach input : pacman_tests
   args = [
     join_paths(meson.current_source_dir(), 'pactest.py'),
     '--scriptlet-shell', get_option('scriptlet-shell'),
-    '--bindir', meson.build_root(),
+    '--bindir', meson.project_build_root(),
     '--ldconfig', LDCONFIG,
     '--verbose',
     join_paths(meson.current_source_dir(), input)

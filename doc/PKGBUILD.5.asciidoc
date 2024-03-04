@@ -3,7 +3,7 @@ PKGBUILD(5)
 
 Name
 ----
-PKGBUILD - Arch Linux package build description file
+PKGBUILD - Package build description file
 
 
 Synopsis
@@ -84,14 +84,7 @@ systems (see below).
 
 *license (array)*::
 	This field specifies the license(s) that apply to the package.
-	Commonly used licenses can be found in '/usr/share/licenses/common'. If you
-	see the package's license there, simply reference it in the license
-	field (e.g., `license=('GPL')`). If the package provides a license not
-	available in '/usr/share/licenses/common', then you should include it
-	in the package itself and set `license=('custom')` or
-	`license=('custom:LicenseName')`. The license should be placed in
-	'$pkgdir/usr/share/licenses/$pkgname/' when building the package. If
-	multiple licenses are applicable, list all of them:
+	If multiple licenses are applicable, list all of them:
 	`license=('GPL' 'FDL')`.
 
 *install*::
@@ -187,11 +180,6 @@ contain whitespace characters.
 	than or equal to), `<=` (less than or equal to), `=` (equal to), `>`
 	(greater than), or `<` (less than).
 +
-If the dependency name appears to be a library (ends with .so), makepkg will
-try to find a binary that depends on the library in the built package and
-append the version needed by the binary. Appending the version yourself
-disables automatic detection.
-+
 Additional architecture-specific depends can be added by appending an
 underscore and the architecture name e.g., 'depends_x86_64=()'.
 
@@ -244,10 +232,6 @@ Versioned provisions are also possible, in the 'name=version' format. For
 example, dcron can provide 'cron=2.0' to satisfy the 'cron>=2.0' dependency of
 other packages. Provisions involving the `>` and `<` operators are invalid as
 only specific versions of a package may be provided.
-+
-If the provision name appears to be a library (ends with .so), makepkg will
-try to find the library in the built package and append the correct
-version. Appending the version yourself disables automatic detection.
 +
 Additional architecture-specific provides can be added by appending an
 underscore and the architecture name e.g., 'provides_x86_64=()'.
@@ -352,6 +336,13 @@ function.
 	the optional functions listed below. The packaging stage is run using
 	fakeroot to ensure correct file permissions in the resulting package.
 	All other functions will be run as the user calling makepkg.
+	This function is run inside `$srcdir`.
+
+*verify() Function*::
+	An optional `verify()` function can be specified to implement arbitrary
+	source authentication. The function should return a non-zero exit code when
+	verification fails. This function is run before sources are extracted.
+	This function is run inside `$startdir`.
 
 *prepare() Function*::
 	An optional `prepare()` function can be specified in which operations to
@@ -359,16 +350,19 @@ function.
 	function is run after the source extraction and before the `build()`
 	function. The `prepare()` function is skipped when source extraction
 	is skipped.
+	This function is run inside `$srcdir`.
 
 *build() Function*::
 	The optional `build()` function is used to compile and/or adjust the source
 	files in preparation to be installed by the `package()` function.
+	This function is run inside `$srcdir`.
 
 *check() Function*::
 	An optional `check()` function can be specified in which a package's
 	test-suite may be run. This function is run between the `build()` and
 	`package()` functions. Be sure any exotic commands used are covered by the
 	`checkdepends` array.
+	This function is run inside `$srcdir`.
 
 All of the above variables such as `$pkgname` and `$pkgver` are available for
 use in the packaging functions. In addition, makepkg defines the following
@@ -378,7 +372,6 @@ variables:
 	This contains the directory where makepkg extracts, or copies, all source
 	files.
 +
-All of the packaging functions defined above are run starting inside `$srcdir`
 
 *pkgdir*::
 	This contains the directory where makepkg bundles the installed package.
@@ -480,6 +473,9 @@ Currently makepkg supports the Bazaar, Git, Subversion, Fossil and Mercurial
 version control systems. For other version control systems, manual cloning of
 upstream repositories must be done in the `prepare()` function.
 
+Some <<VCS,VCS Sources>> like Git support pinning the checkout by a checksum of
+its content using deterministic export functionality like ``git archive''.
+
 The source URL is divided into four components:
 
 *directory*::
@@ -524,8 +520,7 @@ The source URL is divided into four components:
 Example
 -------
 The following is an example PKGBUILD for the 'patch' package. For more
-examples, look through the build files of your distribution's packages. For
-those using Arch Linux, consult the Arch Build System (ABS) tree.
+examples, look through the build files of your distribution's packages.
 
 [source,sh]
 -------------------------------

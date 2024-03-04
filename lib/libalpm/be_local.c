@@ -1,7 +1,7 @@
 /*
  *  be_local.c : backend for the local database
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -195,6 +195,12 @@ static alpm_list_t *_cache_get_backup(alpm_pkg_t *pkg)
 	return pkg->backup;
 }
 
+static alpm_list_t *_cache_get_xdata(alpm_pkg_t *pkg)
+{
+	LAZY_LOAD(INFRQ_DESC);
+	return pkg->xdata;
+}
+
 static const char *_cache_get_installed_db(alpm_pkg_t *pkg)
 {
 	LAZY_LOAD(INFRQ_DESC);
@@ -250,7 +256,6 @@ static int _cache_changelog_close(const alpm_pkg_t UNUSED *pkg, void *fp)
  */
 static struct archive *_cache_mtree_open(alpm_pkg_t *pkg)
 {
-	int r;
 	struct archive *mtree;
 
 	alpm_db_t *db = alpm_pkg_get_db(pkg);
@@ -268,7 +273,7 @@ static struct archive *_cache_mtree_open(alpm_pkg_t *pkg)
 	_alpm_archive_read_support_filter_all(mtree);
 	archive_read_support_format_mtree(mtree);
 
-	if((r = _alpm_archive_read_open_file(mtree, mtfile, ALPM_BUFFER_SIZE))) {
+	if(_alpm_archive_read_open_file(mtree, mtfile, ALPM_BUFFER_SIZE)) {
 		_alpm_log(pkg->handle, ALPM_LOG_ERROR, _("error while reading file %s: %s\n"),
 					mtfile, archive_error_string(mtree));
 		_alpm_archive_read_free(mtree);
@@ -356,6 +361,7 @@ static const struct pkg_operations local_pkg_ops = {
 	.get_replaces = _cache_get_replaces,
 	.get_files = _cache_get_files,
 	.get_backup = _cache_get_backup,
+	.get_xdata = _cache_get_xdata,
 
 	.changelog_open = _cache_changelog_open,
 	.changelog_read = _cache_changelog_read,
@@ -631,6 +637,10 @@ static int local_db_populate(alpm_db_t *db)
 			continue;
 		}
 
+		/* treat local metadata errors as warning-only,
+		 * they are already installed and otherwise they can't be operated on */
+		_alpm_pkg_check_meta(pkg);
+
 		/* add to the collection */
 		_alpm_log(db->handle, ALPM_LOG_FUNCTION, "adding '%s' to package cache for db '%s'\n",
 				pkg->name, db->treename);
@@ -649,6 +659,17 @@ static int local_db_populate(alpm_db_t *db)
 			count, db->treename);
 
 	return 0;
+}
+
+static alpm_pkgreason_t _read_pkgreason(alpm_handle_t *handle, const char *pkgname, const char *line) {
+	if(strcmp(line, "0") == 0) {
+		return ALPM_PKG_REASON_EXPLICIT;
+	} else if(strcmp(line, "1") == 0) {
+		return ALPM_PKG_REASON_DEPEND;
+	} else {
+		_alpm_log(handle, ALPM_LOG_ERROR, _("unknown install reason for package %s: %s\n"), pkgname, line);
+		return ALPM_PKG_REASON_UNKNOWN;
+	}
 }
 
 /* Note: the return value must be freed by the caller */
@@ -775,7 +796,7 @@ static int local_db_read(alpm_pkg_t *info, int inforeq)
 				READ_AND_STORE(info->packager);
 			} else if(strcmp(line, "%REASON%") == 0) {
 				READ_NEXT();
-				info->reason = (alpm_pkgreason_t)atoi(line);
+				info->reason = _read_pkgreason(db->handle, info->name, line);
 			} else if(strcmp(line, "%VALIDATION%") == 0) {
 				alpm_list_t *i, *v = NULL;
 				READ_AND_STORE_ALL(v);
@@ -813,6 +834,23 @@ static int local_db_read(alpm_pkg_t *info, int inforeq)
 				READ_AND_SPLITDEP(info->conflicts);
 			} else if(strcmp(line, "%PROVIDES%") == 0) {
 				READ_AND_SPLITDEP(info->provides);
+			} else if(strcmp(line, "%XDATA%") == 0) {
+				alpm_list_t *i, *lines = NULL;
+				READ_AND_STORE_ALL(lines);
+				for(i = lines; i; i = i->next) {
+					alpm_pkg_xdata_t *pd = _alpm_pkg_parse_xdata(i->data);
+					if(pd == NULL || !alpm_list_append(&info->xdata, pd)) {
+						_alpm_pkg_xdata_free(pd);
+						FREELIST(lines);
+						goto error;
+					}
+				}
+				FREELIST(lines);
+			} else {
+				_alpm_log(db->handle, ALPM_LOG_WARNING, _("%s: unknown key '%s' in sync database\n"), info->name, line);
+				alpm_list_t *lines = NULL;
+				READ_AND_STORE_ALL(lines);
+				FREELIST(lines);
 			}
 		}
 		fclose(fp);
@@ -1052,6 +1090,15 @@ int _alpm_local_db_write(alpm_db_t *db, alpm_pkg_t *info, int inforeq)
 		write_deps(fp, "%OPTDEPENDS%", info->optdepends);
 		write_deps(fp, "%CONFLICTS%", info->conflicts);
 		write_deps(fp, "%PROVIDES%", info->provides);
+
+		if(info->xdata) {
+			fputs("%XDATA%\n", fp);
+			for(lp = info->xdata; lp; lp = lp->next) {
+				alpm_pkg_xdata_t *pd = lp->data;
+				fprintf(fp, "%s=%s\n", pd->name, pd->value);
+			}
+			fputc('\n', fp);
+		}
 
 		fclose(fp);
 		fp = NULL;

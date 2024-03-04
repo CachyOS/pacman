@@ -1,7 +1,7 @@
 /*
  *  add.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -269,7 +269,7 @@ static int extract_single_file(alpm_handle_t *handle, struct archive *archive,
 					"filesystem: %o  package: %o\n"), filename, lsbuf.st_mode & mask,
 					entrymode & mask);
 			alpm_logaction(handle, ALPM_CALLER_PREFIX,
-					"warning: directory permissions differ on %s\n"
+					"warning: directory permissions differ on %s, "
 					"filesystem: %o  package: %o\n", filename, lsbuf.st_mode & mask,
 					entrymode & mask);
 		}
@@ -284,7 +284,7 @@ static int extract_single_file(alpm_handle_t *handle, struct archive *archive,
 					"filesystem: %u:%u  package: %u:%u\n"), filename,
 					lsbuf.st_uid, lsbuf.st_gid, entryuid, entrygid);
 			alpm_logaction(handle, ALPM_CALLER_PREFIX,
-					"warning: directory ownership differs on %s\n"
+					"warning: directory ownership differs on %s, "
 					"filesystem: %u:%u  package: %u:%u\n", filename,
 					lsbuf.st_uid, lsbuf.st_gid, entryuid, entrygid);
 		}
@@ -422,7 +422,7 @@ static int extract_single_file(alpm_handle_t *handle, struct archive *archive,
 static int commit_single_pkg(alpm_handle_t *handle, alpm_pkg_t *newpkg,
 		size_t pkg_current, size_t pkg_count)
 {
-	int i, ret = 0, errors = 0;
+	int ret = 0, errors = 0;
 	int is_upgrade = 0;
 	alpm_pkg_t *oldpkg = NULL;
 	alpm_db_t *db = handle->db_local;
@@ -545,7 +545,7 @@ static int commit_single_pkg(alpm_handle_t *handle, alpm_pkg_t *newpkg,
 		/* call PROGRESS once with 0 percent, as we sort-of skip that here */
 		PROGRESS(handle, progress, newpkg->name, 0, pkg_count, pkg_current);
 
-		for(i = 0; archive_read_next_header(archive, &entry) == ARCHIVE_OK; i++) {
+		while(archive_read_next_header(archive, &entry) == ARCHIVE_OK) {
 			int percent;
 
 			if(newpkg->size != 0) {

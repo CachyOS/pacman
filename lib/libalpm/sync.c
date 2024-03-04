@@ -1,7 +1,7 @@
 /*
  *  sync.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *  Copyright (c) 2005 by Aurelien Foret <orelien@chez.com>
  *  Copyright (c) 2005 by Christian Hamar <krics@linuxforum.hu>
@@ -476,7 +476,6 @@ int _alpm_sync_prepare(alpm_handle_t *handle, alpm_list_t **data)
 			for(j = i->next; j; j = j->next) {
 				alpm_pkg_t *pkg2 = j->data;
 				if(strcmp(pkg1->filename, pkg2->filename) == 0) {
-					alpm_list_free(resolved);
 					ret = -1;
 					handle->pm_errno = ALPM_ERR_TRANS_DUP_FILENAME;
 					_alpm_log(handle, ALPM_LOG_ERROR, _("packages %s and %s have the same filename: %s\n"),
@@ -486,6 +485,7 @@ int _alpm_sync_prepare(alpm_handle_t *handle, alpm_list_t **data)
 		}
 
 		if(ret != 0) {
+			alpm_list_free(resolved);
 			goto cleanup;
 		}
 
@@ -523,21 +523,23 @@ int _alpm_sync_prepare(alpm_handle_t *handle, alpm_list_t **data)
 
 		for(i = deps; i; i = i->next) {
 			alpm_conflict_t *conflict = i->data;
+			const char *name1 = conflict->package1->name;
+			const char *name2 = conflict->package2->name;
 			alpm_pkg_t *rsync, *sync, *sync1, *sync2;
 
 			/* have we already removed one of the conflicting targets? */
-			sync1 = alpm_pkg_find(trans->add, conflict->package1);
-			sync2 = alpm_pkg_find(trans->add, conflict->package2);
+			sync1 = alpm_pkg_find(trans->add, name1);
+			sync2 = alpm_pkg_find(trans->add, name2);
 			if(!sync1 || !sync2) {
 				continue;
 			}
 
 			_alpm_log(handle, ALPM_LOG_DEBUG, "conflicting packages in the sync list: '%s' <-> '%s'\n",
-					conflict->package1, conflict->package2);
+					name1, name2);
 
 			/* if sync1 provides sync2, we remove sync2 from the targets, and vice versa */
-			alpm_depend_t *dep1 = alpm_dep_from_string(conflict->package1);
-			alpm_depend_t *dep2 = alpm_dep_from_string(conflict->package2);
+			alpm_depend_t *dep1 = alpm_dep_from_string(name1);
+			alpm_depend_t *dep2 = alpm_dep_from_string(name2);
 			if(_alpm_depcmp(sync1, dep2)) {
 				rsync = sync2;
 				sync = sync1;
@@ -565,8 +567,8 @@ int _alpm_sync_prepare(alpm_handle_t *handle, alpm_list_t **data)
 
 			/* Prints warning */
 			_alpm_log(handle, ALPM_LOG_WARNING,
-					_("removing '%s' from target list because it conflicts with '%s'\n"),
-					rsync->name, sync->name);
+					_("removing '%s-%s' from target list because it conflicts with '%s-%s'\n"),
+					rsync->name, rsync->version, sync->name, sync->version);
 			trans->add = alpm_list_remove(trans->add, rsync, _alpm_pkg_cmp, NULL);
 			/* rsync is not a transaction target anymore */
 			trans->unresolvable = alpm_list_add(trans->unresolvable, rsync);
@@ -587,16 +589,18 @@ int _alpm_sync_prepare(alpm_handle_t *handle, alpm_list_t **data)
 				.conflict = i->data
 			};
 			alpm_conflict_t *conflict = i->data;
+			const char *name1 = conflict->package1->name;
+			const char *name2 = conflict->package2->name;
 			int found = 0;
 
-			/* if conflict->package2 (the local package) is not elected for removal,
+			/* if name2 (the local package) is not elected for removal,
 			   we ask the user */
-			if(alpm_pkg_find(trans->remove, conflict->package2)) {
+			if(alpm_pkg_find(trans->remove, name2)) {
 				found = 1;
 			}
 			for(j = trans->add; j && !found; j = j->next) {
 				alpm_pkg_t *spkg = j->data;
-				if(alpm_pkg_find(spkg->removes, conflict->package2)) {
+				if(alpm_pkg_find(spkg->removes, name2)) {
 					found = 1;
 				}
 			}
@@ -604,15 +608,15 @@ int _alpm_sync_prepare(alpm_handle_t *handle, alpm_list_t **data)
 				continue;
 			}
 
-			_alpm_log(handle, ALPM_LOG_DEBUG, "package '%s' conflicts with '%s'\n",
-					conflict->package1, conflict->package2);
+			_alpm_log(handle, ALPM_LOG_DEBUG, "package '%s-%s' conflicts with '%s-%s'\n",
+					name1, conflict->package1->version, name2,conflict->package2->version);
 
 			QUESTION(handle, &question);
 			if(question.remove) {
 				/* append to the removes list */
-				alpm_pkg_t *sync = alpm_pkg_find(trans->add, conflict->package1);
-				alpm_pkg_t *local = _alpm_db_get_pkgfromcache(handle->db_local, conflict->package2);
-				_alpm_log(handle, ALPM_LOG_DEBUG, "electing '%s' for removal\n", conflict->package2);
+				alpm_pkg_t *sync = alpm_pkg_find(trans->add, name1);
+				alpm_pkg_t *local = _alpm_db_get_pkgfromcache(handle->db_local, name2);
+				_alpm_log(handle, ALPM_LOG_DEBUG, "electing '%s' for removal\n", name2);
 				sync->removes = alpm_list_add(sync->removes, local);
 			} else { /* abort */
 				_alpm_log(handle, ALPM_LOG_ERROR, _("unresolvable package conflicts detected\n"));
@@ -830,6 +834,7 @@ static int download_files(alpm_handle_t *handle)
 				FREE(payload->remote_name); FREE(payload);
 				GOTO_ERR(handle, ALPM_ERR_MEMORY, finish));
 			payload->max_size = pkg->size;
+			payload->cache_servers = pkg->origin_data.db->cache_servers;
 			payload->servers = pkg->origin_data.db->servers;
 			payload->handle = handle;
 			payload->allow_resume = 1;
@@ -997,6 +1002,13 @@ static int check_validity(alpm_handle_t *handle,
 
 		current_bytes += v.pkg->size;
 		v.path = _alpm_filecache_find(handle, v.pkg->filename);
+
+		if(!v.path) {
+			_alpm_log(handle, ALPM_LOG_ERROR,
+					_("%s: could not find package in cache\n"), v.pkg->name);
+			RET_ERR(handle, ALPM_ERR_PKG_NOT_FOUND, -1);
+		}
+
 		v.siglevel = alpm_db_get_siglevel(alpm_pkg_get_db(v.pkg));
 
 		if(_alpm_pkg_validate_internal(handle, v.path, v.pkg,
@@ -1061,12 +1073,81 @@ static int check_validity(alpm_handle_t *handle,
 	return 0;
 }
 
+static int dep_not_equal(const alpm_depend_t *left, const alpm_depend_t *right)
+{
+	return left->name_hash != right->name_hash
+		|| strcmp(left->name, right->name) != 0
+		|| left->mod != right->mod
+		|| (left->version == NULL) != (right->version == NULL)
+		|| ((left->version && right->version) && strcmp(left->version, right->version) != 0);
+}
+
+static int check_pkg_field_matches_db(alpm_handle_t *handle, const char *field,
+		alpm_list_t *left, alpm_list_t *right, alpm_list_fn_cmp cmp)
+{
+	switch(alpm_list_cmp_unsorted(left, right, cmp)) {
+		case 0:
+			_alpm_log(handle, ALPM_LOG_DEBUG,
+					"internal package %s mismatch\n", field);
+			return 1;
+		case 1:
+			return 0;
+		default:
+			RET_ERR(handle, ALPM_ERR_MEMORY, -1);
+	}
+}
+
+static int check_pkg_matches_db(alpm_pkg_t *spkg, alpm_pkg_t *pkgfile)
+{
+	alpm_handle_t *handle = spkg->handle;
+	int error = 0;
+
+#define CHECK_FIELD(STR, FIELD, CMP) do { \
+	int ok = check_pkg_field_matches_db(handle, STR, spkg->FIELD, pkgfile->FIELD, (alpm_list_fn_cmp)CMP); \
+	if(ok == -1) { \
+		return 1; \
+	} else if(ok != 0) { \
+		error = 1; \
+	} \
+} while(0)
+
+	if(strcmp(spkg->name, pkgfile->name) != 0) {
+		_alpm_log(handle, ALPM_LOG_DEBUG,
+				"internal package name mismatch, expected: '%s', actual: '%s'\n",
+				spkg->name, pkgfile->name);
+		error = 1;
+	}
+	if(strcmp(spkg->version, pkgfile->version) != 0) {
+		_alpm_log(handle, ALPM_LOG_DEBUG,
+				"internal package version mismatch, expected: '%s', actual: '%s'\n",
+				spkg->version, pkgfile->version);
+		error = 1;
+	}
+	if(spkg->isize != pkgfile->isize) {
+		_alpm_log(handle, ALPM_LOG_DEBUG,
+				"internal package install size mismatch, expected: '%ld', actual: '%ld'\n",
+				spkg->isize, pkgfile->isize);
+		error = 1;
+	}
+
+	CHECK_FIELD("depends", depends, dep_not_equal);
+	CHECK_FIELD("conflicts", conflicts, dep_not_equal);
+	CHECK_FIELD("replaces", replaces, dep_not_equal);
+	CHECK_FIELD("provides", provides, dep_not_equal);
+	CHECK_FIELD("groups", groups, strcmp);
+
+#undef CHECK_FIELD
+
+	return error;
+}
+
+
 static int load_packages(alpm_handle_t *handle, alpm_list_t **data,
 		size_t total, size_t total_bytes)
 {
 	size_t current = 0, current_bytes = 0;
 	int errors = 0;
-	alpm_list_t *i;
+	alpm_list_t *i, *delete = NULL;
 	alpm_event_t event;
 
 	/* load packages from disk now that they are known-valid */
@@ -1088,6 +1169,13 @@ static int load_packages(alpm_handle_t *handle, alpm_list_t **data,
 		current_bytes += spkg->size;
 		filepath = _alpm_filecache_find(handle, spkg->filename);
 
+		if(!filepath) {
+			FREELIST(delete);
+			_alpm_log(handle, ALPM_LOG_ERROR,
+					_("%s: could not find package in cache\n"), spkg->name);
+			RET_ERR(handle, ALPM_ERR_PKG_NOT_FOUND, -1);
+		}
+
 		/* load the package file and replace pkgcache entry with it in the target list */
 		/* TODO: alpm_pkg_get_db() will not work on this target anymore */
 		_alpm_log(handle, ALPM_LOG_DEBUG,
@@ -1105,17 +1193,14 @@ static int load_packages(alpm_handle_t *handle, alpm_list_t **data,
 						spkg->name, pkgfile->name);
 				error = 1;
 			}
-			if(strcmp(spkg->version, pkgfile->version) != 0) {
-				_alpm_log(handle, ALPM_LOG_DEBUG,
-						"internal package version mismatch, expected: '%s', actual: '%s'\n",
-						spkg->version, pkgfile->version);
-				error = 1;
-			}
+
+			error |= check_pkg_matches_db(spkg, pkgfile);
 		}
 		if(error != 0) {
 			errors++;
 			*data = alpm_list_add(*data, strdup(spkg->filename));
-			free(filepath);
+			delete = alpm_list_add(delete, filepath);
+			_alpm_pkg_free(pkgfile);
 			continue;
 		}
 		free(filepath);
@@ -1138,6 +1223,11 @@ static int load_packages(alpm_handle_t *handle, alpm_list_t **data,
 	EVENT(handle, &event);
 
 	if(errors) {
+		for(i = delete; i; i = i->next) {
+			prompt_to_delete(handle, i->data, ALPM_ERR_PKG_INVALID);
+		}
+		FREELIST(delete);
+
 		if(handle->pm_errno == ALPM_ERR_OK) {
 			RET_ERR(handle, ALPM_ERR_PKG_INVALID, -1);
 		}

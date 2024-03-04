@@ -3,7 +3,7 @@
 #   pacman-key - manages pacman's keyring
 #                Based on apt-key, from Debian
 #
-#   Copyright (c) 2010-2021 Pacman Development Team <pacman-dev@archlinux.org>
+#   Copyright (c) 2010-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
 #
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -25,11 +25,11 @@ export TEXTDOMAINDIR='@localedir@'
 
 declare -r myver="@PACKAGE_VERSION@"
 
-LIBRARY=${LIBRARY:-'@libmakepkgdir@'}
+MAKEPKG_LIBRARY=${MAKEPKG_LIBRARY:-'@libmakepkgdir@'}
 
 # Import libmakepkg
-source "$LIBRARY"/util/message.sh
-source "$LIBRARY"/util/parseopts.sh
+source "$MAKEPKG_LIBRARY"/util/message.sh
+source "$MAKEPKG_LIBRARY"/util/parseopts.sh
 
 # Options
 ADD=0
@@ -75,7 +75,7 @@ usage() {
 	printf -- "$(gettext "  --list-sigs               List keys and their signatures")\n"
 	printf -- "$(gettext "  --lsign-key               Locally sign the specified keyid")\n"
 	printf -- "$(gettext "  --populate                Reload the default keys from the (given) keyrings\n\
-                            in '%s'")\n" "@pkgdatadir@/keyrings"
+                            in '%s'")\n" "@keyringdir@"
 	printf -- "$(gettext "  --refresh-keys            Update specified or all keys from a keyserver")\n"
 	printf -- "$(gettext "  --verbose                 Show extra information")\n"
 	echo
@@ -84,6 +84,8 @@ usage() {
                             '%s')")\n" "@sysconfdir@/pacman.conf"
 	printf -- "$(gettext "  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\n\
                             of '%s')")\n" "@sysconfdir@/pacman.d/gnupg"
+	printf -- "$(gettext "  --populate-from <dir>     Set an alternate directory for --populate (instead\n\
+                            of '%s')")\n" "@keyringdir@"
 	printf -- "$(gettext "  --keyserver <server-url>  Specify a keyserver to use if necessary")\n"
 	echo
 	printf -- "$(gettext "  -h, --help                Show this help message and exit")\n"
@@ -92,7 +94,7 @@ usage() {
 
 version() {
 	printf "pacman-key (pacman) %s\n" "${myver}"
-	printf -- "Copyright (c) 2010-2021 Pacman Development Team <pacman-dev@archlinux.org>.\n"
+	printf -- "Copyright (c) 2010-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>.\n"
 	printf '\n'
 	printf -- "$(gettext "\
 This is free software; see the source for copying conditions.\n\
@@ -235,7 +237,6 @@ initialize() {
 	chmod 644 "$conffile"
 	add_gpg_conf_option "$conffile" 'no-greeting'
 	add_gpg_conf_option "$conffile" 'no-permission-warning'
-	add_gpg_conf_option "$conffile" 'lock-never'
 	add_gpg_conf_option "$conffile" 'keyserver-options' 'timeout=10'
 	add_gpg_conf_option "$conffile" 'keyserver-options' 'import-clean'
 
@@ -283,7 +284,6 @@ check_keyring() {
 }
 
 populate_keyring() {
-	local KEYRING_IMPORT_DIR='@pkgdatadir@/keyrings'
 
 	local keyring KEYRINGIDS=("$@")
 	local ret=0
@@ -378,7 +378,7 @@ populate_keyring() {
 			key_count=$((key_count+1))
 		done
 		if (( key_count )); then
-			msg2 "$(gettext "Disabled %s keys.")" "${key_count}"
+			msg2 "$(ngettext "Disabled %s key." "Disabled %s keys." "${key_count}")" "${key_count}"
 		fi
 	fi
 }
@@ -506,7 +506,7 @@ lsign_keys() {
 		exit 1
 	fi
 	if (( key_count )); then
-		msg2 "$(gettext "Locally signed %s keys.")" "${key_count}"
+		msg2 "$(ngettext "Locally signed %s key." "Locally signed %s keys." "${key_count}")" "${key_count}"
 	fi
 }
 
@@ -623,10 +623,20 @@ if ! type gettext &>/dev/null; then
 	}
 fi
 
+if ! type ngettext &>/dev/null; then
+	ngettext() {
+		if (( $3 == 1 )); then
+			echo "$1"
+		else
+			echo "$2"
+		fi
+	}
+fi
+
 OPT_SHORT="adefhlruvV"
 OPT_LONG=('add' 'config:' 'delete' 'edit-key' 'export' 'finger' 'gpgdir:'
           'help' 'import' 'import-trustdb' 'init' 'keyserver:' 'list-keys' 'list-sigs'
-          'lsign-key' 'nocolor' 'populate' 'recv-keys' 'refresh-keys' 'updatedb'
+          'lsign-key' 'nocolor' 'populate' 'populate-from:' 'recv-keys' 'refresh-keys' 'updatedb'
           'verbose' 'verify' 'version')
 if ! parseopts "$OPT_SHORT" "${OPT_LONG[@]}" -- "$@"; then
 	exit 1 # E_INVALID_OPTION
@@ -648,6 +658,7 @@ while (( $# )); do
 		-e|--export)      EXPORT=1 ;;
 		-f|--finger)      FINGER=1 ;;
 		--gpgdir)         shift; PACMAN_KEYRING_DIR=$1 ;;
+		--populate-from)  shift; KEYRING_IMPORT_DIR=$1 ;;
 		--import)         IMPORT=1 UPDATEDB=1 ;;
 		--import-trustdb) IMPORT_TRUSTDB=1 UPDATEDB=1 ;;
 		--init)           INIT=1 ;;
@@ -693,6 +704,8 @@ if [[ ! -r "${CONFIG}" ]]; then
 	error "$(gettext "%s configuration file '%s' not found.")" "pacman" "$CONFIG"
 	exit 1
 fi
+
+KEYRING_IMPORT_DIR=${KEYRING_IMPORT_DIR:-"@keyringdir@"}
 
 # if PACMAN_KEYRING_DIR isn't assigned, try to get it from the config
 # file, falling back on a hard default

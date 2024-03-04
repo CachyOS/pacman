@@ -1,7 +1,7 @@
 /*
  *  be_sync.c : backend for sync databases
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -354,6 +354,11 @@ static alpm_pkg_t *load_pkg_for_entry(alpm_db_t *db, const char *entryname,
 		pkg->ops = get_sync_pkg_ops();
 		pkg->handle = db->handle;
 
+		if(_alpm_pkg_check_meta(pkg) != 0) {
+			_alpm_pkg_free(pkg);
+			RET_ERR(db->handle, ALPM_ERR_PKG_INVALID, NULL);
+		}
+
 		/* add to the collection */
 		_alpm_log(db->handle, ALPM_LOG_FUNCTION, "adding '%s' to package cache for db '%s'\n",
 				pkg->name, db->treename);
@@ -474,6 +479,14 @@ static int sync_db_populate(alpm_db_t *db)
 			}
 		}
 	}
+	/* the db file was successfully read, but contained errors */
+	if(ret == -1) {
+		db->status &= ~DB_STATUS_VALID;
+		db->status |= DB_STATUS_INVALID;
+		_alpm_db_free_pkgcache(db);
+		GOTO_ERR(db->handle, ALPM_ERR_DB_INVALID, cleanup);
+	}
+	/* reading the db file failed */
 	if(archive_ret != ARCHIVE_EOF) {
 		_alpm_log(db->handle, ALPM_LOG_ERROR, _("could not read db '%s' (%s)\n"),
 				db->treename, archive_error_string(archive));
@@ -688,6 +701,23 @@ static int sync_db_read(alpm_db_t *db, struct archive *archive,
 				pkg->files.count = files_count;
 				pkg->files.files = files;
 				_alpm_filelist_sort(&pkg->files);
+			} else if(strcmp(line, "%DATA%") == 0) {
+				alpm_list_t *i, *lines = NULL;
+				READ_AND_STORE_ALL(lines);
+				for(i = lines; i; i = i->next) {
+					alpm_pkg_xdata_t *pd = _alpm_pkg_parse_xdata(i->data);
+					if(pd == NULL || !alpm_list_append(&pkg->xdata, pd)) {
+						_alpm_pkg_xdata_free(pd);
+						FREELIST(lines);
+						goto error;
+					}
+				}
+				FREELIST(lines);
+			} else {
+				_alpm_log(db->handle, ALPM_LOG_WARNING, _("%s: unknown key '%s' in local database\n"), pkg->name, line);
+				alpm_list_t *lines = NULL;
+				READ_AND_STORE_ALL(lines);
+				FREELIST(lines);
 			}
 		}
 		if(ret != ARCHIVE_EOF) {

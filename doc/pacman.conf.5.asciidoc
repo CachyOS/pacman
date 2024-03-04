@@ -121,7 +121,7 @@ Options
 	architecture 'any' can always be installed, as they are meant to be
 	architecture independent.
 
-*XferCommand =* /path/to/command %u::
+*XferCommand =* /path/to/command %u [%o]::
 	If set, an external program will be used to download all remote files.
 	All instances of `%u` will be replaced with the download URL. If present,
 	instances of `%o` will be replaced with the local filename, plus a
@@ -239,6 +239,12 @@ number.
 	Include another config file. This file can include repositories or
 	general configuration options. Wildcards in the specified paths will get
 	expanded based on linkman:glob[7] rules.
+
+*CacheServer =* url::
+	A full URL to a location where the packages, and signatures (if
+	available) for this repository can be found.  Cache servers will be tried
+	before any non-cache servers, will not be removed from the server pool for
+	404 download errors, and will not be used for database files.
 
 *Server =* url::
 	A full URL to a location where the database, packages, and signatures (if

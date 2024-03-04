@@ -2,7 +2,7 @@
 #
 #   verify_signature.sh - functions for checking PGP signatures
 #
-#   Copyright (c) 2011-2021 Pacman Development Team <pacman-dev@archlinux.org>
+#   Copyright (c) 2011-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
 #
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -21,10 +21,16 @@
 [[ -n "$LIBMAKEPKG_INTEGRITY_VERIFY_SIGNATURE_SH" ]] && return
 LIBMAKEPKG_INTEGRITY_VERIFY_SIGNATURE_SH=1
 
-LIBRARY=${LIBRARY:-'@libmakepkgdir@'}
+MAKEPKG_LIBRARY=${MAKEPKG_LIBRARY:-'@libmakepkgdir@'}
 
-source "$LIBRARY/util/message.sh"
-source "$LIBRARY/util/pkgbuild.sh"
+source "$MAKEPKG_LIBRARY/util/message.sh"
+source "$MAKEPKG_LIBRARY/util/pkgbuild.sh"
+
+# Filter the contents of a GnuPG statusfile to only contain understood terms to narrow the file's scope and circumvent
+# the use of terms (e.g. NOTATION_DATA) that may contain unescaped binary data
+filter_gnupg_statusfile() {
+	grep -E "(.*SIG| TRUST_.*)"
+}
 
 # Filter the contents of a GnuPG statusfile to only contain understood terms to narrow the file's scope and circumvent
 # the use of terms (e.g. NOTATION_DATA) that may contain unescaped binary data
@@ -164,19 +170,9 @@ verify_file_signature() {
 		"")  decompress="cat" ;;
 	esac
 
-	# verify the signature and write metadata to a status file
-	if ! $decompress < "$sourcefile" | gpg --quiet --batch --status-file "$statusfile_raw" --verify "$file" - 2> /dev/null; then
-		printf '%s\n' "$(gettext "%s is unable to verify the signature.")" "gpg" >&2
-		errors=1
-		return 1
-	fi
-
 	# create a statusfile that contains only understood terms
-	if ! filter_gnupg_statusfile > "$statusfile" < "$statusfile_raw"; then
-		printf '%s\n' "$(gettext "unable to extract signature metadata.")" >&2
-		errors=1
-		return 1
-	fi
+	$decompress < "$sourcefile" | gpg --quiet --batch --status-file "$statusfile_raw" --verify "$file" - 2> /dev/null
+	filter_gnupg_statusfile > "$statusfile" < "$statusfile_raw"
 
 	return 0
 }
@@ -209,19 +205,9 @@ verify_git_signature() {
 
 	printf "    %s git repo ... " "${dir##*/}" >&2
 
-	# verify the signature and write metadata to a status file
-	if ! git -C "$dir" verify-$fragtype --raw "$fragval" > "$statusfile_raw" 2>&1; then
-		printf '%s\n' "$(gettext "%s is unable to verify the signature.")" "git" >&2
-		errors=1
-		return 1
-	fi
-
 	# create a statusfile that contains only understood terms
-	if ! filter_gnupg_statusfile > "$statusfile" < "$statusfile_raw"; then
-		printf '%s\n' "$(gettext "unable to extract signature metadata.")" >&2
-		errors=1
-		return 1
-	fi
+	git -C "$dir" verify-$fragtype --raw "$fragval" > "$statusfile_raw" 2>&1
+	filter_gnupg_statusfile > "$statusfile" < "$statusfile_raw"
 
 	return 0
 }

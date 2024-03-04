@@ -1,7 +1,7 @@
 /*
  *  pkghash.h
  *
- *  Copyright (c) 2011-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2011-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
  * A combination of a hash table and a list, allowing for fast look-up
  * by package name but also iteration over the packages.
  */
-struct __alpm_pkghash_t {
+struct _alpm_pkghash_t {
 	/** data held by the hash table */
 	alpm_list_t **hash_table;
 	/** head node of the hash table data in normal list format */
@@ -45,7 +45,7 @@ struct __alpm_pkghash_t {
 	unsigned int limit;
 };
 
-typedef struct __alpm_pkghash_t alpm_pkghash_t;
+typedef struct _alpm_pkghash_t alpm_pkghash_t;
 
 alpm_pkghash_t *_alpm_pkghash_create(unsigned int size);
 

@@ -1,7 +1,7 @@
 /*
  *  database.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -103,7 +103,7 @@ static int check_db_missing_deps(alpm_list_t *pkglist)
 		pm_printf(ALPM_LOG_ERROR, "missing '%s' dependency for '%s'\n",
 				depstring, miss->target);
 		free(depstring);
-		ret++;
+		ret = 1;
 	}
 	alpm_list_free_inner(data, (alpm_list_fn_free)alpm_depmissing_free);
 	alpm_list_free(data);
@@ -135,12 +135,12 @@ static int check_db_local_files(void)
 		snprintf(path, PATH_MAX, "%slocal/%s/desc", dbpath, ent->d_name);
 		if(access(path, F_OK)) {
 			pm_printf(ALPM_LOG_ERROR, "'%s': description file is missing\n", ent->d_name);
-			ret++;
+			ret = 1;
 		}
 		snprintf(path, PATH_MAX, "%slocal/%s/files", dbpath, ent->d_name);
 		if(access(path, F_OK)) {
 			pm_printf(ALPM_LOG_ERROR, "'%s': file list is missing\n", ent->d_name);
-			ret++;
+			ret = 1;
 		}
 	}
 	closedir(dbdir);
@@ -157,8 +157,8 @@ static int check_db_local_package_conflicts(alpm_list_t *pkglist)
 	for(i = data; i; i = i->next) {
 		alpm_conflict_t *conflict = i->data;
 		pm_printf(ALPM_LOG_ERROR, "'%s' conflicts with '%s'\n",
-				conflict->package1, conflict->package2);
-		ret++;
+				alpm_pkg_get_name(conflict->package1), alpm_pkg_get_name(conflict->package2));
+		ret = 1;
 	}
 	alpm_list_free_inner(data, (alpm_list_fn_free)alpm_conflict_free);
 	alpm_list_free(data);
@@ -228,6 +228,7 @@ static int check_db_local_filelist_conflicts(alpm_list_t *pkglist)
 					alpm_pkg_get_name(prev_fileitem->pkg),
 					alpm_pkg_get_name(fileitem->pkg),
 					fileitem->file->name);
+			ret = 1;
 		}
 		prev_fileitem = fileitem;
 	}

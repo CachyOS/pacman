@@ -1,7 +1,7 @@
 /*
  *  signing.c
  *
- *  Copyright (c) 2008-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2008-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -356,7 +356,7 @@ static int key_search_keyserver(alpm_handle_t *handle, const char *fpr,
 	pgpkey->data = key;
 	if(key->subkeys->fpr) {
 		pgpkey->fingerprint = key->subkeys->fpr;
-	} else if(key->subkeys->keyid) {
+	} else {
 		pgpkey->fingerprint = key->subkeys->keyid;
 	}
 
@@ -514,18 +514,14 @@ int _alpm_key_import(alpm_handle_t *handle, const char *uid, const char *fpr)
 		return -1;
 	}
 
-	STRDUP(fetch_key.uid, uid, return -1);
-	STRDUP(fetch_key.fingerprint, fpr, free(fetch_key.uid); return -1);
 
 	alpm_question_import_key_t question = {
 				.type = ALPM_QUESTION_IMPORT_KEY,
 				.import = 0,
-				.key = &fetch_key
+				.uid = uid,
+				.fingerprint = fpr
 			};
 	QUESTION(handle, &question);
-
-	free(fetch_key.uid);
-	free(fetch_key.fingerprint);
 
 	if(question.import) {
 		/* Try to import the key from a WKD first */
@@ -1048,7 +1044,7 @@ int SYMEXPORT alpm_siglist_cleanup(alpm_siglist_t *siglist)
 static size_t length_check(size_t length, size_t position, size_t a,
 		alpm_handle_t *handle, const char *identifier)
 {
-	if( a == 0 || length - position <= a) {
+	if( a == 0 || position > length || length - position <= a) {
 		_alpm_log(handle, ALPM_LOG_ERROR,
 				_("%s: signature format error\n"), identifier);
 		return -1;

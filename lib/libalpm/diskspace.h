@@ -1,7 +1,7 @@
 /*
  *  diskspace.h
  *
- *  Copyright (c) 2010-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2010-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ enum mount_fsinfo {
 	MOUNT_FSINFO_FAIL,
 };
 
-typedef struct __alpm_mountpoint_t {
+typedef struct _alpm_mountpoint_t {
 	/* mount point information */
 	char *mount_dir;
 	size_t mount_dir_len;

@@ -1,7 +1,7 @@
 /*
  *  diskspace.c
  *
- *  Copyright (c) 2010-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2010-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -111,6 +111,10 @@ static alpm_list_t *mount_point_list(alpm_handle_t *handle)
 	}
 
 	while((mnt = getmntent(fp))) {
+		if(mnt->mnt_dir == NULL) {
+			continue;
+		}
+
 		CALLOC(mp, 1, sizeof(alpm_mountpoint_t), RET_ERR(handle, ALPM_ERR_MEMORY, NULL));
 		STRDUP(mp->mount_dir, mnt->mnt_dir, free(mp); RET_ERR(handle, ALPM_ERR_MEMORY, NULL));
 		mp->mount_dir_len = strlen(mp->mount_dir);
@@ -134,6 +138,10 @@ static alpm_list_t *mount_point_list(alpm_handle_t *handle)
 	}
 
 	while((ret = getmntent(fp, &mnt)) == 0) {
+		if(mnt->mnt_mountp == NULL) {
+			continue;
+		}
+
 		CALLOC(mp, 1, sizeof(alpm_mountpoint_t), RET_ERR(handle, ALPM_ERR_MEMORY, NULL));
 		STRDUP(mp->mount_dir, mnt->mnt_mountp,  free(mp); RET_ERR(handle, ALPM_ERR_MEMORY, NULL));
 		mp->mount_dir_len = strlen(mp->mount_dir);
@@ -161,6 +169,10 @@ static alpm_list_t *mount_point_list(alpm_handle_t *handle)
 	}
 
 	for(; entries-- > 0; fsp++) {
+		if(fsp->f_mntonname == NULL) {
+			continue;
+		}
+
 		CALLOC(mp, 1, sizeof(alpm_mountpoint_t), RET_ERR(handle, ALPM_ERR_MEMORY, NULL));
 		STRDUP(mp->mount_dir, fsp->f_mntonname, free(mp); RET_ERR(handle, ALPM_ERR_MEMORY, NULL));
 		mp->mount_dir_len = strlen(mp->mount_dir);

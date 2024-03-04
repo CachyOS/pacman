@@ -1,7 +1,7 @@
 /*
  *  db.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *  Copyright (c) 2005 by Aurelien Foret <orelien@chez.com>
  *  Copyright (c) 2005 by Christian Hamar <krics@linuxforum.hu>
@@ -131,6 +131,26 @@ int SYMEXPORT alpm_db_unregister(alpm_db_t *db)
 	return 0;
 }
 
+alpm_list_t SYMEXPORT *alpm_db_get_cache_servers(const alpm_db_t *db)
+{
+	ASSERT(db != NULL, return NULL);
+	return db->cache_servers;
+}
+
+int SYMEXPORT alpm_db_set_cache_servers(alpm_db_t *db, alpm_list_t *cache_servers)
+{
+	alpm_list_t *i;
+	ASSERT(db != NULL, return -1);
+	FREELIST(db->cache_servers);
+	for(i = cache_servers; i; i = i->next) {
+		char *url = i->data;
+		if(alpm_db_add_cache_server(db, url) != 0) {
+			return -1;
+		}
+	}
+	return 0;
+}
+
 alpm_list_t SYMEXPORT *alpm_db_get_servers(const alpm_db_t *db)
 {
 	ASSERT(db != NULL, return NULL);
@@ -164,6 +184,25 @@ static char *sanitize_url(const char *url)
 	return newurl;
 }
 
+int SYMEXPORT alpm_db_add_cache_server(alpm_db_t *db, const char *url)
+{
+	char *newurl;
+
+	/* Sanity checks */
+	ASSERT(db != NULL, return -1);
+	db->handle->pm_errno = ALPM_ERR_OK;
+	ASSERT(url != NULL && strlen(url) != 0, RET_ERR(db->handle, ALPM_ERR_WRONG_ARGS, -1));
+
+	newurl = sanitize_url(url);
+	ASSERT(newurl != NULL, RET_ERR(db->handle, ALPM_ERR_MEMORY, -1));
+
+	db->cache_servers = alpm_list_add(db->cache_servers, newurl);
+	_alpm_log(db->handle, ALPM_LOG_DEBUG, "adding new cache server URL to database '%s': %s\n",
+			db->treename, newurl);
+
+	return 0;
+}
+
 int SYMEXPORT alpm_db_add_server(alpm_db_t *db, const char *url)
 {
 	char *newurl;
@@ -174,14 +213,39 @@ int SYMEXPORT alpm_db_add_server(alpm_db_t *db, const char *url)
 	ASSERT(url != NULL && strlen(url) != 0, RET_ERR(db->handle, ALPM_ERR_WRONG_ARGS, -1));
 
 	newurl = sanitize_url(url);
-	if(!newurl) {
-		return -1;
-	}
+	ASSERT(newurl != NULL, RET_ERR(db->handle, ALPM_ERR_MEMORY, -1));
+
 	db->servers = alpm_list_add(db->servers, newurl);
 	_alpm_log(db->handle, ALPM_LOG_DEBUG, "adding new server URL to database '%s': %s\n",
 			db->treename, newurl);
 
 	return 0;
+}
+
+int SYMEXPORT alpm_db_remove_cache_server(alpm_db_t *db, const char *url)
+{
+	char *newurl, *vdata = NULL;
+	int ret = 1;
+
+	/* Sanity checks */
+	ASSERT(db != NULL, return -1);
+	db->handle->pm_errno = ALPM_ERR_OK;
+	ASSERT(url != NULL && strlen(url) != 0, RET_ERR(db->handle, ALPM_ERR_WRONG_ARGS, -1));
+
+	newurl = sanitize_url(url);
+	ASSERT(newurl != NULL, RET_ERR(db->handle, ALPM_ERR_MEMORY, -1));
+
+	db->cache_servers = alpm_list_remove_str(db->cache_servers, newurl, &vdata);
+
+	if(vdata) {
+		_alpm_log(db->handle, ALPM_LOG_DEBUG, "removed cache server URL from database '%s': %s\n",
+				db->treename, newurl);
+		free(vdata);
+		ret = 0;
+	}
+
+	free(newurl);
+	return ret;
 }
 
 int SYMEXPORT alpm_db_remove_server(alpm_db_t *db, const char *url)
@@ -195,9 +259,7 @@ int SYMEXPORT alpm_db_remove_server(alpm_db_t *db, const char *url)
 	ASSERT(url != NULL && strlen(url) != 0, RET_ERR(db->handle, ALPM_ERR_WRONG_ARGS, -1));
 
 	newurl = sanitize_url(url);
-	if(!newurl) {
-		return -1;
-	}
+	ASSERT(newurl != NULL, RET_ERR(db->handle, ALPM_ERR_MEMORY, -1));
 
 	db->servers = alpm_list_remove_str(db->servers, newurl, &vdata);
 
@@ -210,6 +272,12 @@ int SYMEXPORT alpm_db_remove_server(alpm_db_t *db, const char *url)
 
 	free(newurl);
 	return ret;
+}
+
+alpm_handle_t SYMEXPORT *alpm_db_get_handle(alpm_db_t *db)
+{
+	ASSERT(db != NULL, return NULL);
+	return db->handle;
 }
 
 const char SYMEXPORT *alpm_db_get_name(const alpm_db_t *db)
@@ -322,6 +390,7 @@ void _alpm_db_free(alpm_db_t *db)
 	/* cleanup pkgcache */
 	_alpm_db_free_pkgcache(db);
 	/* cleanup server list */
+	FREELIST(db->cache_servers);
 	FREELIST(db->servers);
 	FREE(db->_path);
 	FREE(db->treename);
@@ -494,18 +563,17 @@ static void free_groupcache(alpm_db_t *db)
 
 void _alpm_db_free_pkgcache(alpm_db_t *db)
 {
-	if(db == NULL || !(db->status & DB_STATUS_PKGCACHE)) {
+	if(db == NULL || db->pkgcache == NULL) {
 		return;
 	}
 
 	_alpm_log(db->handle, ALPM_LOG_DEBUG,
 			"freeing package cache for repository '%s'\n", db->treename);
 
-	if(db->pkgcache) {
-		alpm_list_free_inner(db->pkgcache->list,
-				(alpm_list_fn_free)_alpm_pkg_free);
-		_alpm_pkghash_free(db->pkgcache);
-	}
+	alpm_list_free_inner(db->pkgcache->list,
+			(alpm_list_fn_free)_alpm_pkg_free);
+	_alpm_pkghash_free(db->pkgcache);
+	db->pkgcache = NULL;
 	db->status &= ~DB_STATUS_PKGCACHE;
 
 	free_groupcache(db);

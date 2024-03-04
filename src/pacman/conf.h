@@ -1,7 +1,7 @@
 /*
  *  conf.h
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -37,6 +37,7 @@ typedef struct __colstr_t {
 
 typedef struct __config_repo_t {
 	char *name;
+	alpm_list_t *cache_servers;
 	alpm_list_t *servers;
 	int usage;
 	int siglevel;

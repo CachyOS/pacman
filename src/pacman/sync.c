@@ -1,7 +1,7 @@
 /*
  *  sync.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -84,7 +84,11 @@ static int sync_cleandb(const char *dbpath)
 		}
 
 		/* build the full path */
-		snprintf(path, PATH_MAX, "%s%s", dbpath, dname);
+		len = snprintf(path, PATH_MAX, "%s%s", dbpath, dname);
+		if(len > PATH_MAX) {
+			pm_printf(ALPM_LOG_ERROR, _("could not remove %s%s: path exceeds PATH_MAX\n"),
+					dbpath, dname);
+		}
 
 		/* remove all non-skipped directories and non-database files */
 		if(stat(path, &buf) == -1) {
@@ -212,6 +216,7 @@ static int sync_cleancache(int level)
 			int delete = 1;
 			alpm_pkg_t *localpkg = NULL, *pkg = NULL;
 			const char *local_name, *local_version;
+			size_t len;
 
 			if(strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) {
 				continue;
@@ -240,7 +245,12 @@ static int sync_cleancache(int level)
 			}
 
 			/* build the full filepath */
-			snprintf(path, PATH_MAX, "%s%s", cachedir, ent->d_name);
+			len=snprintf(path, PATH_MAX, "%s%s", cachedir, ent->d_name);
+			if(len > PATH_MAX) {
+				pm_printf(ALPM_LOG_ERROR, _("skipping %s%s: path exceeds PATH_MAX\n"),
+						cachedir, ent->d_name);
+				continue;
+			}
 
 			/* short circuit for removing all files from cache */
 			if(level > 1) {
@@ -784,12 +794,19 @@ int sync_prepare_execute(void)
 					alpm_conflict_t *conflict = i->data;
 					/* only print reason if it contains new information */
 					if(conflict->reason->mod == ALPM_DEP_MOD_ANY) {
-						colon_printf(_("%s and %s are in conflict\n"),
-								conflict->package1, conflict->package2);
+						colon_printf(_("%s-%s and %s-%s are in conflict\n"),
+								alpm_pkg_get_name(conflict->package1),
+								alpm_pkg_get_version(conflict->package1),
+								alpm_pkg_get_name(conflict->package2),
+								alpm_pkg_get_version(conflict->package2));
 					} else {
 						char *reason = alpm_dep_compute_string(conflict->reason);
-						colon_printf(_("%s and %s are in conflict (%s)\n"),
-								conflict->package1, conflict->package2, reason);
+						colon_printf(_("%s-%s and %s-%s are in conflict (%s)\n"),
+								alpm_pkg_get_name(conflict->package1),
+								alpm_pkg_get_version(conflict->package1),
+								alpm_pkg_get_name(conflict->package2),
+								alpm_pkg_get_version(conflict->package2),
+								reason);
 						free(reason);
 					}
 					alpm_conflict_free(conflict);
@@ -842,15 +859,15 @@ int sync_prepare_execute(void)
 					alpm_fileconflict_t *conflict = i->data;
 					switch(conflict->type) {
 						case ALPM_FILECONFLICT_TARGET:
-							printf(_("%s exists in both '%s' and '%s'\n"),
+							fprintf(stderr, _("%s exists in both '%s' and '%s'\n"),
 									conflict->file, conflict->target, conflict->ctarget);
 							break;
 						case ALPM_FILECONFLICT_FILESYSTEM:
 							if(conflict->ctarget[0]) {
-								printf(_("%s: %s exists in filesystem (owned by %s)\n"),
+								fprintf(stderr, _("%s: %s exists in filesystem (owned by %s)\n"),
 										conflict->target, conflict->file, conflict->ctarget);
 							} else {
-								printf(_("%s: %s exists in filesystem\n"),
+								fprintf(stderr, _("%s: %s exists in filesystem\n"),
 										conflict->target, conflict->file);
 							}
 							break;
@@ -863,7 +880,7 @@ int sync_prepare_execute(void)
 			case ALPM_ERR_PKG_INVALID_SIG:
 				for(i = data; i; i = alpm_list_next(i)) {
 					char *filename = i->data;
-					printf(_("%s is invalid or corrupted\n"), filename);
+					fprintf(stderr, _("%s is invalid or corrupted\n"), filename);
 					free(filename);
 				}
 				break;

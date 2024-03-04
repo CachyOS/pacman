@@ -1,7 +1,7 @@
 /*
  *  package.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *  Copyright (c) 2005 by Aurelien Foret <orelien@chez.com>
  *  Copyright (c) 2005, 2006 by Christian Hamar <krics@linuxforum.hu>
@@ -21,6 +21,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
@@ -99,6 +100,7 @@ static alpm_list_t *_pkg_get_provides(alpm_pkg_t *pkg)   { return pkg->provides;
 static alpm_list_t *_pkg_get_replaces(alpm_pkg_t *pkg)   { return pkg->replaces; }
 static alpm_filelist_t *_pkg_get_files(alpm_pkg_t *pkg)  { return &(pkg->files); }
 static alpm_list_t *_pkg_get_backup(alpm_pkg_t *pkg)     { return pkg->backup; }
+static alpm_list_t *_pkg_get_xdata(alpm_pkg_t *pkg)      { return pkg->xdata; }
 
 static void *_pkg_changelog_open(alpm_pkg_t UNUSED *pkg)
 {
@@ -164,6 +166,7 @@ const struct pkg_operations default_pkg_ops = {
 	.get_replaces    = _pkg_get_replaces,
 	.get_files       = _pkg_get_files,
 	.get_backup      = _pkg_get_backup,
+	.get_xdata       = _pkg_get_xdata,
 
 	.changelog_open  = _pkg_changelog_open,
 	.changelog_read  = _pkg_changelog_read,
@@ -191,6 +194,12 @@ const char SYMEXPORT *alpm_pkg_get_base(alpm_pkg_t *pkg)
 	ASSERT(pkg != NULL, return NULL);
 	pkg->handle->pm_errno = ALPM_ERR_OK;
 	return pkg->ops->get_base(pkg);
+}
+
+alpm_handle_t SYMEXPORT *alpm_pkg_get_handle(alpm_pkg_t *pkg)
+{
+	ASSERT(pkg != NULL, return NULL);
+	return pkg->handle;
 }
 
 const char SYMEXPORT *alpm_pkg_get_name(alpm_pkg_t *pkg)
@@ -488,6 +497,13 @@ int SYMEXPORT alpm_pkg_has_scriptlet(alpm_pkg_t *pkg)
 	return pkg->ops->has_scriptlet(pkg);
 }
 
+alpm_list_t SYMEXPORT *alpm_pkg_get_xdata(alpm_pkg_t *pkg)
+{
+	ASSERT(pkg != NULL, return NULL);
+	pkg->handle->pm_errno = ALPM_ERR_OK;
+	return pkg->ops->get_xdata(pkg);
+}
+
 static void find_requiredby(alpm_pkg_t *pkg, alpm_db_t *db, alpm_list_t **reqs,
 		int optional)
 {
@@ -681,6 +697,30 @@ static void free_deplist(alpm_list_t *deps)
 	alpm_list_free(deps);
 }
 
+alpm_pkg_xdata_t *_alpm_pkg_parse_xdata(const char *string)
+{
+	alpm_pkg_xdata_t *pd;
+	const char *sep;
+	if(string == NULL || (sep = strchr(string, '=')) == NULL) {
+		return NULL;
+	}
+
+	CALLOC(pd, 1, sizeof(alpm_pkg_xdata_t), return NULL);
+	STRNDUP(pd->name, string, sep - string, FREE(pd); return NULL);
+	STRDUP(pd->value, sep + 1, FREE(pd->name); FREE(pd); return NULL);
+
+	return pd;
+}
+
+void _alpm_pkg_xdata_free(alpm_pkg_xdata_t *pd)
+{
+	if(pd) {
+		free(pd->name);
+		free(pd->value);
+		free(pd);
+	}
+}
+
 void _alpm_pkg_free(alpm_pkg_t *pkg)
 {
 	if(pkg == NULL) {
@@ -712,6 +752,8 @@ void _alpm_pkg_free(alpm_pkg_t *pkg)
 	}
 	alpm_list_free_inner(pkg->backup, (alpm_list_fn_free)_alpm_backup_free);
 	alpm_list_free(pkg->backup);
+	alpm_list_free_inner(pkg->xdata, (alpm_list_fn_free)_alpm_pkg_xdata_free);
+	alpm_list_free(pkg->xdata);
 	free_deplist(pkg->depends);
 	free_deplist(pkg->optdepends);
 	free_deplist(pkg->checkdepends);
@@ -813,4 +855,59 @@ int SYMEXPORT alpm_pkg_should_ignore(alpm_handle_t *handle, alpm_pkg_t *pkg)
 	}
 
 	return 0;
+}
+
+/* check that package metadata meets our requirements */
+int _alpm_pkg_check_meta(alpm_pkg_t *pkg)
+{
+	char *c;
+	int error_found = 0;
+
+#define EPKGMETA(error) do { \
+	error_found = -1; \
+	_alpm_log(pkg->handle, ALPM_LOG_ERROR, error, pkg->name, pkg->version); \
+} while(0)
+
+	/* sanity check */
+	if(pkg->handle == NULL) {
+		return -1;
+	}
+
+	/* immediate bail if package doesn't have name or version */
+	if(pkg->name == NULL || pkg->name[0] == '\0'
+			|| pkg->version == NULL || pkg->version[0] == '\0') {
+		_alpm_log(pkg->handle, ALPM_LOG_ERROR,
+				_("invalid package metadata (name or version missing)"));
+		return -1;
+	}
+
+	if(pkg->name[0] == '-' || pkg->name[0] == '.') {
+		EPKGMETA(_("invalid metadata for package %s-%s "
+					"(package name cannot start with '.' or '-')\n"));
+	}
+	if(_alpm_fnmatch(pkg->name, "[![:alnum:]+_.@-]") == 0) {
+		EPKGMETA(_("invalid metadata for package %s-%s "
+					"(package name contains invalid characters)\n"));
+	}
+
+	/* multiple '-' in pkgver can cause local db entries for different packages
+	 * to overlap (e.g. foo-1=2-3 and foo=1-2-3 both give foo-1-2-3) */
+	if((c = strchr(pkg->version, '-')) && (strchr(c + 1, '-'))) {
+		EPKGMETA(_("invalid metadata for package %s-%s "
+					"(package version contains invalid characters)\n"));
+	}
+	if(strchr(pkg->version, '/')) {
+		EPKGMETA(_("invalid metadata for package %s-%s "
+					"(package version contains invalid characters)\n"));
+	}
+
+	/* local db entry is <pkgname>-<pkgver> */
+	if(strlen(pkg->name) + strlen(pkg->version) + 1 > NAME_MAX) {
+		EPKGMETA(_("invalid metadata for package %s-%s "
+					"(package name and version too long)\n"));
+	}
+
+#undef EPKGMETA
+
+	return error_found;
 }

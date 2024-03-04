@@ -1,7 +1,7 @@
 /*
  *  db.h
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *  Copyright (c) 2005 by Aurelien Foret <orelien@chez.com>
  *  Copyright (c) 2006 by Miklos Vajna <vmiklos@frugalware.org>
@@ -62,13 +62,14 @@ struct db_operations {
 };
 
 /* Database */
-struct __alpm_db_t {
+struct _alpm_db_t {
 	alpm_handle_t *handle;
 	char *treename;
 	/* do not access directly, use _alpm_db_path(db) for lazy access */
 	char *_path;
 	alpm_pkghash_t *pkgcache;
 	alpm_list_t *grpcache;
+	alpm_list_t *cache_servers;
 	alpm_list_t *servers;
 	const struct db_operations *ops;
 

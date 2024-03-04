@@ -195,11 +195,10 @@ Options
 	Disable defaults for low speed limit and timeout on downloads. Use this
 	if you have issues downloading files with proxy and/or security gateway.
 
-*\--sysroot* <dir>::
-	Specify an alternative system root.  Pacman will chroot and chdir into the
-	system root prior to running. This allows mounted guest systems to be
-	properly operated on. Any other paths given will be interpreted as relative
-	to the system root. Requires root privileges.
+*\--sysroot* <dir>:: Specify an alternative system root.  This path will be
+	prepended to all other configuration directories and any repository servers
+	beginning with `file://`.  Any paths or URLs passed as targets will not be
+	modified.  This allows mounted guest systems to be properly operated on.
 
 
 Transaction Options (apply to '-S', '-R' and '-U')
@@ -212,7 +211,7 @@ Transaction Options (apply to '-S', '-R' and '-U')
 
 *\--assume-installed* <package=version>::
 	Add a virtual package "package" with version "version" to the transaction
-	to satisfy dependencies. This allows to disable specific dependency checks
+	to satisfy dependencies. This allows disabling the specific dependency checks
 	without affecting all dependency checks. To disable all dependency
 	checking, see the '\--nodeps' option.
 
@@ -235,8 +234,15 @@ Transaction Options (apply to '-S', '-R' and '-U')
 
 *\--print-format* <format>::
 	Specify a printf-like format to control the output of the '\--print'
-	operation. The possible attributes are: "%n" for pkgname, "%v" for pkgver,
-	"%l" for location, "%r" for repository, and "%s" for size. Implies '\--print'.
+	operation. The possible attributes are: "%a" for arch, "%b" for
+	builddate, "%d" for description, "%e" for pkgbase, "%f" for filename,
+	"%g" for base64 encoded PGP signature, "%h" for sha256sum, "%m" for
+	md5sum, "%n" for pkgname, "%p" for packager, "%v" for pkgver, "%l" for
+	location, "%r" for repository, "%s" for size, "%C" for checkdepends,
+	"%D" for depends, "%G" for groups, "%H" for conflicts, "%L" for
+	licenses, "%M" for makedepends, "%O" for optional depends, "%P" for
+	provides and "%R" for replaces.
+	Implies '\--print'.
 
 
 Upgrade Options (apply to '-S' and '-U')[[UO]]
@@ -449,11 +455,11 @@ Additional targets can also be specified manually, so that '-Su foo' will do a
 system upgrade and install/upgrade the "foo" package in the same operation.
 
 *-y, \--refresh*::
-	Download a fresh copy of the master package database from the server(s)
-	defined in linkman:pacman.conf[5]. This should typically be used each time
-	you use	'\--sysupgrade' or '-u'. Passing two '\--refresh' or '-y' flags
-	will force a refresh of all package databases, even if they appear to be
-	up-to-date.
+	Download a fresh copy of the master package databases '(repo.db)' from the
+	server(s) defined in linkman:pacman.conf[5]. This should typically be used
+	each time you use '\--sysupgrade' or '-u'. Passing two '\--refresh' or '-y'
+	flags will force a refresh of all package databases, even if they appear to
+	be up-to-date.
 
 
 Database Options (apply to '-D')[[QO]]
@@ -482,8 +488,8 @@ Database Options (apply to '-D')[[QO]]
 File Options (apply to '-F')[[FO]]
 ----------------------------------
 *-y, --refresh*::
-	Download fresh package databases from the server. Use twice to force a
-	refresh even if databases are up to date.
+	Download fresh package file databases '(repo.files)' from the server.
+	Use twice to force a refresh even if databases are up to date.
 
 *-l, \--list*::
 	List the files owned by the queried package.

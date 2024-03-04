@@ -1,7 +1,7 @@
 /*
  *  trans.h
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *  Copyright (c) 2005 by Aurelien Foret <orelien@chez.com>
  *  Copyright (c) 2005 by Christian Hamar <krics@linuxforum.hu>
@@ -36,7 +36,7 @@ typedef enum _alpm_transstate_t {
 } alpm_transstate_t;
 
 /* Transaction */
-struct __alpm_trans_t {
+typedef struct _alpm_trans_t {
 	/* bitfield of alpm_transflag_t flags */
 	int flags;
 	alpm_transstate_t state;
@@ -44,7 +44,7 @@ struct __alpm_trans_t {
 	alpm_list_t *add;           /* list of (alpm_pkg_t *) */
 	alpm_list_t *remove;        /* list of (alpm_pkg_t *) */
 	alpm_list_t *skip_remove;   /* list of (char *) */
-};
+} alpm_trans_t;
 
 void _alpm_trans_free(alpm_trans_t *trans);
 /* flags is a bitfield of alpm_transflag_t flags */

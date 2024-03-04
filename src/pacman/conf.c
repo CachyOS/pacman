@@ -1,7 +1,7 @@
 /*
  *  conf.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -150,6 +150,7 @@ int config_free(config_t *oldconfig)
 	FREELIST(oldconfig->noextract);
 	FREELIST(oldconfig->overwrite_files);
 	free(oldconfig->configfile);
+	free(oldconfig->sysroot);
 	free(oldconfig->rootdir);
 	free(oldconfig->dbpath);
 	free(oldconfig->logfile);
@@ -171,6 +172,7 @@ void config_repo_free(config_repo_t *repo)
 		return;
 	}
 	free(repo->name);
+	FREELIST(repo->cache_servers);
 	FREELIST(repo->servers);
 	free(repo);
 }
@@ -787,15 +789,18 @@ static char *replace_server_vars(config_t *c, config_repo_t *r, const char *s)
 	}
 }
 
-static int _add_mirror(alpm_db_t *db, char *value)
+static int replace_server_list_vars(config_t *c, config_repo_t *r, alpm_list_t *list)
 {
-	if(alpm_db_add_server(db, value) != 0) {
-		/* pm_errno is set by alpm_db_setserver */
-		pm_printf(ALPM_LOG_ERROR, _("could not add server URL to database '%s': %s (%s)\n"),
-				alpm_db_get_name(db), value, alpm_strerror(alpm_errno(config->handle)));
-		return 1;
+	alpm_list_t *i;
+	for(i = list; i; i = i->next) {
+		char *newurl = replace_server_vars(c, r, i->data);
+		if(newurl == NULL) {
+			return -1;
+		} else {
+			free(i->data);
+			i->data = newurl;
+		}
 	}
-
 	return 0;
 }
 
@@ -815,8 +820,21 @@ static int register_repo(config_repo_t *repo)
 			repo->usage, repo->name);
 	alpm_db_set_usage(db, repo->usage);
 
+	for(i = repo->cache_servers; i; i = alpm_list_next(i)) {
+		const char *value = i->data;
+		if(alpm_db_add_cache_server(db, value) != 0) {
+			/* pm_errno is set by alpm_db_setserver */
+			pm_printf(ALPM_LOG_ERROR, _("could not add cache server URL to database '%s': %s (%s)\n"),
+					alpm_db_get_name(db), value, alpm_strerror(alpm_errno(config->handle)));
+			return 1;
+		}
+	}
 	for(i = repo->servers; i; i = alpm_list_next(i)) {
-		if(_add_mirror(db, i->data) != 0) {
+		const char *value = i->data;
+		if(alpm_db_add_server(db, value) != 0) {
+			/* pm_errno is set by alpm_db_setserver */
+			pm_printf(ALPM_LOG_ERROR, _("could not add server URL to database '%s': %s (%s)\n"),
+					alpm_db_get_name(db), value, alpm_strerror(alpm_errno(config->handle)));
 			return 1;
 		}
 	}
@@ -996,7 +1014,10 @@ static int _parse_repo(const char *key, char *value, const char *file,
 	} \
 } while(0)
 
-	if(strcmp(key, "Server") == 0) {
+	if(strcmp(key, "CacheServer") == 0) {
+		CHECK_VALUE(value);
+		repo->cache_servers = alpm_list_add(repo->cache_servers, strdup(value));
+	} else if(strcmp(key, "Server") == 0) {
 		CHECK_VALUE(value);
 		repo->servers = alpm_list_add(repo->servers, strdup(value));
 	} else if(strcmp(key, "SigLevel") == 0) {
@@ -1033,6 +1054,108 @@ static int _parse_repo(const char *key, char *value, const char *file,
 static int _parse_directive(const char *file, int linenum, const char *name,
 		char *key, char *value, void *data);
 
+static char *escape_chars(const char *pattern, const char *escape)
+{
+	size_t escape_len, len, pattern_chars;
+	const char *c;
+	char *escaped, *e;
+
+	if(pattern == NULL || escape == NULL) {
+		return NULL;
+	}
+
+	len = strlen(pattern);
+	escape_len = strlen(escape);
+	pattern_chars = 0;
+	for(c = pattern; *c; c++) {
+		if(memchr(escape, *c, escape_len)) {
+			pattern_chars++;
+		}
+	}
+
+	if(pattern_chars == 0) {
+		return strdup(pattern);
+	}
+
+	/* allocate new string with overflow check */
+	if(SIZE_MAX - len < pattern_chars
+			|| !(escaped = malloc(len + pattern_chars))) {
+		errno = ENOMEM;
+		return NULL;
+	}
+
+	for(c = pattern, e = escaped; *c; c++, e++) {
+		if(memchr(escape, *c, escape_len)) {
+			*e = '\\';
+			e++;
+		}
+		*e = *c;
+	}
+	*e = '\0';
+
+	return escaped;
+}
+
+static char *escape_glob_pattern(const char *pattern)
+{
+	return escape_chars(pattern, "\\*?[");
+}
+
+static char *prepend_dir(const char *dir, const char *path)
+{
+	if(dir == NULL) {
+		return strdup(path);
+	} else {
+		char *newpath;
+		size_t dlen = strlen(dir);
+		const char *sep = dlen && dir[dlen - 1] == '/' ? "" : "/";
+		while(path[0] == '/') { path++; }
+		return pm_asprintf(&newpath, "%s%s%s", dir, sep, path) == -1 ? NULL : newpath;
+	}
+}
+
+static int globdir(const char *dir, const char *pattern, int flags,
+		int (*errfunc) (const char *epath, int eerrno), glob_t *globbuf)
+{
+	int gret;
+	char *fullpattern = NULL, *escaped_dir = NULL;
+
+	if(dir == NULL) {
+		return glob(pattern, flags, errfunc, globbuf);
+	}
+
+	if((escaped_dir = escape_glob_pattern(dir)) == NULL) {
+		goto nospace;
+	}
+
+	if(flags & GLOB_NOESCAPE) {
+		/* "disable" backslash escaping by escaping any backlashes */
+		char *escaped_pattern = escape_chars(pattern, "\\");
+		if(escaped_pattern == NULL) {
+			goto nospace;
+		}
+		fullpattern = prepend_dir(escaped_dir, escaped_pattern);
+		free(escaped_pattern);
+		flags &= ~GLOB_NOESCAPE;
+	} else {
+		fullpattern = prepend_dir(escaped_dir, pattern);
+	}
+
+	if(fullpattern == NULL) {
+		goto nospace;
+	}
+
+	gret = glob(fullpattern, flags, errfunc, globbuf);
+	free(escaped_dir);
+	free(fullpattern);
+	return gret;
+
+nospace:
+	free(escaped_dir);
+	free(fullpattern);
+	return GLOB_NOSPACE;
+}
+
 static int process_include(const char *value, void *data,
 		const char *file, int linenum)
 {
@@ -1058,7 +1181,7 @@ static int process_include(const char *value, void *data,
 	section->depth++;
 
 	/* Ignore include failures... assume non-critical */
-	globret = glob(value, GLOB_NOCHECK, NULL, &globbuf);
+	globret = globdir(config->sysroot, value, GLOB_NOCHECK, NULL, &globbuf);
 	switch(globret) {
 		case GLOB_NOSPACE:
 			pm_printf(ALPM_LOG_DEBUG,
@@ -1135,6 +1258,57 @@ static int _parse_directive(const char *file, int linenum, const char *name,
 	}
 }
 
+static int prepend_sysroot(config_t *c)
+{
+	alpm_list_t *i;
+
+	if(c->sysroot == NULL) {
+		return 0;
+	}
+
+#define SETSYSROOT(opt) \
+  if(opt) { \
+    char *n = prepend_dir(c->sysroot, opt);\
+    if(n == NULL) { return -1; } \
+    else { free(opt); opt = n; } \
+  }
+
+	SETSYSROOT(c->rootdir);
+	SETSYSROOT(c->dbpath);
+	SETSYSROOT(c->logfile);
+	SETSYSROOT(c->gpgdir);
+	for(i = c->cachedirs; i; i = i->next) {
+		SETSYSROOT(i->data);
+	}
+	for(i = c->hookdirs; i; i = i->next) {
+		SETSYSROOT(i->data);
+	}
+
+	for(i = c->repos; i; i = i->next) {
+		config_repo_t *r = i->data;
+		alpm_list_t *j;
+		for(j = r->servers; j; j = j->next) {
+			if(strncmp("file://", j->data, 7) == 0) {
+				char *newdir = NULL, *newurl = NULL, *oldurl = j->data;
+				const char *olddir = oldurl + 7;
+				if((newdir = prepend_dir(c->sysroot, olddir)) == NULL
+						|| (pm_asprintf(&newurl, "file://%s", newdir)) == -1) {
+					free(newdir);
+					free(newurl);
+					return -1;
+				}
+				free(newdir);
+				free(j->data);
+				j->data = newurl;
+			}
+		}
+	}
+
+#undef SETSYSROOT
+
+	return 0;
+}
+
 int setdefaults(config_t *c)
 {
 	alpm_list_t *i;
@@ -1142,15 +1316,34 @@ int setdefaults(config_t *c)
 #define SETDEFAULT(opt, val) if(!opt) { opt = val; if(!opt) { return -1; } }
 
 	if(c->rootdir) {
+		char* rootdir = strdup(c->rootdir);
+		int rootdir_len = strlen(rootdir);
+		/* This removes trailing slashes from the root directory */
+		if(rootdir[rootdir_len-1] == '/'){
+			rootdir[rootdir_len-1] = '\0';
+		}
 		char path[PATH_MAX];
 		if(!c->dbpath) {
-			snprintf(path, PATH_MAX, "%s/%s", c->rootdir, &DBPATH[1]);
-			SETDEFAULT(c->dbpath, strdup(path));
+			char* ppath;
+			snprintf(path, PATH_MAX, "%s/%s", rootdir, &DBPATH[1]);
+			ppath = strdup(path);
+			if(ppath == NULL) {
+				free(rootdir);
+				return -1;
+			}
+			SETDEFAULT(c->dbpath, ppath);
 		}
 		if(!c->logfile) {
-			snprintf(path, PATH_MAX, "%s/%s", c->rootdir, &LOGFILE[1]);
-			SETDEFAULT(c->logfile, strdup(path));
+			char* ppath;
+			snprintf(path, PATH_MAX, "%s/%s", rootdir, &LOGFILE[1]);
+			ppath = strdup(path);
+			if(ppath == NULL) {
+				free(rootdir);
+				return -1;
+			}
+			SETDEFAULT(c->logfile, ppath);
 		}
+		free(rootdir);
 	} else {
 		SETDEFAULT(c->rootdir, strdup(ROOTDIR));
 		SETDEFAULT(c->dbpath, strdup(DBPATH));
@@ -1169,21 +1362,17 @@ int setdefaults(config_t *c)
 
 	for(i = c->repos; i; i = i->next) {
 		config_repo_t *r = i->data;
-		alpm_list_t *j;
 		SETDEFAULT(r->usage, ALPM_DB_USAGE_ALL);
 		r->siglevel = merge_siglevel(c->siglevel, r->siglevel, r->siglevel_mask);
-		for(j = r->servers; j; j = j->next) {
-			char *newurl = replace_server_vars(c, r, j->data);
-			if(newurl == NULL) {
-				return -1;
-			} else {
-				free(j->data);
-				j->data = newurl;
-			}
+		if(replace_server_list_vars(c, r, r->cache_servers) == -1
+				|| replace_server_list_vars(c, r, r->servers) == -1) {
+			return -1;
 		}
 	}
 
 #undef SETDEFAULT
+
+	prepend_sysroot(c);
 
 	return 0;
 }
@@ -1191,8 +1380,14 @@ int setdefaults(config_t *c)
 int parseconfigfile(const char *file)
 {
 	struct section_t section = {0};
-	pm_printf(ALPM_LOG_DEBUG, "config: attempting to read file %s\n", file);
-	return parse_ini(file, _parse_directive, &section);
+	char *realfile;
+	if((realfile = prepend_dir(config->sysroot, file)) == NULL) {
+		return -1;
+	}
+	pm_printf(ALPM_LOG_DEBUG, "config: attempting to read file %s\n", realfile);
+	free(config->configfile);
+	config->configfile = realfile;
+	return parse_ini(realfile, _parse_directive, &section);
 }
 
 /** Parse a configuration file.

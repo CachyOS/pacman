@@ -1,7 +1,7 @@
 /*
  *  pacman.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -241,7 +241,7 @@ static void version(void)
 {
 	printf("\n");
 	printf(" .--.                  Pacman v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());
-	printf("/ _.-' .-.  .-.  .-.   Copyright (C) 2006-2021 Pacman Development Team\n");
+	printf("/ _.-' .-.  .-.  .-.   Copyright (C) 2006-2024 Pacman Development Team\n");
 	printf("\\  '-. '-'  '-'  '-'   Copyright (C) 2002-2006 Judd Vinet\n");
 	printf(" '--'\n");
 	printf(_("                       This program may be freely redistributed under\n"
@@ -289,6 +289,7 @@ static void setuseragent(void)
  */
 static void cleanup(int ret)
 {
+	console_cursor_show();
 	remove_soft_interrupt_handler();
 	if(config) {
 		/* free alpm library resources */
@@ -302,7 +303,6 @@ static void cleanup(int ret)
 
 	/* free memory */
 	FREELIST(pm_targets);
-	console_cursor_show();
 	exit(ret);
 }
 
@@ -371,7 +371,7 @@ static int parsearg_op(int opt, int dryrun)
 
 /** Helper functions for parsing command-line arguments.
  * @param opt Keycode returned by getopt_long
- * @return 0 on success, 1 on failure
+ * @return 0 on success, 1 on unkown option, 2 on invalid argument
  */
 static int parsearg_global(int opt)
 {
@@ -380,8 +380,25 @@ static int parsearg_global(int opt)
 			config_add_architecture(strdup(optarg));
 			break;
 		case OP_ASK:
-			config->noask = 1;
-			config->ask = (unsigned int)atoi(optarg);
+			if(optarg) {
+				char *endptr;
+				long ask;
+
+				errno = 0;
+				ask = strtol(optarg, &endptr, 10);
+
+				if(errno == ERANGE || endptr == optarg || *endptr != '\0' || ask > UINT_MAX) {
+					pm_printf(ALPM_LOG_ERROR, "'%s' is not a valid ask level\n",
+							optarg);
+					return 2;
+				}
+
+				config->noask = 1;
+				config->ask = (unsigned int)ask;
+			} else {
+				pm_printf(ALPM_LOG_ERROR, "no value provided for ask level\n");
+				return 2;
+			}
 			break;
 		case OP_CACHEDIR:
 			config->cachedirs = alpm_list_add(config->cachedirs, strdup(optarg));
@@ -396,7 +413,7 @@ static int parsearg_global(int opt)
 			} else {
 				pm_printf(ALPM_LOG_ERROR, _("invalid argument '%s' for %s\n"),
 						optarg, "--color");
-				return 1;
+				return 2;
 			}
 			enable_colors(config->color);
 			break;
@@ -409,7 +426,18 @@ static int parsearg_global(int opt)
 			 * here, error and warning are set in config_new, though perhaps a
 			 * --quiet option will remove these later */
 			if(optarg) {
-				unsigned short debug = (unsigned short)atoi(optarg);
+				char *endptr;
+				long debug;
+
+				errno = 0;
+				debug = strtol(optarg, &endptr, 10);
+
+				if(errno == ERANGE || endptr == optarg || *endptr != '\0') {
+					pm_printf(ALPM_LOG_ERROR, _("'%s' is not a valid debug level\n"),
+							optarg);
+					return 2;
+				}
+
 				switch(debug) {
 					case 2:
 						config->logmask |= ALPM_LOG_FUNCTION;
@@ -420,7 +448,7 @@ static int parsearg_global(int opt)
 					default:
 						pm_printf(ALPM_LOG_ERROR, _("'%s' is not a valid debug level\n"),
 								optarg);
-						return 1;
+						return 2;
 				}
 			} else {
 				config->logmask |= ALPM_LOG_DEBUG;
@@ -634,6 +662,7 @@ static int parsearg_trans(int opt)
 		case OP_DBONLY:
 			config->flags |= ALPM_TRANS_FLAG_DBONLY;
 			config->flags |= ALPM_TRANS_FLAG_NOSCRIPTLET;
+			config->flags |= ALPM_TRANS_FLAG_NOHOOKS;
 			break;
 		case OP_NOPROGRESSBAR:
 			config->noprogressbar = 1;
@@ -1018,14 +1047,16 @@ static int parseargs(int argc, char *argv[])
 		/* fall back to global options */
 		result = parsearg_global(opt);
 		if(result != 0) {
+			if(result == 1) {
 			/* global option parsing failed, abort */
-			if(opt < OP_LONG_FLAG_MIN) {
-				pm_printf(ALPM_LOG_ERROR, _("invalid option '-%c'\n"), opt);
-			} else {
-				pm_printf(ALPM_LOG_ERROR, _("invalid option '--%s'\n"),
-						opts[option_index].name);
+				if(opt < OP_LONG_FLAG_MIN) {
+					pm_printf(ALPM_LOG_ERROR, _("invalid option '-%c'\n"), opt);
+				} else {
+					pm_printf(ALPM_LOG_ERROR, _("invalid option '--%s'\n"),
+							opts[option_index].name);
+				}
 			}
-			return result;
+			return 1;
 		}
 	}
 
@@ -1184,12 +1215,6 @@ int main(int argc, char *argv[])
 			pm_printf(ALPM_LOG_ERROR, _("argument '-' specified without input on stdin\n"));
 			cleanup(1);
 		}
-	}
-
-	if(config->sysroot && (chroot(config->sysroot) != 0 || chdir("/") != 0)) {
-		pm_printf(ALPM_LOG_ERROR,
-				_("chroot to '%s' failed: (%s)\n"), config->sysroot, strerror(errno));
-		cleanup(EXIT_FAILURE);
 	}
 
 	pm_printf(ALPM_LOG_DEBUG, "pacman v%s - libalpm v%s\n", PACKAGE_VERSION, alpm_version());

@@ -1,7 +1,7 @@
 /*
  *  util.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 #include <limits.h>
 #include <wchar.h>
 #include <wctype.h>
+#include <ctype.h>
 #ifdef HAVE_TERMIOS_H
 #include <termios.h> /* tcflush */
 #endif
@@ -60,6 +61,24 @@ enum {
 	CELL_RIGHT_ALIGN = (1 << 1),
 	CELL_FREE = (1 << 3)
 };
+
+#define PRINT_FORMAT_STRING(temp, format, func) \
+	if(strstr(temp, format)) { \
+		string = strreplace(temp, format, func(pkg)); \
+		free(temp); \
+		temp = string; \
+	} \
+
+#define PRINT_FORMAT_LIST(temp, format, func, extract) \
+	if(strstr(temp, format)) { \
+		alpm_list_t *lst = func(pkg); \
+		char *cl = concat_list(lst, (formatfn)extract); \
+		string = strreplace(temp, format, cl); \
+		free(cl); \
+		free(temp); \
+		temp = string; \
+	} \
+
 
 int trans_init(int flags, int check_valid)
 {
@@ -103,9 +122,6 @@ int trans_release(void)
 
 int needs_root(void)
 {
-	if(config->sysroot) {
-		return 1;
-	}
 	switch(config->op) {
 		case PM_OP_DATABASE:
 			return !config->op_q_check;
@@ -398,26 +414,68 @@ char *strreplace(const char *str, const char *needle, const char *replace)
 	return newstr;
 }
 
+typedef char *(*formatfn)(void*);
+
+static char *concat_list(alpm_list_t *lst, formatfn fn)
+{
+	char *output = NULL, *tmp = NULL;
+
+	for(alpm_list_t *i = lst; i; i = alpm_list_next(i)) {
+		char *str = fn ? fn(i->data) : i->data;
+
+		if(str == NULL) {
+			continue;
+		}
+
+		if(tmp) {
+			asprintf(&output, "%s %s", tmp, str);
+			free(tmp);
+		} else {
+			asprintf(&output, "%s", str);
+		}
+		tmp = output;
+
+		if(fn) {
+			free(str);
+		}
+	}
+
+	if(!output) {
+		asprintf(&output, "%s", "");
+	}
+
+	return output;
+}
+
 static size_t string_length(const char *s)
 {
-	int len;
+	size_t len;
 	wchar_t *wcstr;
 
 	if(!s || s[0] == '\0') {
 		return 0;
 	}
-	if(strstr(s, "\033")) {
+	if(strchr(s, '\033')) {
 		char* replaced = malloc(sizeof(char) * strlen(s));
-		int iter = 0;
+		size_t iter = 0;
 		for(; *s; s++) {
-			if(*s == '\033') {
-				while(*s != 'm') {
-					s++;
+			if(*s == '\033' && *(s+1) == '[' && isdigit(*(s+2))) {
+				/* handle terminal colour escape sequences */
+				const char* t = s + 3;
+
+				while(isdigit(*t) || *t == ';') {
+					t++;
 				}
-			} else {
-				replaced[iter] = *s;
-				iter++;
+
+				if(*t == 'm') {
+					/* end of terminal colour sequence */
+					s = t++;
+					continue;
+				}
 			}
+
+			replaced[iter] = *s;
+			iter++;
 		}
 		replaced[iter] = '\0';
 		len = iter;
@@ -1146,18 +1204,45 @@ void print_packages(const alpm_list_t *packages)
 		alpm_pkg_t *pkg = i->data;
 		char *string = strdup(config->print_format);
 		char *temp = string;
+		/* %a : arch */
+		if(strstr(temp, "%a")) {
+			const char *arch = alpm_pkg_get_arch(pkg);
+			if(arch == NULL) {
+				arch = "";
+			}
+			string = strreplace(temp, "%a", arch);
+			free(temp);
+			temp = string;
+		}
+		/* %b : build date */
+		if(strstr(temp, "%b")) {
+			char bdatestr[50] = "";
+			time_t bdate = (time_t)alpm_pkg_get_builddate(pkg);
+			if(bdate != -1) {
+				strftime(bdatestr, 50, "%c", localtime(&bdate));
+				string = strreplace(temp, "%b", bdatestr);
+				free(temp);
+				temp = string;
+			}
+		}
+		/* %d : description */
+		PRINT_FORMAT_STRING(temp, "%d", alpm_pkg_get_desc)
+		/* %e : pkgbase */
+		PRINT_FORMAT_STRING(temp, "%e", alpm_pkg_get_base)
+		/* %f : filename */
+		PRINT_FORMAT_STRING(temp, "%f", alpm_pkg_get_filename)
+		/* %g : base64 encoded PGP signature */
+		PRINT_FORMAT_STRING(temp, "%g", alpm_pkg_get_base64_sig)
+		/* %h : sha25sum */
+		PRINT_FORMAT_STRING(temp, "%h", alpm_pkg_get_sha256sum)
 		/* %n : pkgname */
-		if(strstr(temp, "%n")) {
-			string = strreplace(temp, "%n", alpm_pkg_get_name(pkg));
-			free(temp);
-			temp = string;
-		}
+		PRINT_FORMAT_STRING(temp, "%n", alpm_pkg_get_name)
+		/* %p : packager */
+		PRINT_FORMAT_STRING(temp, "%p", alpm_pkg_get_packager)
 		/* %v : pkgver */
-		if(strstr(temp, "%v")) {
-			string = strreplace(temp, "%v", alpm_pkg_get_version(pkg));
-			free(temp);
-			temp = string;
-		}
+		PRINT_FORMAT_STRING(temp, "%v", alpm_pkg_get_version)
+		/* %m : md5sum */
+		PRINT_FORMAT_STRING(temp, "%m", alpm_pkg_get_md5sum)
 		/* %l : location */
 		if(strstr(temp, "%l")) {
 			char *pkgloc = pkg_get_location(pkg);
@@ -1184,7 +1269,29 @@ void print_packages(const alpm_list_t *packages)
 			string = strreplace(temp, "%s", size);
 			free(size);
 			free(temp);
+			temp = string;
 		}
+		/* %u : url */
+		PRINT_FORMAT_STRING(temp, "%u", alpm_pkg_get_url)
+		/* %C : checkdepends */
+		PRINT_FORMAT_LIST(temp, "%C", alpm_pkg_get_checkdepends, alpm_dep_compute_string)
+		/* %D : depends */
+		PRINT_FORMAT_LIST(temp, "%D", alpm_pkg_get_depends, alpm_dep_compute_string)
+		/* %G : groups */
+		PRINT_FORMAT_LIST(temp, "%G", alpm_pkg_get_groups, NULL)
+		/* %H : conflicts */
+		PRINT_FORMAT_LIST(temp, "%H", alpm_pkg_get_conflicts, alpm_dep_compute_string)
+		/* %M : makedepends */
+		PRINT_FORMAT_LIST(temp, "%M", alpm_pkg_get_makedepends, alpm_dep_compute_string)
+		/* %O : optdepends */
+		PRINT_FORMAT_LIST(temp, "%O", alpm_pkg_get_optdepends, alpm_dep_compute_string)
+		/* %P : provides */
+		PRINT_FORMAT_LIST(temp, "%P", alpm_pkg_get_provides, alpm_dep_compute_string)
+		/* %R : replaces */
+		PRINT_FORMAT_LIST(temp, "%R", alpm_pkg_get_replaces, alpm_dep_compute_string)
+		/* %L : license */
+		PRINT_FORMAT_LIST(temp, "%L", alpm_pkg_get_licenses, NULL)
+
 		printf("%s\n", string);
 		free(string);
 	}
@@ -1416,6 +1523,16 @@ void console_cursor_hide(void) {
 void console_cursor_show(void) {
 	if(isatty(fileno(stdout))) {
 		printf(CURSOR_SHOW_ANSICODE);
+
+		/* We typically explicitly show the cursor either when we are
+		 * getting input from stdin, or when we are in the process of
+		 * exiting. In the former case, it's not guaranteed that the
+		 * terminal will see the command before reading from stdin. In
+		 * the latter case, we need to make sure that if we get a
+		 * further TERM/INT after we return signal disposition to
+		 * SIG_DFL, it doesn't leave the cursor invisible.
+		 */
+		fflush(stdout);
 	}
 }
 

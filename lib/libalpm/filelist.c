@@ -1,7 +1,7 @@
 /*
  *  filelist.c
  *
- *  Copyright (c) 2012-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2012-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -118,7 +118,7 @@ static int _alpm_files_cmp(const void *f1, const void *f2)
 	return strcmp(file1->name, file2->name);
 }
 
-alpm_file_t SYMEXPORT *alpm_filelist_contains(alpm_filelist_t *filelist,
+alpm_file_t SYMEXPORT *alpm_filelist_contains(const alpm_filelist_t *filelist,
 		const char *path)
 {
 	alpm_file_t key;

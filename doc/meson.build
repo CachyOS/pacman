@@ -5,7 +5,9 @@ manpages = [
   { 'name': 'makepkg-template.1' },
   { 'name': 'repo-add.8' },
   { 'name': 'vercmp.8' },
+  { 'name': 'testpkg.8' },
   { 'name': 'pacman-key.8' },
+  { 'name': 'pacman-db-upgrade.8' },
   { 'name': 'PKGBUILD.5', 'extra_depends' : [ 'PKGBUILD-example.txt' ] },
   { 'name': 'makepkg.conf.5' },
   { 'name': 'pacman.conf.5' },
@@ -28,10 +30,12 @@ asciidoc_opts = [
  '-a', 'srcext=@0@'.format(get_option('src-ext')),
  '-a', 'pkgext=@0@'.format(get_option('pkg-ext')),
  '-a', 'pkgdatadir=@0@'.format(PKGDATADIR),
+ '-a', 'keyringdir=@0@'.format(KEYRINGDIR),
  '-a', 'localstatedir=@0@'.format(LOCALSTATEDIR),
  '-a', 'sysconfdir=@0@'.format(SYSCONFDIR),
  '-a', 'datarootdir=@0@'.format(DATAROOTDIR),
  '-a', 'rootdir=@0@'.format(ROOTDIR),
+ '-a', 'libmakepkgdir=@0@'.format(LIBMAKEPKGDIR),
 ]
 
 html_targets = []

@@ -1,7 +1,7 @@
 /*
  *  package.h
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *  Copyright (c) 2005 by Aurelien Foret <orelien@chez.com>
  *  Copyright (c) 2006 by David Kimpe <dnaku@frugalware.org>
@@ -68,6 +68,8 @@ struct pkg_operations {
 	alpm_filelist_t *(*get_files) (alpm_pkg_t *);
 	alpm_list_t *(*get_backup) (alpm_pkg_t *);
 
+	alpm_list_t *(*get_xdata) (alpm_pkg_t *);
+
 	void *(*changelog_open) (alpm_pkg_t *);
 	size_t (*changelog_read) (void *, size_t, const alpm_pkg_t *, void *);
 	int (*changelog_close) (const alpm_pkg_t *, void *);
@@ -86,7 +88,7 @@ struct pkg_operations {
  */
 extern const struct pkg_operations default_pkg_ops;
 
-struct __alpm_pkg_t {
+struct _alpm_pkg_t {
 	unsigned long name_hash;
 	char *filename;
 	char *base;
@@ -138,6 +140,8 @@ struct __alpm_pkg_t {
 	alpm_pkgreason_t reason;
 	int scriptlet;
 
+	alpm_list_t *xdata;
+
 	/* Bitfield from alpm_dbinfrq_t */
 	int infolevel;
 	/* Bitfield from alpm_pkgvalidation_t */
@@ -159,5 +163,10 @@ alpm_pkg_t *_alpm_pkg_load_internal(alpm_handle_t *handle,
 
 int _alpm_pkg_cmp(const void *p1, const void *p2);
 int _alpm_pkg_compare_versions(alpm_pkg_t *local_pkg, alpm_pkg_t *pkg);
+
+alpm_pkg_xdata_t *_alpm_pkg_parse_xdata(const char *string);
+void _alpm_pkg_xdata_free(alpm_pkg_xdata_t *pd);
+
+int _alpm_pkg_check_meta(alpm_pkg_t *pkg);
 
 #endif /* ALPM_PACKAGE_H */

@@ -77,10 +77,6 @@ Options
 **CXXFLAGS=**"cxxflags"::
 	Flags used for the C++ compiler; see CFLAGS for more info.
 
-**RUSTFLAGS=**"rustflags"::
-	Flags used for the Rust compiler, similar in spirit to CFLAGS. Read
-	linkman:rustc[1] for more details on the available flags.
-
 **LDFLAGS=**"ldflags"::
 	Flags used for the linker. Several options may be specified with common
 	usage resembling ``-Wl,--hash-style=gnu''. Read ld(1) for more details on
@@ -102,11 +98,6 @@ Options
 
 **DEBUG_CXXFLAGS=**"debug_cxxflags"::
 	Debug flags used for the C++ compiler; see DEBUG_CFLAGS for more info.
-
-**DEBUG_RUSTFLAGS=**"debug_rustflags"::
-	Additional compiler flags appended to `RUSTFLAGS` for use in debugging.
-	Usually this would include: ``-C debuginfo=2''. Read linkman:rustc[1] for
-	more details on the available flags.
 
 **BUILDENV=(**!distcc !color !ccache check !sign**)**::
 	This array contains options that affect the build environment; the defaults
@@ -157,7 +148,7 @@ Options
 	Specify a key to use for GPG signing instead of the default key in the
 	keyring. Can be overridden with makepkg's '\--key' option.
 
-**OPTIONS=(**!strip docs libtool staticlibs emptydirs !zipman !purge !debug**)**::
+**OPTIONS=(**!strip docs libtool staticlibs emptydirs ...**)**::
 	This array contains options that affect default packaging. They are
 	equivalent to options that can be placed in the PKGBUILD; the defaults are
 	shown here. All options should always be left in the array; to enable or
@@ -204,6 +195,11 @@ Options
 		flags specified in LTOFLAGS to CFLAGS, CXXFLAGS and LDFLAGS (or
 		``-flto'' if LTOFLAGS is empty).
 
+	*autodeps*;;
+		Enable the automatic addition of libraries to the depends and
+		provides arrays. Search library directories are controlled by
+		the LIB_DIRS variable defined below.
+
 **INTEGRITY_CHECK=(**check1 ...**)**::
 	File integrity checks to use. Multiple checks may be specified; this
 	affects both generation and checking. The current valid options are:
@@ -233,6 +229,12 @@ Options
 	instruct makepkg where to look to remove docs. If you build packages
 	that are located in opt/, you may need to add the directory to this
 	array. *NOTE:* Do not add the leading slash to the directory name.
+
+**LIB_DIRS=(**lib:usr/lib ...**)**::
+	If `autodeps` is specified in the `OPTIONS` array, this variable will
+	instruct makepkg where to look to find libraries to add to the `provides`
+	array. The format is "prefix:path", where provides will be added for
+	libraries found in "path" with the specified prefix added.
 
 **PURGE_TARGETS=(**usr/{,share}/info/dir .podlist *.pod...**)**::
 	If `purge` is specified in the `OPTIONS` array, this variable will
@@ -285,9 +287,10 @@ Options
 
 **PKGEXT=**"{pkgext}", **SRCEXT=**"{srcext}"::
 	Sets the compression used when making compiled or source packages.
-	Valid suffixes are `.tar.gz`, `.tar.bz2`, `.tar.xz`, `.tar.zst`,
-	`.tar.lzo`, `.tar.lrz`, `.tar.lz4`, `.tar.lz` and `.tar.Z`, or
-	simply `.tar` to disable compression entirely.
+	Valid suffixes are `.pkg` or `.src` (for PKGEXT and SRCEXT resepectively)
+	followed by one of `.tar.gz`, `.tar.bz2`, `.tar.xz`, `.tar.zst`, `.tar.lzo`,
+	`.tar.lrz`, `.tar.lz4`, `.tar.lz` and `.tar.Z`, or simply `.tar` to
+	disable compression entirely.
 
 **PACMAN_AUTH=()**::
 	Specify a command prefix for running pacman as root. If unset, makepkg will

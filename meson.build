@@ -1,6 +1,6 @@
 project('pacman',
         'c',
-        version : '6.0.2',
+        version : '6.1.0',
         license : 'GPLv2+',
         default_options : [
           'c_std=gnu99',
@@ -8,9 +8,9 @@ project('pacman',
           'sysconfdir=/etc',
           'localstatedir=/var',
         ],
-        meson_version : '>= 0.51')
+        meson_version : '>= 0.56')
 
-libalpm_version = '13.0.2'
+libalpm_version = '14.0.0'
 
 cc = meson.get_compiler('c')
 
@@ -26,14 +26,15 @@ MANDIR = join_paths(PREFIX, get_option('mandir'))
 BUILDSCRIPT = get_option('buildscript')
 LIBMAKEPKGDIR = join_paths(PREFIX, DATAROOTDIR, 'makepkg')
 PKGDATADIR = join_paths(PREFIX, DATAROOTDIR, meson.project_name())
+KEYRINGDIR = join_paths(PREFIX, DATAROOTDIR, get_option('keyringdir'))
 
 PYTHON = import('python').find_installation('python3')
 LDCONFIG = get_option('ldconfig')
-MESON_MAKE_SYMLINK = join_paths(meson.source_root(), 'build-aux/meson-make-symlink.sh')
+MESON_MAKE_SYMLINK = join_paths(meson.project_source_root(), 'build-aux/meson-make-symlink.sh')
 
 BASH = find_program('bash4', 'bash')
 if BASH.found()
-  bash_version = run_command(BASH, '-c', 'IFS=.; echo "${BASH_VERSINFO[*]:0:3}"').stdout()
+  bash_version = run_command(BASH, '-c', 'IFS=.; echo "${BASH_VERSINFO[*]:0:3}"', check: true).stdout()
 
   have_bash = bash_version.version_compare('>= 4.4.0')
 endif
@@ -43,7 +44,7 @@ endif
 
 bashcompletion = dependency('bash-completion', required : false)
 if bashcompletion.found()
-  BASHCOMPDIR = bashcompletion.get_pkgconfig_variable('completionsdir')
+  BASHCOMPDIR = bashcompletion.get_variable(pkgconfig: 'completionsdir')
 else
   BASHCOMPDIR = join_paths(DATAROOTDIR, 'bash-completion/completions')
 endif
@@ -53,7 +54,8 @@ if get_option('use-git-version')
       find_program('git'),
       'describe',
       '--abbrev=4',
-      '--dirty').stdout().strip().strip('v')
+      '--dirty',
+      check: true).stdout().strip().strip('v')
 else
   PACKAGE_VERSION = meson.project_version()
 endif
@@ -90,6 +92,7 @@ endif
 libarchive = dependency('libarchive',
                         version : '>=3.0.0',
                         static : get_option('buildstatic'))
+
 if libarchive.version().version_compare('>=3.6.0')
   bsdtar_no_read_sparse = '--no-read-sparse'
 else
@@ -107,7 +110,7 @@ libcurl = dependency('libcurl',
                      static : get_option('buildstatic'))
 conf.set('HAVE_LIBCURL', libcurl.found())
 
-needed_gpgme_version = '>=1.3.0'
+needed_gpgme_version = '>=1.12.0'
 gpgme = dependency('gpgme',
                    version : needed_gpgme_version,
                    required : get_option('gpgme'),
@@ -185,7 +188,22 @@ foreach type : [
   endif
 endforeach
 
-if conf.has('HAVE_STRUCT_STATVFS_F_FLAG')
+
+if conf.has('HAVE_GETMNTINFO')
+  if cc.compiles('''
+      #include <sys/types.h>
+      #include <sys/statvfs.h>
+
+      void func() {
+        struct statvfs *buf;
+        getmntinfo(&buf, 0);
+      }
+      ''')
+      conf.set('FSSTATSTYPE', 'struct statvfs')
+  else
+      conf.set('FSSTATSTYPE', 'struct statfs')
+  endif
+elif conf.has('HAVE_STRUCT_STATVFS_F_FLAG')
   conf.set('FSSTATSTYPE', 'struct statvfs')
 elif conf.has('HAVE_STRUCT_STATFS_F_FLAGS')
   conf.set('FSSTATSTYPE', 'struct statfs')
@@ -193,6 +211,7 @@ endif
 
 if get_option('debug')
   extra_cflags = [
+    '-pedantic',
     '-Wcast-align',
     '-Wclobbered',
     '-Wempty-body',
@@ -220,6 +239,7 @@ if get_option('debug')
     '-Wuninitialized',
     '-Wunused-but-set-parameter',
     '-Wunused-parameter',
+    '-Wunused-result',
     '-Wwrite-strings',
   ]
   add_project_arguments(cc.get_supported_arguments(extra_cflags), language : 'c')
@@ -240,7 +260,7 @@ strip_static = '--strip-debug'
 
 file_seccomp = get_option('file-seccomp')
 # meson-git has find_program('file', required: false, version: '>=5.38')
-filever = run_command('sh', '-c', 'file --version | sed -n "s/^file-\(.*\)/\\1/p"').stdout()
+filever = run_command('sh', '-c', 'file --version | sed -n "s/^file-\(.*\)/\\1/p"', check: true).stdout()
 if file_seccomp.enabled() or ( file_seccomp.auto() and filever.version_compare('>= 5.38') )
   filecmd = 'file -S'
 endif
@@ -255,7 +275,7 @@ elif os.contains('bsd') or os == 'dragonfly'
   inodecmd = 'stat -f \'%i %N\''
 endif
 
-chost = run_command(cc, '-dumpmachine').stdout().strip()
+chost = run_command(cc, '-dumpmachine', check: true).stdout().strip()
 carch = chost.split('-')[0]
 
 # annoyingly, we have to maintain two sets of configuration_data which is
@@ -270,8 +290,9 @@ substs.set('LOCALEDIR', LOCALEDIR)
 substs.set('sysconfdir', SYSCONFDIR)
 substs.set('localstatedir', LOCALSTATEDIR)
 substs.set('PKGDATADIR', PKGDATADIR)
+substs.set('KEYRINGDIR', KEYRINGDIR)
 substs.set('PREFIX', PREFIX)
-substs.set('BASH', BASH.path())
+substs.set('BASH', BASH.full_path())
 substs.set('PACKAGE_VERSION', PACKAGE_VERSION)
 substs.set('PACKAGE_NAME', meson.project_name())
 substs.set('BUILDSCRIPT', BUILDSCRIPT)
@@ -322,7 +343,7 @@ libalpm_a = static_library(
   'alpm_objlib',
   libalpm_sources,
   # https://github.com/mesonbuild/meson/issues/3937
-  objects : libcommon.extract_all_objects(),
+  objects : libcommon.extract_all_objects(recursive: true),
   include_directories : includes,
   gnu_symbol_visibility : 'hidden',
   dependencies : alpm_deps)
@@ -345,14 +366,16 @@ pkgconfig.generate(
   name : 'libalpm',
   description : 'Arch Linux package management library',
   version : libalpm_version,
-  url : 'http://archlinux.org/pacman/')
+  url : 'http://archlinux.org/pacman/',
+  extra_cflags: [ '-D_FILE_OFFSET_BITS=64' ],
+)
 
 pacman_bin = executable(
   'pacman',
   pacman_sources,
   include_directories : includes,
   link_with : [libalpm, libcommon],
-  dependencies : [libarchive, libcurl],
+  dependencies : [libarchive],
   install : true,
 )
 
@@ -384,7 +407,7 @@ executable(
 
 foreach wrapper : script_wrappers
   cdata = configuration_data()
-  cdata.set_quoted('BASH', BASH.path())
+  cdata.set_quoted('BASH', BASH.full_path())
   cdata.set_quoted('BUILDDIR', wrapper[2])
   cdata.set_quoted('REAL_PROGPATH', wrapper[1].full_path())
 
@@ -392,7 +415,7 @@ foreach wrapper : script_wrappers
   # directory. Use configure_file instead of a custom_target to ensure that
   # permissions on the input script wrapper are preserved.
   configure_file(
-    input : join_paths(meson.source_root(), 'build-aux', 'script-wrapper.sh.in'),
+    input : join_paths(meson.project_source_root(), 'build-aux', 'script-wrapper.sh.in'),
     output : wrapper[0],
     configuration : cdata)
 endforeach
@@ -402,6 +425,18 @@ configure_file(
   output : 'makepkg.conf',
   configuration : substs,
   install_dir : SYSCONFDIR)
+
+configure_file(
+  input : 'etc/makepkg.conf.d/fortran.conf.in',
+  output : 'fortran.conf',
+  configuration : substs,
+  install_dir : join_paths(SYSCONFDIR, 'makepkg.conf.d/'))
+
+configure_file(
+  input : 'etc/makepkg.conf.d/rust.conf.in',
+  output : 'rust.conf',
+  configuration : substs,
+  install_dir : join_paths(SYSCONFDIR, 'makepkg.conf.d/'))
 
 configure_file(
   input : 'etc/pacman.conf.in',
@@ -426,10 +461,10 @@ foreach path : [
 endforeach
 
 TEST_ENV = environment()
-TEST_ENV.set('PMTEST_SCRIPTLIB_DIR', join_paths(meson.source_root(), 'scripts/library/'))
-TEST_ENV.set('PMTEST_LIBMAKEPKG_DIR', join_paths(meson.build_root(), 'scripts/libmakepkg/'))
-TEST_ENV.set('PMTEST_UTIL_DIR', meson.build_root() + '/')
-TEST_ENV.set('PMTEST_SCRIPT_DIR', join_paths(meson.build_root(), 'scripts/'))
+TEST_ENV.set('PMTEST_SCRIPTLIB_DIR', join_paths(meson.project_source_root(), 'scripts/library/'))
+TEST_ENV.set('PMTEST_LIBMAKEPKG_DIR', join_paths(meson.project_build_root(), 'scripts/libmakepkg/'))
+TEST_ENV.set('PMTEST_UTIL_DIR', meson.project_build_root() + '/')
+TEST_ENV.set('PMTEST_SCRIPT_DIR', join_paths(meson.project_build_root(), 'scripts/'))
 
 subdir('test/pacman')
 subdir('test/scripts')
@@ -444,6 +479,7 @@ message('\n    '.join([
   '   localstatedir           : @0@'.format(LOCALSTATEDIR),
   '       database dir        : @0@'.format(join_paths(LOCALSTATEDIR, 'lib/pacman/')),
   '       cache dir           : @0@'.format(join_paths(LOCALSTATEDIR, 'cache/pacman/pkg/')),
+  '   keyringdir              : @0@'.format(KEYRINGDIR),
   '   compiler                : @0@ @1@'.format(cc.get_id(), cc.version()),
   '',
   '   Architecture            : @0@'.format(carch),

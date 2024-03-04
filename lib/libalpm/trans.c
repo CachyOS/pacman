@@ -1,7 +1,7 @@
 /*
  *  trans.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *  Copyright (c) 2005 by Aurelien Foret <orelien@chez.com>
  *  Copyright (c) 2005 by Christian Hamar <krics@linuxforum.hu>
@@ -198,7 +198,8 @@ int SYMEXPORT alpm_trans_commit(alpm_handle_t *handle, alpm_list_t **data)
 		}
 	}
 
-	if(_alpm_hook_run(handle, ALPM_HOOK_PRE_TRANSACTION) != 0) {
+	if(!(trans->flags & ALPM_TRANS_FLAG_NOHOOKS) &&
+			_alpm_hook_run(handle, ALPM_HOOK_PRE_TRANSACTION) != 0) {
 		RET_ERR(handle, ALPM_ERR_TRANS_HOOK_FAILED, -1);
 	}
 
@@ -232,7 +233,10 @@ int SYMEXPORT alpm_trans_commit(alpm_handle_t *handle, alpm_list_t **data)
 		event.type = ALPM_EVENT_TRANSACTION_DONE;
 		EVENT(handle, (void *)&event);
 		alpm_logaction(handle, ALPM_CALLER_PREFIX, "transaction completed\n");
-		_alpm_hook_run(handle, ALPM_HOOK_POST_TRANSACTION);
+
+		if(!(trans->flags & ALPM_TRANS_FLAG_NOHOOKS)) {
+			_alpm_hook_run(handle, ALPM_HOOK_POST_TRANSACTION);
+		}
 	}
 
 	trans->state = STATE_COMMITED;

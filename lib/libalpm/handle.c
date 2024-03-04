@@ -1,7 +1,7 @@
 /*
  *  handle.c
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *  Copyright (c) 2005 by Aurelien Foret <orelien@chez.com>
  *  Copyright (c) 2005, 2006 by Miklos Vajna <vmiklos@frugalware.org>
@@ -48,11 +48,27 @@ alpm_handle_t *_alpm_handle_new(void)
 	return handle;
 }
 
+/* free all in-memory resources */
 void _alpm_handle_free(alpm_handle_t *handle)
 {
+	alpm_list_t *i;
+	alpm_db_t *db;
+
 	if(handle == NULL) {
 		return;
 	}
+
+	/* close local database */
+	if((db = handle->db_local)) {
+		db->ops->unregister(db);
+	}
+
+	/* unregister all sync dbs */
+	for(i = handle->dbs_sync; i; i = i->next) {
+		db = i->data;
+		db->ops->unregister(db);
+	}
+	alpm_list_free(handle->dbs_sync);
 
 	/* close logfile */
 	if(handle->logstream) {
@@ -66,6 +82,12 @@ void _alpm_handle_free(alpm_handle_t *handle)
 
 #ifdef HAVE_LIBGPGME
 	FREELIST(handle->known_keys);
+#endif
+
+#ifdef HAVE_LIBCURL
+	curl_multi_cleanup(handle->curlm);
+	curl_global_cleanup();
+	FREELIST(handle->server_errors);
 #endif
 
 	/* free memory */

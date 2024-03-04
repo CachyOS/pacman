@@ -1,7 +1,7 @@
 /*
  *  be_package.c : backend for packages
  *
- *  Copyright (c) 2006-2021 Pacman Development Team <pacman-dev@archlinux.org>
+ *  Copyright (c) 2006-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>
  *  Copyright (c) 2002-2006 by Judd Vinet <jvinet@zeroflux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -244,13 +244,17 @@ static int parse_descfile(alpm_handle_t *handle, struct archive *a, alpm_pkg_t *
 				CALLOC(backup, 1, sizeof(alpm_backup_t), return -1);
 				STRDUP(backup->name, ptr, FREE(backup); return -1);
 				newpkg->backup = alpm_list_add(newpkg->backup, backup);
-			} else if(strcmp(key, "force") == 0) {
-				/* deprecated, skip it */
-			} else if(strcmp(key, "makepkgopt") == 0) {
-				/* not used atm */
+			} else if(strcmp(key, "xdata") == 0) {
+				alpm_pkg_xdata_t *pd = _alpm_pkg_parse_xdata(ptr);
+				if(pd == NULL || !alpm_list_append(&newpkg->xdata, pd)) {
+					_alpm_pkg_xdata_free(pd);
+					return -1;
+				}
 			} else {
+				const char *pkgname = newpkg->name ? newpkg->name : "error";
+				_alpm_log(handle, ALPM_LOG_WARNING, _("%s: unknown key '%s' in package description\n"), pkgname, key);
 				_alpm_log(handle, ALPM_LOG_DEBUG, "%s: unknown key '%s' in description file line %d\n",
-									newpkg->name ? newpkg->name : "error", key, linenum);
+									pkgname, key, linenum);
 			}
 		}
 	}
@@ -650,9 +654,6 @@ alpm_pkg_t *_alpm_pkg_load_internal(alpm_handle_t *handle,
 		goto pkg_invalid;
 	}
 
-	_alpm_archive_read_free(archive);
-	close(fd);
-
 	/* internal fields for package struct */
 	newpkg->origin = ALPM_PKG_FROM_FILE;
 	STRDUP(newpkg->origin_data.file, pkgfile, goto error);
@@ -674,6 +675,12 @@ alpm_pkg_t *_alpm_pkg_load_internal(alpm_handle_t *handle,
 		newpkg->infolevel |= INFRQ_FILES;
 	}
 
+	if(_alpm_pkg_check_meta(newpkg) != 0) {
+		goto pkg_invalid;
+	}
+
+	_alpm_archive_read_free(archive);
+	close(fd);
 	return newpkg;
 
 pkg_invalid:
@@ -681,9 +688,7 @@ pkg_invalid:
 error:
 	_alpm_pkg_free(newpkg);
 	_alpm_archive_read_free(archive);
-	if(fd >= 0) {
-		close(fd);
-	}
+	close(fd);
 
 	return NULL;
 }
