@@ -307,18 +307,11 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
 
     // generate package integrity
     let mut csize = String::new();
-    let mut pkg_md5sum: Option<String> = None;
     let mut pkg_sha256sum: Option<String> = None;
     let mut pkg_pgpsig: Option<String> = None;
 
-    if !utils::gen_pkg_integrity(
-        pkgpath,
-        &pkginfo,
-        &mut csize,
-        &mut pkg_md5sum,
-        &mut pkg_sha256sum,
-        &mut pkg_pgpsig,
-    ) {
+    if !utils::gen_pkg_integrity(pkgpath, &pkginfo, &mut csize, &mut pkg_sha256sum, &mut pkg_pgpsig)
+    {
         return false;
     }
 
@@ -337,7 +330,6 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
             &workingdb_path,
             &pkginfo,
             csize,
-            pkg_md5sum,
             pkg_sha256sum,
             pkg_pgpsig,
         );
@@ -426,18 +418,11 @@ fn db_write_entry_nf(
 
     // generate package integrity
     let mut csize = String::new();
-    let mut pkg_md5sum: Option<String> = None;
     let mut pkg_sha256sum: Option<String> = None;
     let mut pkg_pgpsig: Option<String> = None;
 
-    if !utils::gen_pkg_integrity(
-        pkgpath,
-        &pkginfo,
-        &mut csize,
-        &mut pkg_md5sum,
-        &mut pkg_sha256sum,
-        &mut pkg_pgpsig,
-    ) {
+    if !utils::gen_pkg_integrity(pkgpath, &pkginfo, &mut csize, &mut pkg_sha256sum, &mut pkg_pgpsig)
+    {
         return false;
     }
 
@@ -450,7 +435,6 @@ fn db_write_entry_nf(
             pkgpath,
             &pkginfo,
             csize.clone(),
-            &pkg_md5sum,
             &pkg_sha256sum,
             &pkg_pgpsig,
         )
@@ -461,7 +445,6 @@ fn db_write_entry_nf(
             pkgpath,
             &pkginfo,
             csize,
-            &pkg_md5sum,
             &pkg_sha256sum,
             &pkg_pgpsig,
         )
@@ -677,7 +660,6 @@ CREATE TABLE IF NOT EXISTS packages (
     packager TEXT,
     csize TEXT,
     isize TEXT,
-    md5sum TEXT,
     sha256sum TEXT,
     pgpsig TEXT,
     replaces TEXT,
@@ -688,16 +670,30 @@ CREATE TABLE IF NOT EXISTS packages (
     conflicts TEXT,
     provides TEXT,
     files TEXT
-)"#;
+);"#;
+
+    const K_DROP_MD5: &str = "ALTER TABLE packages DROP COLUMN md5sum;";
+    const K_COLUMNS_PRAGMA: &str = "SELECT * FROM pragma_table_info('packages');";
 
     let repos = ["db", "files"];
     for repo in repos {
         let dbfile_path = format!("{}/{}/pacman.db", *G_TMPWORKINGDIR.lock().unwrap(), repo);
 
+        let conn = rusqlite::Connection::open(dbfile_path)?;
         if cmd_line == "repo-add" {
-            let conn = rusqlite::Connection::open(dbfile_path)?;
             // Create the packages table if it doesn't exist
             conn.execute(K_CREATE_TABLE, []).unwrap();
+        }
+
+        if conn
+            .prepare_cached(K_COLUMNS_PRAGMA)
+            .unwrap()
+            .query_map([], |row| row.get::<usize, String>(1))
+            .unwrap()
+            .any(|x| x.unwrap() == "md5sum")
+        {
+            // Drop md5sum column from pacman 6.0.x
+            conn.execute(K_DROP_MD5, []).unwrap();
         }
     }
     Ok(true)
