@@ -3,7 +3,6 @@ use std::io::Write;
 use std::path::Path;
 use std::{env, fs, io, slice, str};
 
-use md5::Md5;
 use rand::Rng;
 use sha2::Sha256;
 use subprocess::{Exec, Redirection};
@@ -101,24 +100,11 @@ pub fn exec(command: &str, interactive: Option<bool>) -> (String, bool) {
 }
 
 pub fn generate_sha256sum(filepath: &str) -> Option<String> {
-    let mut file_obj = File::open(filepath).unwrap();
+    let mut file_obj = File::open(filepath).ok()?;
 
     // create a Sha256 hasher instance
     use sha2::Digest;
     let mut hasher = Sha256::new();
-    let _ = io::copy(&mut file_obj, &mut hasher);
-
-    // process input message
-    let result = format!("{:x}", hasher.finalize());
-    Some(result)
-}
-
-pub fn generate_md5sum(filepath: &str) -> Option<String> {
-    let mut file_obj = File::open(filepath).unwrap();
-
-    // create a Md5 hasher instance
-    use md5::Digest;
-    let mut hasher = Md5::new();
     let _ = io::copy(&mut file_obj, &mut hasher);
 
     // process input message
@@ -254,7 +240,6 @@ pub fn create_db_desc_entry(
     workingdb_path: &str,
     pkginfo: &crate::pkginfo::PkgInfo,
     csize: String,
-    pkg_md5sum: Option<String>,
     pkg_sha256sum: Option<String>,
     pkg_pgpsig: Option<String>,
 ) {
@@ -272,7 +257,6 @@ pub fn create_db_desc_entry(
     desc_content.push_str(&format_entry("ISIZE", &pkginfo.pkg_isize));
 
     // add checksums
-    desc_content.push_str(&format_entry("MD5SUM", &pkg_md5sum));
     desc_content.push_str(&format_entry("SHA256SUM", &pkg_sha256sum));
 
     // add PGP sig
@@ -301,7 +285,6 @@ pub fn gen_pkg_integrity(
     pkgpath: &str,
     pkg_info: &crate::pkginfo::PkgInfo,
     csize: &mut String,
-    pkg_md5sum: &mut Option<String>,
     pkg_sha256sum: &mut Option<String>,
     pkg_pgpsig: &mut Option<String>,
 ) -> bool {
@@ -327,7 +310,6 @@ pub fn gen_pkg_integrity(
 
     // compute checksums
     log::info!("Computing checksums...");
-    *pkg_md5sum = generate_md5sum(pkgpath);
     *pkg_sha256sum = generate_sha256sum(pkgpath);
 
     true
@@ -338,7 +320,6 @@ pub fn create_db_entry_nf(
     pkgpath: &str,
     pkg_info: &crate::pkginfo::PkgInfo,
     csize: String,
-    pkg_md5sum: &Option<String>,
     pkg_sha256sum: &Option<String>,
     pkg_pgpsig: &Option<String>,
 ) -> anyhow::Result<()> {
@@ -365,7 +346,6 @@ pub fn create_db_entry_nf(
     insert_entry_nf(&mut insert_fields, &mut insert_params, "isize", &pkg_info.pkg_isize);
 
     // add checksums
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "md5sum", pkg_md5sum);
     insert_entry_nf(&mut insert_fields, &mut insert_params, "sha256sum", pkg_sha256sum);
 
     // add PGP sig
