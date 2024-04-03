@@ -26,6 +26,7 @@ libalpm_sources = files('''
   rawstr.c
   remove.h remove.c
   sandbox.h sandbox.c
+  sandbox_fs.h sandbox_fs.c
   signing.c signing.h
   sync.h sync.c
   trans.h trans.c
