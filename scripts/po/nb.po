@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: Harald H. <haarektrans@gmail.com>, 2016\n"
 "Language-Team: Norwegian Bokmål (http://app.transifex.com/toofishes/"
@@ -56,9 +56,9 @@ msgid "Unable to find source file %s."
 msgstr "Fant ikke kildefilen %s."
 
 #: scripts/makepkg.sh.in:226 scripts/makepkg.sh.in:368
-#: scripts/makepkg.sh.in:580 scripts/makepkg.sh.in:1077
-#: scripts/makepkg.sh.in:1082 scripts/makepkg.sh.in:1087
-#: scripts/makepkg.sh.in:1093 scripts/makepkg.sh.in:1103
+#: scripts/makepkg.sh.in:580 scripts/makepkg.sh.in:1078
+#: scripts/makepkg.sh.in:1083 scripts/makepkg.sh.in:1088
+#: scripts/makepkg.sh.in:1094 scripts/makepkg.sh.in:1104
 #: scripts/libmakepkg/integrity/generate_checksum.sh.in:62
 #: scripts/libmakepkg/source/bzr.sh.in:55
 #: scripts/libmakepkg/source/bzr.sh.in:86
@@ -68,11 +68,11 @@ msgstr "Fant ikke kildefilen %s."
 #: scripts/libmakepkg/source/file.sh.in:145
 #: scripts/libmakepkg/source/git.sh.in:53
 #: scripts/libmakepkg/source/git.sh.in:62
-#: scripts/libmakepkg/source/git.sh.in:91
-#: scripts/libmakepkg/source/git.sh.in:97
-#: scripts/libmakepkg/source/git.sh.in:114
-#: scripts/libmakepkg/source/git.sh.in:123
-#: scripts/libmakepkg/source/git.sh.in:131
+#: scripts/libmakepkg/source/git.sh.in:98
+#: scripts/libmakepkg/source/git.sh.in:104
+#: scripts/libmakepkg/source/git.sh.in:121
+#: scripts/libmakepkg/source/git.sh.in:130
+#: scripts/libmakepkg/source/git.sh.in:138
 #: scripts/libmakepkg/source/hg.sh.in:52 scripts/libmakepkg/source/hg.sh.in:94
 #: scripts/libmakepkg/source/hg.sh.in:103
 #: scripts/libmakepkg/source/hg.sh.in:108
@@ -231,166 +231,170 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     Hopp over avhengighetstestene"
 
 #: scripts/makepkg.sh.in:883
+msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgstr ""
+
+#: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
 msgstr "  -e, --noextract  Ikke pakk ut kildefiler (bruk eksisterende %s)"
 
-#: scripts/makepkg.sh.in:884
+#: scripts/makepkg.sh.in:885
 msgid "  -f, --force      Overwrite existing package"
 msgstr "  -f, --force      Erstatt eksisterende pakke"
 
-#: scripts/makepkg.sh.in:885
+#: scripts/makepkg.sh.in:886
 msgid "  -g, --geninteg   Generate integrity checks for source files"
 msgstr "  -g, --geninteg   Vis sjekksum for kildefilene"
 
-#: scripts/makepkg.sh.in:886
+#: scripts/makepkg.sh.in:887
 msgid "  -h, --help       Show this help message and exit"
 msgstr "  -h, --help       Vis disse instruksene og avslutt"
 
-#: scripts/makepkg.sh.in:887
+#: scripts/makepkg.sh.in:888
 msgid "  -i, --install    Install package after successful build"
 msgstr "  -i, --install    Installerer pakke etter vellykket bygging"
 
-#: scripts/makepkg.sh.in:888
+#: scripts/makepkg.sh.in:889
 msgid "  -L, --log        Log package build process"
 msgstr "  -L, --log        Loggfør pakkens byggeprosess"
 
-#: scripts/makepkg.sh.in:889
+#: scripts/makepkg.sh.in:890
 msgid "  -m, --nocolor    Disable colorized output messages"
 msgstr "  -m, --nocolor    Skru av fargelagte beskjeder"
 
-#: scripts/makepkg.sh.in:890
+#: scripts/makepkg.sh.in:891
 msgid "  -o, --nobuild    Download and extract files only"
 msgstr "  -o, --nobuild    Bare last ned og pakk ut filene"
 
-#: scripts/makepkg.sh.in:891
+#: scripts/makepkg.sh.in:892
 msgid "  -p <file>        Use an alternate build script (instead of '%s')"
 msgstr "  -p <fil>         Bruk andre byggeinstrukser (istedenfor '%s')"
 
-#: scripts/makepkg.sh.in:892
+#: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
 msgstr ""
 "  -r, --rmdeps     Fjern installerte avhengigheter etter vellykket bygging"
 
-#: scripts/makepkg.sh.in:893
+#: scripts/makepkg.sh.in:894
 msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
 msgstr "  -R, --repackage  Pakk inn pakken på nytt, men ikke bygg den på nytt"
 
-#: scripts/makepkg.sh.in:894
+#: scripts/makepkg.sh.in:895
 msgid "  -s, --syncdeps   Install missing dependencies with %s"
 msgstr "  -s, --syncdeps   Installer manglende avhengigheter med %s"
 
-#: scripts/makepkg.sh.in:895
+#: scripts/makepkg.sh.in:896
 msgid ""
 "  -S, --source     Generate a source-only tarball without downloaded sources"
 msgstr ""
 "  -S, --source     Opprett en .tar fil med kildekode, uten nedlastede kilder"
 
-#: scripts/makepkg.sh.in:896
+#: scripts/makepkg.sh.in:897
 msgid "  -V, --version    Show version information and exit"
 msgstr "  -V, --version    Vis versjonsinformasjon og avslutt"
 
-#: scripts/makepkg.sh.in:897
+#: scripts/makepkg.sh.in:898
 msgid ""
 "  --allsource      Generate a source-only tarball including downloaded "
 "sources"
 msgstr ""
 "  --allsource      Opprett en .tar fil med kildekode og nedlastede kilder"
 
-#: scripts/makepkg.sh.in:898
+#: scripts/makepkg.sh.in:899
 msgid "  --check          Run the %s function in the %s"
 msgstr "  --check          Kjør %s funksjonen i %s-filen"
 
-#: scripts/makepkg.sh.in:899
+#: scripts/makepkg.sh.in:900
 msgid "  --config <file>  Use an alternate config file (instead of '%s')"
 msgstr "  --config <fil>   Bruk en annen konfigurasjonsfil (istedenfor '%s')"
 
-#: scripts/makepkg.sh.in:900
+#: scripts/makepkg.sh.in:901
 msgid "  --holdver        Do not update VCS sources"
 msgstr "  --holdver        Ikke oppdater VCS kilder"
 
-#: scripts/makepkg.sh.in:901
+#: scripts/makepkg.sh.in:902
 msgid ""
 "  --key <key>      Specify a key to use for %s signing instead of the default"
 msgstr "  --key <key>      Oppgi en annen signeringsnøkkel for %s"
 
-#: scripts/makepkg.sh.in:902
+#: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
 msgstr "  --noarchive      Ikke opprett pakkearkiv"
 
-#: scripts/makepkg.sh.in:903
+#: scripts/makepkg.sh.in:904
 msgid "  --nocheck        Do not run the %s function in the %s"
 msgstr "  --nocheck        Ikke kjør %s funksjonen i %s-filen"
 
-#: scripts/makepkg.sh.in:904
+#: scripts/makepkg.sh.in:905
 msgid "  --noprepare      Do not run the %s function in the %s"
 msgstr "  --noprepare      Ikke kjør %s funksjonen i %s-filen"
 
-#: scripts/makepkg.sh.in:905
+#: scripts/makepkg.sh.in:906
 msgid "  --nosign         Do not create a signature for the package"
 msgstr "  --nosign         Ikke signer pakken"
 
-#: scripts/makepkg.sh.in:906
+#: scripts/makepkg.sh.in:907
 msgid "  --packagelist    Only list package filepaths that would be produced"
 msgstr "  --packagelist    List bare stier i pakker som ville blitt laget"
 
-#: scripts/makepkg.sh.in:907
+#: scripts/makepkg.sh.in:908
 msgid "  --printsrcinfo   Print the generated SRCINFO and exit"
 msgstr "  --printsrcinfo   Vis den genererte SRCINFO filen og avslutt"
 
-#: scripts/makepkg.sh.in:908
+#: scripts/makepkg.sh.in:909
 msgid "  --sign           Sign the resulting package with %s"
 msgstr "  --sign           Signer den ferdige pakken med %s"
 
-#: scripts/makepkg.sh.in:909
+#: scripts/makepkg.sh.in:910
 msgid "  --skipchecksums  Do not verify checksums of the source files"
 msgstr "  --skipchecksums  Ikke verifiser sjekksummer for kildefiler"
 
-#: scripts/makepkg.sh.in:910
+#: scripts/makepkg.sh.in:911
 msgid ""
 "  --skipinteg      Do not perform any verification checks on source files"
 msgstr "  --skipinteg      Ikke utfør noen verifisering av kildefiler"
 
-#: scripts/makepkg.sh.in:911
+#: scripts/makepkg.sh.in:912
 msgid "  --skippgpcheck   Do not verify source files with PGP signatures"
 msgstr "  --skippgpcheck   Ikke verifiser kildefiler med PGP signaturer"
 
-#: scripts/makepkg.sh.in:912
+#: scripts/makepkg.sh.in:913
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
 msgstr ""
 "  --verifysource   Last ned kildefiler (om nødvendig) og utfør sjekksumtester"
 
-#: scripts/makepkg.sh.in:914
+#: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
 msgstr "Disse valgene sendes videre til %s:"
 
-#: scripts/makepkg.sh.in:916
+#: scripts/makepkg.sh.in:917
 msgid "  --asdeps         Install packages as non-explicitly installed"
 msgstr "  --asdeps         Installér pakker som avhengigheter"
 
-#: scripts/makepkg.sh.in:917
+#: scripts/makepkg.sh.in:918
 msgid ""
 "  --needed         Do not reinstall the targets that are already up to date"
 msgstr ""
 "  --needed         Ikke reinstallér pakker som allerede er i nyeste versjon"
 
-#: scripts/makepkg.sh.in:918
+#: scripts/makepkg.sh.in:919
 msgid ""
 "  --noconfirm      Do not ask for confirmation when resolving dependencies"
 msgstr ""
 "  --noconfirm      Ikke spør om bekreftelse ved oppnøsting av avhengigheter"
 
-#: scripts/makepkg.sh.in:919
+#: scripts/makepkg.sh.in:920
 msgid "  --noprogressbar  Do not show a progress bar when downloading files"
 msgstr "  --noprogressbar  Ikke vis framdrift ved nedlasting av filer "
 
-#: scripts/makepkg.sh.in:921
+#: scripts/makepkg.sh.in:922
 msgid "If %s is not specified, %s will look for '%s'"
 msgstr "Dersom %s ikke er spesifisert vil %s se etter '%s'."
 
-#: scripts/makepkg.sh.in:930 scripts/pacman-db-upgrade.sh.in:57
+#: scripts/makepkg.sh.in:931 scripts/pacman-db-upgrade.sh.in:57
 #: scripts/pacman-key.sh.in:99 scripts/repo-add.sh.in:104
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
@@ -399,11 +403,11 @@ msgstr ""
 "Dette er fri programvare; se kildekoden for kopibetingelser.\\nDet medfølger "
 "INGEN GARANTI, til den grad det er tillat i lovverket.\\n"
 
-#: scripts/makepkg.sh.in:1039 scripts/repo-add.sh.in:602
+#: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
 msgstr "fanget %s signalet. Avslutter..."
 
-#: scripts/makepkg.sh.in:1109
+#: scripts/makepkg.sh.in:1110
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
@@ -411,83 +415,83 @@ msgstr ""
 "Det er ikke mulig å kjøre %s med administratortilgang\\nfordi det kan rote "
 "til systemet."
 
-#: scripts/makepkg.sh.in:1115
+#: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
 msgstr "Ikke bruk %s, den er kun for intern bruk av %s."
 
-#: scripts/makepkg.sh.in:1130
+#: scripts/makepkg.sh.in:1131
 msgid "%s does not exist."
 msgstr "%s finnes ikke."
 
-#: scripts/makepkg.sh.in:1135
+#: scripts/makepkg.sh.in:1136
 msgid "%s contains %s characters and cannot be sourced."
 msgstr "%s inneholder %s tegn og kan ikke leses inn."
 
-#: scripts/makepkg.sh.in:1140
+#: scripts/makepkg.sh.in:1141
 msgid "%s must be in the current working directory."
 msgstr "%s må være i arbeidsmappen."
 
-#: scripts/makepkg.sh.in:1234 scripts/makepkg.sh.in:1249
+#: scripts/makepkg.sh.in:1235 scripts/makepkg.sh.in:1250
 msgid "Leaving %s environment."
 msgstr "Forlater %s miljøet."
 
-#: scripts/makepkg.sh.in:1261
+#: scripts/makepkg.sh.in:1262
 msgid "The key %s does not exist in your keyring."
 msgstr "Nøkkel %s er ikke på nøkkelknippet."
 
-#: scripts/makepkg.sh.in:1263 scripts/repo-add.sh.in:148
+#: scripts/makepkg.sh.in:1264 scripts/repo-add.sh.in:148
 msgid "There is no key in your keyring."
 msgstr "Du har ingen nøkler på ditt nøkkelknippe."
 
-#: scripts/makepkg.sh.in:1269
+#: scripts/makepkg.sh.in:1270
 msgid "Making package: %s"
 msgstr "Lager pakke: %s"
 
-#: scripts/makepkg.sh.in:1275
+#: scripts/makepkg.sh.in:1276
 msgid "A source package has already been built. (use %s to overwrite)"
 msgstr "En kildepakke har allerede blitt bygget (bruk %s for å erstatte)"
 
-#: scripts/makepkg.sh.in:1295
+#: scripts/makepkg.sh.in:1296
 msgid "Signing package..."
 msgstr "Signerer pakke..."
 
-#: scripts/makepkg.sh.in:1299
+#: scripts/makepkg.sh.in:1300
 msgid "Source package created: %s"
 msgstr "Kildepakke laget: %s"
 
-#: scripts/makepkg.sh.in:1305
+#: scripts/makepkg.sh.in:1306
 msgid "Skipping dependency checks."
 msgstr "Hopper over kontroll av avhengigheter."
 
-#: scripts/makepkg.sh.in:1313
+#: scripts/makepkg.sh.in:1314
 msgid "Checking runtime dependencies..."
 msgstr "Kontrollerer avhengigheter som trengs ved kjøring..."
 
-#: scripts/makepkg.sh.in:1320
+#: scripts/makepkg.sh.in:1321
 msgid "Checking buildtime dependencies..."
 msgstr "Kontrollerer avhengigheter som trengs ved bygging..."
 
-#: scripts/makepkg.sh.in:1332
+#: scripts/makepkg.sh.in:1333
 msgid "Could not resolve all dependencies."
 msgstr "Fant ikke avhengighetene."
 
-#: scripts/makepkg.sh.in:1343
+#: scripts/makepkg.sh.in:1344
 msgid "Using existing %s tree"
 msgstr "Bruker eksisterende %s mappe"
 
-#: scripts/makepkg.sh.in:1350 scripts/makepkg.sh.in:1381
+#: scripts/makepkg.sh.in:1351 scripts/makepkg.sh.in:1382
 msgid "Removing existing %s directory..."
 msgstr "Fjerner eksisterende %s mappe..."
 
-#: scripts/makepkg.sh.in:1376
+#: scripts/makepkg.sh.in:1377
 msgid "Sources are ready."
 msgstr "Kildene er klare."
 
-#: scripts/makepkg.sh.in:1403
+#: scripts/makepkg.sh.in:1404
 msgid "Package directory is ready."
 msgstr "Pakkemappen er klar."
 
-#: scripts/makepkg.sh.in:1407
+#: scripts/makepkg.sh.in:1408
 msgid "Finished making: %s"
 msgstr "Bygget ferdig: %s"
 
@@ -721,164 +725,164 @@ msgstr "flagg"
 msgid "You do not have sufficient permissions to read the %s keyring."
 msgstr "Du har ikke tilgang til å bla gjennom nøkkelknippet %s..."
 
-#: scripts/pacman-key.sh.in:265 scripts/pacman-key.sh.in:272
+#: scripts/pacman-key.sh.in:265
 msgid "Use '%s' to correct the keyring permissions."
 msgstr "Bruk '%s' for å ordne tillatelser for nøkkelknippet."
 
-#: scripts/pacman-key.sh.in:271
+#: scripts/pacman-key.sh.in:270
 msgid "You do not have sufficient permissions to run this command."
 msgstr "Du har ikke tilgang til å kjøre denne kommandoen."
 
-#: scripts/pacman-key.sh.in:279
+#: scripts/pacman-key.sh.in:276
 msgid "There is no secret key available to sign with."
 msgstr "Har ingen privat nøkkel å signere med."
 
-#: scripts/pacman-key.sh.in:280
+#: scripts/pacman-key.sh.in:277
 msgid "Use '%s' to generate a default secret key."
 msgstr "Bruk '%s' for å smi en hemmelig standardnøkkel."
 
-#: scripts/pacman-key.sh.in:298
+#: scripts/pacman-key.sh.in:295
 msgid "No keyring files exist in %s."
 msgstr "Ingen nøkkelknipper finnes i %s."
 
-#: scripts/pacman-key.sh.in:305
+#: scripts/pacman-key.sh.in:302
 msgid "The keyring file %s does not exist."
 msgstr "Nøkkelknippet %s finnes ikke."
 
-#: scripts/pacman-key.sh.in:320
+#: scripts/pacman-key.sh.in:317
 msgid "Appending keys from %s.gpg..."
 msgstr "Legger til nøkler fra %s.gpg..."
 
-#: scripts/pacman-key.sh.in:360
+#: scripts/pacman-key.sh.in:357
 msgid "Locally signing trusted keys in keyring..."
 msgstr "Signerer betrodde nøkler på nøkkelknippet, lokalt..."
 
-#: scripts/pacman-key.sh.in:362
+#: scripts/pacman-key.sh.in:359
 msgid "Importing owner trust values..."
 msgstr "Importerer listen med betrodde pakkeeiere..."
 
-#: scripts/pacman-key.sh.in:372
+#: scripts/pacman-key.sh.in:369
 msgid "Disabling revoked keys in keyring..."
 msgstr "Deaktiverer tilbaketrukne nøkler i nøkkelknippet..."
 
-#: scripts/pacman-key.sh.in:375
+#: scripts/pacman-key.sh.in:372
 msgid "Disabling key %s..."
 msgstr "Deaktiverer nøkkel %s..."
 
-#: scripts/pacman-key.sh.in:381
+#: scripts/pacman-key.sh.in:378
 msgid "Disabled %s key."
 msgid_plural "Disabled %s keys."
 msgstr[0] ""
 msgstr[1] ""
 
-#: scripts/pacman-key.sh.in:388
+#: scripts/pacman-key.sh.in:385
 msgid "A specified keyfile could not be added to the keyring."
 msgstr "Angitt nøkkel kan ikke legges til nøkkelknippet."
 
-#: scripts/pacman-key.sh.in:396
+#: scripts/pacman-key.sh.in:393
 msgid "A specified key could not be removed from the keyring."
 msgstr "Angitt nøkkel kan ikke fjernes fra nøkkelknippet."
 
-#: scripts/pacman-key.sh.in:406
+#: scripts/pacman-key.sh.in:403
 msgid "The key identified by %s could not be edited."
 msgstr "Kan ikke redigere nøkkel %s."
 
-#: scripts/pacman-key.sh.in:418
+#: scripts/pacman-key.sh.in:415
 msgid "A specified key could not be exported from the keyring."
 msgstr "Angitt nøkkel kan ikke eksporteres fra nøkkelknippet."
 
-#: scripts/pacman-key.sh.in:426
+#: scripts/pacman-key.sh.in:423
 msgid "The fingerprint of a specified key could not be determined."
 msgstr "Kunne ikke finne fingeravtrykket til den angitte nøkkelen."
 
-#: scripts/pacman-key.sh.in:439 scripts/pacman-key.sh.in:458
+#: scripts/pacman-key.sh.in:436 scripts/pacman-key.sh.in:455
 msgid "%s could not be imported."
 msgstr "%s kunne ikke importeres."
 
-#: scripts/pacman-key.sh.in:443 scripts/pacman-key.sh.in:462
+#: scripts/pacman-key.sh.in:440 scripts/pacman-key.sh.in:459
 msgid "File %s does not exist and could not be imported."
 msgstr "Filen %s eksisterer ikke og kunne ikke importeres."
 
-#: scripts/pacman-key.sh.in:474
+#: scripts/pacman-key.sh.in:471
 msgid "A specified key could not be listed."
 msgstr "Kan ikke liste angitt nøkkel."
 
-#: scripts/pacman-key.sh.in:482
+#: scripts/pacman-key.sh.in:479
 msgid "A specified signature could not be listed."
 msgstr "En angitt signatur kunne ikke listes opp."
 
-#: scripts/pacman-key.sh.in:494
+#: scripts/pacman-key.sh.in:491
 msgid "Locally signing key %s..."
 msgstr "Signerer nøkkel %s lokalt..."
 
-#: scripts/pacman-key.sh.in:499
+#: scripts/pacman-key.sh.in:496
 msgid "%s could not be locally signed."
 msgstr "%s kunne ikke signeres lokalt."
 
-#: scripts/pacman-key.sh.in:509
+#: scripts/pacman-key.sh.in:506
 msgid "Locally signed %s key."
 msgid_plural "Locally signed %s keys."
 msgstr[0] ""
 msgstr[1] ""
 
-#: scripts/pacman-key.sh.in:532
+#: scripts/pacman-key.sh.in:529
 msgid "Remote key not fetched correctly from WKD or keyserver."
 msgstr ""
 "Kan ikke hente ekstern nøkkel fra hverken nøkkelkatalog eller nøkkeltjener."
 
-#: scripts/pacman-key.sh.in:537
+#: scripts/pacman-key.sh.in:534
 msgid "Remote key not fetched correctly from keyserver."
 msgstr "Ekstern nøkkel kunne ikke hentes riktig fra nøkkeltjener."
 
-#: scripts/pacman-key.sh.in:569
+#: scripts/pacman-key.sh.in:566
 msgid "Could not update key: %s"
 msgstr "Kunne ikke oppdatere nøkkel: %s"
 
-#: scripts/pacman-key.sh.in:590 scripts/repo-add.sh.in:268
+#: scripts/pacman-key.sh.in:587 scripts/repo-add.sh.in:268
 msgid "Cannot use armored signatures for packages: %s"
 msgstr "Kunne ikke bruke herdete signaturer for følgende pakker: %s"
 
-#: scripts/pacman-key.sh.in:598
+#: scripts/pacman-key.sh.in:595
 msgid "The signature verification for %s failed."
 msgstr ""
 
-#: scripts/pacman-key.sh.in:604
+#: scripts/pacman-key.sh.in:601
 msgid "The signature %s is not trusted."
 msgstr ""
 
-#: scripts/pacman-key.sh.in:612
+#: scripts/pacman-key.sh.in:609
 msgid "Updating trust database..."
 msgstr "Oppdaterer databasen med betrodde kilder..."
 
-#: scripts/pacman-key.sh.in:614
+#: scripts/pacman-key.sh.in:611
 msgid "Trust database could not be updated."
 msgstr "Database for betrodde kilder kunne ikke oppdateres."
 
-#: scripts/pacman-key.sh.in:693
+#: scripts/pacman-key.sh.in:690
 msgid "Cannot find the %s binary required for all %s operations."
 msgstr "Fant ikke programmet %s, for alle %s operasjoner."
 
-#: scripts/pacman-key.sh.in:698
+#: scripts/pacman-key.sh.in:695
 msgid "%s needs to be run as root for this operation."
 msgstr "%s trenger administratortilgang"
 
-#: scripts/pacman-key.sh.in:704
+#: scripts/pacman-key.sh.in:701
 msgid "%s configuration file '%s' not found."
 msgstr "%s fant ikke konfigurasjonsfilen '%s'."
 
-#: scripts/pacman-key.sh.in:727
+#: scripts/pacman-key.sh.in:724
 msgid "no operation specified (use -h for help)"
 msgstr "ingen valgt handling (bruk -h for hjelp)"
 
-#: scripts/pacman-key.sh.in:732
+#: scripts/pacman-key.sh.in:729
 msgid "Multiple operations specified."
 msgstr "Flere handlinger ble valgt samtidig."
 
-#: scripts/pacman-key.sh.in:733
+#: scripts/pacman-key.sh.in:730
 msgid "Please run %s with each operation separately."
 msgstr "Vennligst kjør %s med hver oppgave for seg."
 
-#: scripts/pacman-key.sh.in:741
+#: scripts/pacman-key.sh.in:738
 msgid "No targets specified"
 msgstr "Ingen angitte mål"
 
@@ -1404,26 +1408,26 @@ msgid "Failure while pulling %s"
 msgstr "Feil ved henting av %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
-#: scripts/libmakepkg/source/git.sh.in:113
+#: scripts/libmakepkg/source/git.sh.in:120
 #: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Ukjent referanse: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:82 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "Kloner lokalt %s arkiv over %s..."
 
 #: scripts/libmakepkg/source/bzr.sh.in:100
-#: scripts/libmakepkg/source/git.sh.in:90
+#: scripts/libmakepkg/source/git.sh.in:97
 #: scripts/libmakepkg/source/hg.sh.in:102
 msgid "Failure while updating working copy of %s %s repo"
 msgstr "Kunne ikke oppdatere lokalkopien av %s %s arkivet"
 
 #: scripts/libmakepkg/source/bzr.sh.in:105
-#: scripts/libmakepkg/source/git.sh.in:96
-#: scripts/libmakepkg/source/git.sh.in:130
+#: scripts/libmakepkg/source/git.sh.in:103
+#: scripts/libmakepkg/source/git.sh.in:137
 #: scripts/libmakepkg/source/hg.sh.in:107
 msgid "Failure while creating working copy of %s %s repo"
 msgstr "Kunne ikke klone lokalt %s arkiv over %s..."
@@ -1477,7 +1481,7 @@ msgstr "Oppdaterer %s %s arkiv..."
 msgid "Failure while updating %s %s repo"
 msgstr "Kunne ikke oppdatere %s %s arkiv"
 
-#: scripts/libmakepkg/source/git.sh.in:122
+#: scripts/libmakepkg/source/git.sh.in:129
 msgid "Failure while checking out version %s, the git tag has been forged"
 msgstr "Kunne ikke sjekke ut versjon %s, git tag-en har blitt forfalsket"
 

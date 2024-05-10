@@ -42,8 +42,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Wieland Hoffmann <themineo+transifex@googlemail.com>, "
 "2011,2013,2016\n"
@@ -160,27 +160,27 @@ msgstr "%s wurde als %s.pacnew installiert\n"
 msgid "%s saved as %s.pacsave\n"
 msgstr "%s wurde als %s.pacsave gespeichert\n"
 
-#: src/pacman/callback.c:445
+#: src/pacman/callback.c:446
 #, c-format
 msgid "%s is in IgnorePkg/IgnoreGroup. Install anyway?"
 msgstr "%s ist in IgnorePkg/IgnoreGroup. Trotzdem installieren?"
 
-#: src/pacman/callback.c:455
+#: src/pacman/callback.c:456
 #, c-format
 msgid "Replace %s with %s/%s?"
 msgstr "%s durch %s/%s ersetzen?"
 
-#: src/pacman/callback.c:467
+#: src/pacman/callback.c:468
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict. Remove %s?"
 msgstr ""
 
-#: src/pacman/callback.c:478
+#: src/pacman/callback.c:479
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict (%s). Remove %s?"
 msgstr ""
 
-#: src/pacman/callback.c:503
+#: src/pacman/callback.c:504
 #, c-format
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
@@ -193,7 +193,7 @@ msgstr[1] ""
 "Die folgenden Pakete können aufgrund nicht auflösbarer Abhängigkeiten nicht "
 "aktualisiert werden:\n"
 
-#: src/pacman/callback.c:509
+#: src/pacman/callback.c:510
 #, c-format
 msgid "Do you want to skip the above package for this upgrade?"
 msgid_plural "Do you want to skip the above packages for this upgrade?"
@@ -202,14 +202,14 @@ msgstr[0] ""
 msgstr[1] ""
 "Möchten Sie die oben genannten Pakete bei dieser Aktualisierung überspringen?"
 
-#: src/pacman/callback.c:520
+#: src/pacman/callback.c:521
 #, c-format
 msgid "There is %zu provider available for %s\n"
 msgid_plural "There are %zu providers available for %s:\n"
 msgstr[0] "Es steht %zu Anbieter für %s zur Verfügung:\n"
 msgstr[1] "Es stehen %zu Anbieter für %s zur Verfügung:\n"
 
-#: src/pacman/callback.c:531
+#: src/pacman/callback.c:532
 #, c-format
 msgid ""
 "File %s is corrupted (%s).\n"
@@ -218,87 +218,87 @@ msgstr ""
 "Datei %s ist beschädigt (%s).\n"
 "Soll die Datei entfernt werden?"
 
-#: src/pacman/callback.c:542
+#: src/pacman/callback.c:543
 #, c-format
 msgid "Import PGP key %s?"
 msgstr "PGP-Schlüssel %s importieren?"
 
-#: src/pacman/callback.c:545
+#: src/pacman/callback.c:546
 #, c-format
 msgid "Import PGP key %s, \"%s\"?"
 msgstr "PGP Schlüssel %s, »%s« importieren?"
 
-#: src/pacman/callback.c:607
+#: src/pacman/callback.c:608
 #, c-format
 msgid "installing"
 msgstr "Installiert wird"
 
-#: src/pacman/callback.c:610
+#: src/pacman/callback.c:611
 #, c-format
 msgid "upgrading"
 msgstr "Aktualisiert wird"
 
-#: src/pacman/callback.c:613
+#: src/pacman/callback.c:614
 #, c-format
 msgid "downgrading"
 msgstr "Herunterstufung läuft"
 
-#: src/pacman/callback.c:616
+#: src/pacman/callback.c:617
 #, c-format
 msgid "reinstalling"
 msgstr "Reinstalliert wird"
 
-#: src/pacman/callback.c:619
+#: src/pacman/callback.c:620
 #, c-format
 msgid "removing"
 msgstr "Entfernung läuft"
 
-#: src/pacman/callback.c:622
+#: src/pacman/callback.c:623
 #, c-format
 msgid "checking for file conflicts"
 msgstr "Auf Dateikonflikte wird geprüft"
 
-#: src/pacman/callback.c:625
+#: src/pacman/callback.c:626
 #, c-format
 msgid "checking available disk space"
 msgstr "Verfügbarer Festplattenspeicher wird ermittelt"
 
-#: src/pacman/callback.c:628
+#: src/pacman/callback.c:629
 #, c-format
 msgid "checking package integrity"
 msgstr "Paket-Integrität wird überprüft"
 
-#: src/pacman/callback.c:631
+#: src/pacman/callback.c:632
 #, c-format
 msgid "checking keys in keyring"
 msgstr "Schlüssel im Schlüsselbund werden geprüft"
 
-#: src/pacman/callback.c:634
+#: src/pacman/callback.c:635
 #, c-format
 msgid "loading package files"
 msgstr "Paket-Dateien werden geladen"
 
-#: src/pacman/callback.c:755
+#: src/pacman/callback.c:756
 #, c-format
 msgid "Total"
 msgstr "Gesamt"
 
-#: src/pacman/callback.c:885
+#: src/pacman/callback.c:886
 #, c-format
 msgid " %s downloading...\n"
 msgstr " %s wird heruntergeladen …\n"
 
-#: src/pacman/callback.c:1054
+#: src/pacman/callback.c:1055
 #, c-format
 msgid " %s is up to date"
 msgstr " %s ist aktuell"
 
-#: src/pacman/callback.c:1080
+#: src/pacman/callback.c:1081
 #, c-format
 msgid " %s failed to download"
 msgstr " %s konnte nicht heruntergeladen werden"
 
-#: src/pacman/callback.c:1129
+#: src/pacman/callback.c:1130
 #, c-format
 msgid "unknown callback event type %d for %s\n"
 msgstr "unbekannter Callback-Ereignistyp %d für %s\n"

@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: scootergrisen, 2017\n"
 "Language-Team: Danish (http://app.transifex.com/toofishes/archlinux-pacman/"
@@ -55,7 +55,7 @@ msgstr "advarsel givet under udpakning %s (%s)\n"
 msgid "could not extract %s (%s)\n"
 msgstr "kunne ikke udpakke %s (%s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "kunne ikke omdøbe %s til %s (%s)\n"
@@ -195,7 +195,7 @@ msgstr "ukendt valideringstype for pakke %s: %s\n"
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
+msgid "%s: unknown key '%s' in local database\n"
 msgstr ""
 
 #: lib/libalpm/be_package.c:255
@@ -281,7 +281,7 @@ msgstr "ukendt databaseful: %s\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
+msgid "%s: unknown key '%s' in sync database\n"
 msgstr ""
 
 #: lib/libalpm/db.c:413
@@ -422,12 +422,12 @@ msgstr ""
 msgid "curl transfer error: %d\n"
 msgstr ""
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "kunne ikke indhente nogle filer\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr ""
@@ -856,17 +856,17 @@ msgstr "kan ikke fjerne fil »%s«:%s\n"
 msgid "could not backup %s due to PATH_MAX overflow\n"
 msgstr "kunne ikke sikkerhedskopiere %s på grund af PATH_MAX-overløb\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "kan ikke fjerne %s (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "kunne ikke fjerne databasepunkt %s-%s\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "kunne ikke fjerne punkt '%s' fra cache\n"

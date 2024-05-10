@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2018,2020-2021\n"
 "Language-Team: Hindi (http://app.transifex.com/toofishes/archlinux-pacman/"
@@ -124,27 +124,27 @@ msgstr "%s %s.pacnew के रूप में इंस्टॉल\n"
 msgid "%s saved as %s.pacsave\n"
 msgstr "%s %s.pacsave के रूप में संचित\n"
 
-#: src/pacman/callback.c:445
+#: src/pacman/callback.c:446
 #, c-format
 msgid "%s is in IgnorePkg/IgnoreGroup. Install anyway?"
 msgstr "%s IgnorePkg/IgnoreGroup में है। फिर भी इंस्टॉल करें?"
 
-#: src/pacman/callback.c:455
+#: src/pacman/callback.c:456
 #, c-format
 msgid "Replace %s with %s/%s?"
 msgstr "%s को %s/%s से बदलें?"
 
-#: src/pacman/callback.c:467
+#: src/pacman/callback.c:468
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict. Remove %s?"
 msgstr ""
 
-#: src/pacman/callback.c:478
+#: src/pacman/callback.c:479
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict (%s). Remove %s?"
 msgstr ""
 
-#: src/pacman/callback.c:503
+#: src/pacman/callback.c:504
 #, c-format
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
@@ -155,21 +155,21 @@ msgstr[0] ""
 msgstr[1] ""
 "असमन्वयित आश्रित पैकेज होने के कारण निम्नलिखित पैकेज अपग्रेड करना संभव नहीं है :\n"
 
-#: src/pacman/callback.c:509
+#: src/pacman/callback.c:510
 #, c-format
 msgid "Do you want to skip the above package for this upgrade?"
 msgid_plural "Do you want to skip the above packages for this upgrade?"
 msgstr[0] "इस अपग्रेड हेतु, क्या आप ऊपर दिए पैकेज को निरस्त करना चाहते हैं?"
 msgstr[1] "इस अपग्रेड हेतु , क्या आप ऊपर दिए पैकेज निरस्त करना चाहते हैं?"
 
-#: src/pacman/callback.c:520
+#: src/pacman/callback.c:521
 #, c-format
 msgid "There is %zu provider available for %s\n"
 msgid_plural "There are %zu providers available for %s:\n"
-msgstr[0] "%s हेतु %zu प्रदाता उपलब्ध है\n"
-msgstr[1] "%s हेतु %zu प्रदाता उपलब्ध हैं :\n"
+msgstr[0] "%2$s हेतु %1$zu प्रदाता उपलब्ध है\n"
+msgstr[1] "%2$s हेतु %1$zu प्रदाता उपलब्ध हैं :\n"
 
-#: src/pacman/callback.c:531
+#: src/pacman/callback.c:532
 #, c-format
 msgid ""
 "File %s is corrupted (%s).\n"
@@ -178,87 +178,87 @@ msgstr ""
 "फाइल %s विकृत है (%s)।\n"
 "क्या इसे हटाना चाहते हैं?"
 
-#: src/pacman/callback.c:542
+#: src/pacman/callback.c:543
 #, c-format
 msgid "Import PGP key %s?"
 msgstr "पीजीपी कुंजी %s आयात करें?"
 
-#: src/pacman/callback.c:545
+#: src/pacman/callback.c:546
 #, c-format
 msgid "Import PGP key %s, \"%s\"?"
 msgstr "पीजीपी कुंजी %s, \"%s\" आयात करें?"
 
-#: src/pacman/callback.c:607
+#: src/pacman/callback.c:608
 #, c-format
 msgid "installing"
 msgstr "इंस्टॉल"
 
-#: src/pacman/callback.c:610
+#: src/pacman/callback.c:611
 #, c-format
 msgid "upgrading"
 msgstr "अपग्रेड"
 
-#: src/pacman/callback.c:613
+#: src/pacman/callback.c:614
 #, c-format
 msgid "downgrading"
 msgstr "डाउनग्रेड"
 
-#: src/pacman/callback.c:616
+#: src/pacman/callback.c:617
 #, c-format
 msgid "reinstalling"
 msgstr "पुनः इंस्टॉल"
 
-#: src/pacman/callback.c:619
+#: src/pacman/callback.c:620
 #, c-format
 msgid "removing"
 msgstr "हटेगा"
 
-#: src/pacman/callback.c:622
+#: src/pacman/callback.c:623
 #, c-format
 msgid "checking for file conflicts"
 msgstr "विरुद्ध फाइल जाँच"
 
-#: src/pacman/callback.c:625
+#: src/pacman/callback.c:626
 #, c-format
 msgid "checking available disk space"
 msgstr "उपलब्ध डिस्क स्पेस जाँच"
 
-#: src/pacman/callback.c:628
+#: src/pacman/callback.c:629
 #, c-format
 msgid "checking package integrity"
 msgstr "पैकेज अखंडता जाँच"
 
-#: src/pacman/callback.c:631
+#: src/pacman/callback.c:632
 #, c-format
 msgid "checking keys in keyring"
 msgstr "कुंजी-संग्रह कुंजियों की जाँच"
 
-#: src/pacman/callback.c:634
+#: src/pacman/callback.c:635
 #, c-format
 msgid "loading package files"
 msgstr "पैकेज फाइलें लोड"
 
-#: src/pacman/callback.c:755
+#: src/pacman/callback.c:756
 #, c-format
 msgid "Total"
 msgstr "कुल"
 
-#: src/pacman/callback.c:885
+#: src/pacman/callback.c:886
 #, c-format
 msgid " %s downloading...\n"
 msgstr "%s डाउनलोड जारी...\n"
 
-#: src/pacman/callback.c:1054
+#: src/pacman/callback.c:1055
 #, c-format
 msgid " %s is up to date"
 msgstr "%s नवीनतम है"
 
-#: src/pacman/callback.c:1080
+#: src/pacman/callback.c:1081
 #, c-format
 msgid " %s failed to download"
 msgstr "%s डाउनलोड करना विफल"
 
-#: src/pacman/callback.c:1129
+#: src/pacman/callback.c:1130
 #, c-format
 msgid "unknown callback event type %d for %s\n"
 msgstr "%2$s हेतु अज्ञात अनुरोध कार्य प्रकार %1$d\n"
@@ -1444,8 +1444,8 @@ msgstr "पैकेज-संग्रह \"%s\" नहीं मिला।\n
 #, c-format
 msgid "There is %d member in group %s%s%s:\n"
 msgid_plural "There are %d members in group %s%s%s:\n"
-msgstr[0] "%s%s%s समूह में %d सदस्य है :\n"
-msgstr[1] "%s%s%s समूह में %d सदस्य हैं :\n"
+msgstr[0] "%2$s%3$s%4$s समूह में %1$d सदस्य है :\n"
+msgstr[1] "%2$s%3$s%4$s समूह में %1$d सदस्य हैं :\n"
 
 #: src/pacman/sync.c:639
 #, c-format

@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2019,2021,2023-2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/toofishes/"
@@ -139,28 +139,28 @@ msgstr "%s 以 %s.pacnew 檔名安裝\n"
 msgid "%s saved as %s.pacsave\n"
 msgstr "%s 已存至 %s.pacsave\n"
 
-#: src/pacman/callback.c:445
+#: src/pacman/callback.c:446
 #, c-format
 msgid "%s is in IgnorePkg/IgnoreGroup. Install anyway?"
 msgstr ""
 "%s 位於 IgnorePkg/IgnoreGroup (忽略軟體包/忽略軟體包群組) 中。確定要安裝嗎？"
 
-#: src/pacman/callback.c:455
+#: src/pacman/callback.c:456
 #, c-format
 msgid "Replace %s with %s/%s?"
 msgstr "使用 %2$s/%3$s 替換 %1$s？"
 
-#: src/pacman/callback.c:467
+#: src/pacman/callback.c:468
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict. Remove %s?"
 msgstr "%s-%s%s%s 與 %s-%s%s%s 有衝突。刪除 %s 嗎？"
 
-#: src/pacman/callback.c:478
+#: src/pacman/callback.c:479
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict (%s). Remove %s?"
 msgstr "%s-%s%s%s 與 %s-%s%s%s 有衝突 (%s)。刪除 %s 嗎？"
 
-#: src/pacman/callback.c:503
+#: src/pacman/callback.c:504
 #, c-format
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
@@ -168,19 +168,19 @@ msgid_plural ""
 "The following packages cannot be upgraded due to unresolvable dependencies:\n"
 msgstr[0] "因為無法解決依賴關係，以下軟體包無法進行更新：\n"
 
-#: src/pacman/callback.c:509
+#: src/pacman/callback.c:510
 #, c-format
 msgid "Do you want to skip the above package for this upgrade?"
 msgid_plural "Do you want to skip the above packages for this upgrade?"
 msgstr[0] "您想在本次更新中跳過上述軟體包嗎？"
 
-#: src/pacman/callback.c:520
+#: src/pacman/callback.c:521
 #, c-format
 msgid "There is %zu provider available for %s\n"
 msgid_plural "There are %zu providers available for %s:\n"
 msgstr[0] "有 %zu 個提供者可供 %s：\n"
 
-#: src/pacman/callback.c:531
+#: src/pacman/callback.c:532
 #, c-format
 msgid ""
 "File %s is corrupted (%s).\n"
@@ -189,87 +189,87 @@ msgstr ""
 " %s 檔案毀損(%s)。\n"
 "你要刪除它嗎?"
 
-#: src/pacman/callback.c:542
+#: src/pacman/callback.c:543
 #, c-format
 msgid "Import PGP key %s?"
 msgstr "匯入 PGP 金鑰 %s？"
 
-#: src/pacman/callback.c:545
+#: src/pacman/callback.c:546
 #, c-format
 msgid "Import PGP key %s, \"%s\"?"
 msgstr "匯入 PGP 金鑰 %s，「%s」？"
 
-#: src/pacman/callback.c:607
+#: src/pacman/callback.c:608
 #, c-format
 msgid "installing"
 msgstr "正在安裝"
 
-#: src/pacman/callback.c:610
+#: src/pacman/callback.c:611
 #, c-format
 msgid "upgrading"
 msgstr "正在更新"
 
-#: src/pacman/callback.c:613
+#: src/pacman/callback.c:614
 #, c-format
 msgid "downgrading"
 msgstr "正在降級"
 
-#: src/pacman/callback.c:616
+#: src/pacman/callback.c:617
 #, c-format
 msgid "reinstalling"
 msgstr "正在重裝"
 
-#: src/pacman/callback.c:619
+#: src/pacman/callback.c:620
 #, c-format
 msgid "removing"
 msgstr "正在刪除"
 
-#: src/pacman/callback.c:622
+#: src/pacman/callback.c:623
 #, c-format
 msgid "checking for file conflicts"
 msgstr "正在檢查檔案衝突"
 
-#: src/pacman/callback.c:625
+#: src/pacman/callback.c:626
 #, c-format
 msgid "checking available disk space"
 msgstr "正在檢查可用磁碟空間"
 
-#: src/pacman/callback.c:628
+#: src/pacman/callback.c:629
 #, c-format
 msgid "checking package integrity"
 msgstr "正在檢查軟體包完整性"
 
-#: src/pacman/callback.c:631
+#: src/pacman/callback.c:632
 #, c-format
 msgid "checking keys in keyring"
 msgstr "正在檢查鑰匙圈中的鑰匙"
 
-#: src/pacman/callback.c:634
+#: src/pacman/callback.c:635
 #, c-format
 msgid "loading package files"
 msgstr "正在載入軟體包檔案"
 
-#: src/pacman/callback.c:755
+#: src/pacman/callback.c:756
 #, c-format
 msgid "Total"
 msgstr "總共"
 
-#: src/pacman/callback.c:885
+#: src/pacman/callback.c:886
 #, c-format
 msgid " %s downloading...\n"
 msgstr "正在下載 %s……\n"
 
-#: src/pacman/callback.c:1054
+#: src/pacman/callback.c:1055
 #, c-format
 msgid " %s is up to date"
 msgstr " %s 已經是最新版本"
 
-#: src/pacman/callback.c:1080
+#: src/pacman/callback.c:1081
 #, c-format
 msgid " %s failed to download"
 msgstr "%s 下載失敗"
 
-#: src/pacman/callback.c:1129
+#: src/pacman/callback.c:1130
 #, c-format
 msgid "unknown callback event type %d for %s\n"
 msgstr "未知的 callback 活動類型 %d 於 %s\n"
@@ -446,12 +446,12 @@ msgstr "無法註冊「%s」資料庫 (%s)\n"
 #: src/pacman/conf.c:821
 #, c-format
 msgid "could not add cache server URL to database '%s': %s (%s)\n"
-msgstr "無法加入快取伺服器 URL 到資料庫「%s」：%s (%s)\n"
+msgstr "無法新增快取伺服器 URL 到資料庫「%s」：%s (%s)\n"
 
 #: src/pacman/conf.c:830
 #, c-format
 msgid "could not add server URL to database '%s': %s (%s)\n"
-msgstr "無法添加伺服器 URL 到資料庫「%s」：%s (%s)\n"
+msgstr "無法新增伺服器 URL 到資料庫「%s」：%s (%s)\n"
 
 #: src/pacman/conf.c:857
 #, c-format

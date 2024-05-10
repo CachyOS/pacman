@@ -19,10 +19,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
-"Last-Translator: Luna Jernberg <droidbittin@gmail.com>, 2024\n"
+"Last-Translator: riiga <riiga_92@hotmail.com>, 2024\n"
 "Language-Team: Swedish (http://app.transifex.com/toofishes/archlinux-pacman/"
 "language/sv/)\n"
 "Language: sv\n"
@@ -61,7 +61,7 @@ msgstr "varning given vid extrahering av %s (%s)\n"
 msgid "could not extract %s (%s)\n"
 msgstr "kunde inte extrahera %s (%s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "kunde inte döpa om %s till %s (%s)\n"
@@ -200,8 +200,8 @@ msgstr "Okänd valideringstyp för packet %s: %s⏎\n"
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
-msgstr "%s: okänd nyckel '%s' i sync databas\n"
+msgid "%s: unknown key '%s' in local database\n"
+msgstr "%s: okänd nyckel '%s' i lokal databas\n"
 
 #: lib/libalpm/be_package.c:255
 #, c-format
@@ -288,8 +288,8 @@ msgstr "okänd databasfil: %s\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
-msgstr "%s: okänd nyckel '%s' i lokal databas\n"
+msgid "%s: unknown key '%s' in sync database\n"
+msgstr "%s: okänd nyckel '%s' i sync databas\n"
 
 #: lib/libalpm/db.c:413
 #, c-format
@@ -430,12 +430,12 @@ msgstr "curl returnerade fel %d från överföring\n"
 msgid "curl transfer error: %d\n"
 msgstr "curl överföringsfel: %d\n"
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "misslyckades att hämta några filer⏎\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr "nedladdningen är klar men ingen fil i cachen\n"
@@ -868,17 +868,17 @@ msgstr "kan inte ta bort '%s': %s\n"
 msgid "could not backup %s due to PATH_MAX overflow\n"
 msgstr "kunde inte säkerhetskopiera %s på grund av PATH_MAX-överflöd\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "kunde ej ta bort %s (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "kunde inte ta bort databasinlägget %s-%s\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "kunde inte ta bort '%s' från cachen\n"

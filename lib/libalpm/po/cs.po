@@ -9,7 +9,7 @@
 # IAmNotImportant, 2017
 # Jaroslav Lichtblau <l10n@lichtblau.cz>, 2014-2015
 # Jaroslav Lichtblau <jlichtblau@seznam.cz>, 2014,2022
-# Jiří Podhorný <jp@email.cz>, 2023
+# Jiří Podhorný <jp@email.cz>, 2023-2024
 # Lukáš Kucharczyk <lukas@kucharczyk.xyz>, 2020
 # mmm <markotahal@gmail.com>, 2013
 # mmm <markotahal@gmail.com>, 2011
@@ -19,10 +19,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
-"Last-Translator: Vojtěch Gondžala <vojtech.gondzala@gmail.com>, 2011,2013\n"
+"Last-Translator: Jiří Podhorný <jp@email.cz>, 2023-2024\n"
 "Language-Team: Czech (http://app.transifex.com/toofishes/archlinux-pacman/"
 "language/cs/)\n"
 "Language: cs\n"
@@ -50,7 +50,7 @@ msgstr "snížení verze balíčku %s (%s => %s)\n"
 #: lib/libalpm/add.c:129
 #, c-format
 msgid "cannot allocate disk archive object"
-msgstr "nedostatek paměti pro alokaci objektu"
+msgstr "nemohu alokovat objekt archivu na disku"
 
 #: lib/libalpm/add.c:143 lib/libalpm/util.c:389
 #, c-format
@@ -62,7 +62,7 @@ msgstr "varování při rozbalování %s (%s)\n"
 msgid "could not extract %s (%s)\n"
 msgstr "nelze rozbalit %s (%s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "nelze přejmenovat %s na %s (%s)\n"
@@ -175,7 +175,7 @@ msgstr "poškozený záznam v databázi '%s'\n"
 #: lib/libalpm/be_local.c:663
 #, c-format
 msgid "unknown install reason for package %s: %s\n"
-msgstr ""
+msgstr "neznámý důvod instalace balíčku %s: %s\n"
 
 #: lib/libalpm/be_local.c:743 lib/libalpm/be_local.c:856
 #: lib/libalpm/be_local.c:996 lib/libalpm/be_local.c:1102
@@ -202,13 +202,13 @@ msgstr "neznámý způsob ověření pro balíček %s: %s\n"
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
-msgstr ""
+msgid "%s: unknown key '%s' in local database\n"
+msgstr "%s: neznámý klíč '%s' v lokální databázi\n"
 
 #: lib/libalpm/be_package.c:255
 #, c-format
 msgid "%s: unknown key '%s' in package description\n"
-msgstr ""
+msgstr "%s: neznámý klíč '%s' v popisu balíčku\n"
 
 #: lib/libalpm/be_package.c:482 lib/libalpm/be_package.c:635
 #: lib/libalpm/be_package.c:647
@@ -234,7 +234,7 @@ msgstr "chybí jméno balíčku v %s\n"
 #: lib/libalpm/be_package.c:610
 #, c-format
 msgid "missing package version in %s\n"
-msgstr "chybí veze balíčku v %s\n"
+msgstr "chybí verze balíčku v %s\n"
 
 #: lib/libalpm/be_package.c:614
 #, c-format
@@ -288,8 +288,8 @@ msgstr "neznámý soubor databáze: %s\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
-msgstr ""
+msgid "%s: unknown key '%s' in sync database\n"
+msgstr "%s: neznámý klíč '%s' v sync databázi\n"
 
 #: lib/libalpm/db.c:413
 #, c-format
@@ -339,7 +339,7 @@ msgstr "nepodařilo se získat informace o souborovém systému\n"
 #: lib/libalpm/diskspace.c:254
 #, c-format
 msgid "could not get file information for %s\n"
-msgstr "nelze získat informace o souboru pro %s\n"
+msgstr "nelze získat informace o souboru %s\n"
 
 #: lib/libalpm/diskspace.c:268 lib/libalpm/diskspace.c:327
 #, c-format
@@ -380,7 +380,7 @@ msgstr "příliš mnoho chyb v %s, vynechání pokračování této transakce\n"
 #: lib/libalpm/dload.c:145
 #, c-format
 msgid "fatal error from %s, skipping for the remainder of this transaction\n"
-msgstr ""
+msgstr "fatální chyba v %s, vynechání pokračování této transakce\n"
 
 #: lib/libalpm/dload.c:263
 #, c-format
@@ -429,12 +429,12 @@ msgstr "chyba %d v curl při přenosu\n"
 msgid "curl transfer error: %d\n"
 msgstr "chyba přenosu curl : %d\n"
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "selhalo získání některých souborů\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr "stahování úspěšně dokončeno, ale soubor nenalezen v mezipaměti\n"
@@ -552,7 +552,7 @@ msgstr "pro repositář nejsou nastaveny žádné servery"
 #: lib/libalpm/error.c:88
 #, c-format
 msgid "transaction already initialized"
-msgstr "transakce inicializována"
+msgstr "transakce již byla inicializována"
 
 #: lib/libalpm/error.c:90 lib/libalpm/error.c:96
 #, c-format
@@ -602,7 +602,7 @@ msgstr "nelze nalézt nebo přečíst balíček"
 #: lib/libalpm/error.c:111
 #, c-format
 msgid "operation cancelled due to ignorepkg"
-msgstr "operace byla zrušena kvůli ignorovanému balíčku"
+msgstr "operace byla zrušena kvůli nastavení ignorepkg"
 
 #: lib/libalpm/error.c:113
 #, c-format
@@ -612,7 +612,7 @@ msgstr "neplatný nebo poškozený balíček"
 #: lib/libalpm/error.c:115
 #, c-format
 msgid "invalid or corrupted package (checksum)"
-msgstr "neplatná nebo poškozená databáze (kontrolní součty)"
+msgstr "neplatný nebo poškozený balíček (kontrolní součet)"
 
 #: lib/libalpm/error.c:117
 #, c-format
@@ -789,7 +789,7 @@ msgstr "nelze spustit hook %s: %s\n"
 #: lib/libalpm/hook.c:547 lib/libalpm/hook.c:559 lib/libalpm/remove.c:378
 #, c-format
 msgid "could not open directory: %s: %s\n"
-msgstr "nelze otevřít adresář %s: %s\n"
+msgstr "nelze otevřít složku: %s: %s\n"
 
 #: lib/libalpm/hook.c:575
 #, c-format
@@ -804,7 +804,7 @@ msgstr "nelze najít soubor %s: %s\n"
 #: lib/libalpm/hook.c:621
 #, c-format
 msgid "could not read directory: %s: %s\n"
-msgstr "nelze přečíst adresář: %s: %s\n"
+msgstr "nelze přečíst složku: %s: %s\n"
 
 #: lib/libalpm/package.c:614
 #, c-format
@@ -814,7 +814,7 @@ msgstr "nelze zcela načíst metadata pro balíček %s-%s\n"
 #: lib/libalpm/package.c:869
 #, c-format
 msgid "invalid package metadata (name or version missing)"
-msgstr ""
+msgstr "neplatná metadata balíčku (chybí jméno nebo verze)"
 
 #: lib/libalpm/package.c:874
 #, c-format
@@ -822,6 +822,8 @@ msgid ""
 "invalid metadata for package %s-%s (package name cannot start with '.' or "
 "'-')\n"
 msgstr ""
+"neplatná metadata balíčku %s-%s (jméno balíčku nesmí začínat na '.' nebo "
+"'-')\n"
 
 #: lib/libalpm/package.c:878
 #, c-format
@@ -829,6 +831,7 @@ msgid ""
 "invalid metadata for package %s-%s (package name contains invalid "
 "characters)\n"
 msgstr ""
+"neplatná metadata balíčku %s-%s (jméno balíčku obsahuje neplatné znaky)\n"
 
 #: lib/libalpm/package.c:885 lib/libalpm/package.c:889
 #, c-format
@@ -836,12 +839,14 @@ msgid ""
 "invalid metadata for package %s-%s (package version contains invalid "
 "characters)\n"
 msgstr ""
+"neplatná metadata balíčku %s-%s (verze balíčku obsahuje neplatné znaky)\n"
 
 #: lib/libalpm/package.c:895
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
+"neplatná metadata balíčku %s-%s (jméno a verze balíčku je příliš dlouhé)\n"
 
 #: lib/libalpm/remove.c:111
 #, c-format
@@ -851,7 +856,7 @@ msgstr "nelze nalézt %s v databázi -- vynechat\n"
 #: lib/libalpm/remove.c:146
 #, c-format
 msgid "removing %s from target list\n"
-msgstr "'%s' odstraněn ze seznamu cílů\n"
+msgstr "%s odstraněn ze seznamu cílů\n"
 
 #: lib/libalpm/remove.c:338
 #, c-format
@@ -863,17 +868,17 @@ msgstr "nelze odstranit soubor '%s': %s\n"
 msgid "could not backup %s due to PATH_MAX overflow\n"
 msgstr "nelze zazálohovat %s kvůli přetečení PATH_MAX\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "nelze odstranit %s (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "nelze odstranit záznam databáze %s-%s\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "nelze odstranit položku '%s' z mezipaměti\n"
@@ -946,12 +951,12 @@ msgstr "%s: klíč \"%s\" je neznámý\n"
 #: lib/libalpm/signing.c:983
 #, c-format
 msgid "%s: key \"%s\" is disabled\n"
-msgstr "%s: klíč \"%s\" je vypnut\n"
+msgstr "%s: klíč \"%s\" je zakázán\n"
 
 #: lib/libalpm/signing.c:987
 #, c-format
 msgid "%s: signature from \"%s\" is expired\n"
-msgstr "%s: podpis od \"%s\" vypršel\n"
+msgstr "%s: podpisu od \"%s\" vypršela platnost\n"
 
 #: lib/libalpm/signing.c:991
 #, c-format
@@ -1003,22 +1008,23 @@ msgstr "nelze nahradit soubor %s souborem %s\n"
 #: lib/libalpm/sync.c:475
 #, c-format
 msgid "packages %s and %s have the same filename: %s\n"
-msgstr "balíčky %s a %s mají stejné jméno souboru: %s\n"
+msgstr "balíčky %s a %s mají soubor se stejným jménem: %s\n"
 
 #: lib/libalpm/sync.c:544 lib/libalpm/sync.c:616
 #, c-format
 msgid "unresolvable package conflicts detected\n"
-msgstr "zjištěn konflikt nerozlišitelných balíčků\n"
+msgstr "zjištěn neřešitelný konflikt balíčků\n"
 
 #: lib/libalpm/sync.c:564
 #, c-format
 msgid "removing '%s-%s' from target list because it conflicts with '%s-%s'\n"
 msgstr ""
+"odstraňuji '%s-%s' z cílového seznamu, protože je v konfliktu s '%s-%s'\n"
 
 #: lib/libalpm/sync.c:1002 lib/libalpm/sync.c:1169
 #, c-format
 msgid "%s: could not find package in cache\n"
-msgstr ""
+msgstr "%s: balíček nenalezen v mezipaměti\n"
 
 #: lib/libalpm/sync.c:1048
 #, c-format

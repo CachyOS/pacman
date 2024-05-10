@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: 35e31c1f7beb9a73365b56f93b1457f5_fbd83d3, 2014\n"
 "Language-Team: Slovenian (http://app.transifex.com/toofishes/archlinux-"
@@ -137,27 +137,27 @@ msgstr "%s nameščeno kot %s.pacnew\n"
 msgid "%s saved as %s.pacsave\n"
 msgstr "%s shranjeno kot %s.pacsave\n"
 
-#: src/pacman/callback.c:445
+#: src/pacman/callback.c:446
 #, c-format
 msgid "%s is in IgnorePkg/IgnoreGroup. Install anyway?"
 msgstr "%s je v IgnorePkg/IgnoreGroup. Ali naj vseeno namestim?"
 
-#: src/pacman/callback.c:455
+#: src/pacman/callback.c:456
 #, c-format
 msgid "Replace %s with %s/%s?"
 msgstr "Ali zamenjam %s s/z %s/%s?"
 
-#: src/pacman/callback.c:467
+#: src/pacman/callback.c:468
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict. Remove %s?"
 msgstr ""
 
-#: src/pacman/callback.c:478
+#: src/pacman/callback.c:479
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict (%s). Remove %s?"
 msgstr ""
 
-#: src/pacman/callback.c:503
+#: src/pacman/callback.c:504
 #, c-format
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
@@ -176,7 +176,7 @@ msgstr[3] ""
 "Naslednji paketi ne morejo biti nadgrajeni, ker odvisnosti ni mogoče uspešno "
 "razrešiti:\n"
 
-#: src/pacman/callback.c:509
+#: src/pacman/callback.c:510
 #, c-format
 msgid "Do you want to skip the above package for this upgrade?"
 msgid_plural "Do you want to skip the above packages for this upgrade?"
@@ -185,16 +185,16 @@ msgstr[1] "Ali želite pri tej nadgradnji zgornja paketa izpustiti?"
 msgstr[2] "Ali želite pri tej nadgradnji zgornje pakete izpustiti?"
 msgstr[3] "Ali želite pri tej nadgradnji zgornje pakete izpustiti?"
 
-#: src/pacman/callback.c:520
+#: src/pacman/callback.c:521
 #, c-format
 msgid "There is %zu provider available for %s\n"
 msgid_plural "There are %zu providers available for %s:\n"
-msgstr[0] "Za %s je na voljo %zu ponudnik\n"
-msgstr[1] "Za %s sta a voljo %zu ponudnika:\n"
-msgstr[2] "Za %s so na voljo %zu ponundiki:\n"
-msgstr[3] "Za %s je na voljo %zu ponudnikov :\n"
+msgstr[0] "Za %2$s je na voljo %1$zu ponudnik\n"
+msgstr[1] "Za %2$s sta a voljo %1$zu ponudnika:\n"
+msgstr[2] "Za %2$s so na voljo %1$zu ponundiki:\n"
+msgstr[3] "Za %2$s je na voljo %1$zu ponudnikov :\n"
 
-#: src/pacman/callback.c:531
+#: src/pacman/callback.c:532
 #, c-format
 msgid ""
 "File %s is corrupted (%s).\n"
@@ -203,87 +203,87 @@ msgstr ""
 "Datoteka %s je poškodovana (%s).\n"
 "Ali jo želite odstraniti?"
 
-#: src/pacman/callback.c:542
+#: src/pacman/callback.c:543
 #, c-format
 msgid "Import PGP key %s?"
 msgstr "Uvoz PGP ključa %s ?"
 
-#: src/pacman/callback.c:545
+#: src/pacman/callback.c:546
 #, c-format
 msgid "Import PGP key %s, \"%s\"?"
 msgstr "Import PGP key %s, \"%s\"?"
 
-#: src/pacman/callback.c:607
+#: src/pacman/callback.c:608
 #, c-format
 msgid "installing"
 msgstr "nameščanje:"
 
-#: src/pacman/callback.c:610
+#: src/pacman/callback.c:611
 #, c-format
 msgid "upgrading"
 msgstr "posodabljanje:"
 
-#: src/pacman/callback.c:613
+#: src/pacman/callback.c:614
 #, c-format
 msgid "downgrading"
 msgstr "obnavljam prejšnjo različico"
 
-#: src/pacman/callback.c:616
+#: src/pacman/callback.c:617
 #, c-format
 msgid "reinstalling"
 msgstr "ponovno nameščanje"
 
-#: src/pacman/callback.c:619
+#: src/pacman/callback.c:620
 #, c-format
 msgid "removing"
 msgstr "odstranjevanje:"
 
-#: src/pacman/callback.c:622
+#: src/pacman/callback.c:623
 #, c-format
 msgid "checking for file conflicts"
 msgstr "preverjanje spornosti datoteke"
 
-#: src/pacman/callback.c:625
+#: src/pacman/callback.c:626
 #, c-format
 msgid "checking available disk space"
 msgstr "preverjanje prostora na disku"
 
-#: src/pacman/callback.c:628
+#: src/pacman/callback.c:629
 #, c-format
 msgid "checking package integrity"
 msgstr "preverjanje celovitosti paketa"
 
-#: src/pacman/callback.c:631
+#: src/pacman/callback.c:632
 #, c-format
 msgid "checking keys in keyring"
 msgstr "preverjanje ključev v obroču ključev"
 
-#: src/pacman/callback.c:634
+#: src/pacman/callback.c:635
 #, c-format
 msgid "loading package files"
 msgstr "nalaganje datotek"
 
-#: src/pacman/callback.c:755
+#: src/pacman/callback.c:756
 #, c-format
 msgid "Total"
 msgstr "Skupaj"
 
-#: src/pacman/callback.c:885
+#: src/pacman/callback.c:886
 #, c-format
 msgid " %s downloading...\n"
 msgstr "%s se prenaša...\n"
 
-#: src/pacman/callback.c:1054
+#: src/pacman/callback.c:1055
 #, c-format
 msgid " %s is up to date"
 msgstr "%s je aktualen"
 
-#: src/pacman/callback.c:1080
+#: src/pacman/callback.c:1081
 #, c-format
 msgid " %s failed to download"
 msgstr "%s ni bil prenešen"
 
-#: src/pacman/callback.c:1129
+#: src/pacman/callback.c:1130
 #, c-format
 msgid "unknown callback event type %d for %s\n"
 msgstr "neznan povratni klic vrste %d za %s\n"

@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Thor K. H. <nitrolinken@gmail.com>, 2019\n"
 "Language-Team: Norwegian Bokmål (http://app.transifex.com/toofishes/"
@@ -54,7 +54,7 @@ msgstr "fikk en advarsel ved utpakking av %s (%s)\n"
 msgid "could not extract %s (%s)\n"
 msgstr "kan ikke pakke ut %s (%s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "kunne ikke omdøpe %s til %s (%s)\n"
@@ -193,7 +193,7 @@ msgstr "ukjent validering for pakke %s: %s\n"
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
+msgid "%s: unknown key '%s' in local database\n"
 msgstr ""
 
 #: lib/libalpm/be_package.c:255
@@ -279,7 +279,7 @@ msgstr "ukjent databasefil: %s\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
+msgid "%s: unknown key '%s' in sync database\n"
 msgstr ""
 
 #: lib/libalpm/db.c:413
@@ -419,12 +419,12 @@ msgstr "feilen %d oppstod ved overføring med curl\n"
 msgid "curl transfer error: %d\n"
 msgstr "curl overføringsfeil: %d\n"
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "noen filer kunne ikke hentes\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr "vellykket nedlastning, men ingen fil havnet i mellomlageret\n"
@@ -853,17 +853,17 @@ msgstr "kunne ikke fjerne fil '%s': %s\n"
 msgid "could not backup %s due to PATH_MAX overflow\n"
 msgstr "kan ikke ta sikkerhetskopi av %sfordi PATH_MAX rant over\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "kunne ikke fjerne %s (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "kunne ikke fjerne databaseoppføring %s-%s\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "kunne ikke fjerne oppføring '%s' fra mellomlageret\n"

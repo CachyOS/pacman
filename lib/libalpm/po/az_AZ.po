@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the libalpm package.
 #
 # Translators:
-# Xəyyam Qocayev <xxmn77@gmail.com>, 2021-2023
+# Xəyyam Qocayev <xxmn77@gmail.com>, 2021-2024
 # Xəyyam Qocayev <xxmn77@gmail.com>, 2021,2024
 # Xəyyam Qocayev <xxmn77@gmail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
-"Last-Translator: Xəyyam Qocayev <xxmn77@gmail.com>, 2021,2024\n"
+"Last-Translator: Xəyyam Qocayev <xxmn77@gmail.com>, 2021-2024\n"
 "Language-Team: Azerbaijani (Azerbaijan) (http://app.transifex.com/toofishes/"
 "archlinux-pacman/language/az_AZ/)\n"
 "Language: az_AZ\n"
@@ -51,7 +51,7 @@ msgstr "Çıxarılarkən verilən xəbərdarlıq %s (%s)\n"
 msgid "could not extract %s (%s)\n"
 msgstr "Çıxarıla bilmədi %s (%s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "%s adı, %s kimi dəyişdirilə bilmədi (%s)\n"
@@ -193,8 +193,8 @@ msgstr "%s paketi üçün bilinməyən doğrulama: %s\n"
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
-msgstr "%s: eyniləşdirmə üçün verilənlər bazasında \"%s\"  açarı naməlumdur\n"
+msgid "%s: unknown key '%s' in local database\n"
+msgstr "%s: yerli verilənlər bazasında \"%s\" açarı naməlumdur\n"
 
 #: lib/libalpm/be_package.c:255
 #, c-format
@@ -281,8 +281,8 @@ msgstr "bilinməyən verilənlər bazası faylı: %s\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
-msgstr "%s: yerli verilənlər bazasında \"%s\" açarı naməlumdur\n"
+msgid "%s: unknown key '%s' in sync database\n"
+msgstr "%s: eyniləşdirmə üçün verilənlər bazasında \"%s\"  açarı naməlumdur\n"
 
 #: lib/libalpm/db.c:413
 #, c-format
@@ -421,12 +421,12 @@ msgstr "curl əməliyyatdan %d xətası ilə cavab verdi\n"
 msgid "curl transfer error: %d\n"
 msgstr "curl əməliyyat xətası: %d\n"
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "bəzi fayllar alına bilmədi\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr "endirmə uğurla tamamlandı, lakin keşdə fayl yoxdur\n"
@@ -863,17 +863,17 @@ msgstr "'%s' faylı silinə bilmir: %s\n"
 msgid "could not backup %s due to PATH_MAX overflow\n"
 msgstr "PATH_MAX daşması səbəbindən %s yedəklənə bilmədi\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "%s silinə bilmir (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "%s-%s verilənlər baası qeydi silinə bilmədi\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "'%s' qeydi keşdən silinə bilmədi\n"

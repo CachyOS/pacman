@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: solstice <solstice.dhiver@gmail.com>, 2012\n"
 "Language-Team: French (http://app.transifex.com/toofishes/archlinux-pacman/"
@@ -145,29 +145,29 @@ msgstr "%s installé sous le nom %s.pacnew\n"
 msgid "%s saved as %s.pacsave\n"
 msgstr "%s enregistré en tant que %s.pacsave\n"
 
-#: src/pacman/callback.c:445
+#: src/pacman/callback.c:446
 #, c-format
 msgid "%s is in IgnorePkg/IgnoreGroup. Install anyway?"
 msgstr ""
 "%s est défini comme paquet à ignorer (IgnorePkg/IgnoreGroup). L’installer "
 "tout de même ?"
 
-#: src/pacman/callback.c:455
+#: src/pacman/callback.c:456
 #, c-format
 msgid "Replace %s with %s/%s?"
 msgstr "Remplacer %s par %s/%s ?"
 
-#: src/pacman/callback.c:467
+#: src/pacman/callback.c:468
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict. Remove %s?"
 msgstr "%s - %s%s%s et %s - %s%s%s sont en conflit. Supprimer %s ?"
 
-#: src/pacman/callback.c:478
+#: src/pacman/callback.c:479
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict (%s). Remove %s?"
 msgstr "%s - %s%s%s et %s - %s%s%s sont en conflit (%s). Supprimer %s ?"
 
-#: src/pacman/callback.c:503
+#: src/pacman/callback.c:504
 #, c-format
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
@@ -183,7 +183,7 @@ msgstr[2] ""
 "Les paquets suivants ne peuvent être mis à jour à cause de dépendances "
 "insolubles :\n"
 
-#: src/pacman/callback.c:509
+#: src/pacman/callback.c:510
 #, c-format
 msgid "Do you want to skip the above package for this upgrade?"
 msgid_plural "Do you want to skip the above packages for this upgrade?"
@@ -191,7 +191,7 @@ msgstr[0] "Voulez-vous ignorer le paquet ci-dessus pour cette mise à jour ?"
 msgstr[1] "Voulez-vous ignorer les paquets ci-dessus pour cette mise à jour ?"
 msgstr[2] "Voulez-vous ignorer les paquets ci-dessus pour cette mise à jour ?"
 
-#: src/pacman/callback.c:520
+#: src/pacman/callback.c:521
 #, c-format
 msgid "There is %zu provider available for %s\n"
 msgid_plural "There are %zu providers available for %s:\n"
@@ -199,7 +199,7 @@ msgstr[0] "Il y a %zu fournisseur disponible pour %s\n"
 msgstr[1] "Il y a %zu fournisseurs disponibles pour %s :\n"
 msgstr[2] "Il y a %zu fournisseurs disponibles pour %s :\n"
 
-#: src/pacman/callback.c:531
+#: src/pacman/callback.c:532
 #, c-format
 msgid ""
 "File %s is corrupted (%s).\n"
@@ -208,87 +208,87 @@ msgstr ""
 "Le fichier %s est corrompu (%s).\n"
 "Voulez-vous le supprimer ?"
 
-#: src/pacman/callback.c:542
+#: src/pacman/callback.c:543
 #, c-format
 msgid "Import PGP key %s?"
 msgstr "Importer la clé PGP %s ?"
 
-#: src/pacman/callback.c:545
+#: src/pacman/callback.c:546
 #, c-format
 msgid "Import PGP key %s, \"%s\"?"
 msgstr "Importer la clé PGP %s, « %s » ?"
 
-#: src/pacman/callback.c:607
+#: src/pacman/callback.c:608
 #, c-format
 msgid "installing"
 msgstr "installation de"
 
-#: src/pacman/callback.c:610
+#: src/pacman/callback.c:611
 #, c-format
 msgid "upgrading"
 msgstr "mise à jour de"
 
-#: src/pacman/callback.c:613
+#: src/pacman/callback.c:614
 #, c-format
 msgid "downgrading"
 msgstr "réinstallation d’une ancienne version"
 
-#: src/pacman/callback.c:616
+#: src/pacman/callback.c:617
 #, c-format
 msgid "reinstalling"
 msgstr "réinstallation"
 
-#: src/pacman/callback.c:619
+#: src/pacman/callback.c:620
 #, c-format
 msgid "removing"
 msgstr "désinstallation de"
 
-#: src/pacman/callback.c:622
+#: src/pacman/callback.c:623
 #, c-format
 msgid "checking for file conflicts"
 msgstr "analyse des conflits entre fichiers"
 
-#: src/pacman/callback.c:625
+#: src/pacman/callback.c:626
 #, c-format
 msgid "checking available disk space"
 msgstr "vérification de l’espace disque disponible"
 
-#: src/pacman/callback.c:628
+#: src/pacman/callback.c:629
 #, c-format
 msgid "checking package integrity"
 msgstr "vérification de l’intégrité des paquets"
 
-#: src/pacman/callback.c:631
+#: src/pacman/callback.c:632
 #, c-format
 msgid "checking keys in keyring"
 msgstr "vérification des clés dans le trousseau"
 
-#: src/pacman/callback.c:634
+#: src/pacman/callback.c:635
 #, c-format
 msgid "loading package files"
 msgstr "chargement des fichiers des paquets"
 
-#: src/pacman/callback.c:755
+#: src/pacman/callback.c:756
 #, c-format
 msgid "Total"
 msgstr "Total"
 
-#: src/pacman/callback.c:885
+#: src/pacman/callback.c:886
 #, c-format
 msgid " %s downloading...\n"
 msgstr "téléchargement de %s…\n"
 
-#: src/pacman/callback.c:1054
+#: src/pacman/callback.c:1055
 #, c-format
 msgid " %s is up to date"
 msgstr " %s est à jour"
 
-#: src/pacman/callback.c:1080
+#: src/pacman/callback.c:1081
 #, c-format
 msgid " %s failed to download"
 msgstr "le fichier %s n’a pas pu être téléchargé"
 
-#: src/pacman/callback.c:1129
+#: src/pacman/callback.c:1130
 #, c-format
 msgid "unknown callback event type %d for %s\n"
 msgstr "type d'événement de rappel inconnu %d pour %s\n"
@@ -492,8 +492,8 @@ msgstr ""
 #, c-format
 msgid "could not add server URL to database '%s': %s (%s)\n"
 msgstr ""
-"ne peut pas ajouter l’URL du serveur « %2$s » à la base de données "
-"« %1$s » (%3$s)\n"
+"ne peut pas ajouter l’URL du serveur « %2$s » à la base de données « %1$s » "
+"(%3$s)\n"
 
 #: src/pacman/conf.c:857
 #, c-format
@@ -1265,8 +1265,8 @@ msgstr "      --cachedir <dossier> définit le dossier de cache\n"
 #, c-format
 msgid "      --hookdir <dir>  set an alternate hook location\n"
 msgstr ""
-"      --hookdir <dir>      spécifie un autre dossier pour les crochets (« "
-"hooks »)\n"
+"      --hookdir <dir>      spécifie un autre dossier pour les crochets "
+"(« hooks »)\n"
 
 #: src/pacman/pacman.c:220
 #, c-format

@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: tarakbumba <tarakbumba@gmail.com>, 2012\n"
 "Language-Team: Turkish (http://app.transifex.com/toofishes/archlinux-pacman/"
@@ -133,33 +133,33 @@ msgstr "%s, %s.pacnew olarak kuruldu\n"
 msgid "%s saved as %s.pacsave\n"
 msgstr "%s, %s.pacsave olarak kaydedildi\n"
 
-#: src/pacman/callback.c:445
+#: src/pacman/callback.c:446
 #, c-format
 msgid "%s is in IgnorePkg/IgnoreGroup. Install anyway?"
 msgstr ""
 "%s paketi IgnorePkg ya da IgnoreGroup içerisinde bulunuyor. Yine de "
 "kurulmasını istiyor musunuz?"
 
-#: src/pacman/callback.c:455
+#: src/pacman/callback.c:456
 #, c-format
 msgid "Replace %s with %s/%s?"
 msgstr "%s paketini %s/%s ile değiştirmek ister misiniz?"
 
-#: src/pacman/callback.c:467
+#: src/pacman/callback.c:468
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict. Remove %s?"
 msgstr ""
 "%s-%s%s%s ve %s-%s%s%s çakışıyor. %s paketinin kaldırılmasını istiyor "
 "musunuz?"
 
-#: src/pacman/callback.c:478
+#: src/pacman/callback.c:479
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict (%s). Remove %s?"
 msgstr ""
 "%s-%s%s%s ve %s-%s%s%s çakışıyor (%s). %s paketinin kaldırılmasını istiyor "
 "musunuz?"
 
-#: src/pacman/callback.c:503
+#: src/pacman/callback.c:504
 #, c-format
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
@@ -170,21 +170,21 @@ msgstr[0] ""
 msgstr[1] ""
 "Aşağıdaki paketler çözümlenemeyen bağımlılıkları nedeniyle yükseltilemez:\n"
 
-#: src/pacman/callback.c:509
+#: src/pacman/callback.c:510
 #, c-format
 msgid "Do you want to skip the above package for this upgrade?"
 msgid_plural "Do you want to skip the above packages for this upgrade?"
 msgstr[0] "Bu yükseltme için yukarıdaki paketleri atlamak istiyor musunuz?"
 msgstr[1] "Bu yükseltme için yukarıdaki paketleri atlamak istiyor musunuz?"
 
-#: src/pacman/callback.c:520
+#: src/pacman/callback.c:521
 #, c-format
 msgid "There is %zu provider available for %s\n"
 msgid_plural "There are %zu providers available for %s:\n"
 msgstr[0] "%2$s için %1$zu sağlayıcı mevcut:\n"
 msgstr[1] "%2$s için %1$zu sağlayıcı mevcut:\n"
 
-#: src/pacman/callback.c:531
+#: src/pacman/callback.c:532
 #, c-format
 msgid ""
 "File %s is corrupted (%s).\n"
@@ -193,87 +193,87 @@ msgstr ""
 "%s dosyası bozuk (%s).\n"
 "Silinmesini istiyor musunuz?"
 
-#: src/pacman/callback.c:542
+#: src/pacman/callback.c:543
 #, c-format
 msgid "Import PGP key %s?"
 msgstr "Şu PGP anahtarını içeri aktarmak istiyor musunuz? %s"
 
-#: src/pacman/callback.c:545
+#: src/pacman/callback.c:546
 #, c-format
 msgid "Import PGP key %s, \"%s\"?"
 msgstr "Şu PGP anahtarını içeri aktarmak istiyor musunuz? %s, \"%s\""
 
-#: src/pacman/callback.c:607
+#: src/pacman/callback.c:608
 #, c-format
 msgid "installing"
 msgstr "yükleniyor"
 
-#: src/pacman/callback.c:610
+#: src/pacman/callback.c:611
 #, c-format
 msgid "upgrading"
 msgstr "güncelleniyor"
 
-#: src/pacman/callback.c:613
+#: src/pacman/callback.c:614
 #, c-format
 msgid "downgrading"
 msgstr "eski sürüme çekiliyor"
 
-#: src/pacman/callback.c:616
+#: src/pacman/callback.c:617
 #, c-format
 msgid "reinstalling"
 msgstr "tekrar kuruluyor"
 
-#: src/pacman/callback.c:619
+#: src/pacman/callback.c:620
 #, c-format
 msgid "removing"
 msgstr "kaldırılıyor"
 
-#: src/pacman/callback.c:622
+#: src/pacman/callback.c:623
 #, c-format
 msgid "checking for file conflicts"
 msgstr "dosya çakışmaları kontrol ediliyor"
 
-#: src/pacman/callback.c:625
+#: src/pacman/callback.c:626
 #, c-format
 msgid "checking available disk space"
 msgstr "disk alanı kontrol ediliyor"
 
-#: src/pacman/callback.c:628
+#: src/pacman/callback.c:629
 #, c-format
 msgid "checking package integrity"
 msgstr "paket bütünlüğü kontrol ediliyor"
 
-#: src/pacman/callback.c:631
+#: src/pacman/callback.c:632
 #, c-format
 msgid "checking keys in keyring"
 msgstr "anahtarlıktaki anahtarlar kontrol ediliyor"
 
-#: src/pacman/callback.c:634
+#: src/pacman/callback.c:635
 #, c-format
 msgid "loading package files"
 msgstr "paket dosyaları yükleniyor"
 
-#: src/pacman/callback.c:755
+#: src/pacman/callback.c:756
 #, c-format
 msgid "Total"
 msgstr "Toplam"
 
-#: src/pacman/callback.c:885
+#: src/pacman/callback.c:886
 #, c-format
 msgid " %s downloading...\n"
 msgstr "%s indiriliyor ...\n"
 
-#: src/pacman/callback.c:1054
+#: src/pacman/callback.c:1055
 #, c-format
 msgid " %s is up to date"
 msgstr "%s güncel"
 
-#: src/pacman/callback.c:1080
+#: src/pacman/callback.c:1081
 #, c-format
 msgid " %s failed to download"
 msgstr "%s indirme başarısız"
 
-#: src/pacman/callback.c:1129
+#: src/pacman/callback.c:1130
 #, c-format
 msgid "unknown callback event type %d for %s\n"
 msgstr "%2$s için bilinmeyen geri arama olayı türü %1$d\n"

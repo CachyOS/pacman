@@ -15,10 +15,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
-"Last-Translator: Giovanni Scafora <scafora.giovanni@gmail.com>, 2023-2024\n"
+"Last-Translator: ~Smlb <smlb@riseup.net>, 2014\n"
 "Language-Team: Italian (http://app.transifex.com/toofishes/archlinux-pacman/"
 "language/it/)\n"
 "Language: it\n"
@@ -60,7 +60,7 @@ msgstr "è stato rilevato un warning durante l'estrazione di %s (%s)\n"
 msgid "could not extract %s (%s)\n"
 msgstr "impossibile estrarre %s (%s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "impossibile rinominare %s in %s (%s)\n"
@@ -204,8 +204,8 @@ msgstr "tipo di convalida sconosciuto per il pacchetto %s: %s\n"
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
-msgstr "%s: chiave sconosciuta '%s' nel database\n"
+msgid "%s: unknown key '%s' in local database\n"
+msgstr "%s: chiave sconosciuta '%s' nel database locale\n"
 
 #: lib/libalpm/be_package.c:255
 #, c-format
@@ -295,8 +295,8 @@ msgstr "database sconosciuto: %s\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
-msgstr "%s: chiave sconosciuta '%s' nel database locale\n"
+msgid "%s: unknown key '%s' in sync database\n"
+msgstr "%s: chiave sconosciuta '%s' nel database\n"
 
 #: lib/libalpm/db.c:413
 #, c-format
@@ -440,12 +440,12 @@ msgstr "curl ha restituito l'errore %d dal download\n"
 msgid "curl transfer error: %d\n"
 msgstr "errore di curl: %d\n"
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "impossibile scaricare alcuni file\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr "download completato con successo ma nessun file nella cache\n"
@@ -883,17 +883,17 @@ msgid "could not backup %s due to PATH_MAX overflow\n"
 msgstr ""
 "impossibile eseguire il backup di %s a causa di un overflow di PATH_MAX\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "impossibile rimuovere %s (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "impossibile rimuovere la voce %s-%s del database\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "impossibile rimuovere la voce '%s' dalla cache\n"
