@@ -15,15 +15,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
 "Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
-"POT-Creation-Date: 2024-05-10 16:53+1000\n"
+"POT-Creation-Date: 2024-07-02 10:33+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Zoran Olujić <olujicz@gmail.com>, 2011\n"
-"Language-Team: Serbian (Latin) (http://app.transifex.com/toofishes/archlinux-pacman/language/sr@latin/)\n"
+"Language-Team: Serbian (Latin) (http://app.transifex.com/toofishes/archlinux-"
+"pacman/language/sr@latin/)\n"
+"Language: sr@latin\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sr@latin\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/pacman/callback.c:228
 #, c-format
@@ -155,11 +157,13 @@ msgstr ""
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
 msgid_plural ""
-"The following packages cannot be upgraded due to unresolvable "
-"dependencies:\n"
-msgstr[0] "Sledeći paket ne može biti nadograđen zbog nerazrešivih zavisnosti:\n"
-msgstr[1] "Sledeći paketi ne mogu biti nadograđeni usled nerazrešivih zavisnosti:\n"
-msgstr[2] "Sledeći paketi ne mogu biti nadograđeni usled nerazrešivih zavisnosti:\n"
+"The following packages cannot be upgraded due to unresolvable dependencies:\n"
+msgstr[0] ""
+"Sledeći paket ne može biti nadograđen zbog nerazrešivih zavisnosti:\n"
+msgstr[1] ""
+"Sledeći paketi ne mogu biti nadograđeni usled nerazrešivih zavisnosti:\n"
+msgstr[2] ""
+"Sledeći paketi ne mogu biti nadograđeni usled nerazrešivih zavisnosti:\n"
 
 #: src/pacman/callback.c:510
 #, c-format
@@ -182,7 +186,9 @@ msgstr[2] "Postoji %zu dostavljača za %s\n"
 msgid ""
 "File %s is corrupted (%s).\n"
 "Do you want to delete it?"
-msgstr "Fajl %s je neispravan (%s).\nŽelite li da ga obrišete?"
+msgstr ""
+"Fajl %s je neispravan (%s).\n"
+"Želite li da ga obrišete?"
 
 #: src/pacman/callback.c:543
 #, c-format
@@ -249,22 +255,22 @@ msgstr "učitavam fajlove paketa"
 msgid "Total"
 msgstr ""
 
-#: src/pacman/callback.c:886
+#: src/pacman/callback.c:887
 #, c-format
 msgid " %s downloading...\n"
 msgstr ""
 
-#: src/pacman/callback.c:1055
+#: src/pacman/callback.c:1057
 #, c-format
 msgid " %s is up to date"
 msgstr ""
 
-#: src/pacman/callback.c:1081
+#: src/pacman/callback.c:1083
 #, c-format
 msgid " %s failed to download"
 msgstr ""
 
-#: src/pacman/callback.c:1130
+#: src/pacman/callback.c:1133
 #, c-format
 msgid "unknown callback event type %d for %s\n"
 msgstr ""
@@ -374,7 +380,7 @@ msgstr[0] "%jd izmenjen fajl\n"
 msgstr[1] "%jd izmenjena fajla\n"
 msgstr[2] "%jd izmenjenih fajlova\n"
 
-#: src/pacman/conf.c:102 src/pacman/conf.c:317
+#: src/pacman/conf.c:102 src/pacman/conf.c:326
 #, c-format
 msgid "malloc failure: could not allocate %zu byte\n"
 msgid_plural "malloc failure: could not allocate %zu bytes\n"
@@ -382,79 +388,87 @@ msgstr[0] "greška u dodeli memorije: ne mogu da dodelim %zu bajt\n"
 msgstr[1] "greška u dodeli memorije: ne mogu da dodelim %zu bajta\n"
 msgstr[2] "greška u dodeli memorije: ne mogu da dodelim %zu bajtova\n"
 
-#: src/pacman/conf.c:340
+#: src/pacman/conf.c:251
+#, c-format
+msgid "switching to sandbox user '%s' failed!\n"
+msgstr ""
+
+#: src/pacman/conf.c:349
 #, c-format
 msgid "could not get current working directory\n"
 msgstr "ne mogu da odredim trenutnu radnu fasciklu\n"
 
-#: src/pacman/conf.c:345
+#: src/pacman/conf.c:354
 #, c-format
 msgid "could not chdir to download directory %s\n"
 msgstr "ne mogu da pređem u fasciklu preuzimanja %s\n"
 
-#: src/pacman/conf.c:360
+#: src/pacman/conf.c:369
 #, c-format
 msgid "running XferCommand: fork failed!\n"
 msgstr "izvršavanje XferCommand: neuspelo račvanje!\n"
 
-#: src/pacman/conf.c:372
+#: src/pacman/conf.c:381
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "ne mogu da preimenujem %s u %s (%s)\n"
 
-#: src/pacman/conf.c:383
+#: src/pacman/conf.c:392
 #, c-format
 msgid "could not restore working directory (%s)\n"
 msgstr "ne mogu da povratim radnu fasciklu (%s)\n"
 
-#: src/pacman/conf.c:521 src/pacman/conf.c:570 src/pacman/conf.c:677
-#: src/pacman/conf.c:729
+#: src/pacman/conf.c:530 src/pacman/conf.c:579 src/pacman/conf.c:693
+#: src/pacman/conf.c:745
 #, c-format
 msgid "config file %s, line %d: invalid value for '%s' : '%s'\n"
 msgstr "fajl postavki %s, linija %d: neispravna vrednost za „%s“ : „%s“\n"
 
-#: src/pacman/conf.c:535
+#: src/pacman/conf.c:544
 #, c-format
 msgid "config file %s, line %d: '%s' option invalid, no signature support\n"
-msgstr "fajl postavki %s, linija %d: opcija „%s“ je neispravna, nema podrške za potpise\n"
+msgstr ""
+"fajl postavki %s, linija %d: opcija „%s“ je neispravna, nema podrške za "
+"potpise\n"
 
-#: src/pacman/conf.c:625 src/pacman/conf.c:751 src/pacman/conf.c:1039
+#: src/pacman/conf.c:636 src/pacman/conf.c:767 src/pacman/conf.c:1057
 #, c-format
 msgid ""
 "config file %s, line %d: directive '%s' in section '%s' not recognized.\n"
-msgstr "fajl postavki %s, linija %d: direktiva „%s“ u odeljku „%s“ nije prepoznata.\n"
+msgstr ""
+"fajl postavki %s, linija %d: direktiva „%s“ u odeljku „%s“ nije prepoznata.\n"
 
-#: src/pacman/conf.c:736
+#: src/pacman/conf.c:752
 #, c-format
 msgid "config file %s, line %d: value for '%s' has to be positive : '%s'\n"
 msgstr ""
 
-#: src/pacman/conf.c:743
+#: src/pacman/conf.c:759
 #, c-format
 msgid "config file %s, line %d: value for '%s' is too large : '%s'\n"
 msgstr ""
 
-#: src/pacman/conf.c:763
+#: src/pacman/conf.c:779
 #, c-format
 msgid "mirror '%s' contains the '%s' variable, but no '%s' is defined.\n"
 msgstr "miror „%s“ sadrži promenjivu „%s“, ali nema definisano „%s“.\n"
 
-#: src/pacman/conf.c:808
+#: src/pacman/conf.c:824
 #, c-format
 msgid "could not register '%s' database (%s)\n"
 msgstr "ne mogu da registrujem bazu „%s“ (%s)\n"
 
-#: src/pacman/conf.c:821
+#: src/pacman/conf.c:837
 #, c-format
 msgid "could not add cache server URL to database '%s': %s (%s)\n"
 msgstr ""
 
-#: src/pacman/conf.c:830
+#: src/pacman/conf.c:846
 #, c-format
 msgid "could not add server URL to database '%s': %s (%s)\n"
 msgstr "ne mogu da dodam URL servera u bazu „%s“: %s (%s)\n"
 
-#: src/pacman/conf.c:857
+#: src/pacman/conf.c:873
 #, c-format
 msgid ""
 "failed to initialize alpm library:\n"
@@ -462,60 +476,62 @@ msgid ""
 "%s\n"
 msgstr ""
 
-#: src/pacman/conf.c:860
+#: src/pacman/conf.c:876
 #, c-format
 msgid "try running pacman-db-upgrade\n"
 msgstr "pokrenite pacman-db-upgrade\\n\n"
 
-#: src/pacman/conf.c:878
+#: src/pacman/conf.c:894
 #, c-format
 msgid "problem setting logfile '%s' (%s)\n"
 msgstr "problem pri postavljanju dnevnika „%s“ (%s)\n"
 
-#: src/pacman/conf.c:887
+#: src/pacman/conf.c:903
 #, c-format
 msgid "problem setting gpgdir '%s' (%s)\n"
 msgstr "problem pri postavljanju gpg fascikle „%s“ (%s)\n"
 
-#: src/pacman/conf.c:897
+#: src/pacman/conf.c:913
 #, c-format
 msgid "problem adding hookdir '%s' (%s)\n"
 msgstr "problem pri dodavanju fascikle kopči „%s“ (%s)\n"
 
-#: src/pacman/conf.c:919
+#: src/pacman/conf.c:935
 #, c-format
 msgid "no '%s' configured\n"
 msgstr "„%s“ nije podešeno\n"
 
-#: src/pacman/conf.c:945
+#: src/pacman/conf.c:963
 #, c-format
 msgid "Failed to pass %s entry to libalpm"
 msgstr "Neuspelo prosleđivanje unosa %s u libalpm"
 
-#: src/pacman/conf.c:985
+#: src/pacman/conf.c:1003
 #, c-format
 msgid "config file %s, line %d: '%s' option '%s' not recognized\n"
 msgstr "fajl postavki %s, linija %d: '%s' opcija '%s' nije prepoznata\n"
 
-#: src/pacman/conf.c:1005 src/pacman/conf.c:1163
+#: src/pacman/conf.c:1023 src/pacman/conf.c:1181
 #, c-format
 msgid "config file %s, line %d: directive '%s' needs a value\n"
 msgstr "fajl postavki %s, linija %d: direktivi „%s“ je potrebna vrednost.\n"
 
-#: src/pacman/conf.c:1170
+#: src/pacman/conf.c:1188
 #, c-format
 msgid "config parsing exceeded max recursion depth of %d.\n"
-msgstr "pri obradi fajla postavki premašena je maksimalna dubina rekurzije od %d.\n"
+msgstr ""
+"pri obradi fajla postavki premašena je maksimalna dubina rekurzije od %d.\n"
 
-#: src/pacman/conf.c:1218
+#: src/pacman/conf.c:1236
 #, c-format
 msgid "config file %s could not be read: %s\n"
 msgstr "ne mogu da pročitam fajl postavki %s: %s\n"
 
-#: src/pacman/conf.c:1241
+#: src/pacman/conf.c:1259
 #, c-format
 msgid "config file %s, line %d: All directives must belong to a section.\n"
-msgstr "fajl postavki %s, linija %d: sve direktive moraju pripadati odeljcima.\n"
+msgstr ""
+"fajl postavki %s, linija %d: sve direktive moraju pripadati odeljcima.\n"
 
 #: src/pacman/database.c:50 src/pacman/files.c:335 src/pacman/query.c:434
 #: src/pacman/remove.c:85 src/pacman/sync.c:970 src/pacman/upgrade.c:76
@@ -810,14 +826,16 @@ msgstr "operacije :\n"
 msgid ""
 "\n"
 "use '%s {-h --help}' with an operation for available options\n"
-msgstr "\nupotrebite „%s {-h --help}” uz operaciju za dostupne opcije\n"
+msgstr ""
+"\n"
+"upotrebite „%s {-h --help}” uz operaciju za dostupne opcije\n"
 
 #: src/pacman/pacman.c:125
 #, c-format
 msgid ""
-"  -c, --cascade        remove packages and all packages that depend on "
-"them\n"
-msgstr "  -c, --cascade          uklanja pakete i sve pakete koji zavise od njih\n"
+"  -c, --cascade        remove packages and all packages that depend on them\n"
+msgstr ""
+"  -c, --cascade          uklanja pakete i sve pakete koji zavise od njih\n"
 
 #: src/pacman/pacman.c:126
 #, c-format
@@ -829,7 +847,10 @@ msgstr "  -n, --nosave           uklanja fajlove postavki\n"
 msgid ""
 "  -s, --recursive      remove unnecessary dependencies\n"
 "                       (-ss includes explicitly installed dependencies)\n"
-msgstr "  -s, --recursive        uklanja nepotrebne zavisnosti\n                         (-ss uključuje i eksplicitno instalirane zavisnosti)\n"
+msgstr ""
+"  -s, --recursive        uklanja nepotrebne zavisnosti\n"
+"                         (-ss uključuje i eksplicitno instalirane "
+"zavisnosti)\n"
 
 #: src/pacman/pacman.c:129
 #, c-format
@@ -850,12 +871,14 @@ msgstr "  -c, --changelog        prikazuje dnevnik izmena paketa\n"
 #, c-format
 msgid ""
 "  -d, --deps           list packages installed as dependencies [filter]\n"
-msgstr "  -d, --deps             spisak paketa instaliranih kao zavisnosti [filter]\n"
+msgstr ""
+"  -d, --deps             spisak paketa instaliranih kao zavisnosti [filter]\n"
 
 #: src/pacman/pacman.c:139
 #, c-format
 msgid "  -e, --explicit       list packages explicitly installed [filter]\n"
-msgstr "  -e, --explicit         spisak eksplicitno instaliranih paketa  [filter]\n"
+msgstr ""
+"  -e, --explicit         spisak eksplicitno instaliranih paketa  [filter]\n"
 
 #: src/pacman/pacman.c:140
 #, c-format
@@ -864,34 +887,44 @@ msgstr "  -g, --groups           prikazuje sve pakete iz grupe\n"
 
 #: src/pacman/pacman.c:141
 #, c-format
-msgid "  -i, --info           view package information (-ii for backup files)\n"
-msgstr "  -i, --info             prikazuje podatke o paketu (--ii za rezervne fajlove)\n"
+msgid ""
+"  -i, --info           view package information (-ii for backup files)\n"
+msgstr ""
+"  -i, --info             prikazuje podatke o paketu (--ii za rezervne "
+"fajlove)\n"
 
 #: src/pacman/pacman.c:142
 #, c-format
 msgid ""
 "  -k, --check          check that package files exist (-kk for file "
 "properties)\n"
-msgstr "  -k, --check            proverava da li paket postoji (-kk za svojstva fajla)\n"
+msgstr ""
+"  -k, --check            proverava da li paket postoji (-kk za svojstva "
+"fajla)\n"
 
 #: src/pacman/pacman.c:143 src/pacman/pacman.c:180
 #, c-format
 msgid "  -l, --list           list the files owned by the queried package\n"
-msgstr "  -l, --list           nabraja fajlove koji pripadaju upitanom paketu\n"
+msgstr ""
+"  -l, --list           nabraja fajlove koji pripadaju upitanom paketu\n"
 
 #: src/pacman/pacman.c:144
 #, c-format
 msgid ""
 "  -m, --foreign        list installed packages not found in sync db(s) "
 "[filter]\n"
-msgstr "  -m, --foreign          nabraja instalirane pakete koji nisu u bazama koje se sinhronizuju [filter]\n"
+msgstr ""
+"  -m, --foreign          nabraja instalirane pakete koji nisu u bazama koje "
+"se sinhronizuju [filter]\n"
 
 #: src/pacman/pacman.c:145
 #, c-format
 msgid ""
 "  -n, --native         list installed packages only found in sync db(s) "
 "[filter]\n"
-msgstr "  -n, --native           nabraja samo instalirane pakete koji su u bazama koje se sinhronizuju [filter]\n"
+msgstr ""
+"  -n, --native           nabraja samo instalirane pakete koji su u bazama "
+"koje se sinhronizuju [filter]\n"
 
 #: src/pacman/pacman.c:146
 #, c-format
@@ -906,21 +939,27 @@ msgstr "  -p, --file <paket>     traži fajl paketa umesto unosa u bazi\n"
 #: src/pacman/pacman.c:148 src/pacman/pacman.c:161 src/pacman/pacman.c:181
 #, c-format
 msgid "  -q, --quiet          show less information for query and search\n"
-msgstr "  -q, --quiet            prikazuje manje informacija za upite i pretragu\n"
+msgstr ""
+"  -q, --quiet            prikazuje manje informacija za upite i pretragu\n"
 
 #: src/pacman/pacman.c:149
 #, c-format
 msgid ""
 "  -s, --search <regex> search locally-installed packages for matching "
 "strings\n"
-msgstr "  -s, --search <regiz>   traži lokalno instalirane pakete prema zadatim niskama\n"
+msgstr ""
+"  -s, --search <regiz>   traži lokalno instalirane pakete prema zadatim "
+"niskama\n"
 
 #: src/pacman/pacman.c:150
 #, c-format
 msgid ""
 "  -t, --unrequired     list packages not (optionally) required by any\n"
 "                       package (-tt to ignore optdepends) [filter]\n"
-msgstr "  -t, --unrequired     nabraja pakete koji nisu (opciono) zahtevani od\n                       bilo kog paketa (-tt ignoriše opcione zavisnosti) [filter]\n"
+msgstr ""
+"  -t, --unrequired     nabraja pakete koji nisu (opciono) zahtevani od\n"
+"                       bilo kog paketa (-tt ignoriše opcione zavisnosti) "
+"[filter]\n"
 
 #: src/pacman/pacman.c:152
 #, c-format
@@ -932,21 +971,26 @@ msgstr "  -u, --upgrades        nabraja zastarele pakete [filter]\n"
 msgid ""
 "  -c, --clean          remove old packages from cache directory (-cc for "
 "all)\n"
-msgstr "  -c, --clean            uklanja stare pakete iz fascikle keša (-cc za sve)\n"
+msgstr ""
+"  -c, --clean            uklanja stare pakete iz fascikle keša (-cc za sve)\n"
 
 #: src/pacman/pacman.c:157
 #, c-format
 msgid ""
 "  -g, --groups         view all members of a package group\n"
 "                       (-gg to view all groups and members)\n"
-msgstr "  -g, --groups         prikazuje članove grupe paketa\n                       (-gg za prikaz svih grupa i članova)\n"
+msgstr ""
+"  -g, --groups         prikazuje članove grupe paketa\n"
+"                       (-gg za prikaz svih grupa i članova)\n"
 
 #: src/pacman/pacman.c:159
 #, c-format
 msgid ""
 "  -i, --info           view package information (-ii for extended "
 "information)\n"
-msgstr " -i, --info           prikazuje informacije o paketu (-ii za detaljnije informacije)\n"
+msgstr ""
+" -i, --info           prikazuje informacije o paketu (-ii za detaljnije "
+"informacije)\n"
 
 #: src/pacman/pacman.c:160
 #, c-format
@@ -955,26 +999,34 @@ msgstr "  -l, --list <riznica>   prikazuje spisak svih paketa iz riznice\n"
 
 #: src/pacman/pacman.c:162
 #, c-format
-msgid "  -s, --search <regex> search remote repositories for matching strings\n"
-msgstr "  -s, --search <regiz>   traži pakete u udaljenim riznicama na osnovu zadatih niski\n"
+msgid ""
+"  -s, --search <regex> search remote repositories for matching strings\n"
+msgstr ""
+"  -s, --search <regiz>   traži pakete u udaljenim riznicama na osnovu "
+"zadatih niski\n"
 
 #: src/pacman/pacman.c:163
 #, c-format
 msgid ""
 "  -u, --sysupgrade     upgrade installed packages (-uu enables downgrades)\n"
-msgstr "  -u, --sysupgrade     nadograđuje instalirane pakete (-uu dozvoljava razgradnju)\n"
+msgstr ""
+"  -u, --sysupgrade     nadograđuje instalirane pakete (-uu dozvoljava "
+"razgradnju)\n"
 
 #: src/pacman/pacman.c:164 src/pacman/pacman.c:183
 #, c-format
 msgid ""
 "  -y, --refresh        download fresh package databases from the server\n"
 "                       (-yy to force a refresh even if up to date)\n"
-msgstr "  -y, --refresh        dobavlja osvežene baze paketa sa servera\n                       (-yy primorava osvežavanje iako su baze ažurne)\n"
+msgstr ""
+"  -y, --refresh        dobavlja osvežene baze paketa sa servera\n"
+"                       (-yy primorava osvežavanje iako su baze ažurne)\n"
 
 #: src/pacman/pacman.c:170
 #, c-format
 msgid "      --asdeps         mark packages as non-explicitly installed\n"
-msgstr "      --asdeps           označava pakete kao neeksplicitno instalirane\n"
+msgstr ""
+"      --asdeps           označava pakete kao neeksplicitno instalirane\n"
 
 #: src/pacman/pacman.c:171
 #, c-format
@@ -986,7 +1038,9 @@ msgstr "      --asexplicit       označava pakete kao eksplicitno instalirane\n"
 msgid ""
 "  -k, --check          test local database for validity (-kk for sync "
 "databases)\n"
-msgstr "  -k, --check          testira ispravnost lokalne baze (-kk za sinhronizovanje baza)\n"
+msgstr ""
+"  -k, --check          testira ispravnost lokalne baze (-kk za "
+"sinhronizovanje baza)\n"
 
 #: src/pacman/pacman.c:173
 #, c-format
@@ -1003,76 +1057,96 @@ msgstr "  -x, --regex          omogućava pretragu pomoću regularnih izraza\n"
 msgid ""
 "      --machinereadable\n"
 "                       produce machine-readable output\n"
-msgstr " --machinereadable\n                  stvara mašinski čitljiv ilaz\n"
+msgstr ""
+" --machinereadable\n"
+"                  stvara mašinski čitljiv ilaz\n"
 
 #: src/pacman/pacman.c:191
 #, c-format
 msgid ""
 "  -w, --downloadonly   download packages but do not install/upgrade "
 "anything\n"
-msgstr "  -w, --downloadonly     preuzma pakete, ali ih ne instalira/nadograđuje\n"
+msgstr ""
+"  -w, --downloadonly     preuzma pakete, ali ih ne instalira/nadograđuje\n"
 
 #: src/pacman/pacman.c:192
 #, c-format
 msgid ""
 "      --overwrite <glob>\n"
-"                       overwrite conflicting files (can be used more than once)\n"
+"                       overwrite conflicting files (can be used more than "
+"once)\n"
 msgstr ""
 
 #: src/pacman/pacman.c:194
 #, c-format
 msgid "      --asdeps         install packages as non-explicitly installed\n"
-msgstr "      --asdeps           instalira pakete kao neeksplicitno instalirane\n"
+msgstr ""
+"      --asdeps           instalira pakete kao neeksplicitno instalirane\n"
 
 #: src/pacman/pacman.c:195
 #, c-format
 msgid "      --asexplicit     install packages as explicitly installed\n"
-msgstr "      --asexplicit       instalira pakete kao eksplicitno instalirane\n"
+msgstr ""
+"      --asexplicit       instalira pakete kao eksplicitno instalirane\n"
 
 #: src/pacman/pacman.c:196
 #, c-format
 msgid ""
 "      --ignore <pkg>   ignore a package upgrade (can be used more than "
 "once)\n"
-msgstr "      --ignore <paket>   ignoriše nadogradnje paketa (može se upotrebiti više puta)\n"
+msgstr ""
+"      --ignore <paket>   ignoriše nadogradnje paketa (može se upotrebiti "
+"više puta)\n"
 
 #: src/pacman/pacman.c:197
 #, c-format
 msgid ""
 "      --ignoregroup <grp>\n"
 "                       ignore a group upgrade (can be used more than once)\n"
-msgstr "      --ignoregroup <grupa>\n                         ignoriše nadogradnju grupe (može se upotrebiti više puta)\n"
+msgstr ""
+"      --ignoregroup <grupa>\n"
+"                         ignoriše nadogradnju grupe (može se upotrebiti više "
+"puta)\n"
 
 #: src/pacman/pacman.c:201
 #, c-format
 msgid ""
 "  -d, --nodeps         skip dependency version checks (-dd to skip all "
 "checks)\n"
-msgstr "  -d, --nodeps           preskače proveru verzija zavisnosti (-dd preskače sve provere)\n"
+msgstr ""
+"  -d, --nodeps           preskače proveru verzija zavisnosti (-dd preskače "
+"sve provere)\n"
 
 #: src/pacman/pacman.c:202
 #, c-format
 msgid ""
 "      --assume-installed <package=version>\n"
 "                       add a virtual package to satisfy dependencies\n"
-msgstr "      --assume-installed <paket=verzija>\n                       dodaje virtuelni paket radi zadovoljavanja zavisnosti\n"
+msgstr ""
+"      --assume-installed <paket=verzija>\n"
+"                       dodaje virtuelni paket radi zadovoljavanja "
+"zavisnosti\n"
 
 #: src/pacman/pacman.c:204
 #, c-format
-msgid "      --dbonly         only modify database entries, not package files\n"
-msgstr "      --dbonly           menja samo unose u bazi, ne i fajlove paketa\n"
+msgid ""
+"      --dbonly         only modify database entries, not package files\n"
+msgstr ""
+"      --dbonly           menja samo unose u bazi, ne i fajlove paketa\n"
 
 #: src/pacman/pacman.c:205
 #, c-format
 msgid ""
 "      --noprogressbar  do not show a progress bar when downloading files\n"
-msgstr "      --noprogressbar    skriva traku napretka pri preuzimanju fajlova\n"
+msgstr ""
+"      --noprogressbar    skriva traku napretka pri preuzimanju fajlova\n"
 
 #: src/pacman/pacman.c:206
 #, c-format
 msgid ""
 "      --noscriptlet    do not execute the install scriptlet if one exists\n"
-msgstr "      --noscriptlet      ne izvršava instalacionu skriptu ukoliko postoji\n"
+msgstr ""
+"      --noscriptlet      ne izvršava instalacionu skriptu ukoliko postoji\n"
 
 #: src/pacman/pacman.c:207
 #, c-format
@@ -1086,7 +1160,9 @@ msgstr "  -p, --print            štampa ciljeve umesto izvršavanja operacije\n
 msgid ""
 "      --print-format <string>\n"
 "                       specify how the targets should be printed\n"
-msgstr "      --print-format <niska>\n                         određuje kako će ciljevi biti štampani\n"
+msgstr ""
+"      --print-format <niska>\n"
+"                         određuje kako će ciljevi biti štampani\n"
 
 #: src/pacman/pacman.c:213
 #, c-format
@@ -1111,7 +1187,9 @@ msgstr "      --arch <arhit.>    postavlja alternativnu arhitekturu\n"
 #: src/pacman/pacman.c:217
 #, c-format
 msgid "      --sysroot        operate on a mounted guest system (root-only)\n"
-msgstr "      --sysroot        izvršava operacije na monitranom sistemu fajlova gosta (samo koreni)\n"
+msgstr ""
+"      --sysroot        izvršava operacije na monitranom sistemu fajlova "
+"gosta (samo koreni)\n"
 
 #: src/pacman/pacman.c:218
 #, c-format
@@ -1141,7 +1219,8 @@ msgstr "      --debug            prikazuje poruke za ispravljanje grešaka\n"
 #: src/pacman/pacman.c:223
 #, c-format
 msgid "      --gpgdir <path>  set an alternate home directory for GnuPG\n"
-msgstr "      --gpgdir <putanja>  postavlja alternativnu domaću fasciklu za GnuPG\n"
+msgstr ""
+"      --gpgdir <putanja>  postavlja alternativnu domaću fasciklu za GnuPG\n"
 
 #: src/pacman/pacman.c:224
 #, c-format
@@ -1163,76 +1242,89 @@ msgstr "      --confirm        uvek traži potvrdu\n"
 msgid ""
 "      --disable-download-timeout\n"
 "                       use relaxed timeouts for download\n"
-msgstr "      --disable-download-timeout\n                       koristi popustljivo prekovreme za preuzimanja\n"
+msgstr ""
+"      --disable-download-timeout\n"
+"                       koristi popustljivo prekovreme za preuzimanja\n"
 
-#: src/pacman/pacman.c:247
+#: src/pacman/pacman.c:229
+#, fuzzy, c-format
+msgid ""
+"      --disable-sandbox\n"
+"                       disable the sandbox used for the downloader process\n"
+msgstr ""
+"      --disable-download-timeout\n"
+"                       koristi popustljivo prekovreme za preuzimanja\n"
+
+#: src/pacman/pacman.c:249
 #, c-format
 msgid ""
 "                       This program may be freely redistributed under\n"
 "                       the terms of the GNU General Public License.\n"
-msgstr "                       Ovaj program se može slobodno redistribuirati\n                               pod uslovima Gnuove Opšte Javne Licence.\n"
+msgstr ""
+"                       Ovaj program se može slobodno redistribuirati\n"
+"                               pod uslovima Gnuove Opšte Javne Licence.\n"
 
-#: src/pacman/pacman.c:280
+#: src/pacman/pacman.c:282
 #, c-format
 msgid "HTTP_USER_AGENT truncated\n"
 msgstr "HTTP_USER_AGENT je odsečen\n"
 
-#: src/pacman/pacman.c:313
+#: src/pacman/pacman.c:315
 #, c-format
 msgid "invalid option: '%s' and '%s' may not be used together\n"
 msgstr "Neispravna opcija: %s i %s se ne mogu upotrebiti istovremeno\n"
 
-#: src/pacman/pacman.c:414
+#: src/pacman/pacman.c:416
 #, c-format
 msgid "invalid argument '%s' for %s\n"
 msgstr "neispravan argument „%s“ za %s\n"
 
-#: src/pacman/pacman.c:436 src/pacman/pacman.c:449
+#: src/pacman/pacman.c:438 src/pacman/pacman.c:451
 #, c-format
 msgid "'%s' is not a valid debug level\n"
 msgstr "„%s“ nije ispravan nivo izlaza za ispravljanje grešaka\n"
 
-#: src/pacman/pacman.c:994
+#: src/pacman/pacman.c:1000
 #, c-format
 msgid "only one operation may be used at a time\n"
 msgstr "može se zadati samo jedna operacija istovremeno\n"
 
-#: src/pacman/pacman.c:1053
+#: src/pacman/pacman.c:1059
 #, c-format
 msgid "invalid option '-%c'\n"
 msgstr "neispravna opcija \"-%c\"\n"
 
-#: src/pacman/pacman.c:1055
+#: src/pacman/pacman.c:1061
 #, c-format
 msgid "invalid option '--%s'\n"
 msgstr "neispravna opcija \"--%s\"\n"
 
-#: src/pacman/pacman.c:1166
+#: src/pacman/pacman.c:1172
 #, c-format
 msgid "you cannot perform this operation unless you are root.\n"
 msgstr "ne možete izvršiti ovu operaciju ako niste koreni korisnik.\n"
 
-#: src/pacman/pacman.c:1200
+#: src/pacman/pacman.c:1206
 #, c-format
 msgid "failed to read arguments from stdin: (%s)\n"
 msgstr "neuspešno čitanje argumenata iz stdin: (%s)\n"
 
-#: src/pacman/pacman.c:1205
+#: src/pacman/pacman.c:1211
 #, c-format
 msgid "failed to reopen stdin for reading: (%s)\n"
 msgstr "greška pri ponovnom otvaranju standardnog ulaza za čitanje: (%s)\n"
 
-#: src/pacman/pacman.c:1210
+#: src/pacman/pacman.c:1216
 #, c-format
 msgid "argument '-' specified with empty stdin\n"
 msgstr "argument „-“je zadat sa praznim ulazom\n"
 
-#: src/pacman/pacman.c:1215
+#: src/pacman/pacman.c:1221
 #, c-format
 msgid "argument '-' specified without input on stdin\n"
 msgstr "argument „-“ naznačen bez unosu na stdin\n"
 
-#: src/pacman/pacman.c:1292
+#: src/pacman/pacman.c:1298
 #, c-format
 msgid "no operation specified (use -h for help)\n"
 msgstr "nije naznačena operacija (upotrebite -h za pomoć)\n"
@@ -1520,7 +1612,9 @@ msgstr "ne mogu da zaključam bazu: %s\n"
 msgid ""
 "  if you're sure a package manager is not already\n"
 "  running, you can remove %s\n"
-msgstr "  Ako ste sigurni da menadžer paketa nije već\n  pokrenut, možete ukloniti %s\n"
+msgstr ""
+"  Ako ste sigurni da menadžer paketa nije već\n"
+"  pokrenut, možete ukloniti %s\n"
 
 #: src/pacman/util.c:116
 #, c-format
@@ -1680,7 +1774,9 @@ msgstr "Riznica %s%s\n"
 #: src/pacman/util.c:1449
 #, c-format
 msgid "invalid value: %d is not between %d and %d\n"
-msgstr "neispravna vrednost: %d nije između %d i %d\n\n"
+msgstr ""
+"neispravna vrednost: %d nije između %d i %d\n"
+"\n"
 
 #: src/pacman/util.c:1456
 #, c-format
@@ -1817,22 +1913,22 @@ msgstr ""
 msgid "error parsing '%s'\n"
 msgstr ""
 
-#: src/pacman/pacman-conf.c:312
+#: src/pacman/pacman-conf.c:314
 #, c-format
 msgid "error: repo '%s' not configured\n"
 msgstr ""
 
-#: src/pacman/pacman-conf.c:331 src/pacman/pacman-conf.c:412
+#: src/pacman/pacman-conf.c:333 src/pacman/pacman-conf.c:418
 #, c-format
 msgid "warning: '%s' directives cannot be queried\n"
 msgstr ""
 
-#: src/pacman/pacman-conf.c:334 src/pacman/pacman-conf.c:415
+#: src/pacman/pacman-conf.c:336 src/pacman/pacman-conf.c:421
 #, c-format
 msgid "warning: unknown directive '%s'\n"
 msgstr ""
 
-#: src/pacman/pacman-conf.c:452
+#: src/pacman/pacman-conf.c:458
 #, c-format
 msgid "error: directives may not be specified with %s\n"
 msgstr ""

@@ -23,14 +23,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
 "Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
-"POT-Creation-Date: 2024-05-10 16:53+1000\n"
+"POT-Creation-Date: 2024-07-02 10:33+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>, 2019\n"
-"Language-Team: Chinese (Taiwan) (http://app.transifex.com/toofishes/archlinux-pacman/language/zh_TW/)\n"
+"Language-Team: Chinese (Taiwan) (http://app.transifex.com/toofishes/"
+"archlinux-pacman/language/zh_TW/)\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/pacman/callback.c:228
@@ -141,7 +142,8 @@ msgstr "%s 已存至 %s.pacsave\n"
 #: src/pacman/callback.c:446
 #, c-format
 msgid "%s is in IgnorePkg/IgnoreGroup. Install anyway?"
-msgstr "%s 位於 IgnorePkg/IgnoreGroup (忽略軟體包/忽略軟體包群組) 中。確定要安裝嗎？"
+msgstr ""
+"%s 位於 IgnorePkg/IgnoreGroup (忽略軟體包/忽略軟體包群組) 中。確定要安裝嗎？"
 
 #: src/pacman/callback.c:456
 #, c-format
@@ -163,8 +165,7 @@ msgstr "%s-%s%s%s 與 %s-%s%s%s 有衝突 (%s)。刪除 %s 嗎？"
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
 msgid_plural ""
-"The following packages cannot be upgraded due to unresolvable "
-"dependencies:\n"
+"The following packages cannot be upgraded due to unresolvable dependencies:\n"
 msgstr[0] "因為無法解決依賴關係，以下軟體包無法進行更新：\n"
 
 #: src/pacman/callback.c:510
@@ -184,7 +185,9 @@ msgstr[0] "有 %zu 個提供者可供 %s：\n"
 msgid ""
 "File %s is corrupted (%s).\n"
 "Do you want to delete it?"
-msgstr " %s 檔案毀損(%s)。\n你要刪除它嗎?"
+msgstr ""
+" %s 檔案毀損(%s)。\n"
+"你要刪除它嗎?"
 
 #: src/pacman/callback.c:543
 #, c-format
@@ -251,22 +254,22 @@ msgstr "正在載入軟體包檔案"
 msgid "Total"
 msgstr "總共"
 
-#: src/pacman/callback.c:886
+#: src/pacman/callback.c:887
 #, c-format
 msgid " %s downloading...\n"
 msgstr "正在下載 %s……\n"
 
-#: src/pacman/callback.c:1055
+#: src/pacman/callback.c:1057
 #, c-format
 msgid " %s is up to date"
 msgstr " %s 已經是最新版本"
 
-#: src/pacman/callback.c:1081
+#: src/pacman/callback.c:1083
 #, c-format
 msgid " %s failed to download"
 msgstr "%s 下載失敗"
 
-#: src/pacman/callback.c:1130
+#: src/pacman/callback.c:1133
 #, c-format
 msgid "unknown callback event type %d for %s\n"
 msgstr "未知的 callback 活動類型 %d 於 %s\n"
@@ -370,143 +373,153 @@ msgid "%jd altered file\n"
 msgid_plural "%jd altered files\n"
 msgstr[0] "%jd 個檔案經修改\n"
 
-#: src/pacman/conf.c:102 src/pacman/conf.c:317
+#: src/pacman/conf.c:102 src/pacman/conf.c:326
 #, c-format
 msgid "malloc failure: could not allocate %zu byte\n"
 msgid_plural "malloc failure: could not allocate %zu bytes\n"
 msgstr[0] "記憶體配置失敗：無法對齊 %zu 位元組\n"
 
-#: src/pacman/conf.c:340
+#: src/pacman/conf.c:251
+#, c-format
+msgid "switching to sandbox user '%s' failed!\n"
+msgstr ""
+
+#: src/pacman/conf.c:349
 #, c-format
 msgid "could not get current working directory\n"
 msgstr "無法取得目前的工作目錄\n"
 
-#: src/pacman/conf.c:345
+#: src/pacman/conf.c:354
 #, c-format
 msgid "could not chdir to download directory %s\n"
 msgstr "無法 chdir 到下載目錄 %s\n"
 
-#: src/pacman/conf.c:360
+#: src/pacman/conf.c:369
 #, c-format
 msgid "running XferCommand: fork failed!\n"
 msgstr "正在運行 XferCommand：fork 失敗！\n"
 
-#: src/pacman/conf.c:372
+#: src/pacman/conf.c:381
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
-msgstr "不能將 %s 重命名為 %s (%s)\n\n"
+msgstr ""
+"不能將 %s 重命名為 %s (%s)\n"
+"\n"
 
-#: src/pacman/conf.c:383
+#: src/pacman/conf.c:392
 #, c-format
 msgid "could not restore working directory (%s)\n"
 msgstr "無法回復工作目錄(%s)\n"
 
-#: src/pacman/conf.c:521 src/pacman/conf.c:570 src/pacman/conf.c:677
-#: src/pacman/conf.c:729
+#: src/pacman/conf.c:530 src/pacman/conf.c:579 src/pacman/conf.c:693
+#: src/pacman/conf.c:745
 #, c-format
 msgid "config file %s, line %d: invalid value for '%s' : '%s'\n"
 msgstr "組態檔 %s 的第 %d 列：不正確的值「%s」：「%s」\n"
 
-#: src/pacman/conf.c:535
+#: src/pacman/conf.c:544
 #, c-format
 msgid "config file %s, line %d: '%s' option invalid, no signature support\n"
 msgstr "組態檔 %s 的第 %d 列: '%s' 選項不正確, 不支援此種簽署方式\n"
 
-#: src/pacman/conf.c:625 src/pacman/conf.c:751 src/pacman/conf.c:1039
+#: src/pacman/conf.c:636 src/pacman/conf.c:767 src/pacman/conf.c:1057
 #, c-format
 msgid ""
 "config file %s, line %d: directive '%s' in section '%s' not recognized.\n"
 msgstr "組態檔 %s，第 %d 列：指令「%s」（位於區段「%s」中）無法識別。\n"
 
-#: src/pacman/conf.c:736
+#: src/pacman/conf.c:752
 #, c-format
 msgid "config file %s, line %d: value for '%s' has to be positive : '%s'\n"
 msgstr "設定檔 %s，第 %d 行：「%s」的值必須為正值：「%s」\n"
 
-#: src/pacman/conf.c:743
+#: src/pacman/conf.c:759
 #, c-format
 msgid "config file %s, line %d: value for '%s' is too large : '%s'\n"
 msgstr "設定檔 %s，第 %d 行：「%s」的值太大了：「%s」\n"
 
-#: src/pacman/conf.c:763
+#: src/pacman/conf.c:779
 #, c-format
 msgid "mirror '%s' contains the '%s' variable, but no '%s' is defined.\n"
 msgstr "鏡像檔案「%s」含有「%s」變數，但未定義「%s」。\n"
 
-#: src/pacman/conf.c:808
+#: src/pacman/conf.c:824
 #, c-format
 msgid "could not register '%s' database (%s)\n"
 msgstr "無法註冊「%s」資料庫 (%s)\n"
 
-#: src/pacman/conf.c:821
+#: src/pacman/conf.c:837
 #, c-format
 msgid "could not add cache server URL to database '%s': %s (%s)\n"
 msgstr "無法新增快取伺服器 URL 到資料庫「%s」：%s (%s)\n"
 
-#: src/pacman/conf.c:830
+#: src/pacman/conf.c:846
 #, c-format
 msgid "could not add server URL to database '%s': %s (%s)\n"
 msgstr "無法新增伺服器 URL 到資料庫「%s」：%s (%s)\n"
 
-#: src/pacman/conf.c:857
+#: src/pacman/conf.c:873
 #, c-format
 msgid ""
 "failed to initialize alpm library:\n"
 "(root: %s, dbpath: %s)\n"
 "%s\n"
-msgstr "無法初始化 alpm 函式庫：\n（根：%s，資料庫路徑：%s）\n%s\n"
+msgstr ""
+"無法初始化 alpm 函式庫：\n"
+"（根：%s，資料庫路徑：%s）\n"
+"%s\n"
 
-#: src/pacman/conf.c:860
+#: src/pacman/conf.c:876
 #, c-format
 msgid "try running pacman-db-upgrade\n"
 msgstr "請嘗試執行 pacman-db-upgrade\n"
 
-#: src/pacman/conf.c:878
+#: src/pacman/conf.c:894
 #, c-format
 msgid "problem setting logfile '%s' (%s)\n"
 msgstr "設定日誌檔案「%s」(%s) 時出現問題\n"
 
-#: src/pacman/conf.c:887
+#: src/pacman/conf.c:903
 #, c-format
 msgid "problem setting gpgdir '%s' (%s)\n"
 msgstr "設定 gpgdir 「%s」 發生問題 (%s)\n"
 
-#: src/pacman/conf.c:897
+#: src/pacman/conf.c:913
 #, c-format
 msgid "problem adding hookdir '%s' (%s)\n"
 msgstr "問題已加入掛鉤目錄「%s」 (%s)\n"
 
-#: src/pacman/conf.c:919
+#: src/pacman/conf.c:935
 #, c-format
 msgid "no '%s' configured\n"
 msgstr "「%s」未設定\n"
 
-#: src/pacman/conf.c:945
+#: src/pacman/conf.c:963
 #, c-format
 msgid "Failed to pass %s entry to libalpm"
 msgstr "無法傳遞 %s 項目給 libalpm"
 
-#: src/pacman/conf.c:985
+#: src/pacman/conf.c:1003
 #, c-format
 msgid "config file %s, line %d: '%s' option '%s' not recognized\n"
 msgstr "設定檔 %s，第 %d 行：「%s」選項「%s」無法識別\n"
 
-#: src/pacman/conf.c:1005 src/pacman/conf.c:1163
+#: src/pacman/conf.c:1023 src/pacman/conf.c:1181
 #, c-format
 msgid "config file %s, line %d: directive '%s' needs a value\n"
 msgstr "組態檔 %s，第 %d 列：指令「%s」需要賦值\n"
 
-#: src/pacman/conf.c:1170
+#: src/pacman/conf.c:1188
 #, c-format
 msgid "config parsing exceeded max recursion depth of %d.\n"
 msgstr "解析組態檔超出最大遞迴深度 %d\n"
 
-#: src/pacman/conf.c:1218
+#: src/pacman/conf.c:1236
 #, c-format
 msgid "config file %s could not be read: %s\n"
 msgstr "組態檔 %s 無法讀取：%s\n"
 
-#: src/pacman/conf.c:1241
+#: src/pacman/conf.c:1259
 #, c-format
 msgid "config file %s, line %d: All directives must belong to a section.\n"
 msgstr "組態檔 %s，第 %d 列：所有的命令必須屬於同一區段。\n"
@@ -804,13 +817,14 @@ msgstr "操作：\n"
 msgid ""
 "\n"
 "use '%s {-h --help}' with an operation for available options\n"
-msgstr "\n使用 '%s {-h --help}' 及某個操作以查看可用選項\n"
+msgstr ""
+"\n"
+"使用 '%s {-h --help}' 及某個操作以查看可用選項\n"
 
 #: src/pacman/pacman.c:125
 #, c-format
 msgid ""
-"  -c, --cascade        remove packages and all packages that depend on "
-"them\n"
+"  -c, --cascade        remove packages and all packages that depend on them\n"
 msgstr "  -c, --cascade        刪除軟體包及所有依賴於此的軟體包\n"
 
 #: src/pacman/pacman.c:126
@@ -823,7 +837,9 @@ msgstr "  -n, --nosave         刪除組態檔\n"
 msgid ""
 "  -s, --recursive      remove unnecessary dependencies\n"
 "                       (-ss includes explicitly installed dependencies)\n"
-msgstr "  -s, --recursive      刪除不需要的依賴\n                       (-ss 包括單獨指定安裝的依賴)\n"
+msgstr ""
+"  -s, --recursive      刪除不需要的依賴\n"
+"                       (-ss 包括單獨指定安裝的依賴)\n"
 
 #: src/pacman/pacman.c:129
 #, c-format
@@ -858,7 +874,8 @@ msgstr "  -g, --groups         查看某軟體包群組所屬的所有軟體包\
 
 #: src/pacman/pacman.c:141
 #, c-format
-msgid "  -i, --info           view package information (-ii for backup files)\n"
+msgid ""
+"  -i, --info           view package information (-ii for backup files)\n"
 msgstr "  -i, --info           查看軟體包資訊 (-ii 查看備份檔案) \n"
 
 #: src/pacman/pacman.c:142
@@ -878,14 +895,16 @@ msgstr "  -l, --list           列出被查詢軟體包的檔名列表\n"
 msgid ""
 "  -m, --foreign        list installed packages not found in sync db(s) "
 "[filter]\n"
-msgstr "  -m, --foreign        列出沒有在同步資料庫時找到的已安裝軟體包 [過濾器]\n"
+msgstr ""
+"  -m, --foreign        列出沒有在同步資料庫時找到的已安裝軟體包 [過濾器]\n"
 
 #: src/pacman/pacman.c:145
 #, c-format
 msgid ""
 "  -n, --native         list installed packages only found in sync db(s) "
 "[filter]\n"
-msgstr "  -n, --native         列出僅可在同步資料庫中找到的已安裝軟體包 [過濾器]\n"
+msgstr ""
+"  -n, --native         列出僅可在同步資料庫中找到的已安裝軟體包 [過濾器]\n"
 
 #: src/pacman/pacman.c:146
 #, c-format
@@ -914,7 +933,9 @@ msgstr "  -s, --search <regex> 搜尋符合指定字符串的已安裝本地的�
 msgid ""
 "  -t, --unrequired     list packages not (optionally) required by any\n"
 "                       package (-tt to ignore optdepends) [filter]\n"
-msgstr "  -t, --unrequired     列出所有不被其他軟體包 (包含選擇性) 需要的軟體包\n                       (-tt 忽略可選依賴) [過濾器]\n"
+msgstr ""
+"  -t, --unrequired     列出所有不被其他軟體包 (包含選擇性) 需要的軟體包\n"
+"                       (-tt 忽略可選依賴) [過濾器]\n"
 
 #: src/pacman/pacman.c:152
 #, c-format
@@ -933,7 +954,9 @@ msgstr "  -c, --clean          從快取目錄中刪除舊軟體軟體包 (-cc �
 msgid ""
 "  -g, --groups         view all members of a package group\n"
 "                       (-gg to view all groups and members)\n"
-msgstr "  -g, --groups         查看某軟體包群組所屬的所有軟體包\n                       (-gg 顯示所有群組及成員)\n"
+msgstr ""
+"  -g, --groups         查看某軟體包群組所屬的所有軟體包\n"
+"                       (-gg 顯示所有群組及成員)\n"
 
 #: src/pacman/pacman.c:159
 #, c-format
@@ -949,7 +972,8 @@ msgstr "  -l, --list <軟體庫>    查看在該軟體庫中的軟體包清單\n
 
 #: src/pacman/pacman.c:162
 #, c-format
-msgid "  -s, --search <regex> search remote repositories for matching strings\n"
+msgid ""
+"  -s, --search <regex> search remote repositories for matching strings\n"
 msgstr "  -s, --search <regex 表達式> 按照指定字符串查詢遠端軟體庫\n"
 
 #: src/pacman/pacman.c:163
@@ -963,7 +987,9 @@ msgstr "  -u, --sysupgrade     升級所有已安裝的軟體包 (-uu 可啟用�
 msgid ""
 "  -y, --refresh        download fresh package databases from the server\n"
 "                       (-yy to force a refresh even if up to date)\n"
-msgstr "  -y, --refresh        從伺服器下載新的軟體包列表資料庫\n                       (-yy 強迫再次更新)\n"
+msgstr ""
+"  -y, --refresh        從伺服器下載新的軟體包列表資料庫\n"
+"                       (-yy 強迫再次更新)\n"
 
 #: src/pacman/pacman.c:170
 #, c-format
@@ -997,7 +1023,9 @@ msgstr "  -x, --regex          啟用使用正規表達式搜尋\n"
 msgid ""
 "      --machinereadable\n"
 "                       produce machine-readable output\n"
-msgstr "--machinereadable\n產生電腦可讀的輸出\n"
+msgstr ""
+"--machinereadable\n"
+"產生電腦可讀的輸出\n"
 
 #: src/pacman/pacman.c:191
 #, c-format
@@ -1010,8 +1038,11 @@ msgstr "  -w, --downloadonly   下載但不安裝/升級軟體包\n"
 #, c-format
 msgid ""
 "      --overwrite <glob>\n"
-"                       overwrite conflicting files (can be used more than once)\n"
-msgstr "      --overwrite <glob>\n                       覆寫衝突的檔案（可使用多於一次）\n"
+"                       overwrite conflicting files (can be used more than "
+"once)\n"
+msgstr ""
+"      --overwrite <glob>\n"
+"                       覆寫衝突的檔案（可使用多於一次）\n"
 
 #: src/pacman/pacman.c:194
 #, c-format
@@ -1035,7 +1066,9 @@ msgstr "      --ignore <軟體包>   升級時忽略某個軟體包 (可多次�
 msgid ""
 "      --ignoregroup <grp>\n"
 "                       ignore a group upgrade (can be used more than once)\n"
-msgstr "      --ignoregroup <軟體包組>\n                         升級時忽略某個軟體包組 (可多次使用) \n"
+msgstr ""
+"      --ignoregroup <軟體包組>\n"
+"                         升級時忽略某個軟體包組 (可多次使用) \n"
 
 #: src/pacman/pacman.c:201
 #, c-format
@@ -1049,11 +1082,14 @@ msgstr "  -d, --nodeps         跳過依賴關係的版本檢查 (-dd 跳過所�
 msgid ""
 "      --assume-installed <package=version>\n"
 "                       add a virtual package to satisfy dependencies\n"
-msgstr "      --assume-installed <package=version>\n                       加上虛擬軟體包假裝滿足依賴關係\n"
+msgstr ""
+"      --assume-installed <package=version>\n"
+"                       加上虛擬軟體包假裝滿足依賴關係\n"
 
 #: src/pacman/pacman.c:204
 #, c-format
-msgid "      --dbonly         only modify database entries, not package files\n"
+msgid ""
+"      --dbonly         only modify database entries, not package files\n"
 msgstr "      --dbonly         只修改資料庫項目，非軟體包檔案\n"
 
 #: src/pacman/pacman.c:205
@@ -1080,7 +1116,9 @@ msgstr "  -p, --print          列印目標而不是執行操作\n"
 msgid ""
 "      --print-format <string>\n"
 "                       specify how the targets should be printed\n"
-msgstr "      --print-format <字串>\n                       指定如何列印目標\n"
+msgstr ""
+"      --print-format <字串>\n"
+"                       指定如何列印目標\n"
 
 #: src/pacman/pacman.c:213
 #, c-format
@@ -1157,76 +1195,89 @@ msgstr "      --confirm        永遠詢問確認\n"
 msgid ""
 "      --disable-download-timeout\n"
 "                       use relaxed timeouts for download\n"
-msgstr "      --disable-download-timeout\n                       使用較長的下載逾時\n"
+msgstr ""
+"      --disable-download-timeout\n"
+"                       使用較長的下載逾時\n"
 
-#: src/pacman/pacman.c:247
+#: src/pacman/pacman.c:229
+#, fuzzy, c-format
+msgid ""
+"      --disable-sandbox\n"
+"                       disable the sandbox used for the downloader process\n"
+msgstr ""
+"      --disable-download-timeout\n"
+"                       使用較長的下載逾時\n"
+
+#: src/pacman/pacman.c:249
 #, c-format
 msgid ""
 "                       This program may be freely redistributed under\n"
 "                       the terms of the GNU General Public License.\n"
-msgstr "                       本程式可以在 GNU 通用公共授權條款 (GPL) 下\n                       自由散佈\n"
+msgstr ""
+"                       本程式可以在 GNU 通用公共授權條款 (GPL) 下\n"
+"                       自由散佈\n"
 
-#: src/pacman/pacman.c:280
+#: src/pacman/pacman.c:282
 #, c-format
 msgid "HTTP_USER_AGENT truncated\n"
 msgstr "HTTP_USER_AGENT 被截短\n"
 
-#: src/pacman/pacman.c:313
+#: src/pacman/pacman.c:315
 #, c-format
 msgid "invalid option: '%s' and '%s' may not be used together\n"
 msgstr "無效選項：「%s」和「%s」不能同時使用\n"
 
-#: src/pacman/pacman.c:414
+#: src/pacman/pacman.c:416
 #, c-format
 msgid "invalid argument '%s' for %s\n"
 msgstr "無效的引數「%s」被傳給 %s\n"
 
-#: src/pacman/pacman.c:436 src/pacman/pacman.c:449
+#: src/pacman/pacman.c:438 src/pacman/pacman.c:451
 #, c-format
 msgid "'%s' is not a valid debug level\n"
 msgstr "'%s' 不是有效的除錯等級\n"
 
-#: src/pacman/pacman.c:994
+#: src/pacman/pacman.c:1000
 #, c-format
 msgid "only one operation may be used at a time\n"
 msgstr "一次只能執行一個操作\n"
 
-#: src/pacman/pacman.c:1053
+#: src/pacman/pacman.c:1059
 #, c-format
 msgid "invalid option '-%c'\n"
 msgstr "無效選項「-%c」\n"
 
-#: src/pacman/pacman.c:1055
+#: src/pacman/pacman.c:1061
 #, c-format
 msgid "invalid option '--%s'\n"
 msgstr "無效選項「--%s」\n"
 
-#: src/pacman/pacman.c:1166
+#: src/pacman/pacman.c:1172
 #, c-format
 msgid "you cannot perform this operation unless you are root.\n"
 msgstr "非 root（超級使用者）無法執行指定操作。\n"
 
-#: src/pacman/pacman.c:1200
+#: src/pacman/pacman.c:1206
 #, c-format
 msgid "failed to read arguments from stdin: (%s)\n"
 msgstr "自 stdin 讀取參數失敗：(%s)\n"
 
-#: src/pacman/pacman.c:1205
+#: src/pacman/pacman.c:1211
 #, c-format
 msgid "failed to reopen stdin for reading: (%s)\n"
 msgstr "無法打開 stdin 以讀取：(%s)\n"
 
-#: src/pacman/pacman.c:1210
+#: src/pacman/pacman.c:1216
 #, c-format
 msgid "argument '-' specified with empty stdin\n"
 msgstr "指定參數「-」但沒有標準輸入資料\n"
 
-#: src/pacman/pacman.c:1215
+#: src/pacman/pacman.c:1221
 #, c-format
 msgid "argument '-' specified without input on stdin\n"
 msgstr "引數「-」指定卻無附上 stdin 中的輸入\n"
 
-#: src/pacman/pacman.c:1292
+#: src/pacman/pacman.c:1298
 #, c-format
 msgid "no operation specified (use -h for help)\n"
 msgstr "沒有指定的操作（使用 -h 取得協助） \n"
@@ -1512,7 +1563,9 @@ msgstr "無法鎖定資料庫：%s\n"
 msgid ""
 "  if you're sure a package manager is not already\n"
 "  running, you can remove %s\n"
-msgstr "  如果你確認軟體包管理器沒在運作，\n  你可以刪除 %s。\n"
+msgstr ""
+"  如果你確認軟體包管理器沒在運作，\n"
+"  你可以刪除 %s。\n"
 
 #: src/pacman/util.c:116
 #, c-format
@@ -1809,22 +1862,22 @@ msgstr "設定系統根目錄「%s」時錯誤：記憶體耗盡\n"
 msgid "error parsing '%s'\n"
 msgstr "解析「%s」時錯誤\n"
 
-#: src/pacman/pacman-conf.c:312
+#: src/pacman/pacman-conf.c:314
 #, c-format
 msgid "error: repo '%s' not configured\n"
 msgstr "錯誤：軟體庫「%s」未設定\n"
 
-#: src/pacman/pacman-conf.c:331 src/pacman/pacman-conf.c:412
+#: src/pacman/pacman-conf.c:333 src/pacman/pacman-conf.c:418
 #, c-format
 msgid "warning: '%s' directives cannot be queried\n"
 msgstr "警告：「%s」指令無法查詢\n"
 
-#: src/pacman/pacman-conf.c:334 src/pacman/pacman-conf.c:415
+#: src/pacman/pacman-conf.c:336 src/pacman/pacman-conf.c:421
 #, c-format
 msgid "warning: unknown directive '%s'\n"
 msgstr "警告：未知的指令「%s」\n"
 
-#: src/pacman/pacman-conf.c:452
+#: src/pacman/pacman-conf.c:458
 #, c-format
 msgid "error: directives may not be specified with %s\n"
 msgstr "錯誤：指令可能未指定 %s\n"

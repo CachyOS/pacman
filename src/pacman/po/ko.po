@@ -18,14 +18,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
 "Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
-"POT-Creation-Date: 2024-05-10 16:53+1000\n"
+"POT-Creation-Date: 2024-07-02 10:33+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Thomas Sungjin Kang <potopro@gmail.com>, 2013\n"
-"Language-Team: Korean (http://app.transifex.com/toofishes/archlinux-pacman/language/ko/)\n"
+"Language-Team: Korean (http://app.transifex.com/toofishes/archlinux-pacman/"
+"language/ko/)\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/pacman/callback.c:228
@@ -146,21 +147,24 @@ msgstr "%s를 %s/%s로 바꾸시겠습니까?"
 #: src/pacman/callback.c:468
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict. Remove %s?"
-msgstr "%s-%s%s%s와(과) %s-%s%s%s이(가) 동시에 존재합니다. %s을(를) 제거하시겠습니까?"
+msgstr ""
+"%s-%s%s%s와(과) %s-%s%s%s이(가) 동시에 존재합니다. %s을(를) 제거하시겠습니까?"
 
 #: src/pacman/callback.c:479
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict (%s). Remove %s?"
-msgstr "%s-%s%s%s와(과) %s-%s%s%s이(가) 동시에 존재합니다(%s). %s을(를) 제거하시겠습니까?"
+msgstr ""
+"%s-%s%s%s와(과) %s-%s%s%s이(가) 동시에 존재합니다(%s). %s을(를) 제거하시겠습"
+"니까?"
 
 #: src/pacman/callback.c:504
 #, c-format
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
 msgid_plural ""
-"The following packages cannot be upgraded due to unresolvable "
-"dependencies:\n"
-msgstr[0] "해결할 수 없는 의존성 때문에 다음 꾸러미를 업그레이드 할 수 없습니다:\n"
+"The following packages cannot be upgraded due to unresolvable dependencies:\n"
+msgstr[0] ""
+"해결할 수 없는 의존성 때문에 다음 꾸러미를 업그레이드 할 수 없습니다:\n"
 
 #: src/pacman/callback.c:510
 #, c-format
@@ -179,7 +183,9 @@ msgstr[0] "%2$s에 대해 이용할 수 있는 %1$zu 제공자가 있습니다:\
 msgid ""
 "File %s is corrupted (%s).\n"
 "Do you want to delete it?"
-msgstr "%s 파일이 깨졌습니다(%s).\n삭제하시겠습니까?"
+msgstr ""
+"%s 파일이 깨졌습니다(%s).\n"
+"삭제하시겠습니까?"
 
 #: src/pacman/callback.c:543
 #, c-format
@@ -246,22 +252,22 @@ msgstr "꾸러미 파일 불러오는 중"
 msgid "Total"
 msgstr "총합"
 
-#: src/pacman/callback.c:886
+#: src/pacman/callback.c:887
 #, c-format
 msgid " %s downloading...\n"
 msgstr " %s 다운로드 중...\n"
 
-#: src/pacman/callback.c:1055
+#: src/pacman/callback.c:1057
 #, c-format
 msgid " %s is up to date"
 msgstr " %s는 최신입니다"
 
-#: src/pacman/callback.c:1081
+#: src/pacman/callback.c:1083
 #, c-format
 msgid " %s failed to download"
 msgstr "%s를 다운받지 못했습니다"
 
-#: src/pacman/callback.c:1130
+#: src/pacman/callback.c:1133
 #, c-format
 msgid "unknown callback event type %d for %s\n"
 msgstr "알 수 없는 콜백 이벤트 유형 %d, 대상 %s\n"
@@ -365,143 +371,154 @@ msgid "%jd altered file\n"
 msgid_plural "%jd altered files\n"
 msgstr[0] "대체한 파일 %jd개\n"
 
-#: src/pacman/conf.c:102 src/pacman/conf.c:317
+#: src/pacman/conf.c:102 src/pacman/conf.c:326
 #, c-format
 msgid "malloc failure: could not allocate %zu byte\n"
 msgid_plural "malloc failure: could not allocate %zu bytes\n"
 msgstr[0] "malloc 실패: %zu 바이트를 할당할 수 없습니다\n"
 
-#: src/pacman/conf.c:340
+#: src/pacman/conf.c:251
+#, c-format
+msgid "switching to sandbox user '%s' failed!\n"
+msgstr ""
+
+#: src/pacman/conf.c:349
 #, c-format
 msgid "could not get current working directory\n"
 msgstr "현재 작업 디렉터리를 가져올 수 없습니다\n"
 
-#: src/pacman/conf.c:345
+#: src/pacman/conf.c:354
 #, c-format
 msgid "could not chdir to download directory %s\n"
 msgstr "%s 다운로드 디렉터리로 이동할 수 없습니다\n"
 
-#: src/pacman/conf.c:360
+#: src/pacman/conf.c:369
 #, c-format
 msgid "running XferCommand: fork failed!\n"
 msgstr "실행 중인 XferCommand: fork에 실패했습니다!\n"
 
-#: src/pacman/conf.c:372
+#: src/pacman/conf.c:381
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "%s 이름을 %s로 바꿀 수 없습니다(%s)\n"
 
-#: src/pacman/conf.c:383
+#: src/pacman/conf.c:392
 #, c-format
 msgid "could not restore working directory (%s)\n"
 msgstr "작업 디렉터리를 복구할 수 없습니다(%s)\n"
 
-#: src/pacman/conf.c:521 src/pacman/conf.c:570 src/pacman/conf.c:677
-#: src/pacman/conf.c:729
+#: src/pacman/conf.c:530 src/pacman/conf.c:579 src/pacman/conf.c:693
+#: src/pacman/conf.c:745
 #, c-format
 msgid "config file %s, line %d: invalid value for '%s' : '%s'\n"
 msgstr "구성파일 %s, %d번째 줄: '%s'에 대한 잘못된 값입니다: '%s'\n"
 
-#: src/pacman/conf.c:535
+#: src/pacman/conf.c:544
 #, c-format
 msgid "config file %s, line %d: '%s' option invalid, no signature support\n"
-msgstr "구성파일 %s, %d번째 줄: '%s' 옵션이 잘못되었으며, 서명을 지원하지 않습니다\n"
+msgstr ""
+"구성파일 %s, %d번째 줄: '%s' 옵션이 잘못되었으며, 서명을 지원하지 않습니다\n"
 
-#: src/pacman/conf.c:625 src/pacman/conf.c:751 src/pacman/conf.c:1039
+#: src/pacman/conf.c:636 src/pacman/conf.c:767 src/pacman/conf.c:1057
 #, c-format
 msgid ""
 "config file %s, line %d: directive '%s' in section '%s' not recognized.\n"
-msgstr "구성파일 %1$s, %2$d번째 줄: '%4$s' 섹션의 '%3$s' 지시자를 인식하지 못했습니다.\n"
+msgstr ""
+"구성파일 %1$s, %2$d번째 줄: '%4$s' 섹션의 '%3$s' 지시자를 인식하지 못했습니"
+"다.\n"
 
-#: src/pacman/conf.c:736
+#: src/pacman/conf.c:752
 #, c-format
 msgid "config file %s, line %d: value for '%s' has to be positive : '%s'\n"
 msgstr " 구성파일 %s, %d 번째 줄: '%s' 값은 양수이어야 합니다 : '%s'\n"
 
-#: src/pacman/conf.c:743
+#: src/pacman/conf.c:759
 #, c-format
 msgid "config file %s, line %d: value for '%s' is too large : '%s'\n"
 msgstr " 구성파일 %s, %d 번째 줄: '%s' 값이 너무 큽니다 : '%s'\n"
 
-#: src/pacman/conf.c:763
+#: src/pacman/conf.c:779
 #, c-format
 msgid "mirror '%s' contains the '%s' variable, but no '%s' is defined.\n"
 msgstr "'%s' 미러에 '%s' 변수를 포함하고 있지만 '%s'를 정의하지 않았습니다.\n"
 
-#: src/pacman/conf.c:808
+#: src/pacman/conf.c:824
 #, c-format
 msgid "could not register '%s' database (%s)\n"
 msgstr "'%s' 데이터베이스를 등록할 수 없습니다(%s)\n"
 
-#: src/pacman/conf.c:821
+#: src/pacman/conf.c:837
 #, c-format
 msgid "could not add cache server URL to database '%s': %s (%s)\n"
 msgstr "'%s' 데이터베이스에 캐시 서버 URL을 추가할 수 없음: %s (%s)\n"
 
-#: src/pacman/conf.c:830
+#: src/pacman/conf.c:846
 #, c-format
 msgid "could not add server URL to database '%s': %s (%s)\n"
 msgstr "'%s' 데이터베이스에 서버 URL을 추가할 수 없습니다: %s (%s)\n"
 
-#: src/pacman/conf.c:857
+#: src/pacman/conf.c:873
 #, c-format
 msgid ""
 "failed to initialize alpm library:\n"
 "(root: %s, dbpath: %s)\n"
 "%s\n"
-msgstr "ALPM 라이브러리 초기화 실패:\n(루트:%s, 데이터베이스 경로: %s)\n%s\n"
+msgstr ""
+"ALPM 라이브러리 초기화 실패:\n"
+"(루트:%s, 데이터베이스 경로: %s)\n"
+"%s\n"
 
-#: src/pacman/conf.c:860
+#: src/pacman/conf.c:876
 #, c-format
 msgid "try running pacman-db-upgrade\n"
 msgstr "pacman-db-upgrade를 실행해 보세요\n"
 
-#: src/pacman/conf.c:878
+#: src/pacman/conf.c:894
 #, c-format
 msgid "problem setting logfile '%s' (%s)\n"
 msgstr "로그파일을 '%s'로 설정하는 데 문제가 있습니다(%s)\n"
 
-#: src/pacman/conf.c:887
+#: src/pacman/conf.c:903
 #, c-format
 msgid "problem setting gpgdir '%s' (%s)\n"
 msgstr "GPG 디렉터리를 '%s'로 설정하는 데 문제가 있습니다(%s)\n"
 
-#: src/pacman/conf.c:897
+#: src/pacman/conf.c:913
 #, c-format
 msgid "problem adding hookdir '%s' (%s)\n"
 msgstr "훅 디렉토리 '%s'를 추가하는 데 문제가 있습니다(%s)\n"
 
-#: src/pacman/conf.c:919
+#: src/pacman/conf.c:935
 #, c-format
 msgid "no '%s' configured\n"
 msgstr "'%s'를 구성하지 않았습니다\n"
 
-#: src/pacman/conf.c:945
+#: src/pacman/conf.c:963
 #, c-format
 msgid "Failed to pass %s entry to libalpm"
 msgstr "libalpm에 %s 항목을 넘기는 데 실패했습니다"
 
-#: src/pacman/conf.c:985
+#: src/pacman/conf.c:1003
 #, c-format
 msgid "config file %s, line %d: '%s' option '%s' not recognized\n"
 msgstr "구성파일 %s, %d번째 줄: '%s' 옵션의 '%s'를 인식할 수 없습니다.\n"
 
-#: src/pacman/conf.c:1005 src/pacman/conf.c:1163
+#: src/pacman/conf.c:1023 src/pacman/conf.c:1181
 #, c-format
 msgid "config file %s, line %d: directive '%s' needs a value\n"
 msgstr "구성파일 %s, %d번째 줄: '%s' 지시자에 값이 필요합니다\n"
 
-#: src/pacman/conf.c:1170
+#: src/pacman/conf.c:1188
 #, c-format
 msgid "config parsing exceeded max recursion depth of %d.\n"
 msgstr "설정 내용 해석에 %d 최대 재귀 단계를 초과했습니다.\n"
 
-#: src/pacman/conf.c:1218
+#: src/pacman/conf.c:1236
 #, c-format
 msgid "config file %s could not be read: %s\n"
 msgstr "%s 설정 파일을 읽을 수 없습니다: %s\n"
 
-#: src/pacman/conf.c:1241
+#: src/pacman/conf.c:1259
 #, c-format
 msgid "config file %s, line %d: All directives must belong to a section.\n"
 msgstr "구성파일 %s, %d번째 줄: 모든 지시자는 섹션에 속해있어야 합니다.\n"
@@ -799,14 +816,17 @@ msgstr "동작:\n"
 msgid ""
 "\n"
 "use '%s {-h --help}' with an operation for available options\n"
-msgstr "\n사용할 수 있는 옵션에 대한 동작을 보려면 '%s {-h --help}'를 사용하십시오.\n"
+msgstr ""
+"\n"
+"사용할 수 있는 옵션에 대한 동작을 보려면 '%s {-h --help}'를 사용하십시오.\n"
 
 #: src/pacman/pacman.c:125
 #, c-format
 msgid ""
-"  -c, --cascade        remove packages and all packages that depend on "
-"them\n"
-msgstr "  -c, --cascade        꾸러미에 의존하는 모든 꾸러미와 해당 꾸러미를 제거합니다.\n"
+"  -c, --cascade        remove packages and all packages that depend on them\n"
+msgstr ""
+"  -c, --cascade        꾸러미에 의존하는 모든 꾸러미와 해당 꾸러미를 제거합니"
+"다.\n"
 
 #: src/pacman/pacman.c:126
 #, c-format
@@ -818,7 +838,10 @@ msgstr "  -n, --nosave         설정 파일을 제거합니다.\n"
 msgid ""
 "  -s, --recursive      remove unnecessary dependencies\n"
 "                       (-ss includes explicitly installed dependencies)\n"
-msgstr "  -s, --recursive      필요하지 않은 의존성 요소를 제거합니다\n                       (명시적으로 설치한 의존성 요소도 포함하려면 -ss 사용)\n"
+msgstr ""
+"  -s, --recursive      필요하지 않은 의존성 요소를 제거합니다\n"
+"                       (명시적으로 설치한 의존성 요소도 포함하려면 -ss 사"
+"용)\n"
 
 #: src/pacman/pacman.c:129
 #, c-format
@@ -839,7 +862,8 @@ msgstr "  -c, --changelog      꾸러미 변경 로그를 봅니다.\n"
 #, c-format
 msgid ""
 "  -d, --deps           list packages installed as dependencies [filter]\n"
-msgstr "  -d, --deps           의존성에 따라 설치한 꾸러미를 조회합니다 [필터]\n"
+msgstr ""
+"  -d, --deps           의존성에 따라 설치한 꾸러미를 조회합니다 [필터]\n"
 
 #: src/pacman/pacman.c:139
 #, c-format
@@ -853,7 +877,8 @@ msgstr "  -g, --groups         꾸러미 모음의 모든 구성원을 봅니다
 
 #: src/pacman/pacman.c:141
 #, c-format
-msgid "  -i, --info           view package information (-ii for backup files)\n"
+msgid ""
+"  -i, --info           view package information (-ii for backup files)\n"
 msgstr "  -i, --info           꾸러미 정보를 확인합니다. (백업 파일은 -ii)\n"
 
 #: src/pacman/pacman.c:142
@@ -861,7 +886,9 @@ msgstr "  -i, --info           꾸러미 정보를 확인합니다. (백업 파�
 msgid ""
 "  -k, --check          check that package files exist (-kk for file "
 "properties)\n"
-msgstr "  -k, --check          꾸러미 파일이 존재하는지 검사합니다. (파일 속성은 -kk)\n"
+msgstr ""
+"  -k, --check          꾸러미 파일이 존재하는지 검사합니다. (파일 속성은 -"
+"kk)\n"
 
 #: src/pacman/pacman.c:143 src/pacman/pacman.c:180
 #, c-format
@@ -873,14 +900,18 @@ msgstr "  -l, --list           조회된 꾸러미에 포함된 파일을 나열
 msgid ""
 "  -m, --foreign        list installed packages not found in sync db(s) "
 "[filter]\n"
-msgstr "  -m, --foreign        동기화 DB에서 찾지 못한 설치 꾸러미를 조회합니다. [필터]\n"
+msgstr ""
+"  -m, --foreign        동기화 DB에서 찾지 못한 설치 꾸러미를 조회합니다. [필"
+"터]\n"
 
 #: src/pacman/pacman.c:145
 #, c-format
 msgid ""
 "  -n, --native         list installed packages only found in sync db(s) "
 "[filter]\n"
-msgstr "  -n, --native         동기화 DB에만 있는 설치된 꾸러미를 조회합니다. [필터]\n"
+msgstr ""
+"  -n, --native         동기화 DB에만 있는 설치된 꾸러미를 조회합니다. [필"
+"터]\n"
 
 #: src/pacman/pacman.c:146
 #, c-format
@@ -895,21 +926,26 @@ msgstr "  -p, --file <package> 데이터베이스 대신 꾸러미 파일을 요
 #: src/pacman/pacman.c:148 src/pacman/pacman.c:161 src/pacman/pacman.c:181
 #, c-format
 msgid "  -q, --quiet          show less information for query and search\n"
-msgstr "  -q, --quiet          요청 및 검색에 대한 정보를 더 간단하게 보여줍니다.\n"
+msgstr ""
+"  -q, --quiet          요청 및 검색에 대한 정보를 더 간단하게 보여줍니다.\n"
 
 #: src/pacman/pacman.c:149
 #, c-format
 msgid ""
 "  -s, --search <regex> search locally-installed packages for matching "
 "strings\n"
-msgstr "  -s, --search <regex> 로컬에 설치한 문자열이 일치하는 꾸러미를 검색합니다.\n"
+msgstr ""
+"  -s, --search <regex> 로컬에 설치한 문자열이 일치하는 꾸러미를 검색합니다.\n"
 
 #: src/pacman/pacman.c:150
 #, c-format
 msgid ""
 "  -t, --unrequired     list packages not (optionally) required by any\n"
 "                       package (-tt to ignore optdepends) [filter]\n"
-msgstr "  -t, --unrequired     다른 꾸러미가 필요로 하지 않는 (선택적인) 꾸러미들을 나열\n                       합니다. (-tt 옵션은 선택의존성을 무시합니다.) [필터]\n"
+msgstr ""
+"  -t, --unrequired     다른 꾸러미가 필요로 하지 않는 (선택적인) 꾸러미들을 "
+"나열\n"
+"                       합니다. (-tt 옵션은 선택의존성을 무시합니다.) [필터]\n"
 
 #: src/pacman/pacman.c:152
 #, c-format
@@ -921,14 +957,18 @@ msgstr "  -u, --upgrades       오래된 꾸러미를 조회합니다. [필터]\
 msgid ""
 "  -c, --clean          remove old packages from cache directory (-cc for "
 "all)\n"
-msgstr "  -c, --clean          캐시 디렉터리의 오래된 꾸러미를 제거합니다. (모두는 -cc)\n"
+msgstr ""
+"  -c, --clean          캐시 디렉터리의 오래된 꾸러미를 제거합니다. (모두는 -"
+"cc)\n"
 
 #: src/pacman/pacman.c:157
 #, c-format
 msgid ""
 "  -g, --groups         view all members of a package group\n"
 "                       (-gg to view all groups and members)\n"
-msgstr "  -g, --groups         꾸러미 모음의 모든 구성원을 봅니다.\n                       (-gg는 모든 모음과 구성원을 볼 수 있습니다.)\n"
+msgstr ""
+"  -g, --groups         꾸러미 모음의 모든 구성원을 봅니다.\n"
+"                       (-gg는 모든 모음과 구성원을 볼 수 있습니다.)\n"
 
 #: src/pacman/pacman.c:159
 #, c-format
@@ -944,26 +984,32 @@ msgstr "  -l, --list <repo>    저장소에 있는 꾸러미 목록을 봅니다
 
 #: src/pacman/pacman.c:162
 #, c-format
-msgid "  -s, --search <regex> search remote repositories for matching strings\n"
+msgid ""
+"  -s, --search <regex> search remote repositories for matching strings\n"
 msgstr "  -s, --search <regex> 문자열과 일치하는 원격 저장소를 검색합니다.\n"
 
 #: src/pacman/pacman.c:163
 #, c-format
 msgid ""
 "  -u, --sysupgrade     upgrade installed packages (-uu enables downgrades)\n"
-msgstr "  -u, --sysupgrade     설치된 꾸러미를 업그레이드합니다.\n                       (-uu 경우 다운그레이드도 가능)\n"
+msgstr ""
+"  -u, --sysupgrade     설치된 꾸러미를 업그레이드합니다.\n"
+"                       (-uu 경우 다운그레이드도 가능)\n"
 
 #: src/pacman/pacman.c:164 src/pacman/pacman.c:183
 #, c-format
 msgid ""
 "  -y, --refresh        download fresh package databases from the server\n"
 "                       (-yy to force a refresh even if up to date)\n"
-msgstr "  -y, --refresh        서버로부터 새로운 꾸러미 데이터베이스를 받아옵니다.\n                       (-yy 경우 최신이더라도 강제로 갱신합니다.)\n"
+msgstr ""
+"  -y, --refresh        서버로부터 새로운 꾸러미 데이터베이스를 받아옵니다.\n"
+"                       (-yy 경우 최신이더라도 강제로 갱신합니다.)\n"
 
 #: src/pacman/pacman.c:170
 #, c-format
 msgid "      --asdeps         mark packages as non-explicitly installed\n"
-msgstr "      --asdeps         꾸러미를 명시적으로 설치하지 않은 것으로 표시합니다.\n"
+msgstr ""
+"      --asdeps         꾸러미를 명시적으로 설치하지 않은 것으로 표시합니다.\n"
 
 #: src/pacman/pacman.c:171
 #, c-format
@@ -975,7 +1021,9 @@ msgstr "      --asexplicit     꾸러미를 명시적으로 설치한 것으로 
 msgid ""
 "  -k, --check          test local database for validity (-kk for sync "
 "databases)\n"
-msgstr "  -k, --check          로컬 데이터베이스가 유효한지 검사 (-kk 경우 데이터베이스 동기화)\n"
+msgstr ""
+"  -k, --check          로컬 데이터베이스가 유효한지 검사 (-kk 경우 데이터베이"
+"스 동기화)\n"
 
 #: src/pacman/pacman.c:173
 #, c-format
@@ -992,26 +1040,34 @@ msgstr "  -x, --regex          정규표현식을 사용해서 검색할 수 있
 msgid ""
 "      --machinereadable\n"
 "                       produce machine-readable output\n"
-msgstr "      --machinereadable\n                       기계가 읽을 수 있는 출력을 생성합니다.\n"
+msgstr ""
+"      --machinereadable\n"
+"                       기계가 읽을 수 있는 출력을 생성합니다.\n"
 
 #: src/pacman/pacman.c:191
 #, c-format
 msgid ""
 "  -w, --downloadonly   download packages but do not install/upgrade "
 "anything\n"
-msgstr "  -w, --downloadonly   꾸러미를 다운로드하지만 설치/업그레이드를 하지 않습니다.\n"
+msgstr ""
+"  -w, --downloadonly   꾸러미를 다운로드하지만 설치/업그레이드를 하지 않습니"
+"다.\n"
 
 #: src/pacman/pacman.c:192
 #, c-format
 msgid ""
 "      --overwrite <glob>\n"
-"                       overwrite conflicting files (can be used more than once)\n"
-msgstr "      --overwrite <glob>\n                       충돌하는 파일을 덮어 씁니다 (한 번 이상 사용 가능)\n"
+"                       overwrite conflicting files (can be used more than "
+"once)\n"
+msgstr ""
+"      --overwrite <glob>\n"
+"                       충돌하는 파일을 덮어 씁니다 (한 번 이상 사용 가능)\n"
 
 #: src/pacman/pacman.c:194
 #, c-format
 msgid "      --asdeps         install packages as non-explicitly installed\n"
-msgstr "      --asdeps         명시적으로 설치하지 않은 꾸러미처럼 설치합니다.\n"
+msgstr ""
+"      --asdeps         명시적으로 설치하지 않은 꾸러미처럼 설치합니다.\n"
 
 #: src/pacman/pacman.c:195
 #, c-format
@@ -1023,45 +1079,58 @@ msgstr "      --asexplicit     명시적으로 설치한 꾸러미처럼 설치�
 msgid ""
 "      --ignore <pkg>   ignore a package upgrade (can be used more than "
 "once)\n"
-msgstr "      --ignore <pkg>   꾸러미 업그레이드를 무시합니다. (한 번 이상 사용 가능)\n"
+msgstr ""
+"      --ignore <pkg>   꾸러미 업그레이드를 무시합니다. (한 번 이상 사용 가"
+"능)\n"
 
 #: src/pacman/pacman.c:197
 #, c-format
 msgid ""
 "      --ignoregroup <grp>\n"
 "                       ignore a group upgrade (can be used more than once)\n"
-msgstr "      --ignoregroup <grp>\n                       모음의 업그레이드를 무시합니다. (한 번 이상 사용 가능)\n"
+msgstr ""
+"      --ignoregroup <grp>\n"
+"                       모음의 업그레이드를 무시합니다. (한 번 이상 사용 가"
+"능)\n"
 
 #: src/pacman/pacman.c:201
 #, c-format
 msgid ""
 "  -d, --nodeps         skip dependency version checks (-dd to skip all "
 "checks)\n"
-msgstr "  -d, --nodeps         의존성 버전 검사를 건너뜁니다. (-dd는 모든 검사 건너뜀)\n"
+msgstr ""
+"  -d, --nodeps         의존성 버전 검사를 건너뜁니다. (-dd는 모든 검사 건너"
+"뜀)\n"
 
 #: src/pacman/pacman.c:202
 #, c-format
 msgid ""
 "      --assume-installed <package=version>\n"
 "                       add a virtual package to satisfy dependencies\n"
-msgstr "      --assume-installed <package=version>\n                       의존성을 만족시키기 위해 가상 꾸러미를 추가합니다.\n"
+msgstr ""
+"      --assume-installed <package=version>\n"
+"                       의존성을 만족시키기 위해 가상 꾸러미를 추가합니다.\n"
 
 #: src/pacman/pacman.c:204
 #, c-format
-msgid "      --dbonly         only modify database entries, not package files\n"
-msgstr "      --dbonly         꾸러미 파일이 아닌 데이터베이스 항목만 수정합니다.\n"
+msgid ""
+"      --dbonly         only modify database entries, not package files\n"
+msgstr ""
+"      --dbonly         꾸러미 파일이 아닌 데이터베이스 항목만 수정합니다.\n"
 
 #: src/pacman/pacman.c:205
 #, c-format
 msgid ""
 "      --noprogressbar  do not show a progress bar when downloading files\n"
-msgstr "      --noprogressbar  파일 다운로드 중 진행 표시줄을 보이지 않습니다.\n"
+msgstr ""
+"      --noprogressbar  파일 다운로드 중 진행 표시줄을 보이지 않습니다.\n"
 
 #: src/pacman/pacman.c:206
 #, c-format
 msgid ""
 "      --noscriptlet    do not execute the install scriptlet if one exists\n"
-msgstr "      --noscriptlet    설치 스크립틀릿이 존재한다면 실행하지 않습니다.\n"
+msgstr ""
+"      --noscriptlet    설치 스크립틀릿이 존재한다면 실행하지 않습니다.\n"
 
 #: src/pacman/pacman.c:207
 #, c-format
@@ -1075,7 +1144,9 @@ msgstr "  -p, --print          동작을 수행하는 대신에 대상을 출력
 msgid ""
 "      --print-format <string>\n"
 "                       specify how the targets should be printed\n"
-msgstr "      --print-format <string>\n                       대상을 어떻게 화면에 출력할지 정합니다.\n"
+msgstr ""
+"      --print-format <string>\n"
+"                       대상을 어떻게 화면에 출력할지 정합니다.\n"
 
 #: src/pacman/pacman.c:213
 #, c-format
@@ -1100,7 +1171,9 @@ msgstr "      --arch <arch>    대체 아키텍처를 설정합니다.\n"
 #: src/pacman/pacman.c:217
 #, c-format
 msgid "      --sysroot        operate on a mounted guest system (root-only)\n"
-msgstr "      --sysroot        마운트된 게스트 시스템 상에서 명령을 수행합니다 (루트만 허용)\n"
+msgstr ""
+"      --sysroot        마운트된 게스트 시스템 상에서 명령을 수행합니다 (루트"
+"만 허용)\n"
 
 #: src/pacman/pacman.c:218
 #, c-format
@@ -1152,76 +1225,89 @@ msgstr "      --confirm        항상 확인 메시지를 묻습니다.\n"
 msgid ""
 "      --disable-download-timeout\n"
 "                       use relaxed timeouts for download\n"
-msgstr "      --disable-download-timeout\n                       다운로드에 시간 제한을 두지 않습니다\n"
+msgstr ""
+"      --disable-download-timeout\n"
+"                       다운로드에 시간 제한을 두지 않습니다\n"
 
-#: src/pacman/pacman.c:247
+#: src/pacman/pacman.c:229
+#, fuzzy, c-format
+msgid ""
+"      --disable-sandbox\n"
+"                       disable the sandbox used for the downloader process\n"
+msgstr ""
+"      --disable-download-timeout\n"
+"                       다운로드에 시간 제한을 두지 않습니다\n"
+
+#: src/pacman/pacman.c:249
 #, c-format
 msgid ""
 "                       This program may be freely redistributed under\n"
 "                       the terms of the GNU General Public License.\n"
-msgstr "                       이 프로그램은 GNU 일반 공중 사용허가서의\n                       조항에 따라 자유롭게 배포할 수 있습니다.\n"
+msgstr ""
+"                       이 프로그램은 GNU 일반 공중 사용허가서의\n"
+"                       조항에 따라 자유롭게 배포할 수 있습니다.\n"
 
-#: src/pacman/pacman.c:280
+#: src/pacman/pacman.c:282
 #, c-format
 msgid "HTTP_USER_AGENT truncated\n"
 msgstr "HTTP_USER_AGENT 잘려짐\n"
 
-#: src/pacman/pacman.c:313
+#: src/pacman/pacman.c:315
 #, c-format
 msgid "invalid option: '%s' and '%s' may not be used together\n"
 msgstr "잘못된 옵션: '%s'와 '%s'는 함께 사용할 수 없습니다.\n"
 
-#: src/pacman/pacman.c:414
+#: src/pacman/pacman.c:416
 #, c-format
 msgid "invalid argument '%s' for %s\n"
 msgstr "%2$s에 대한 잘못된 인자 '%1$s'\n"
 
-#: src/pacman/pacman.c:436 src/pacman/pacman.c:449
+#: src/pacman/pacman.c:438 src/pacman/pacman.c:451
 #, c-format
 msgid "'%s' is not a valid debug level\n"
 msgstr "'%s' 유효하지 않은 디버그 레벨 입니다.\n"
 
-#: src/pacman/pacman.c:994
+#: src/pacman/pacman.c:1000
 #, c-format
 msgid "only one operation may be used at a time\n"
 msgstr "한번에 하나의 처리만 가능합니다.\n"
 
-#: src/pacman/pacman.c:1053
+#: src/pacman/pacman.c:1059
 #, c-format
 msgid "invalid option '-%c'\n"
 msgstr "잘못된 옵션 '-%c'\n"
 
-#: src/pacman/pacman.c:1055
+#: src/pacman/pacman.c:1061
 #, c-format
 msgid "invalid option '--%s'\n"
 msgstr "잘못된 옵션 '--%s'\n"
 
-#: src/pacman/pacman.c:1166
+#: src/pacman/pacman.c:1172
 #, c-format
 msgid "you cannot perform this operation unless you are root.\n"
 msgstr "루트 계정이 아니라면 이 동작을 수행할 수 없습니다.\n"
 
-#: src/pacman/pacman.c:1200
+#: src/pacman/pacman.c:1206
 #, c-format
 msgid "failed to read arguments from stdin: (%s)\n"
 msgstr "표준 입력으로부터 인자를 읽지 못했습니다: (%s)\n"
 
-#: src/pacman/pacman.c:1205
+#: src/pacman/pacman.c:1211
 #, c-format
 msgid "failed to reopen stdin for reading: (%s)\n"
 msgstr "읽어오기 위한 표준 입력을 다시 여는데 실패했습니다: (%s)\n"
 
-#: src/pacman/pacman.c:1210
+#: src/pacman/pacman.c:1216
 #, c-format
 msgid "argument '-' specified with empty stdin\n"
 msgstr "빈 표준 입력으로 인수 '-' 지정\n"
 
-#: src/pacman/pacman.c:1215
+#: src/pacman/pacman.c:1221
 #, c-format
 msgid "argument '-' specified without input on stdin\n"
 msgstr "표준입력에 대한 입력을 빠뜨리고 '-' 인자를 지정했습니다\n"
 
-#: src/pacman/pacman.c:1292
+#: src/pacman/pacman.c:1298
 #, c-format
 msgid "no operation specified (use -h for help)\n"
 msgstr "동작을 지정하지 않았습니다(도움말을 보려면 -h 사용)\n"
@@ -1507,7 +1593,9 @@ msgstr "데이터베이스를 잠글 수 없습니다: %s\n"
 msgid ""
 "  if you're sure a package manager is not already\n"
 "  running, you can remove %s\n"
-msgstr "  꾸러미 관리자가 이미 실행 중이지 않음을 확신한다면\n  %s를 제거할 수 있습니다\n"
+msgstr ""
+"  꾸러미 관리자가 이미 실행 중이지 않음을 확신한다면\n"
+"  %s를 제거할 수 있습니다\n"
 
 #: src/pacman/util.c:116
 #, c-format
@@ -1804,22 +1892,22 @@ msgstr "'%s' 시스템 루트 설정 오류: 메모리 부족\n"
 msgid "error parsing '%s'\n"
 msgstr "'%s' 해석 중 오류\n"
 
-#: src/pacman/pacman-conf.c:312
+#: src/pacman/pacman-conf.c:314
 #, c-format
 msgid "error: repo '%s' not configured\n"
 msgstr "오류: 저장소 '%s'가 설정되지 않음\n"
 
-#: src/pacman/pacman-conf.c:331 src/pacman/pacman-conf.c:412
+#: src/pacman/pacman-conf.c:333 src/pacman/pacman-conf.c:418
 #, c-format
 msgid "warning: '%s' directives cannot be queried\n"
 msgstr "경고: '%s' 지시어를 조회할 수 없음\n"
 
-#: src/pacman/pacman-conf.c:334 src/pacman/pacman-conf.c:415
+#: src/pacman/pacman-conf.c:336 src/pacman/pacman-conf.c:421
 #, c-format
 msgid "warning: unknown directive '%s'\n"
 msgstr "경고: 알 수 없는 지시어 '%s'\n"
 
-#: src/pacman/pacman-conf.c:452
+#: src/pacman/pacman-conf.c:458
 #, c-format
 msgid "error: directives may not be specified with %s\n"
 msgstr "오류: 지시어는 %s로 지정할 수 없음\n"
@@ -1829,7 +1917,9 @@ msgstr "오류: 지시어는 %s로 지정할 수 없음\n"
 msgid ""
 "Test a pacman package for validity.\n"
 "\n"
-msgstr "Pacman 꾸러미를 유효한지 시험합니다.\n\n"
+msgstr ""
+"Pacman 꾸러미를 유효한지 시험합니다.\n"
+"\n"
 
 #: src/util/testpkg.c:57
 #, c-format

@@ -17,14 +17,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
 "Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
-"POT-Creation-Date: 2024-05-10 16:53+1000\n"
+"POT-Creation-Date: 2024-07-02 10:33+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: tarakbumba <tarakbumba@gmail.com>, 2012\n"
-"Language-Team: Turkish (http://app.transifex.com/toofishes/archlinux-pacman/language/tr/)\n"
+"Language-Team: Turkish (http://app.transifex.com/toofishes/archlinux-pacman/"
+"language/tr/)\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src/pacman/callback.c:228
@@ -135,7 +136,9 @@ msgstr "%s, %s.pacsave olarak kaydedildi\n"
 #: src/pacman/callback.c:446
 #, c-format
 msgid "%s is in IgnorePkg/IgnoreGroup. Install anyway?"
-msgstr "%s paketi IgnorePkg ya da IgnoreGroup içerisinde bulunuyor. Yine de kurulmasını istiyor musunuz?"
+msgstr ""
+"%s paketi IgnorePkg ya da IgnoreGroup içerisinde bulunuyor. Yine de "
+"kurulmasını istiyor musunuz?"
 
 #: src/pacman/callback.c:456
 #, c-format
@@ -145,22 +148,27 @@ msgstr "%s paketini %s/%s ile değiştirmek ister misiniz?"
 #: src/pacman/callback.c:468
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict. Remove %s?"
-msgstr "%s-%s%s%s ve %s-%s%s%s çakışıyor. %s paketinin kaldırılmasını istiyor musunuz?"
+msgstr ""
+"%s-%s%s%s ve %s-%s%s%s çakışıyor. %s paketinin kaldırılmasını istiyor "
+"musunuz?"
 
 #: src/pacman/callback.c:479
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict (%s). Remove %s?"
-msgstr "%s-%s%s%s ve %s-%s%s%s çakışıyor (%s). %s paketinin kaldırılmasını istiyor musunuz?"
+msgstr ""
+"%s-%s%s%s ve %s-%s%s%s çakışıyor (%s). %s paketinin kaldırılmasını istiyor "
+"musunuz?"
 
 #: src/pacman/callback.c:504
 #, c-format
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
 msgid_plural ""
-"The following packages cannot be upgraded due to unresolvable "
-"dependencies:\n"
-msgstr[0] "Aşağıdaki paketler çözümlenemeyen bağımlılıkları nedeniyle yükseltilemez:\n"
-msgstr[1] "Aşağıdaki paketler çözümlenemeyen bağımlılıkları nedeniyle yükseltilemez:\n"
+"The following packages cannot be upgraded due to unresolvable dependencies:\n"
+msgstr[0] ""
+"Aşağıdaki paketler çözümlenemeyen bağımlılıkları nedeniyle yükseltilemez:\n"
+msgstr[1] ""
+"Aşağıdaki paketler çözümlenemeyen bağımlılıkları nedeniyle yükseltilemez:\n"
 
 #: src/pacman/callback.c:510
 #, c-format
@@ -181,7 +189,9 @@ msgstr[1] "%2$s için %1$zu sağlayıcı mevcut:\n"
 msgid ""
 "File %s is corrupted (%s).\n"
 "Do you want to delete it?"
-msgstr "%s dosyası bozuk (%s).\nSilinmesini istiyor musunuz?"
+msgstr ""
+"%s dosyası bozuk (%s).\n"
+"Silinmesini istiyor musunuz?"
 
 #: src/pacman/callback.c:543
 #, c-format
@@ -248,22 +258,22 @@ msgstr "paket dosyaları yükleniyor"
 msgid "Total"
 msgstr "Toplam"
 
-#: src/pacman/callback.c:886
+#: src/pacman/callback.c:887
 #, c-format
 msgid " %s downloading...\n"
 msgstr "%s indiriliyor ...\n"
 
-#: src/pacman/callback.c:1055
+#: src/pacman/callback.c:1057
 #, c-format
 msgid " %s is up to date"
 msgstr "%s güncel"
 
-#: src/pacman/callback.c:1081
+#: src/pacman/callback.c:1083
 #, c-format
 msgid " %s failed to download"
 msgstr "%s indirme başarısız"
 
-#: src/pacman/callback.c:1130
+#: src/pacman/callback.c:1133
 #, c-format
 msgid "unknown callback event type %d for %s\n"
 msgstr "%2$s için bilinmeyen geri arama olayı türü %1$d\n"
@@ -370,144 +380,159 @@ msgid_plural "%jd altered files\n"
 msgstr[0] "%jd değiştirilmiş dosya\n"
 msgstr[1] "%jd değiştirilmiş dosya\n"
 
-#: src/pacman/conf.c:102 src/pacman/conf.c:317
+#: src/pacman/conf.c:102 src/pacman/conf.c:326
 #, c-format
 msgid "malloc failure: could not allocate %zu byte\n"
 msgid_plural "malloc failure: could not allocate %zu bytes\n"
 msgstr[0] "tahsis hatası: %zu bayt yer ayrılmadı\n"
 msgstr[1] "tahsis hatası: %zu bayt yer ayrılmadı\n"
 
-#: src/pacman/conf.c:340
+#: src/pacman/conf.c:251
+#, c-format
+msgid "switching to sandbox user '%s' failed!\n"
+msgstr ""
+
+#: src/pacman/conf.c:349
 #, c-format
 msgid "could not get current working directory\n"
 msgstr "mevcut çalışma dizini alınamadı\n"
 
-#: src/pacman/conf.c:345
+#: src/pacman/conf.c:354
 #, c-format
 msgid "could not chdir to download directory %s\n"
 msgstr "indirme dizini %s dizinine geçilemedi\n"
 
-#: src/pacman/conf.c:360
+#: src/pacman/conf.c:369
 #, c-format
 msgid "running XferCommand: fork failed!\n"
 msgstr "XferCommand çalıştırılıyor: çatallanma başarısız!\n"
 
-#: src/pacman/conf.c:372
+#: src/pacman/conf.c:381
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "%s ismi %s olarak değiştirilemedi (%s)\n"
 
-#: src/pacman/conf.c:383
+#: src/pacman/conf.c:392
 #, c-format
 msgid "could not restore working directory (%s)\n"
 msgstr "çalışma dizini geri konulamadı (%s)\n"
 
-#: src/pacman/conf.c:521 src/pacman/conf.c:570 src/pacman/conf.c:677
-#: src/pacman/conf.c:729
+#: src/pacman/conf.c:530 src/pacman/conf.c:579 src/pacman/conf.c:693
+#: src/pacman/conf.c:745
 #, c-format
 msgid "config file %s, line %d: invalid value for '%s' : '%s'\n"
 msgstr "%s yapılandırma dosyası, satır %d: '%s' için geçersiz değer: '%s'\n"
 
-#: src/pacman/conf.c:535
+#: src/pacman/conf.c:544
 #, c-format
 msgid "config file %s, line %d: '%s' option invalid, no signature support\n"
-msgstr "%s yapılandırma dosyası, satır %d: '%s' seçeneği geçersiz, imza desteği yok\n"
+msgstr ""
+"%s yapılandırma dosyası, satır %d: '%s' seçeneği geçersiz, imza desteği yok\n"
 
-#: src/pacman/conf.c:625 src/pacman/conf.c:751 src/pacman/conf.c:1039
+#: src/pacman/conf.c:636 src/pacman/conf.c:767 src/pacman/conf.c:1057
 #, c-format
 msgid ""
 "config file %s, line %d: directive '%s' in section '%s' not recognized.\n"
 msgstr "ayar dosyası %s, satır %d: '%s' direktifi '%s' bölümü için geçersiz.\n"
 
-#: src/pacman/conf.c:736
+#: src/pacman/conf.c:752
 #, c-format
 msgid "config file %s, line %d: value for '%s' has to be positive : '%s'\n"
-msgstr "yapılandırma dosyası %s, satır %d: '%s' değeri pozitif olmalıdır: '%s'\n"
+msgstr ""
+"yapılandırma dosyası %s, satır %d: '%s' değeri pozitif olmalıdır: '%s'\n"
 
-#: src/pacman/conf.c:743
+#: src/pacman/conf.c:759
 #, c-format
 msgid "config file %s, line %d: value for '%s' is too large : '%s'\n"
 msgstr "yapılandırma dosyası %s, satır %d: '%s' değeri çok büyük: '%s'\n"
 
-#: src/pacman/conf.c:763
+#: src/pacman/conf.c:779
 #, c-format
 msgid "mirror '%s' contains the '%s' variable, but no '%s' is defined.\n"
 msgstr "'%s' yansısı '%s' değişkenini içeriyor fakat '%s' tanımlı değil.\n"
 
-#: src/pacman/conf.c:808
+#: src/pacman/conf.c:824
 #, c-format
 msgid "could not register '%s' database (%s)\n"
 msgstr "veritabanı (%s) kaydedilemedi (%s)\n"
 
-#: src/pacman/conf.c:821
+#: src/pacman/conf.c:837
 #, c-format
 msgid "could not add cache server URL to database '%s': %s (%s)\n"
 msgstr "'%s' veritabanına önbellek sunucusu URL'si eklenemedi: %s (%s)\n"
 
-#: src/pacman/conf.c:830
+#: src/pacman/conf.c:846
 #, c-format
 msgid "could not add server URL to database '%s': %s (%s)\n"
 msgstr "sunucu adresi '%s' veritabanına eklenemedi: %s (%s)\n"
 
-#: src/pacman/conf.c:857
+#: src/pacman/conf.c:873
 #, c-format
 msgid ""
 "failed to initialize alpm library:\n"
 "(root: %s, dbpath: %s)\n"
 "%s\n"
-msgstr "alpm kütüphanesi başlatılamadı:\n(root: %s, dbpath: %s)\n%s\n"
+msgstr ""
+"alpm kütüphanesi başlatılamadı:\n"
+"(root: %s, dbpath: %s)\n"
+"%s\n"
 
-#: src/pacman/conf.c:860
+#: src/pacman/conf.c:876
 #, c-format
 msgid "try running pacman-db-upgrade\n"
 msgstr "pacman-db-upgrade komutunu çalıştırmayı deneyin\n"
 
-#: src/pacman/conf.c:878
+#: src/pacman/conf.c:894
 #, c-format
 msgid "problem setting logfile '%s' (%s)\n"
 msgstr "kayıt dosyasını '%s' (%s) ayarlama sorunu\n"
 
-#: src/pacman/conf.c:887
+#: src/pacman/conf.c:903
 #, c-format
 msgid "problem setting gpgdir '%s' (%s)\n"
 msgstr "'%s' gpg dizini ayarlanırken sorun oluştu (%s)\n"
 
-#: src/pacman/conf.c:897
+#: src/pacman/conf.c:913
 #, c-format
 msgid "problem adding hookdir '%s' (%s)\n"
 msgstr "bağlama sorunu ekleniyor '%s' (%s)\n"
 
-#: src/pacman/conf.c:919
+#: src/pacman/conf.c:935
 #, c-format
 msgid "no '%s' configured\n"
 msgstr "herhangi bir '%s' yapılandırılmamış\n"
 
-#: src/pacman/conf.c:945
+#: src/pacman/conf.c:963
 #, c-format
 msgid "Failed to pass %s entry to libalpm"
 msgstr "libalpm için %s girdisi başarısız oldu"
 
-#: src/pacman/conf.c:985
+#: src/pacman/conf.c:1003
 #, c-format
 msgid "config file %s, line %d: '%s' option '%s' not recognized\n"
-msgstr "ayar dosyası %s, satır %d: '%s' seçeneği '%s' bölümü tanınmıyor\n\n"
+msgstr ""
+"ayar dosyası %s, satır %d: '%s' seçeneği '%s' bölümü tanınmıyor\n"
+"\n"
 
-#: src/pacman/conf.c:1005 src/pacman/conf.c:1163
+#: src/pacman/conf.c:1023 src/pacman/conf.c:1181
 #, c-format
 msgid "config file %s, line %d: directive '%s' needs a value\n"
-msgstr "yapılandırma dosyası %s, satır %d: '%s' direktifine bir değer atanmalı\n"
+msgstr ""
+"yapılandırma dosyası %s, satır %d: '%s' direktifine bir değer atanmalı\n"
 
-#: src/pacman/conf.c:1170
+#: src/pacman/conf.c:1188
 #, c-format
 msgid "config parsing exceeded max recursion depth of %d.\n"
-msgstr "yapılandırma yorumlaması izin verilen maksimum çözümleme değeri olan %d  değerini aştı.\n"
+msgstr ""
+"yapılandırma yorumlaması izin verilen maksimum çözümleme değeri olan %d  "
+"değerini aştı.\n"
 
-#: src/pacman/conf.c:1218
+#: src/pacman/conf.c:1236
 #, c-format
 msgid "config file %s could not be read: %s\n"
 msgstr "yapılandırma dosyası %s okunamadı: %s\n"
 
-#: src/pacman/conf.c:1241
+#: src/pacman/conf.c:1259
 #, c-format
 msgid "config file %s, line %d: All directives must belong to a section.\n"
 msgstr "ayar dosyası %s, satır %d: Tüm direktifler bir bölüme ait olmalı.\n"
@@ -805,14 +830,16 @@ msgstr "işlemler:\n"
 msgid ""
 "\n"
 "use '%s {-h --help}' with an operation for available options\n"
-msgstr "\ndaha ayrıntılı bilgi için '%s {-h --help}' kullanın\n"
+msgstr ""
+"\n"
+"daha ayrıntılı bilgi için '%s {-h --help}' kullanın\n"
 
 #: src/pacman/pacman.c:125
 #, c-format
 msgid ""
-"  -c, --cascade        remove packages and all packages that depend on "
-"them\n"
-msgstr "  -c, --cascade       paket(ler)i ve on(lar)a ait tüm bağımlılıkları kaldır\n"
+"  -c, --cascade        remove packages and all packages that depend on them\n"
+msgstr ""
+"  -c, --cascade       paket(ler)i ve on(lar)a ait tüm bağımlılıkları kaldır\n"
 
 #: src/pacman/pacman.c:126
 #, c-format
@@ -824,7 +851,9 @@ msgstr "  -n, --nosave         yapılandırma dosyalarını kaldır\n"
 msgid ""
 "  -s, --recursive      remove unnecessary dependencies\n"
 "                       (-ss includes explicitly installed dependencies)\n"
-msgstr "  -s, --recursive      gereksiz bağımlılıkları kaldır\n                       (-ss doğrudan kurulmuş bağımlılıkları da içerir)\n"
+msgstr ""
+"  -s, --recursive      gereksiz bağımlılıkları kaldır\n"
+"                       (-ss doğrudan kurulmuş bağımlılıkları da içerir)\n"
 
 #: src/pacman/pacman.c:129
 #, c-format
@@ -845,7 +874,9 @@ msgstr "  -c, --changelog      paketin değişim kaydını göster\n"
 #, c-format
 msgid ""
 "  -d, --deps           list packages installed as dependencies [filter]\n"
-msgstr "  -d, --deps           bağımlılık olarak yüklenen paketleri listele [filtre]\n"
+msgstr ""
+"  -d, --deps           bağımlılık olarak yüklenen paketleri listele "
+"[filtre]\n"
 
 #: src/pacman/pacman.c:139
 #, c-format
@@ -859,34 +890,43 @@ msgstr "  -g, --groups         paket grubundaki tüm paketleri göster\n"
 
 #: src/pacman/pacman.c:141
 #, c-format
-msgid "  -i, --info           view package information (-ii for backup files)\n"
-msgstr "  -i, --info           paket bilgisini göster (yedek dosyaları için -ii)\n"
+msgid ""
+"  -i, --info           view package information (-ii for backup files)\n"
+msgstr ""
+"  -i, --info           paket bilgisini göster (yedek dosyaları için -ii)\n"
 
 #: src/pacman/pacman.c:142
 #, c-format
 msgid ""
 "  -k, --check          check that package files exist (-kk for file "
 "properties)\n"
-msgstr "  -k, --check          paket dosyalarının varlığını kontrol et (dosya sahipliklerini görüntülemek  için -kk)\n"
+msgstr ""
+"  -k, --check          paket dosyalarının varlığını kontrol et (dosya "
+"sahipliklerini görüntülemek  için -kk)\n"
 
 #: src/pacman/pacman.c:143 src/pacman/pacman.c:180
 #, c-format
 msgid "  -l, --list           list the files owned by the queried package\n"
-msgstr "  -l, --list          araştırılan paketin sahibi olduğu dosyaları listele\n"
+msgstr ""
+"  -l, --list          araştırılan paketin sahibi olduğu dosyaları listele\n"
 
 #: src/pacman/pacman.c:144
 #, c-format
 msgid ""
 "  -m, --foreign        list installed packages not found in sync db(s) "
 "[filter]\n"
-msgstr "  -m, --foreign        senkronize veritabanında bulunmayan paketleri listele [filtre]\n"
+msgstr ""
+"  -m, --foreign        senkronize veritabanında bulunmayan paketleri listele "
+"[filtre]\n"
 
 #: src/pacman/pacman.c:145
 #, c-format
 msgid ""
 "  -n, --native         list installed packages only found in sync db(s) "
 "[filter]\n"
-msgstr "  -n, --native        sadece senkronize veritabanında bulunan paketleri kur [filtre]\n"
+msgstr ""
+"  -n, --native        sadece senkronize veritabanında bulunan paketleri kur "
+"[filtre]\n"
 
 #: src/pacman/pacman.c:146
 #, c-format
@@ -901,21 +941,28 @@ msgstr "  -p, --file <paket>  veritabanı yerine paket dosyasını sorgula\n"
 #: src/pacman/pacman.c:148 src/pacman/pacman.c:161 src/pacman/pacman.c:181
 #, c-format
 msgid "  -q, --quiet          show less information for query and search\n"
-msgstr "  -q, --quiet          sorgulama ve arama sırasında daha az bilgi göster\n"
+msgstr ""
+"  -q, --quiet          sorgulama ve arama sırasında daha az bilgi göster\n"
 
 #: src/pacman/pacman.c:149
 #, c-format
 msgid ""
 "  -s, --search <regex> search locally-installed packages for matching "
 "strings\n"
-msgstr "  -s, --search <regex> kurulu paketler içerisinde söz dizimine uyarak arama yap\n"
+msgstr ""
+"  -s, --search <regex> kurulu paketler içerisinde söz dizimine uyarak arama "
+"yap\n"
 
 #: src/pacman/pacman.c:150
 #, c-format
 msgid ""
 "  -t, --unrequired     list packages not (optionally) required by any\n"
 "                       package (-tt to ignore optdepends) [filter]\n"
-msgstr "  -t, --unrequired    hiçbir paket tarafından isteğe bağlı olarak gereksinim duyulmayan \n                       paketleri listele (optdepends için -tt kullanın) [filtre]\n"
+msgstr ""
+"  -t, --unrequired    hiçbir paket tarafından isteğe bağlı olarak gereksinim "
+"duyulmayan \n"
+"                       paketleri listele (optdepends için -tt kullanın) "
+"[filtre]\n"
 
 #: src/pacman/pacman.c:152
 #, c-format
@@ -927,21 +974,26 @@ msgstr "  -u, --upgrades       güncellenebilecek paketleri listele [filtre]\n"
 msgid ""
 "  -c, --clean          remove old packages from cache directory (-cc for "
 "all)\n"
-msgstr "  -c, --clean          önbellekteki eski paketleri kaldır (hepsi için -cc)\n"
+msgstr ""
+"  -c, --clean          önbellekteki eski paketleri kaldır (hepsi için -cc)\n"
 
 #: src/pacman/pacman.c:157
 #, c-format
 msgid ""
 "  -g, --groups         view all members of a package group\n"
 "                       (-gg to view all groups and members)\n"
-msgstr "  -g, --groups         bir paket grubundaki tüm paketleri göster \n                       (tüm grupları ve üyeleri için -gg kullanın)\n"
+msgstr ""
+"  -g, --groups         bir paket grubundaki tüm paketleri göster \n"
+"                       (tüm grupları ve üyeleri için -gg kullanın)\n"
 
 #: src/pacman/pacman.c:159
 #, c-format
 msgid ""
 "  -i, --info           view package information (-ii for extended "
 "information)\n"
-msgstr "  -i, --info           paket bilgisini göster (genişletilmiş bilgi için -ii kullanın) \n"
+msgstr ""
+"  -i, --info           paket bilgisini göster (genişletilmiş bilgi için -ii "
+"kullanın) \n"
 
 #: src/pacman/pacman.c:160
 #, c-format
@@ -950,43 +1002,53 @@ msgstr "  -l, --list <depo>    depodaki paket listesini göster\n"
 
 #: src/pacman/pacman.c:162
 #, c-format
-msgid "  -s, --search <regex> search remote repositories for matching strings\n"
+msgid ""
+"  -s, --search <regex> search remote repositories for matching strings\n"
 msgstr "  -s, --search <regex> depo(lar)da söz dizimine uyan arama yap\n"
 
 #: src/pacman/pacman.c:163
 #, c-format
 msgid ""
 "  -u, --sysupgrade     upgrade installed packages (-uu enables downgrades)\n"
-msgstr "  -u, --sysupgrade     kurulu paketleri yükselt (-uu eski sürüme çevirmeyi etkinleştirir) \n"
+msgstr ""
+"  -u, --sysupgrade     kurulu paketleri yükselt (-uu eski sürüme çevirmeyi "
+"etkinleştirir) \n"
 
 #: src/pacman/pacman.c:164 src/pacman/pacman.c:183
 #, c-format
 msgid ""
 "  -y, --refresh        download fresh package databases from the server\n"
 "                       (-yy to force a refresh even if up to date)\n"
-msgstr "  -y, --refresh        sunucudan güncel paket veritabanını indir \n                       (güncel olsa bile zorlamak için -yy kullanın)\n"
+msgstr ""
+"  -y, --refresh        sunucudan güncel paket veritabanını indir \n"
+"                       (güncel olsa bile zorlamak için -yy kullanın)\n"
 
 #: src/pacman/pacman.c:170
 #, c-format
 msgid "      --asdeps         mark packages as non-explicitly installed\n"
-msgstr "      --asdeps     paketleri bağımlılık olarak kurulacak şekilde işaretle\n"
+msgstr ""
+"      --asdeps     paketleri bağımlılık olarak kurulacak şekilde işaretle\n"
 
 #: src/pacman/pacman.c:171
 #, c-format
 msgid "      --asexplicit     mark packages as explicitly installed\n"
-msgstr "      --asexplicit     paketleri doğrudan kurulmuş paket olarak işaretle\n"
+msgstr ""
+"      --asexplicit     paketleri doğrudan kurulmuş paket olarak işaretle\n"
 
 #: src/pacman/pacman.c:172
 #, c-format
 msgid ""
 "  -k, --check          test local database for validity (-kk for sync "
 "databases)\n"
-msgstr "yerel veritabanını doğrulamak için -k, --check ile test et (veritabanı senkronizasyonu için -kk)\n"
+msgstr ""
+"yerel veritabanını doğrulamak için -k, --check ile test et (veritabanı "
+"senkronizasyonu için -kk)\n"
 
 #: src/pacman/pacman.c:173
 #, c-format
 msgid "  -q, --quiet          suppress output of success messages\n"
-msgstr "  -q, --quiet          sorgulama ve arama sırasında daha az bilgi göster\n"
+msgstr ""
+"  -q, --quiet          sorgulama ve arama sırasında daha az bilgi göster\n"
 
 #: src/pacman/pacman.c:182
 #, c-format
@@ -998,21 +1060,29 @@ msgstr "-x, --regex ifadelerini kullanarak aramayı etkinleştir\n"
 msgid ""
 "      --machinereadable\n"
 "                       produce machine-readable output\n"
-msgstr "--machinereadable\nmakine tarafından okunabilir bir çıktı üret\n"
+msgstr ""
+"--machinereadable\n"
+"makine tarafından okunabilir bir çıktı üret\n"
 
 #: src/pacman/pacman.c:191
 #, c-format
 msgid ""
 "  -w, --downloadonly   download packages but do not install/upgrade "
 "anything\n"
-msgstr "  -w, --downloadonly   paketleri sadece indir ve kurulum ya da güncelleme yapma\n"
+msgstr ""
+"  -w, --downloadonly   paketleri sadece indir ve kurulum ya da güncelleme "
+"yapma\n"
 
 #: src/pacman/pacman.c:192
 #, c-format
 msgid ""
 "      --overwrite <glob>\n"
-"                       overwrite conflicting files (can be used more than once)\n"
-msgstr "      --overwrite <glob>\n                       çakışan dosyaların üzerine yaz (birden fazla kullanılabilir)\n"
+"                       overwrite conflicting files (can be used more than "
+"once)\n"
+msgstr ""
+"      --overwrite <glob>\n"
+"                       çakışan dosyaların üzerine yaz (birden fazla "
+"kullanılabilir)\n"
 
 #: src/pacman/pacman.c:194
 #, c-format
@@ -1022,40 +1092,53 @@ msgstr "      --asdeps         paket(ler)i bağımlılık olarak kur\n"
 #: src/pacman/pacman.c:195
 #, c-format
 msgid "      --asexplicit     install packages as explicitly installed\n"
-msgstr "      --asexplicit     paket(ler)i doğrudan kurulmuş paket olarak kur\n"
+msgstr ""
+"      --asexplicit     paket(ler)i doğrudan kurulmuş paket olarak kur\n"
 
 #: src/pacman/pacman.c:196
 #, c-format
 msgid ""
 "      --ignore <pkg>   ignore a package upgrade (can be used more than "
 "once)\n"
-msgstr "      --ignore <pkg>   paket güncellemesini görmezden gel (birden çok paket için kullanılabilir)\n"
+msgstr ""
+"      --ignore <pkg>   paket güncellemesini görmezden gel (birden çok paket "
+"için kullanılabilir)\n"
 
 #: src/pacman/pacman.c:197
 #, c-format
 msgid ""
 "      --ignoregroup <grp>\n"
 "                       ignore a group upgrade (can be used more than once)\n"
-msgstr "      --ignoregroup <grp>\n                       güncelleme sırasında grubu görmezden gel (birden çok grup için kullanılabilir)\n"
+msgstr ""
+"      --ignoregroup <grp>\n"
+"                       güncelleme sırasında grubu görmezden gel (birden çok "
+"grup için kullanılabilir)\n"
 
 #: src/pacman/pacman.c:201
 #, c-format
 msgid ""
 "  -d, --nodeps         skip dependency version checks (-dd to skip all "
 "checks)\n"
-msgstr "  -d, --nodeps         bağımlılk sürüm denetimlerini atla (-dd tüm denetimleri atlar)\n"
+msgstr ""
+"  -d, --nodeps         bağımlılk sürüm denetimlerini atla (-dd tüm "
+"denetimleri atlar)\n"
 
 #: src/pacman/pacman.c:202
 #, c-format
 msgid ""
 "      --assume-installed <package=version>\n"
 "                       add a virtual package to satisfy dependencies\n"
-msgstr "      --assume-installed <paket=sürüm>\n                       bağımlılıkları sağlamak için sanal bir paket ekle\n"
+msgstr ""
+"      --assume-installed <paket=sürüm>\n"
+"                       bağımlılıkları sağlamak için sanal bir paket ekle\n"
 
 #: src/pacman/pacman.c:204
 #, c-format
-msgid "      --dbonly         only modify database entries, not package files\n"
-msgstr "      --dbonly         sadece veritabanı girdilerini değiştir, paket dosyalarını değiştirme\n"
+msgid ""
+"      --dbonly         only modify database entries, not package files\n"
+msgstr ""
+"      --dbonly         sadece veritabanı girdilerini değiştir, paket "
+"dosyalarını değiştirme\n"
 
 #: src/pacman/pacman.c:205
 #, c-format
@@ -1074,14 +1157,17 @@ msgstr "      --noscriptlet    kurulum betiği varsa çalıştırma\n"
 msgid ""
 "  -p, --print          print the targets instead of performing the "
 "operation\n"
-msgstr "  -p, --print          işlem gerçekleştirmek yerine hedefleri görüntüle\n"
+msgstr ""
+"  -p, --print          işlem gerçekleştirmek yerine hedefleri görüntüle\n"
 
 #: src/pacman/pacman.c:208
 #, c-format
 msgid ""
 "      --print-format <string>\n"
 "                       specify how the targets should be printed\n"
-msgstr "      --print-format <dizgi>\n                       çıktı biçiminin nasıl gösterileceğini belirle\n"
+msgstr ""
+"      --print-format <dizgi>\n"
+"                       çıktı biçiminin nasıl gösterileceğini belirle\n"
 
 #: src/pacman/pacman.c:213
 #, c-format
@@ -1106,7 +1192,8 @@ msgstr "      --arch <arch>    alternatif bir mimari seç\n"
 #: src/pacman/pacman.c:217
 #, c-format
 msgid "      --sysroot        operate on a mounted guest system (root-only)\n"
-msgstr "      --sysroot        bağlı konuk sistem üzerinde işlem yap (sadece root)\n"
+msgstr ""
+"      --sysroot        bağlı konuk sistem üzerinde işlem yap (sadece root)\n"
 
 #: src/pacman/pacman.c:218
 #, c-format
@@ -1158,76 +1245,91 @@ msgstr "      --confirm        her zaman onay iste\n"
 msgid ""
 "      --disable-download-timeout\n"
 "                       use relaxed timeouts for download\n"
-msgstr "      --disable-download-timeout\n                       indirirken daha sakin zaman aşımı kullan\n"
+msgstr ""
+"      --disable-download-timeout\n"
+"                       indirirken daha sakin zaman aşımı kullan\n"
 
-#: src/pacman/pacman.c:247
+#: src/pacman/pacman.c:229
+#, fuzzy, c-format
+msgid ""
+"      --disable-sandbox\n"
+"                       disable the sandbox used for the downloader process\n"
+msgstr ""
+"      --disable-download-timeout\n"
+"                       indirirken daha sakin zaman aşımı kullan\n"
+
+#: src/pacman/pacman.c:249
 #, c-format
 msgid ""
 "                       This program may be freely redistributed under\n"
 "                       the terms of the GNU General Public License.\n"
-msgstr "                       Bu yazılım GNU Genel Kamu Lisansı hükümlerine\n                       uymak şartıyla özgürce dağıtılabilir.\n"
+msgstr ""
+"                       Bu yazılım GNU Genel Kamu Lisansı hükümlerine\n"
+"                       uymak şartıyla özgürce dağıtılabilir.\n"
 
-#: src/pacman/pacman.c:280
+#: src/pacman/pacman.c:282
 #, c-format
 msgid "HTTP_USER_AGENT truncated\n"
 msgstr "HTTP_USER_AGENT kesilmiş\n"
 
-#: src/pacman/pacman.c:313
+#: src/pacman/pacman.c:315
 #, c-format
 msgid "invalid option: '%s' and '%s' may not be used together\n"
 msgstr "Geçersiz seçenek: '%s' ve '%s' birlikte kullanılamaybilir\n"
 
-#: src/pacman/pacman.c:414
+#: src/pacman/pacman.c:416
 #, c-format
 msgid "invalid argument '%s' for %s\n"
 msgstr "'%s',  %s için geçersiz bir argüman\n"
 
-#: src/pacman/pacman.c:436 src/pacman/pacman.c:449
+#: src/pacman/pacman.c:438 src/pacman/pacman.c:451
 #, c-format
 msgid "'%s' is not a valid debug level\n"
 msgstr "'%s' geçerli bir hata ayıklama seviyesi değil\n"
 
-#: src/pacman/pacman.c:994
+#: src/pacman/pacman.c:1000
 #, c-format
 msgid "only one operation may be used at a time\n"
 msgstr "her seferinde yalnızca bir işlem yapılabilir\n"
 
-#: src/pacman/pacman.c:1053
+#: src/pacman/pacman.c:1059
 #, c-format
 msgid "invalid option '-%c'\n"
 msgstr "Geçersiz seçenek '-%c'\n"
 
-#: src/pacman/pacman.c:1055
+#: src/pacman/pacman.c:1061
 #, c-format
 msgid "invalid option '--%s'\n"
 msgstr "Geçersiz seçenek  '--%s'\n"
 
-#: src/pacman/pacman.c:1166
+#: src/pacman/pacman.c:1172
 #, c-format
 msgid "you cannot perform this operation unless you are root.\n"
 msgstr "yönetici yetkileri olmadan bu işlemi gerçekleştiremezsiniz.\n"
 
-#: src/pacman/pacman.c:1200
+#: src/pacman/pacman.c:1206
 #, c-format
 msgid "failed to read arguments from stdin: (%s)\n"
 msgstr "stdin'den işlemler alınamadı: (%s)\n"
 
-#: src/pacman/pacman.c:1205
+#: src/pacman/pacman.c:1211
 #, c-format
 msgid "failed to reopen stdin for reading: (%s)\n"
 msgstr "stdin okunmak için açılamadı: (%s)\n"
 
-#: src/pacman/pacman.c:1210
+#: src/pacman/pacman.c:1216
 #, c-format
 msgid "argument '-' specified with empty stdin\n"
-msgstr "'-' parametresi stdin üzerinde boş girdi ile kullanıldı\n\n"
+msgstr ""
+"'-' parametresi stdin üzerinde boş girdi ile kullanıldı\n"
+"\n"
 
-#: src/pacman/pacman.c:1215
+#: src/pacman/pacman.c:1221
 #, c-format
 msgid "argument '-' specified without input on stdin\n"
 msgstr "'-' parametresi stdin üzerinde girdi olmadan kullanıldı\n"
 
-#: src/pacman/pacman.c:1292
+#: src/pacman/pacman.c:1298
 #, c-format
 msgid "no operation specified (use -h for help)\n"
 msgstr "herhangi bir işlem belirlenmedi (yardım için -h kullanın)\n"
@@ -1290,7 +1392,8 @@ msgstr "işlem hazırlığı başarısız oldu (%s)\n"
 #: src/pacman/remove.c:119 src/pacman/sync.c:756
 #, c-format
 msgid "removing %s breaks dependency '%s' required by %s\n"
-msgstr "%s paketini kaldırmak şu paketin istediği \"%s\" bağımlılığını bozuyor: %s\n"
+msgstr ""
+"%s paketini kaldırmak şu paketin istediği \"%s\" bağımlılığını bozuyor: %s\n"
 
 #: src/pacman/remove.c:138
 #, c-format
@@ -1442,7 +1545,9 @@ msgstr "Şu paketin istediği \"%s\" bağımlılığı sağlanamıyor: %s\n"
 #: src/pacman/sync.c:752
 #, c-format
 msgid "installing %s (%s) breaks dependency '%s' required by %s\n"
-msgstr "%s (%s) paketini kurmak şu paket tarafından istenen \"%s\" bağımlılığını bozuyor: %s\n"
+msgstr ""
+"%s (%s) paketini kurmak şu paket tarafından istenen \"%s\" bağımlılığını "
+"bozuyor: %s\n"
 
 #: src/pacman/sync.c:776
 #, c-format
@@ -1514,7 +1619,9 @@ msgstr "veritabanı kilitlenemiyor: %s\n"
 msgid ""
 "  if you're sure a package manager is not already\n"
 "  running, you can remove %s\n"
-msgstr "  eğer paket yöneticisinin çalışmadığından eminseniz\n  %s dosyasını silebilirsiniz.\n"
+msgstr ""
+"  eğer paket yöneticisinin çalışmadığından eminseniz\n"
+"  %s dosyasını silebilirsiniz.\n"
 
 #: src/pacman/util.c:116
 #, c-format
@@ -1811,22 +1918,22 @@ msgstr ""
 msgid "error parsing '%s'\n"
 msgstr "\"%s\" incelenirken hata\n"
 
-#: src/pacman/pacman-conf.c:312
+#: src/pacman/pacman-conf.c:314
 #, c-format
 msgid "error: repo '%s' not configured\n"
 msgstr "hata: \"%s\" deposu yapılandırılmadı\n"
 
-#: src/pacman/pacman-conf.c:331 src/pacman/pacman-conf.c:412
+#: src/pacman/pacman-conf.c:333 src/pacman/pacman-conf.c:418
 #, c-format
 msgid "warning: '%s' directives cannot be queried\n"
 msgstr "uyarı: \"%s\" talimatları sorgulanamaz\n"
 
-#: src/pacman/pacman-conf.c:334 src/pacman/pacman-conf.c:415
+#: src/pacman/pacman-conf.c:336 src/pacman/pacman-conf.c:421
 #, c-format
 msgid "warning: unknown directive '%s'\n"
 msgstr "uyarı: bilinmeyen talimat: \"%s\"\n"
 
-#: src/pacman/pacman-conf.c:452
+#: src/pacman/pacman-conf.c:458
 #, c-format
 msgid "error: directives may not be specified with %s\n"
 msgstr "hata: talimatlar %s ile belirtilemez\n"
@@ -1836,7 +1943,9 @@ msgstr "hata: talimatlar %s ile belirtilemez\n"
 msgid ""
 "Test a pacman package for validity.\n"
 "\n"
-msgstr "Bir pacman paketinin geçerliliğini test et.\n\n"
+msgstr ""
+"Bir pacman paketinin geçerliliğini test et.\n"
+"\n"
 
 #: src/util/testpkg.c:57
 #, c-format

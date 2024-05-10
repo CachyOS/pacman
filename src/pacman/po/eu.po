@@ -9,14 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
 "Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
-"POT-Creation-Date: 2024-05-10 16:53+1000\n"
+"POT-Creation-Date: 2024-07-02 10:33+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Osoitz <oelkoro@gmail.com>, 2013\n"
-"Language-Team: Basque (http://app.transifex.com/toofishes/archlinux-pacman/language/eu/)\n"
+"Language-Team: Basque (http://app.transifex.com/toofishes/archlinux-pacman/"
+"language/eu/)\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/pacman/callback.c:228
@@ -117,12 +118,16 @@ msgstr "%s-k aukeran behar du %s\n"
 #: src/pacman/callback.c:361 src/pacman/callback.c:367
 #, c-format
 msgid "%s installed as %s.pacnew\n"
-msgstr "%s instalatu da %s.pacnew gisa\n\n"
+msgstr ""
+"%s instalatu da %s.pacnew gisa\n"
+"\n"
 
 #: src/pacman/callback.c:377 src/pacman/callback.c:383
 #, c-format
 msgid "%s saved as %s.pacsave\n"
-msgstr "%s gorde da %s.pacsave gisa\n\n"
+msgstr ""
+"%s gorde da %s.pacsave gisa\n"
+"\n"
 
 #: src/pacman/callback.c:446
 #, c-format
@@ -149,10 +154,13 @@ msgstr ""
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
 msgid_plural ""
-"The following packages cannot be upgraded due to unresolvable "
-"dependencies:\n"
-msgstr[0] "Hurrengo paketea ezin da bertsio berritu bete ezin diren menpekotasunak direla eta:\n"
-msgstr[1] "Hurrengo paketeak ezin dira bertsio berritu bete ezin diren menpekotasunak direla eta:\n"
+"The following packages cannot be upgraded due to unresolvable dependencies:\n"
+msgstr[0] ""
+"Hurrengo paketea ezin da bertsio berritu bete ezin diren menpekotasunak "
+"direla eta:\n"
+msgstr[1] ""
+"Hurrengo paketeak ezin dira bertsio berritu bete ezin diren menpekotasunak "
+"direla eta:\n"
 
 #: src/pacman/callback.c:510
 #, c-format
@@ -173,7 +181,9 @@ msgstr[1] "%zu aukera daude %s hornitzeko:\n"
 msgid ""
 "File %s is corrupted (%s).\n"
 "Do you want to delete it?"
-msgstr "%s fitxategia hondatuta dago (%s).\nEzabatu nahi duzu?"
+msgstr ""
+"%s fitxategia hondatuta dago (%s).\n"
+"Ezabatu nahi duzu?"
 
 #: src/pacman/callback.c:543
 #, c-format
@@ -240,22 +250,22 @@ msgstr "pakete fitxategiak kargatzen"
 msgid "Total"
 msgstr ""
 
-#: src/pacman/callback.c:886
+#: src/pacman/callback.c:887
 #, c-format
 msgid " %s downloading...\n"
 msgstr ""
 
-#: src/pacman/callback.c:1055
+#: src/pacman/callback.c:1057
 #, c-format
 msgid " %s is up to date"
 msgstr ""
 
-#: src/pacman/callback.c:1081
+#: src/pacman/callback.c:1083
 #, c-format
 msgid " %s failed to download"
 msgstr ""
 
-#: src/pacman/callback.c:1130
+#: src/pacman/callback.c:1133
 #, c-format
 msgid "unknown callback event type %d for %s\n"
 msgstr ""
@@ -362,86 +372,95 @@ msgid_plural "%jd altered files\n"
 msgstr[0] "fitxategi eraldatu %jd\n"
 msgstr[1] "%jd fitxategi eraldatu\n"
 
-#: src/pacman/conf.c:102 src/pacman/conf.c:317
+#: src/pacman/conf.c:102 src/pacman/conf.c:326
 #, c-format
 msgid "malloc failure: could not allocate %zu byte\n"
 msgid_plural "malloc failure: could not allocate %zu bytes\n"
 msgstr[0] "malloc hutsegitea: ezin izan da byte %zu esleitu\n"
 msgstr[1] "malloc hutsegitea: ezin izan dira %zu byte esleitu\n"
 
-#: src/pacman/conf.c:340
+#: src/pacman/conf.c:251
+#, c-format
+msgid "switching to sandbox user '%s' failed!\n"
+msgstr ""
+
+#: src/pacman/conf.c:349
 #, c-format
 msgid "could not get current working directory\n"
 msgstr "ezin izan da uneko lan direktorioa eskuratu\n"
 
-#: src/pacman/conf.c:345
+#: src/pacman/conf.c:354
 #, c-format
 msgid "could not chdir to download directory %s\n"
 msgstr "ezin izan da deskarga direktoriora aldatu %s\n"
 
-#: src/pacman/conf.c:360
+#: src/pacman/conf.c:369
 #, c-format
 msgid "running XferCommand: fork failed!\n"
 msgstr "Xfer komandoa exekutatzen: sardetzeak huts egin du!\n"
 
-#: src/pacman/conf.c:372
+#: src/pacman/conf.c:381
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "ezin izan da %s berrizendatu %s gisa (%s)\n"
 
-#: src/pacman/conf.c:383
+#: src/pacman/conf.c:392
 #, c-format
 msgid "could not restore working directory (%s)\n"
 msgstr "ezin izan da laneko direktorioa berreskuratu (%s)\n"
 
-#: src/pacman/conf.c:521 src/pacman/conf.c:570 src/pacman/conf.c:677
-#: src/pacman/conf.c:729
+#: src/pacman/conf.c:530 src/pacman/conf.c:579 src/pacman/conf.c:693
+#: src/pacman/conf.c:745
 #, c-format
 msgid "config file %s, line %d: invalid value for '%s' : '%s'\n"
 msgstr "%s konfigurazio fitxategia, %d lerroa: '%s' balio okerra: '%s'\n"
 
-#: src/pacman/conf.c:535
+#: src/pacman/conf.c:544
 #, c-format
 msgid "config file %s, line %d: '%s' option invalid, no signature support\n"
-msgstr "%s konfigurazio fitxategia, %d lerroa: '%s' aukera baliogabea, sinadura euskarririk ez\n"
+msgstr ""
+"%s konfigurazio fitxategia, %d lerroa: '%s' aukera baliogabea, sinadura "
+"euskarririk ez\n"
 
-#: src/pacman/conf.c:625 src/pacman/conf.c:751 src/pacman/conf.c:1039
+#: src/pacman/conf.c:636 src/pacman/conf.c:767 src/pacman/conf.c:1057
 #, c-format
 msgid ""
 "config file %s, line %d: directive '%s' in section '%s' not recognized.\n"
-msgstr "%s konfigurazio fitxategia, %d lerroa: '%s' direktiba '%s' sekzioan ezezaguna da.\n"
+msgstr ""
+"%s konfigurazio fitxategia, %d lerroa: '%s' direktiba '%s' sekzioan "
+"ezezaguna da.\n"
 
-#: src/pacman/conf.c:736
+#: src/pacman/conf.c:752
 #, c-format
 msgid "config file %s, line %d: value for '%s' has to be positive : '%s'\n"
 msgstr ""
 
-#: src/pacman/conf.c:743
+#: src/pacman/conf.c:759
 #, c-format
 msgid "config file %s, line %d: value for '%s' is too large : '%s'\n"
 msgstr ""
 
-#: src/pacman/conf.c:763
+#: src/pacman/conf.c:779
 #, c-format
 msgid "mirror '%s' contains the '%s' variable, but no '%s' is defined.\n"
 msgstr "'%s' ispiluak '%s' aldagaia du, baina ez da '%s' definitu.\n"
 
-#: src/pacman/conf.c:808
+#: src/pacman/conf.c:824
 #, c-format
 msgid "could not register '%s' database (%s)\n"
 msgstr "ezin izan da '%s' datu-basea erregistratu (%s)\n"
 
-#: src/pacman/conf.c:821
+#: src/pacman/conf.c:837
 #, c-format
 msgid "could not add cache server URL to database '%s': %s (%s)\n"
 msgstr ""
 
-#: src/pacman/conf.c:830
+#: src/pacman/conf.c:846
 #, c-format
 msgid "could not add server URL to database '%s': %s (%s)\n"
 msgstr "ezin izan da zerbitzari URL-a gehitu '%s' datu-basean: %s (%s)\n"
 
-#: src/pacman/conf.c:857
+#: src/pacman/conf.c:873
 #, c-format
 msgid ""
 "failed to initialize alpm library:\n"
@@ -449,60 +468,65 @@ msgid ""
 "%s\n"
 msgstr ""
 
-#: src/pacman/conf.c:860
+#: src/pacman/conf.c:876
 #, c-format
 msgid "try running pacman-db-upgrade\n"
 msgstr "saiatu pacman-db-upgrade exekutatzen\n"
 
-#: src/pacman/conf.c:878
+#: src/pacman/conf.c:894
 #, c-format
 msgid "problem setting logfile '%s' (%s)\n"
 msgstr "arazoa '%s' egunkari fitxategia ezartzean (%s)\n"
 
-#: src/pacman/conf.c:887
+#: src/pacman/conf.c:903
 #, c-format
 msgid "problem setting gpgdir '%s' (%s)\n"
 msgstr "'%s' gpg direktorioa ezartzean arazoa (%s)\n"
 
-#: src/pacman/conf.c:897
+#: src/pacman/conf.c:913
 #, c-format
 msgid "problem adding hookdir '%s' (%s)\n"
 msgstr "arazoa '%s' kako direktorioa ezartzean (%s)\n"
 
-#: src/pacman/conf.c:919
+#: src/pacman/conf.c:935
 #, c-format
 msgid "no '%s' configured\n"
 msgstr "ez da '%s' konfiguratu\n"
 
-#: src/pacman/conf.c:945
+#: src/pacman/conf.c:963
 #, c-format
 msgid "Failed to pass %s entry to libalpm"
 msgstr "Huts egin du %s sarrera libalpm liburutegira pasatzean"
 
-#: src/pacman/conf.c:985
+#: src/pacman/conf.c:1003
 #, c-format
 msgid "config file %s, line %d: '%s' option '%s' not recognized\n"
 msgstr "%s konfigurazio fitxategia, %d lerroa: '%s' aukera '%s' ezezaguna\n"
 
-#: src/pacman/conf.c:1005 src/pacman/conf.c:1163
+#: src/pacman/conf.c:1023 src/pacman/conf.c:1181
 #, c-format
 msgid "config file %s, line %d: directive '%s' needs a value\n"
-msgstr "%s konfigurazio fitxategia, %d lerroa: '%s' direktibak balio bat behar du\n"
+msgstr ""
+"%s konfigurazio fitxategia, %d lerroa: '%s' direktibak balio bat behar du\n"
 
-#: src/pacman/conf.c:1170
+#: src/pacman/conf.c:1188
 #, c-format
 msgid "config parsing exceeded max recursion depth of %d.\n"
-msgstr "konfigurazio fitxategia analizatzean gehienezko errekurtsio sakonera (%d) gainditu da.\n"
+msgstr ""
+"konfigurazio fitxategia analizatzean gehienezko errekurtsio sakonera (%d) "
+"gainditu da.\n"
 
-#: src/pacman/conf.c:1218
+#: src/pacman/conf.c:1236
 #, c-format
 msgid "config file %s could not be read: %s\n"
 msgstr "%s konfigurazio fitxategia ezin izan da irakurri: %s\n"
 
-#: src/pacman/conf.c:1241
+#: src/pacman/conf.c:1259
 #, c-format
 msgid "config file %s, line %d: All directives must belong to a section.\n"
-msgstr "%s konfigurazio fitxategia, %d lerroa: Direktiba guztiak sekzio baten atal izan behar dira.\n"
+msgstr ""
+"%s konfigurazio fitxategia, %d lerroa: Direktiba guztiak sekzio baten atal "
+"izan behar dira.\n"
 
 #: src/pacman/database.c:50 src/pacman/files.c:335 src/pacman/query.c:434
 #: src/pacman/remove.c:85 src/pacman/sync.c:970 src/pacman/upgrade.c:76
@@ -523,7 +547,8 @@ msgstr "ezin izan da %s paketea instalatzeko arrazoia ezarri (%s)\n"
 #: src/pacman/database.c:79
 #, c-format
 msgid "%s: install reason has been set to 'installed as dependency'\n"
-msgstr "%s: instalatzeko arrazoia 'menpekotasun gisa instalatua' gisa ezarri da\n"
+msgstr ""
+"%s: instalatzeko arrazoia 'menpekotasun gisa instalatua' gisa ezarri da\n"
 
 #: src/pacman/database.c:81
 #, c-format
@@ -797,14 +822,17 @@ msgstr "eragiketak:\n"
 msgid ""
 "\n"
 "use '%s {-h --help}' with an operation for available options\n"
-msgstr "\nerabili '%s {-h --help}' eragiketa batekin eskura duden aukerak ikusteko\n"
+msgstr ""
+"\n"
+"erabili '%s {-h --help}' eragiketa batekin eskura duden aukerak ikusteko\n"
 
 #: src/pacman/pacman.c:125
 #, c-format
 msgid ""
-"  -c, --cascade        remove packages and all packages that depend on "
-"them\n"
-msgstr "  -c, --cascade         ezabatu paketeak eta hauen menpeko diren pakete guztiak\n"
+"  -c, --cascade        remove packages and all packages that depend on them\n"
+msgstr ""
+"  -c, --cascade         ezabatu paketeak eta hauen menpeko diren pakete "
+"guztiak\n"
 
 #: src/pacman/pacman.c:126
 #, c-format
@@ -816,7 +844,10 @@ msgstr "  -n, --nosave          ezabatu konfigurazio fitxategiak\n"
 msgid ""
 "  -s, --recursive      remove unnecessary dependencies\n"
 "                       (-ss includes explicitly installed dependencies)\n"
-msgstr "  -s, --recursive       ezabatu behar ez diren menpekotasunak\n                        (-ss esplizituki instalatutako paketeak ere barne hartzeko)\n"
+msgstr ""
+"  -s, --recursive       ezabatu behar ez diren menpekotasunak\n"
+"                        (-ss esplizituki instalatutako paketeak ere barne "
+"hartzeko)\n"
 
 #: src/pacman/pacman.c:129
 #, c-format
@@ -837,12 +868,16 @@ msgstr "  -c, --changelog       ikusi pakete baten aldaketa egunkaria\n"
 #, c-format
 msgid ""
 "  -d, --deps           list packages installed as dependencies [filter]\n"
-msgstr "  -d, --deps            zerrendatu menpekotasun gisa instalatutako paketeak [filtroa]\n"
+msgstr ""
+"  -d, --deps            zerrendatu menpekotasun gisa instalatutako paketeak "
+"[filtroa]\n"
 
 #: src/pacman/pacman.c:139
 #, c-format
 msgid "  -e, --explicit       list packages explicitly installed [filter]\n"
-msgstr "  -e, --explicit        zerrendatu esplizituki instalatutako paketeak [filtroa]\n"
+msgstr ""
+"  -e, --explicit        zerrendatu esplizituki instalatutako paketeak "
+"[filtroa]\n"
 
 #: src/pacman/pacman.c:140
 #, c-format
@@ -851,129 +886,167 @@ msgstr "  -g, --groups          ikusi pakete talde baten partaide guztiak\n"
 
 #: src/pacman/pacman.c:141
 #, c-format
-msgid "  -i, --info           view package information (-ii for backup files)\n"
-msgstr "  -i, --info            ikusi paketearen informazioa (-ii babeskopia fitxategiak ikusteko)\n"
+msgid ""
+"  -i, --info           view package information (-ii for backup files)\n"
+msgstr ""
+"  -i, --info            ikusi paketearen informazioa (-ii babeskopia "
+"fitxategiak ikusteko)\n"
 
 #: src/pacman/pacman.c:142
 #, c-format
 msgid ""
 "  -k, --check          check that package files exist (-kk for file "
 "properties)\n"
-msgstr "  -k, --check           egiaztatu fitxategia badagoela (-kk fitxategi ezaugarriak egiaztatzeko)\n"
+msgstr ""
+"  -k, --check           egiaztatu fitxategia badagoela (-kk fitxategi "
+"ezaugarriak egiaztatzeko)\n"
 
 #: src/pacman/pacman.c:143 src/pacman/pacman.c:180
 #, c-format
 msgid "  -l, --list           list the files owned by the queried package\n"
-msgstr "-l, --list zerrendatu itaundutako paketeak jabetzen dituen fitxategiak\n"
+msgstr ""
+"-l, --list zerrendatu itaundutako paketeak jabetzen dituen fitxategiak\n"
 
 #: src/pacman/pacman.c:144
 #, c-format
 msgid ""
 "  -m, --foreign        list installed packages not found in sync db(s) "
 "[filter]\n"
-msgstr "  -m, --foreign         zerrendatu sinkronizazio datu-baseetan aurkitzen ez diren paketeak [filtroa]\n"
+msgstr ""
+"  -m, --foreign         zerrendatu sinkronizazio datu-baseetan aurkitzen ez "
+"diren paketeak [filtroa]\n"
 
 #: src/pacman/pacman.c:145
 #, c-format
 msgid ""
 "  -n, --native         list installed packages only found in sync db(s) "
 "[filter]\n"
-msgstr "  -n, --native          zerrendatu soilik sinkronizazio datu-basean aurkitzen diren instalatutako paketeak [filtroa]\n"
+msgstr ""
+"  -n, --native          zerrendatu soilik sinkronizazio datu-basean "
+"aurkitzen diren instalatutako paketeak [filtroa]\n"
 
 #: src/pacman/pacman.c:146
 #, c-format
 msgid "  -o, --owns <file>    query the package that owns <file>\n"
-msgstr "  -o, --owns <fitxategia>\n                        itaundu <fitxategia>ren jabe den paketea\n"
+msgstr ""
+"  -o, --owns <fitxategia>\n"
+"                        itaundu <fitxategia>ren jabe den paketea\n"
 
 #: src/pacman/pacman.c:147
 #, c-format
 msgid "  -p, --file <package> query a package file instead of the database\n"
-msgstr "  -p, --file <paketea>  itaundu pakete fitxategi bat datu-basearen ordez\n"
+msgstr ""
+"  -p, --file <paketea>  itaundu pakete fitxategi bat datu-basearen ordez\n"
 
 #: src/pacman/pacman.c:148 src/pacman/pacman.c:161 src/pacman/pacman.c:181
 #, c-format
 msgid "  -q, --quiet          show less information for query and search\n"
-msgstr "  -q, --quiet           erakutsi informazio gutxiago itaunketa eta bilaketetan\n"
+msgstr ""
+"  -q, --quiet           erakutsi informazio gutxiago itaunketa eta "
+"bilaketetan\n"
 
 #: src/pacman/pacman.c:149
 #, c-format
 msgid ""
 "  -s, --search <regex> search locally-installed packages for matching "
 "strings\n"
-msgstr "  -s, --search <regex>  bilatu testu katearekin bat datozen lokalki instalatutako paketeak\n"
+msgstr ""
+"  -s, --search <regex>  bilatu testu katearekin bat datozen lokalki "
+"instalatutako paketeak\n"
 
 #: src/pacman/pacman.c:150
 #, c-format
 msgid ""
 "  -t, --unrequired     list packages not (optionally) required by any\n"
 "                       package (-tt to ignore optdepends) [filter]\n"
-msgstr "-t, --unrequired zerrendatu beste paketeen (aukerazko) menpekotasun ez diren pakete guztiak (-tt aukerazko menpekotasunak ezikusteko) [filtroa]\n"
+msgstr ""
+"-t, --unrequired zerrendatu beste paketeen (aukerazko) menpekotasun ez diren "
+"pakete guztiak (-tt aukerazko menpekotasunak ezikusteko) [filtroa]\n"
 
 #: src/pacman/pacman.c:152
 #, c-format
 msgid "  -u, --upgrades       list outdated packages [filter]\n"
-msgstr "  -u, --upgrades        zerrendatu egunean ez dauden paketeak [filtroa]\n"
+msgstr ""
+"  -u, --upgrades        zerrendatu egunean ez dauden paketeak [filtroa]\n"
 
 #: src/pacman/pacman.c:156
 #, c-format
 msgid ""
 "  -c, --clean          remove old packages from cache directory (-cc for "
 "all)\n"
-msgstr "  -c, --clean           ezabatu pakete zaharrak cache direktoriotik (-cc guztiak ezabatzeko)\n"
+msgstr ""
+"  -c, --clean           ezabatu pakete zaharrak cache direktoriotik (-cc "
+"guztiak ezabatzeko)\n"
 
 #: src/pacman/pacman.c:157
 #, c-format
 msgid ""
 "  -g, --groups         view all members of a package group\n"
 "                       (-gg to view all groups and members)\n"
-msgstr "-g, --groups ikusi pakete talde baten partaide guztiak \n(-gg talde eta partaide guztiak ikusteko)\n"
+msgstr ""
+"-g, --groups ikusi pakete talde baten partaide guztiak \n"
+"(-gg talde eta partaide guztiak ikusteko)\n"
 
 #: src/pacman/pacman.c:159
 #, c-format
 msgid ""
 "  -i, --info           view package information (-ii for extended "
 "information)\n"
-msgstr "-i, --info ikusi paketearen informazioa (-ii informazio osatua ikusteko)\n"
+msgstr ""
+"-i, --info ikusi paketearen informazioa (-ii informazio osatua ikusteko)\n"
 
 #: src/pacman/pacman.c:160
 #, c-format
 msgid "  -l, --list <repo>    view a list of packages in a repo\n"
-msgstr "  -l, --list <biltegia>\n                        ikusi biltegian dauden paketeen zerrenda bat\n"
+msgstr ""
+"  -l, --list <biltegia>\n"
+"                        ikusi biltegian dauden paketeen zerrenda bat\n"
 
 #: src/pacman/pacman.c:162
 #, c-format
-msgid "  -s, --search <regex> search remote repositories for matching strings\n"
-msgstr "  -s, --search <regex>  bilatu katea edo adierazpen erregularra urruneko biltegietan\n"
+msgid ""
+"  -s, --search <regex> search remote repositories for matching strings\n"
+msgstr ""
+"  -s, --search <regex>  bilatu katea edo adierazpen erregularra urruneko "
+"biltegietan\n"
 
 #: src/pacman/pacman.c:163
 #, c-format
 msgid ""
 "  -u, --sysupgrade     upgrade installed packages (-uu enables downgrades)\n"
-msgstr "-u, --sysupgrade bertsio berritu instalatutako paketeak (-uu bertsio zahartzea baimentzeko)\n"
+msgstr ""
+"-u, --sysupgrade bertsio berritu instalatutako paketeak (-uu bertsio "
+"zahartzea baimentzeko)\n"
 
 #: src/pacman/pacman.c:164 src/pacman/pacman.c:183
 #, c-format
 msgid ""
 "  -y, --refresh        download fresh package databases from the server\n"
 "                       (-yy to force a refresh even if up to date)\n"
-msgstr "-y, --refresh deskargatu pakete datu-base eguneratuak zerbitzaritik (-yy egunean badaude ere berriz deskargatzeko)\n"
+msgstr ""
+"-y, --refresh deskargatu pakete datu-base eguneratuak zerbitzaritik (-yy "
+"egunean badaude ere berriz deskargatzeko)\n"
 
 #: src/pacman/pacman.c:170
 #, c-format
 msgid "      --asdeps         mark packages as non-explicitly installed\n"
-msgstr "      --asdeps          markatu paketeak ez-esplizituki instalatutako gisa\n"
+msgstr ""
+"      --asdeps          markatu paketeak ez-esplizituki instalatutako gisa\n"
 
 #: src/pacman/pacman.c:171
 #, c-format
 msgid "      --asexplicit     mark packages as explicitly installed\n"
-msgstr "      --asexplicit      markatu paketeak esplizituki instalatutako gisa\n"
+msgstr ""
+"      --asexplicit      markatu paketeak esplizituki instalatutako gisa\n"
 
 #: src/pacman/pacman.c:172
 #, c-format
 msgid ""
 "  -k, --check          test local database for validity (-kk for sync "
 "databases)\n"
-msgstr "  -k, --check           frogatu tokiko datu-basearen baliozkotasuna (-kk datu-baseak sinkronizatzeko)\n"
+msgstr ""
+"  -k, --check           frogatu tokiko datu-basearen baliozkotasuna (-kk "
+"datu-baseak sinkronizatzeko)\n"
 
 #: src/pacman/pacman.c:173
 #, c-format
@@ -990,76 +1063,100 @@ msgstr "  -x, --regex          gaitu espresio erregularren bidezko bilaketa\n"
 msgid ""
 "      --machinereadable\n"
 "                       produce machine-readable output\n"
-msgstr "      --machinereadable\n                       sortu makinak irakurtzeko moduko irteera\n"
+msgstr ""
+"      --machinereadable\n"
+"                       sortu makinak irakurtzeko moduko irteera\n"
 
 #: src/pacman/pacman.c:191
 #, c-format
 msgid ""
 "  -w, --downloadonly   download packages but do not install/upgrade "
 "anything\n"
-msgstr "  -w, --downloadonly    deskargatu paketeak baina ez instalatu/bertsio berritu ezer\n"
+msgstr ""
+"  -w, --downloadonly    deskargatu paketeak baina ez instalatu/bertsio "
+"berritu ezer\n"
 
 #: src/pacman/pacman.c:192
 #, c-format
 msgid ""
 "      --overwrite <glob>\n"
-"                       overwrite conflicting files (can be used more than once)\n"
+"                       overwrite conflicting files (can be used more than "
+"once)\n"
 msgstr ""
 
 #: src/pacman/pacman.c:194
 #, c-format
 msgid "      --asdeps         install packages as non-explicitly installed\n"
-msgstr "      --asdeps          instalatu paketeak esplizituki instalatu ez balira bezala\n"
+msgstr ""
+"      --asdeps          instalatu paketeak esplizituki instalatu ez balira "
+"bezala\n"
 
 #: src/pacman/pacman.c:195
 #, c-format
 msgid "      --asexplicit     install packages as explicitly installed\n"
-msgstr "      --asexplicit      instalatu paketeak esplizituki instalatu balira bezala\n"
+msgstr ""
+"      --asexplicit      instalatu paketeak esplizituki instalatu balira "
+"bezala\n"
 
 #: src/pacman/pacman.c:196
 #, c-format
 msgid ""
 "      --ignore <pkg>   ignore a package upgrade (can be used more than "
 "once)\n"
-msgstr "      --ignore <pkg>    ezikusi pakete baten bertsio berritzea (behin baino gehiagotan erabiltzea dago)\n"
+msgstr ""
+"      --ignore <pkg>    ezikusi pakete baten bertsio berritzea (behin baino "
+"gehiagotan erabiltzea dago)\n"
 
 #: src/pacman/pacman.c:197
 #, c-format
 msgid ""
 "      --ignoregroup <grp>\n"
 "                       ignore a group upgrade (can be used more than once)\n"
-msgstr "      --ignoregroup <taldea>\n                        ezikusi talde baten bertsio berritzea (behin baino gehiagotan erabiltzea dago)\n"
+msgstr ""
+"      --ignoregroup <taldea>\n"
+"                        ezikusi talde baten bertsio berritzea (behin baino "
+"gehiagotan erabiltzea dago)\n"
 
 #: src/pacman/pacman.c:201
 #, c-format
 msgid ""
 "  -d, --nodeps         skip dependency version checks (-dd to skip all "
 "checks)\n"
-msgstr "  -d, --nodeps          saltatu bertsio menpekotasun egiaztaketa\n                        (-dd egiaztaketa guztiak saltatzeko)\n"
+msgstr ""
+"  -d, --nodeps          saltatu bertsio menpekotasun egiaztaketa\n"
+"                        (-dd egiaztaketa guztiak saltatzeko)\n"
 
 #: src/pacman/pacman.c:202
 #, c-format
 msgid ""
 "      --assume-installed <package=version>\n"
 "                       add a virtual package to satisfy dependencies\n"
-msgstr "--assume-installed <package=version>\ngehitu pakete birtuala menpekotasunak asetzeko\n"
+msgstr ""
+"--assume-installed <package=version>\n"
+"gehitu pakete birtuala menpekotasunak asetzeko\n"
 
 #: src/pacman/pacman.c:204
 #, c-format
-msgid "      --dbonly         only modify database entries, not package files\n"
-msgstr "      --dbonly          aldatu soilik datu-base sarrerak, ez pakete fitxategiak\n"
+msgid ""
+"      --dbonly         only modify database entries, not package files\n"
+msgstr ""
+"      --dbonly          aldatu soilik datu-base sarrerak, ez pakete "
+"fitxategiak\n"
 
 #: src/pacman/pacman.c:205
 #, c-format
 msgid ""
 "      --noprogressbar  do not show a progress bar when downloading files\n"
-msgstr "      --noprogressbar   ez bistaratu aurrerapen barra fitxategiak deskargatzean\n"
+msgstr ""
+"      --noprogressbar   ez bistaratu aurrerapen barra fitxategiak "
+"deskargatzean\n"
 
 #: src/pacman/pacman.c:206
 #, c-format
 msgid ""
 "      --noscriptlet    do not execute the install scriptlet if one exists\n"
-msgstr "      --noscriptlet     ez exekutatu instalazio scriptlet-a batenbat badago\n"
+msgstr ""
+"      --noscriptlet     ez exekutatu instalazio scriptlet-a batenbat badago\n"
 
 #: src/pacman/pacman.c:207
 #, c-format
@@ -1073,7 +1170,9 @@ msgstr "  -p, --print           inprimatu helburuak eragiketa burutu ordez\n"
 msgid ""
 "      --print-format <string>\n"
 "                       specify how the targets should be printed\n"
-msgstr "      --print-format <katea>\n                        zehaztu helburua nola inprimatu behar den\n"
+msgstr ""
+"      --print-format <katea>\n"
+"                        zehaztu helburua nola inprimatu behar den\n"
 
 #: src/pacman/pacman.c:213
 #, c-format
@@ -1108,7 +1207,9 @@ msgstr "      --cachedir <dir>  ezarri beste cache kokapen bat\n"
 #: src/pacman/pacman.c:219
 #, c-format
 msgid "      --hookdir <dir>  set an alternate hook location\n"
-msgstr "      --hookdir <dir>  ezarri kakoen ordezko kokapena\n\n"
+msgstr ""
+"      --hookdir <dir>  ezarri kakoen ordezko kokapena\n"
+"\n"
 
 #: src/pacman/pacman.c:220
 #, c-format
@@ -1128,7 +1229,8 @@ msgstr "      --debug           bistaratu desearazte mezuak\n"
 #: src/pacman/pacman.c:223
 #, c-format
 msgid "      --gpgdir <path>  set an alternate home directory for GnuPG\n"
-msgstr "      --gpgdir <bidea>  ezarri beste etxe direktorio bat GnuPG-rentzat\n"
+msgstr ""
+"      --gpgdir <bidea>  ezarri beste etxe direktorio bat GnuPG-rentzat\n"
 
 #: src/pacman/pacman.c:224
 #, c-format
@@ -1152,74 +1254,87 @@ msgid ""
 "                       use relaxed timeouts for download\n"
 msgstr ""
 
-#: src/pacman/pacman.c:247
+#: src/pacman/pacman.c:229
+#, fuzzy, c-format
+msgid ""
+"      --disable-sandbox\n"
+"                       disable the sandbox used for the downloader process\n"
+msgstr ""
+"      --ignoregroup <taldea>\n"
+"                        ezikusi talde baten bertsio berritzea (behin baino "
+"gehiagotan erabiltzea dago)\n"
+
+#: src/pacman/pacman.c:249
 #, c-format
 msgid ""
 "                       This program may be freely redistributed under\n"
 "                       the terms of the GNU General Public License.\n"
-msgstr "                       Programa hau banatzea dago \n                       GNU General Public License\n                       lizentziaren baldintzak betez.\n"
+msgstr ""
+"                       Programa hau banatzea dago \n"
+"                       GNU General Public License\n"
+"                       lizentziaren baldintzak betez.\n"
 
-#: src/pacman/pacman.c:280
+#: src/pacman/pacman.c:282
 #, c-format
 msgid "HTTP_USER_AGENT truncated\n"
 msgstr ""
 
-#: src/pacman/pacman.c:313
+#: src/pacman/pacman.c:315
 #, c-format
 msgid "invalid option: '%s' and '%s' may not be used together\n"
 msgstr "aukera baliogabea: '%s' eta '%s' ezin dira elkarrekin erabili\n"
 
-#: src/pacman/pacman.c:414
+#: src/pacman/pacman.c:416
 #, c-format
 msgid "invalid argument '%s' for %s\n"
 msgstr "'%s' argumentu baliogabea da hemen %s\n"
 
-#: src/pacman/pacman.c:436 src/pacman/pacman.c:449
+#: src/pacman/pacman.c:438 src/pacman/pacman.c:451
 #, c-format
 msgid "'%s' is not a valid debug level\n"
 msgstr "'%s' ez da desearazte maila baliagarri bat\n"
 
-#: src/pacman/pacman.c:994
+#: src/pacman/pacman.c:1000
 #, c-format
 msgid "only one operation may be used at a time\n"
 msgstr "eragiketa bakarra erabili daiteke aldi bakoitzean\n"
 
-#: src/pacman/pacman.c:1053
+#: src/pacman/pacman.c:1059
 #, c-format
 msgid "invalid option '-%c'\n"
 msgstr "aukera baliogabea '-%c'\n"
 
-#: src/pacman/pacman.c:1055
+#: src/pacman/pacman.c:1061
 #, c-format
 msgid "invalid option '--%s'\n"
 msgstr "aukera baliogabea '--%s'\n"
 
-#: src/pacman/pacman.c:1166
+#: src/pacman/pacman.c:1172
 #, c-format
 msgid "you cannot perform this operation unless you are root.\n"
 msgstr "ezin duzu eragiketa hau burutu root izan ezean.\n"
 
-#: src/pacman/pacman.c:1200
+#: src/pacman/pacman.c:1206
 #, c-format
 msgid "failed to read arguments from stdin: (%s)\n"
 msgstr ""
 
-#: src/pacman/pacman.c:1205
+#: src/pacman/pacman.c:1211
 #, c-format
 msgid "failed to reopen stdin for reading: (%s)\n"
 msgstr "huts egin du stdin irakurtzeko irekitzeak. (%s)\n"
 
-#: src/pacman/pacman.c:1210
+#: src/pacman/pacman.c:1216
 #, c-format
 msgid "argument '-' specified with empty stdin\n"
 msgstr "'-' argumentua zehaztu da stdin hutsarekin\n"
 
-#: src/pacman/pacman.c:1215
+#: src/pacman/pacman.c:1221
 #, c-format
 msgid "argument '-' specified without input on stdin\n"
 msgstr "'-' argumentua zehaztu da sarrera edo stdin gabe\n"
 
-#: src/pacman/pacman.c:1292
+#: src/pacman/pacman.c:1298
 #, c-format
 msgid "no operation specified (use -h for help)\n"
 msgstr "ez da eragiketarik zehaztu (erabili -h laguntza lortzeko)\n"
@@ -1506,7 +1621,9 @@ msgstr "ezin izan da datu-basea blokeatu: %s\n"
 msgid ""
 "  if you're sure a package manager is not already\n"
 "  running, you can remove %s\n"
-msgstr "  ziur bazaude ez dagoela pakete kudeatzaile \n  bat exekutatzen jada, ezabatu %s\n"
+msgstr ""
+"  ziur bazaude ez dagoela pakete kudeatzaile \n"
+"  bat exekutatzen jada, ezabatu %s\n"
 
 #: src/pacman/util.c:116
 #, c-format
@@ -1803,22 +1920,22 @@ msgstr ""
 msgid "error parsing '%s'\n"
 msgstr ""
 
-#: src/pacman/pacman-conf.c:312
+#: src/pacman/pacman-conf.c:314
 #, c-format
 msgid "error: repo '%s' not configured\n"
 msgstr ""
 
-#: src/pacman/pacman-conf.c:331 src/pacman/pacman-conf.c:412
+#: src/pacman/pacman-conf.c:333 src/pacman/pacman-conf.c:418
 #, c-format
 msgid "warning: '%s' directives cannot be queried\n"
 msgstr ""
 
-#: src/pacman/pacman-conf.c:334 src/pacman/pacman-conf.c:415
+#: src/pacman/pacman-conf.c:336 src/pacman/pacman-conf.c:421
 #, c-format
 msgid "warning: unknown directive '%s'\n"
 msgstr ""
 
-#: src/pacman/pacman-conf.c:452
+#: src/pacman/pacman-conf.c:458
 #, c-format
 msgid "error: directives may not be specified with %s\n"
 msgstr ""
