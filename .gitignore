@@ -1,3 +1,4 @@
 *~
 *.o
 pacman-*.tar.gz
+.DS_Store
