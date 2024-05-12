@@ -296,7 +296,7 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
                 )
                 .0,
             );
-            oldfile = oldfilename.clone();
+            oldfile.clone_from(&oldfilename);
 
             let parent_path = Path::new(pkgpath).parent().unwrap().to_string_lossy();
             if !parent_path.is_empty() {
@@ -406,7 +406,7 @@ fn db_write_entry_nf(
             }
             if argstruct.rm_existing {
                 oldfilename = Some(pkg_filename);
-                oldfile = oldfilename.clone();
+                oldfile.clone_from(&oldfilename);
 
                 let parent_path = Path::new(pkgpath).parent().unwrap().to_string_lossy();
                 if !parent_path.is_empty() {
