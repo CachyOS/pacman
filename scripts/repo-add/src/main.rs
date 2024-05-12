@@ -40,6 +40,8 @@ lazy_static! {
     static ref G_TMPWORKINGDIR: Arc<Mutex<String>> = Arc::new(Mutex::new(String::new()));
 }
 
+const MAKEPKGCONF_PATH: &str = "/etc/makepkg.conf";
+
 // print usage instructions
 fn print_usage(cmd_line: &str) {
     println!("{} (pacman) {}\n", cmd_line, VERSION);
@@ -242,7 +244,7 @@ fn verify_repo_extension(dbpath: &str) -> bool {
     if dbpath.contains(".db.tar") {
         let strpos = dbpath.find(".db").unwrap();
         let extension = utils::string_substr(dbpath, strpos + 4, usize::MAX).unwrap();
-        if !utils::get_compression_command(extension).is_empty() {
+        if !utils::get_compression_command(extension, MAKEPKGCONF_PATH).is_empty() {
             return true;
         }
     }
@@ -840,8 +842,10 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
             format!("$(cat {})", &tmpfile_path.as_ref().unwrap())
         };
 
-        let compress_cmd =
-            utils::get_compression_command(argstruct.repo_db_suffix.as_ref().unwrap());
+        let compress_cmd = utils::get_compression_command(
+            argstruct.repo_db_suffix.as_ref().unwrap(),
+            MAKEPKGCONF_PATH,
+        );
         utils::exec(
             &format!(
                 "cd \"{}\"; bsdtar -cf - {} | {} > \"{}\"",
