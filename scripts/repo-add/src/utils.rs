@@ -176,6 +176,9 @@ fn insert_entry_mul_nf(
 }
 
 // Retrieve the compression command for an archive extension, or cat for .tar
+//
+// TODO(vnepogodin): add tests for that function and pass makepkg.conf path as seconds argument to
+// function
 pub fn get_compression_command(db_extension: &str) -> String {
     let fallback_cmd = match db_extension {
         "tar.gz" => "gzip -c -f -n".to_owned(),
@@ -285,12 +288,13 @@ pub fn gen_pkg_integrity(
     pkgpath: &str,
     pkg_info: &crate::pkginfo::PkgInfo,
     csize: &mut String,
+    include_sigs: bool,
     pkg_sha256sum: &mut Option<String>,
     pkg_pgpsig: &mut Option<String>,
 ) -> bool {
     // compute base64'd PGP signature
     *pkg_pgpsig = None;
-    if Path::new(&format!("{}.sig", pkg_info.pkgname.as_ref().unwrap())).exists() {
+    if include_sigs && Path::new(&format!("{}.sig", pkg_info.pkgname.as_ref().unwrap())).exists() {
         let sig_filename = format!("{}.sig", pkg_info.pkgname.as_ref().unwrap());
         if exec(&format!("grep -q 'BEGIN PGP SIGNATURE' \"{}\"", &sig_filename), Some(true)).1 {
             log::error!("Cannot use armored signatures for packages: {}", &sig_filename);
