@@ -106,11 +106,11 @@ mod tests {
             "pacman-6.0.2-9-x86_64.pkg.tar.zst".to_owned(),
         ];
         assert_eq!(pos_args, Some(expected_pos.as_slice()));
-        assert_eq!(argstruct.sign, true);
-        assert_eq!(argstruct.verify, true);
-        assert_eq!(argstruct.prevent_downgrade, true);
-        assert_eq!(argstruct.only_add_new, true);
-        assert_eq!(argstruct.quiet, false);
+        assert!(argstruct.sign);
+        assert!(argstruct.verify);
+        assert!(argstruct.prevent_downgrade);
+        assert!(argstruct.only_add_new);
+        assert!(!argstruct.quiet);
     }
 
     #[test]
@@ -135,11 +135,11 @@ mod tests {
             "-s".to_owned(),
         ];
         assert_eq!(pos_args, Some(expected_pos.as_slice()));
-        assert_eq!(argstruct.sign, false);
-        assert_eq!(argstruct.verify, true);
-        assert_eq!(argstruct.prevent_downgrade, true);
-        assert_eq!(argstruct.only_add_new, true);
-        assert_eq!(argstruct.quiet, false);
+        assert!(!argstruct.sign);
+        assert!(argstruct.verify);
+        assert!(argstruct.prevent_downgrade);
+        assert!(argstruct.only_add_new);
+        assert!(!argstruct.quiet);
     }
 
     #[test]
@@ -156,11 +156,11 @@ mod tests {
 
         let expected_pos = vec!["core.db.tar.zst".to_owned()];
         assert_eq!(pos_args, Some(expected_pos.as_slice()));
-        assert_eq!(argstruct.sign, true);
-        assert_eq!(argstruct.verify, true);
-        assert_eq!(argstruct.prevent_downgrade, true);
-        assert_eq!(argstruct.only_add_new, true);
-        assert_eq!(argstruct.quiet, false);
+        assert!(argstruct.sign);
+        assert!(argstruct.verify);
+        assert!(argstruct.prevent_downgrade);
+        assert!(argstruct.only_add_new);
+        assert!(!argstruct.quiet);
     }
 
     #[test]
@@ -176,10 +176,10 @@ mod tests {
 
         let expected_pos = vec![];
         assert_eq!(pos_args, Some(expected_pos.as_slice()));
-        assert_eq!(argstruct.sign, true);
-        assert_eq!(argstruct.verify, true);
-        assert_eq!(argstruct.prevent_downgrade, true);
-        assert_eq!(argstruct.only_add_new, true);
-        assert_eq!(argstruct.quiet, false);
+        assert!(argstruct.sign);
+        assert!(argstruct.verify);
+        assert!(argstruct.prevent_downgrade);
+        assert!(argstruct.only_add_new);
+        assert!(!argstruct.quiet);
     }
 }
