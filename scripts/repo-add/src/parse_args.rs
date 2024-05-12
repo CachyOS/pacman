@@ -9,6 +9,7 @@ pub struct ArgStruct {
     pub clean_lock: bool,
     pub use_colors: bool,
     pub prevent_downgrade: bool,
+    pub include_sigs: bool,
     pub use_new_db_format: bool,
 
     pub repo_db_file: Option<String>,
@@ -30,6 +31,7 @@ impl ArgStruct {
             clean_lock: false,
             use_colors: true,
             prevent_downgrade: false,
+            include_sigs: false,
             use_new_db_format: false,
 
             repo_db_file: None,
@@ -69,6 +71,8 @@ pub fn parse_args(pargs: &mut Vec<String>) -> (Option<&[String]>, ArgStruct) {
             argstruct.verify = true;
         } else if argument == "--prevent-downgrade" || argument == "-p" {
             argstruct.prevent_downgrade = true;
+        } else if argument == "--include-sigs" {
+            argstruct.include_sigs = true;
         } else if argument == "--use-new-db-format" {
             argstruct.use_new_db_format = true;
         } else if argument == "--" {

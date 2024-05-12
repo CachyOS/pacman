@@ -82,7 +82,7 @@ fn print_usage(cmd_line: &str) {
 // print version
 fn print_version(cmd_line: &str) {
     println!("{} (pacman) {}\n", cmd_line, VERSION);
-    println!("Copyright (c) 2023 CachyOS Team.\n");
+    println!("Copyright (c) 2023-2024 CachyOS Team.\n");
     println!("This is free software; see the source for copying conditions.");
     println!("There is NO WARRANTY, to the extent permitted by law.");
 }
@@ -132,7 +132,7 @@ fn find_pkgentry_nf(
 }
 
 // remove existing entries from the DB
-fn db_remove_entry(pkgname: &str) -> bool {
+fn db_remove_entry(pkgname: &str, is_db_modified: &Arc<&mut AtomicBool>) -> bool {
     let mut is_found = false;
 
     while let Some(pkgentry) = find_pkgentry(pkgname) {
@@ -150,7 +150,10 @@ fn db_remove_entry(pkgname: &str) -> bool {
             None,
         );
         let _ = fs::remove_dir_all(filesentry);
+
+        is_db_modified.store(true, Ordering::Relaxed);
     }
+
     is_found
 }
 
@@ -249,7 +252,11 @@ fn verify_repo_extension(dbpath: &str) -> bool {
 }
 
 // write an entry to the pacman database
-fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool {
+fn db_write_entry(
+    pkgpath: &str,
+    is_db_modified: &Arc<&mut AtomicBool>,
+    argstruct: &Arc<parse_args::ArgStruct>,
+) -> bool {
     // read info from the zipped package
     let pkginfo = pkginfo::PkgInfo::from_archive(pkgpath);
 
@@ -310,13 +317,19 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
     let mut pkg_sha256sum: Option<String> = None;
     let mut pkg_pgpsig: Option<String> = None;
 
-    if !utils::gen_pkg_integrity(pkgpath, &pkginfo, &mut csize, &mut pkg_sha256sum, &mut pkg_pgpsig)
-    {
+    if !utils::gen_pkg_integrity(
+        pkgpath,
+        &pkginfo,
+        &mut csize,
+        argstruct.include_sigs,
+        &mut pkg_sha256sum,
+        &mut pkg_pgpsig,
+    ) {
         return false;
     }
 
     // remove an existing entry if it exists, ignore failures
-    db_remove_entry(pkginfo.pkgname.as_ref().unwrap());
+    db_remove_entry(pkginfo.pkgname.as_ref().unwrap(), is_db_modified);
 
     // create package directory
     let _ = fs::create_dir(format!("{}/{}", &workingdb_path, &pkg_entrypath));
@@ -359,12 +372,15 @@ fn db_write_entry(pkgpath: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool
         let _ = fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap()));
     }
 
+    is_db_modified.store(true, Ordering::Relaxed);
+
     true
 }
 
 fn db_write_entry_nf(
     connections: &mut Arc<Mutex<(&mut rusqlite::Connection, &mut rusqlite::Connection)>>,
     pkgpath: &str,
+    is_db_modified: &Arc<&mut AtomicBool>,
     argstruct: &Arc<parse_args::ArgStruct>,
 ) -> bool {
     // read info from the zipped package
@@ -421,8 +437,14 @@ fn db_write_entry_nf(
     let mut pkg_sha256sum: Option<String> = None;
     let mut pkg_pgpsig: Option<String> = None;
 
-    if !utils::gen_pkg_integrity(pkgpath, &pkginfo, &mut csize, &mut pkg_sha256sum, &mut pkg_pgpsig)
-    {
+    if !utils::gen_pkg_integrity(
+        pkgpath,
+        &pkginfo,
+        &mut csize,
+        argstruct.include_sigs,
+        &mut pkg_sha256sum,
+        &mut pkg_pgpsig,
+    ) {
         return false;
     }
 
@@ -459,6 +481,8 @@ fn db_write_entry_nf(
         let _ = fs::remove_file(oldfile.as_ref().unwrap());
         let _ = fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap()));
     }
+
+    is_db_modified.store(true, Ordering::Relaxed);
 
     true
 }
@@ -672,9 +696,6 @@ CREATE TABLE IF NOT EXISTS packages (
     files TEXT
 );"#;
 
-    const K_DROP_MD5: &str = "ALTER TABLE packages DROP COLUMN md5sum;";
-    const K_COLUMNS_PRAGMA: &str = "SELECT * FROM pragma_table_info('packages');";
-
     let repos = ["db", "files"];
     for repo in repos {
         let dbfile_path = format!("{}/{}/pacman.db", *G_TMPWORKINGDIR.lock().unwrap(), repo);
@@ -683,17 +704,6 @@ CREATE TABLE IF NOT EXISTS packages (
         if cmd_line == "repo-add" {
             // Create the packages table if it doesn't exist
             conn.execute(K_CREATE_TABLE, []).unwrap();
-        }
-
-        if conn
-            .prepare_cached(K_COLUMNS_PRAGMA)
-            .unwrap()
-            .query_map([], |row| row.get::<usize, String>(1))
-            .unwrap()
-            .any(|x| x.unwrap() == "md5sum")
-        {
-            // Drop md5sum column from pacman 6.0.x
-            conn.execute(K_DROP_MD5, []).unwrap();
         }
     }
     Ok(true)
@@ -852,25 +862,9 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
     !is_fail.load(Ordering::Acquire)
 }
 
-fn add_pkg_to_db(pkgfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bool {
-    if !Path::new(pkgfile).exists() {
-        log::error!("File '{}' not found.", pkgfile);
-        return false;
-    }
-
-    if !utils::exec(&format!("bsdtar -tqf \"{}\" .PKGINFO >/dev/null 2>&1", pkgfile), Some(true)).1
-    {
-        log::error!("'{}' is not a package file, skipping", pkgfile);
-        return false;
-    }
-
-    log::info!("Adding package '{}'", pkgfile);
-    db_write_entry(pkgfile, argstruct)
-}
-
-fn add_pkg_to_db_nf(
-    connections: &mut Arc<Mutex<(&mut rusqlite::Connection, &mut rusqlite::Connection)>>,
+fn add_pkg_to_db(
     pkgfile: &str,
+    is_db_modified: &Arc<&mut AtomicBool>,
     argstruct: &Arc<parse_args::ArgStruct>,
 ) -> bool {
     if !Path::new(pkgfile).exists() {
@@ -885,17 +879,43 @@ fn add_pkg_to_db_nf(
     }
 
     log::info!("Adding package '{}'", pkgfile);
-    db_write_entry_nf(connections, pkgfile, argstruct)
+    db_write_entry(pkgfile, is_db_modified, argstruct)
 }
 
-fn remove_pkg_from_db(pkgname: &str, _argstruct: &Arc<parse_args::ArgStruct>) -> bool {
+fn add_pkg_to_db_nf(
+    connections: &mut Arc<Mutex<(&mut rusqlite::Connection, &mut rusqlite::Connection)>>,
+    pkgfile: &str,
+    is_db_modified: &Arc<&mut AtomicBool>,
+    argstruct: &Arc<parse_args::ArgStruct>,
+) -> bool {
+    if !Path::new(pkgfile).exists() {
+        log::error!("File '{}' not found.", pkgfile);
+        return false;
+    }
+
+    if !utils::exec(&format!("bsdtar -tqf \"{}\" .PKGINFO >/dev/null 2>&1", pkgfile), Some(true)).1
+    {
+        log::error!("'{}' is not a package file, skipping", pkgfile);
+        return false;
+    }
+
+    log::info!("Adding package '{}'", pkgfile);
+    db_write_entry_nf(connections, pkgfile, is_db_modified, argstruct)
+}
+
+fn remove_pkg_from_db(
+    pkgname: &str,
+    is_db_modified: &Arc<&mut AtomicBool>,
+    _argstruct: &Arc<parse_args::ArgStruct>,
+) -> bool {
     log::info!("Searching for package '{}'...", pkgname);
-    db_remove_entry(pkgname)
+    db_remove_entry(pkgname, is_db_modified)
 }
 
 fn remove_pkg_from_db_nf(
     connections: &mut Arc<Mutex<(&mut rusqlite::Connection, &mut rusqlite::Connection)>>,
     pkgname: &str,
+    is_db_modified: &Arc<&mut AtomicBool>,
     _argstruct: &Arc<parse_args::ArgStruct>,
 ) -> bool {
     log::info!("Searching for package '{}'...", pkgname);
@@ -914,12 +934,14 @@ fn remove_pkg_from_db_nf(
         let mut connection_lock = connections.lock().unwrap();
         while remove_one_pkg(connection_lock.0, pkgname) {
             is_found = true;
+            is_db_modified.store(true, Ordering::Relaxed);
         }
     }
     {
         let mut connection_lock = connections.lock().unwrap();
         while remove_one_pkg(connection_lock.1, pkgname) {
             is_found = true;
+            is_db_modified.store(true, Ordering::Relaxed);
         }
     }
 
@@ -1050,6 +1072,8 @@ fn main() {
     let pos_args = pos_args.unwrap().get(1..);
 
     let is_fail = AtomicBool::new(false);
+    let mut is_db_modified = AtomicBool::new(false);
+    let is_db_modified = Arc::new(&mut is_db_modified);
     if arg_struct.use_new_db_format {
         // Open the SQLite database connections
         let db_connections = utils::make_db_connections(&G_TMPWORKINGDIR.lock().unwrap());
@@ -1069,7 +1093,7 @@ fn main() {
                 if cmd_line == "repo-remove" { remove_pkg_from_db_nf } else { add_pkg_to_db_nf };
             handle_signal!(is_signaled);
             let mut conn_handle = Arc::clone(&connections);
-            if !action_func(&mut conn_handle, elem, &arg_struct) {
+            if !action_func(&mut conn_handle, elem, &is_db_modified, &arg_struct) {
                 is_fail.store(true, Ordering::Relaxed);
             }
         });
@@ -1078,7 +1102,7 @@ fn main() {
             let action_func =
                 if cmd_line == "repo-remove" { remove_pkg_from_db } else { add_pkg_to_db };
             handle_signal!(is_signaled);
-            if !action_func(elem, &arg_struct) {
+            if !action_func(elem, &is_db_modified, &arg_struct) {
                 is_fail.store(true, Ordering::Relaxed);
             }
         });
@@ -1087,9 +1111,16 @@ fn main() {
 
     // if the whole operation was a success, re-zip and rotate databases
     if is_fail.load(Ordering::Acquire) {
-        log::error!("No packages modified, nothing to do.");
+        log::error!("Package database was not modified due to errors.");
         clean_up();
         std::process::exit(1);
+    }
+
+    // if the whole operation was a success, re-zip and rotate databases
+    if !is_db_modified.load(Ordering::Acquire) {
+        log::error!("No changes made to package database.");
+        clean_up();
+        std::process::exit(0);
     }
     handle_signal_ext!(is_signaled, sig_handle);
 
