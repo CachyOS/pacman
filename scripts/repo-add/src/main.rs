@@ -1,6 +1,7 @@
 mod config;
 mod parse_args;
 mod pkginfo;
+mod database_sqlite;
 mod utils;
 
 use config::VERSION;
@@ -126,8 +127,8 @@ fn find_pkgentry_nf(
     conn: &rusqlite::Connection,
     pkg_info: &pkginfo::PkgInfo,
 ) -> Option<(String, String, String)> {
-    if let Some(package_id) = utils::make_lookup_pkgentry_nf(conn, pkg_info) {
-        return utils::get_old_entryval_nf(conn, package_id);
+    if let Some(package_id) = database_sqlite::make_lookup_pkgentry_nf(conn, pkg_info) {
+        return database_sqlite::get_old_entryval_nf(conn, package_id);
     }
 
     None
@@ -400,7 +401,7 @@ fn db_write_entry_nf(
     // let workingdb_path = G_TMPWORKINGDIR.lock().unwrap();
     {
         let conn_lock = connections.lock().unwrap();
-        if utils::get_pkgentry_nf(conn_lock.0, &pkginfo).is_some() {
+        if database_sqlite::get_pkgentry_nf(conn_lock.0, &pkginfo).is_some() {
             log::warn!(
                 "An entry for '{}-{}' already existed",
                 pkginfo.pkgname.as_ref().unwrap(),
@@ -454,7 +455,7 @@ fn db_write_entry_nf(
     log::info!("Inserting pkg into db...");
     {
         let mut connection_lock = connections.lock().unwrap();
-        utils::create_db_entry_nf(
+        database_sqlite::create_db_entry_nf(
             connection_lock.0,
             pkgpath,
             &pkginfo,
@@ -464,7 +465,7 @@ fn db_write_entry_nf(
         )
         .expect("Failed to insert");
 
-        utils::create_db_entry_nf(
+        database_sqlite::create_db_entry_nf(
             connection_lock.1,
             pkgpath,
             &pkginfo,
@@ -476,7 +477,7 @@ fn db_write_entry_nf(
     }
 
     // Insert files info
-    utils::create_db_files_entry_nf(connections.lock().unwrap().1, pkgpath, &pkginfo);
+    database_sqlite::create_db_files_entry_nf(connections.lock().unwrap().1, pkgpath, &pkginfo);
 
     if argstruct.rm_existing && oldfile.is_some() {
         log::info!("Removing old package file '{}'", oldfilename.as_ref().unwrap());
@@ -924,8 +925,8 @@ fn remove_pkg_from_db_nf(
 ) -> bool {
     log::info!("Searching for package '{}'...", pkgname);
     let remove_one_pkg = |conn: &mut rusqlite::Connection, needle| {
-        if let Some(package_id) = utils::make_simple_lookup_pkgentry_nf(conn, needle) {
-            utils::remove_from_db_by_id_nf(conn, package_id);
+        if let Some(package_id) = database_sqlite::make_simple_lookup_pkgentry_nf(conn, needle) {
+            database_sqlite::remove_from_db_by_id_nf(conn, package_id);
             return true;
         }
 
@@ -1080,7 +1081,7 @@ fn main() {
     let is_db_modified = Arc::new(&mut is_db_modified);
     if arg_struct.use_new_db_format {
         // Open the SQLite database connections
-        let db_connections = utils::make_db_connections(&G_TMPWORKINGDIR.lock().unwrap());
+        let db_connections = database_sqlite::make_db_connections(&G_TMPWORKINGDIR.lock().unwrap());
         if let Err(err) = db_connections {
             log::error!("Sqlite error: {:?}", err);
             clean_up();
