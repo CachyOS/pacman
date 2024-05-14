@@ -145,9 +145,7 @@ pub fn create_db_files_entry_nf(
 
 pub fn remove_from_db_by_id_nf(conn: &mut rusqlite::Connection, package_id: i64) -> bool {
     // 1. Delete entry from table
-    conn.execute("DELETE FROM packages WHERE id = ?", [package_id]).unwrap();
-
-    true
+    conn.execute("DELETE FROM packages WHERE id = ?", [package_id]).unwrap() != 0
 }
 
 pub fn get_old_entryval_nf(
