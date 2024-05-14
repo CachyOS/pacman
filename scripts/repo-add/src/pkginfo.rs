@@ -3,7 +3,7 @@ use std::{fs, io};
 
 use akv::reader::ArchiveReader;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Default, PartialEq)]
 pub struct PkgInfo {
     pub pkgname: Option<String>,
     pub pkgbase: Option<String>,
