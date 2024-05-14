@@ -1,7 +1,7 @@
 mod config;
+mod database_sqlite;
 mod parse_args;
 mod pkginfo;
-mod database_sqlite;
 mod utils;
 
 use config::VERSION;
@@ -671,34 +671,6 @@ fn prepare_repo_db_nf(
 }
 
 fn create_needed_repo_db_nf(cmd_line: &str) -> anyhow::Result<bool> {
-    const K_CREATE_TABLE: &str = r#"
-CREATE TABLE IF NOT EXISTS packages (
-    id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    version TEXT NOT NULL,
-    filename TEXT NOT NULL,
-    base TEXT,
-    desc TEXT,
-    groups TEXT,
-    url TEXT,
-    license TEXT,
-    arch TEXT,
-    builddate TEXT,
-    packager TEXT,
-    csize TEXT,
-    isize TEXT,
-    sha256sum TEXT,
-    pgpsig TEXT,
-    replaces TEXT,
-    depends TEXT,
-    optdepends TEXT,
-    makedepends TEXT,
-    checkdepends TEXT,
-    conflicts TEXT,
-    provides TEXT,
-    files TEXT
-);"#;
-
     let repos = ["db", "files"];
     for repo in repos {
         let dbfile_path = format!("{}/{}/pacman.db", *G_TMPWORKINGDIR.lock().unwrap(), repo);
@@ -706,7 +678,7 @@ CREATE TABLE IF NOT EXISTS packages (
         let conn = rusqlite::Connection::open(dbfile_path)?;
         if cmd_line == "repo-add" {
             // Create the packages table if it doesn't exist
-            conn.execute(K_CREATE_TABLE, []).unwrap();
+            database_sqlite::run_migrations(&conn).unwrap();
         }
     }
     Ok(true)
