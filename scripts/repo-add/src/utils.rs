@@ -227,7 +227,7 @@ pub fn create_db_desc_entry(
     csize: String,
     pkg_sha256sum: Option<String>,
     pkg_pgpsig: Option<String>,
-) {
+) -> io::Result<()> {
     let mut desc_content = String::new();
     desc_content.push_str(&format_entry(
         "FILENAME",
@@ -261,9 +261,10 @@ pub fn create_db_desc_entry(
     desc_content.push_str(&format_entry_mul("MAKEDEPENDS", &pkginfo.makedepends));
     desc_content.push_str(&format_entry_mul("CHECKDEPENDS", &pkginfo.checkdepends));
 
-    let mut desc_entry_file =
-        File::create(format!("{}/{}/desc", &workingdb_path, &pkg_entrypath)).unwrap();
-    desc_entry_file.write_all(desc_content.as_bytes()).expect("Failed to write desc entry");
+    let mut desc_entry_file = File::create(format!("{}/{}/desc", &workingdb_path, &pkg_entrypath))?;
+    desc_entry_file.write_all(desc_content.as_bytes())?;
+
+    Ok(())
 }
 
 pub fn gen_pkg_integrity(
@@ -428,5 +429,95 @@ mod tests {
         assert_eq!(crate::utils::get_compression_command("tar.lz", makepkgconf_path), "lzip -c -f");
         assert_eq!(crate::utils::get_compression_command("tar", makepkgconf_path), "cat");
         assert_eq!(crate::utils::get_compression_command("", makepkgconf_path), "");
+    }
+    #[test]
+    fn creating_db_entry() {
+        let pkg_info = crate::pkginfo::PkgInfo::from_archive(PKGPATH);
+
+        let workingdb_path =
+            crate::utils::create_temporary_directory(None).expect("Failed to create temp dir");
+        let pkg_entrypath =
+            format!("{}-{}", pkg_info.pkgname.as_ref().unwrap(), pkg_info.pkgver.as_ref().unwrap());
+
+        let _ = fs::create_dir(format!("{}/{}", &workingdb_path, &pkg_entrypath))
+            .expect("Failed to create dir");
+
+        let mut pkg_csize = String::new();
+        let mut pkg_sha256sum: Option<String> = None;
+
+        assert!(crate::utils::gen_pkg_integrity(
+            PKGPATH,
+            &pkg_info,
+            &mut pkg_csize,
+            true,
+            &mut pkg_sha256sum,
+            &mut None,
+        ));
+
+        crate::utils::create_db_desc_entry(
+            PKGPATH,
+            &pkg_entrypath,
+            &workingdb_path,
+            &pkg_info,
+            pkg_csize.clone(),
+            pkg_sha256sum,
+            None,
+        )
+        .expect("Failed to create db entry");
+
+        let pkgentry_content =
+            fs::read_to_string(format!("{}/{}/desc", &workingdb_path, &pkg_entrypath)).unwrap();
+        let _ = fs::remove_dir_all(&workingdb_path).expect("Failed to cleanup");
+
+        const K_DB_DESC_TEST_DATA: &str = r#"%FILENAME%
+xz-5.4.5-2-x86_64.pkg.tar.zst
+
+%NAME%
+xz
+
+%BASE%
+xz
+
+%VERSION%
+5.4.5-2
+
+%DESC%
+Library and command line tools for XZ and LZMA compressed files
+
+%CSIZE%
+648678
+
+%ISIZE%
+2513790
+
+%SHA256SUM%
+6bcf35ecc6869a74926b204f16f01704c60115b956b098d3e59b655d1d36a2aa
+
+%URL%
+https://tukaani.org/xz/
+
+%LICENSE%
+GPL
+LGPL
+custom
+
+%ARCH%
+x86_64
+
+%BUILDDATE%
+1704482661
+
+%PACKAGER%
+CachyOS <admin@cachyos.org>
+
+%PROVIDES%
+liblzma.so=5-64
+
+%DEPENDS%
+sh
+
+"#;
+
+        assert_eq!(pkgentry_content, K_DB_DESC_TEST_DATA);
     }
 }
