@@ -37,14 +37,10 @@ pub fn get_current_cmdname(cmd_line: &str) -> &str {
     cmd_line
 }
 
-pub fn write_to_file(filepath: &str, data: &str) -> bool {
-    let file = File::create(filepath);
-    if let Ok(mut file) = file {
-        let _ = file.write_all(data.as_bytes());
-        return true;
-    }
-    log::error!("'{}' open failed: {:?}", filepath, file.err());
-    false
+pub fn write_to_file(filepath: &str, data: &str) -> io::Result<()> {
+    let mut file = File::create(filepath)?;
+    file.write_all(data.as_bytes())?;
+    Ok(())
 }
 
 pub fn create_temporary_directory(max_tries: Option<u32>) -> Option<String> {
@@ -63,6 +59,24 @@ pub fn create_temporary_directory(max_tries: Option<u32>) -> Option<String> {
         }
         i += 1;
     }
+}
+
+pub fn touch_file(filepath: &str) -> io::Result<()> {
+    if !Path::new(&filepath).exists() {
+        File::options().write(true).create_new(true).open(&filepath)?;
+        return Ok(());
+    }
+
+    use std::fs::FileTimes;
+    use std::time::SystemTime;
+
+    let file_dest = File::open(&filepath)?;
+
+    let curr_time = SystemTime::now();
+    let times = FileTimes::new().set_accessed(curr_time).set_modified(curr_time);
+    file_dest.set_times(times)?;
+
+    Ok(())
 }
 
 pub fn create_tempfile(max_tries: Option<u32>) -> Option<(File, String)> {
@@ -85,8 +99,7 @@ pub fn create_tempfile(max_tries: Option<u32>) -> Option<(File, String)> {
     }
 }
 
-pub fn exec(command: &str, interactive: Option<bool>) -> (String, bool) {
-    let interactive = interactive.unwrap_or(false);
+pub fn exec(command: &str, interactive: bool) -> (String, bool) {
     if interactive {
         let ret_code = Exec::shell(command).join().unwrap();
         return (String::new(), ret_code.success());
@@ -105,7 +118,7 @@ pub fn generate_sha256sum(filepath: &str) -> Option<String> {
     // create a Sha256 hasher instance
     use sha2::Digest;
     let mut hasher = Sha256::new();
-    let _ = io::copy(&mut file_obj, &mut hasher);
+    io::copy(&mut file_obj, &mut hasher).ok()?;
 
     // process input message
     let result = format!("{:x}", hasher.finalize());
@@ -250,7 +263,7 @@ pub fn create_db_desc_entry(
 
     let mut desc_entry_file =
         File::create(format!("{}/{}/desc", &workingdb_path, &pkg_entrypath)).unwrap();
-    let _ = desc_entry_file.write_all(desc_content.as_bytes());
+    desc_entry_file.write_all(desc_content.as_bytes()).expect("Failed to write desc entry");
 }
 
 pub fn gen_pkg_integrity(
@@ -265,7 +278,7 @@ pub fn gen_pkg_integrity(
     *pkg_pgpsig = None;
     if include_sigs && Path::new(&format!("{}.sig", pkg_info.pkgname.as_ref().unwrap())).exists() {
         let sig_filename = format!("{}.sig", pkg_info.pkgname.as_ref().unwrap());
-        if exec(&format!("grep -q 'BEGIN PGP SIGNATURE' \"{}\"", &sig_filename), Some(true)).1 {
+        if exec(&format!("grep -q 'BEGIN PGP SIGNATURE' \"{}\"", &sig_filename), true).1 {
             log::error!("Cannot use armored signatures for packages: {}", &sig_filename);
             return false;
         }
@@ -276,7 +289,7 @@ pub fn gen_pkg_integrity(
             return false;
         }
         log::info!("Adding package signature...");
-        *pkg_pgpsig = Some(exec(&format!("base64 \"{}\" | tr -d '\n'", sig_filename), None).0);
+        *pkg_pgpsig = Some(exec(&format!("base64 \"{}\" | tr -d '\n'", sig_filename), false).0);
     }
 
     *csize = format!("{}", fs::metadata(pkgpath).unwrap().len());
@@ -291,16 +304,54 @@ pub fn gen_pkg_integrity(
 #[cfg(test)]
 mod tests {
     use std::fs;
+    use std::path::Path;
 
     const PKGPATH: &str = "xz-5.4.5-2-x86_64.pkg.tar.zst";
 
     #[test]
     fn getting_pkgname_from_path() {
         assert_eq!(crate::utils::get_name_of_pkg(PKGPATH, false), "xz");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, false), "xzz");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, false), " ");
     }
     #[test]
     fn getting_pkgname_from_dbentry() {
         assert_eq!(crate::utils::get_name_of_pkg(PKGPATH, true), "xz-5.4.5");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, true), "xzz-5.4.5");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, true), "xz-5.4");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, true), "xz-5.4.");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, true), " ");
+    }
+    #[test]
+    fn touch_file() {
+        use rand::Rng;
+        use std::env;
+
+        let tmp_dir = env::temp_dir();
+        let mut rng = rand::thread_rng();
+        let filepath = format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.gen::<u64>());
+
+        assert!(!Path::new(&filepath).exists());
+        assert!(crate::utils::touch_file(&filepath).is_ok());
+        assert!(Path::new(&filepath).exists());
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), "".to_owned());
+
+        let desc_content = "testdata: abcd";
+        {
+            let mut desc_file = fs::File::options().write(true).open(&filepath).unwrap();
+            use std::io::prelude::*;
+            desc_file.write_all(desc_content.as_bytes()).unwrap();
+        }
+
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), desc_content.to_owned());
+        assert!(crate::utils::touch_file(&filepath).is_ok());
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), desc_content.to_owned());
+
+        // cleanup
+        assert!(fs::remove_file(&filepath).is_ok());
+
+        // test perms
+        assert!(crate::utils::touch_file("/.testfile-rust-repo-add").is_err());
     }
     #[test]
     fn getting_pkgfiles() {
@@ -311,6 +362,8 @@ mod tests {
             .map(String::from)
             .collect::<Vec<_>>();
         assert_eq!(crate::utils::get_pkg_files(PKGPATH), expected_pkgfiles);
+        assert_ne!(crate::utils::get_pkg_files(PKGPATH), [" "]);
+        assert_ne!(crate::utils::get_pkg_files(PKGPATH), vec![] as Vec<String>);
     }
     #[test]
     fn getting_compression_cmd() {
