@@ -345,7 +345,8 @@ fn db_write_entry(
             csize,
             pkg_sha256sum,
             pkg_pgpsig,
-        );
+        )
+        .expect("Failed to create db entry");
     }
 
     // copy updated package entry into "files" database
