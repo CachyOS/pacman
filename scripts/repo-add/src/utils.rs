@@ -310,6 +310,63 @@ mod tests {
     const PKGPATH: &str = "xz-5.4.5-2-x86_64.pkg.tar.zst";
 
     #[test]
+    fn getting_min_val() {
+        assert_eq!(crate::utils::const_min(4, 4), 4);
+        assert_eq!(crate::utils::const_min(4, 1), 1);
+        assert_eq!(crate::utils::const_min(1, 4), 1);
+    }
+    #[test]
+    fn getting_string_substr() {
+        assert_eq!(crate::utils::string_substr("ABCDEF", 4, 42), Ok("EF"));
+        assert_eq!(crate::utils::string_substr("ABCDEF", 1, 10), Ok("BCDEF"));
+        assert_eq!(crate::utils::string_substr("ABCDEF", 2, 3), Ok("CDE"));
+    }
+    #[test]
+    fn getting_current_cmdline() {
+        assert_eq!(crate::utils::get_current_cmdname("../../repo-add"), "repo-add");
+        assert_eq!(crate::utils::get_current_cmdname("../../../../repo-remove"), "repo-remove");
+        assert_eq!(crate::utils::get_current_cmdname("./repo-remove"), "repo-remove");
+        assert_eq!(crate::utils::get_current_cmdname("/usr/bin/repo-add"), "repo-add");
+    }
+    #[test]
+    fn write_data_tofile() {
+        // empty file
+        let filepath = {
+            use rand::Rng;
+            use std::env;
+
+            let tmp_dir = env::temp_dir();
+            let mut rng = rand::thread_rng();
+            format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.gen::<u64>())
+        };
+
+        assert!(crate::utils::write_to_file(&filepath, "123451231231").is_ok());
+        assert!(Path::new(&filepath).exists());
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), "123451231231");
+        assert!(crate::utils::write_to_file(&filepath, "1234").is_ok());
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), "1234");
+
+        // cleanup
+        assert!(fs::remove_file(&filepath).is_ok());
+
+        assert!(crate::utils::write_to_file(&filepath, "562").is_ok());
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), "562");
+        assert!(fs::remove_file(&filepath).is_ok());
+    }
+    #[test]
+    fn running_execs() {
+        assert_eq!(crate::utils::exec("echo long text", false), ("long text".to_owned(), true));
+        assert_eq!(crate::utils::exec("echo 123124", false), ("123124".to_owned(), true));
+        assert_eq!(
+            crate::utils::exec("echo long text &>/dev/null; false", true),
+            ("".to_owned(), false)
+        );
+        assert_eq!(
+            crate::utils::exec("echo 123124 &>/dev/null; true", true),
+            ("".to_owned(), true)
+        );
+    }
+    #[test]
     fn getting_pkgname_from_path() {
         assert_eq!(crate::utils::get_name_of_pkg(PKGPATH, false), "xz");
         assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, false), "xzz");
