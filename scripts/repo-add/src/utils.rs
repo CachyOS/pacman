@@ -63,14 +63,14 @@ pub fn create_temporary_directory(max_tries: Option<u32>) -> Option<String> {
 
 pub fn touch_file(filepath: &str) -> io::Result<()> {
     if !Path::new(&filepath).exists() {
-        File::options().write(true).create_new(true).open(&filepath)?;
+        File::options().write(true).create_new(true).open(filepath)?;
         return Ok(());
     }
 
     use std::fs::FileTimes;
     use std::time::SystemTime;
 
-    let file_dest = File::open(&filepath)?;
+    let file_dest = File::open(filepath)?;
 
     let curr_time = SystemTime::now();
     let times = FileTimes::new().set_accessed(curr_time).set_modified(curr_time);
@@ -439,7 +439,7 @@ mod tests {
         let pkg_entrypath =
             format!("{}-{}", pkg_info.pkgname.as_ref().unwrap(), pkg_info.pkgver.as_ref().unwrap());
 
-        let _ = fs::create_dir(format!("{}/{}", &workingdb_path, &pkg_entrypath))
+        fs::create_dir(format!("{}/{}", &workingdb_path, &pkg_entrypath))
             .expect("Failed to create dir");
 
         let mut pkg_csize = String::new();
@@ -467,7 +467,7 @@ mod tests {
 
         let pkgentry_content =
             fs::read_to_string(format!("{}/{}/desc", &workingdb_path, &pkg_entrypath)).unwrap();
-        let _ = fs::remove_dir_all(&workingdb_path).expect("Failed to cleanup");
+        fs::remove_dir_all(&workingdb_path).expect("Failed to cleanup");
 
         const K_DB_DESC_TEST_DATA: &str = r#"%FILENAME%
 xz-5.4.5-2-x86_64.pkg.tar.zst

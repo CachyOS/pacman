@@ -117,14 +117,14 @@ impl PkgInfo {
 
     pub fn from_archive(file_path: &str) -> Self {
         let file_archive = File::open(file_path);
-        if file_archive.is_err() {
-            log::error!("could not open file {}: {:?}", file_path, file_archive.err());
+        if let Err(err_msg) = file_archive {
+            log::error!("could not open file {}: {:?}", file_path, err_msg);
             return PkgInfo::new();
         }
 
         let mut archive_reader = ArchiveReader::open_io(file_archive.unwrap());
-        if archive_reader.is_err() {
-            log::error!("error while reading package  {}: {:?}\n", file_path, archive_reader.err());
+        if let Err(err_msg) = archive_reader {
+            log::error!("error while reading package  {}: {:?}\n", file_path, err_msg);
             return PkgInfo::new();
         }
 
@@ -152,16 +152,16 @@ impl PkgInfo {
 
 pub fn list_archive(file_path: &str) -> Vec<String> {
     let file_archive = File::open(file_path);
-    if file_archive.is_err() {
-        log::error!("could not open file {}: {:?}", file_path, file_archive.err());
+    if let Err(err_msg) = file_archive {
+        log::error!("could not open file {}: {:?}", file_path, err_msg);
         return vec![];
     }
 
     let mut arc_files = vec![];
 
     let mut archive_reader = ArchiveReader::open_io(file_archive.unwrap());
-    if archive_reader.is_err() {
-        log::error!("error while reading package  {}: {:?}\n", file_path, archive_reader.err());
+    if let Err(err_msg) = archive_reader {
+        log::error!("error while reading package  {}: {:?}\n", file_path, err_msg);
         return vec![];
     }
     while let Some(entry) = archive_reader.as_mut().unwrap().next_entry().unwrap() {

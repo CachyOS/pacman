@@ -372,7 +372,7 @@ VALUES (1, 'xz', '5.4.5-2', 'xz-5.4.5-2-x86_64.pkg.tar.zst', 'x86_64')
             arch: Some("x86_64".to_owned()),
             builddate: Some("1704482661".to_owned()),
             packager: Some("CachyOS <admin@cachyos.org>".to_owned()),
-            c_size: Some(pkg_csize.into()),
+            c_size: Some(pkg_csize),
             i_size: Some("2513790".to_owned()),
             sha256sum: pkg_sha256sum,
             pgpsig: None,
@@ -532,49 +532,37 @@ VALUES (1, 'xz', '5.4.5-2', 'xz-5.4.5-2-x86_64.pkg.tar.zst', 'x86_64')
 
         conn.execute(K_INSERT_TEST_DATA, []).expect("Failed to insert");
 
-        assert_eq!(
-            crate::database_sqlite::create_db_files_entry_nf(&mut conn, PKGPATH, &PkgInfo {
-                pkgname: Some("xz".to_owned()),
-                pkgver: Some("5.4.5-2".to_owned()),
-                arch: Some("aarch64".to_owned()),
-                ..Default::default()
-            }),
-            false
-        );
-        assert_eq!(
-            crate::database_sqlite::create_db_files_entry_nf(&mut conn, PKGPATH, &PkgInfo {
-                pkgname: Some("xzz".to_owned()),
-                pkgver: Some("5.4.5-2".to_owned()),
-                arch: Some("x86_64".to_owned()),
-                ..Default::default()
-            }),
-            false
-        );
-        assert_eq!(
-            crate::database_sqlite::create_db_files_entry_nf(&mut conn, PKGPATH, &PkgInfo {
-                pkgname: Some(" ".to_owned()),
-                pkgver: Some("5.4.5-2".to_owned()),
-                arch: Some("x86_64".to_owned()),
-                ..Default::default()
-            }),
-            false
-        );
+        assert!(!crate::database_sqlite::create_db_files_entry_nf(&mut conn, PKGPATH, &PkgInfo {
+            pkgname: Some("xz".to_owned()),
+            pkgver: Some("5.4.5-2".to_owned()),
+            arch: Some("aarch64".to_owned()),
+            ..Default::default()
+        }));
+        assert!(!crate::database_sqlite::create_db_files_entry_nf(&mut conn, PKGPATH, &PkgInfo {
+            pkgname: Some("xzz".to_owned()),
+            pkgver: Some("5.4.5-2".to_owned()),
+            arch: Some("x86_64".to_owned()),
+            ..Default::default()
+        }));
+        assert!(!crate::database_sqlite::create_db_files_entry_nf(&mut conn, PKGPATH, &PkgInfo {
+            pkgname: Some(" ".to_owned()),
+            pkgver: Some("5.4.5-2".to_owned()),
+            arch: Some("x86_64".to_owned()),
+            ..Default::default()
+        }));
 
-        assert_eq!(
-            crate::database_sqlite::create_db_files_entry_nf(&mut conn, PKGPATH, &PkgInfo {
-                pkgname: Some("xz".to_owned()),
-                pkgver: Some("5.4.5-2".to_owned()),
-                arch: Some("x86_64".to_owned()),
-                ..Default::default()
-            }),
-            true
-        );
+        assert!(crate::database_sqlite::create_db_files_entry_nf(&mut conn, PKGPATH, &PkgInfo {
+            pkgname: Some("xz".to_owned()),
+            pkgver: Some("5.4.5-2".to_owned()),
+            arch: Some("x86_64".to_owned()),
+            ..Default::default()
+        }));
 
         let mut stmt = conn
             .prepare("SELECT files FROM packages WHERE id = ?1")
             .expect("Failed to prepare statement");
         let mut pkg_files_iter =
-            stmt.query_map([1], |row| Ok(row.get(0)?)).expect("Failed to create query iter");
+            stmt.query_map([1], |row| row.get(0)).expect("Failed to create query iter");
 
         let expected_pkgfiles = fs::read_to_string("xz-files")
             .unwrap()
@@ -593,7 +581,7 @@ VALUES (1, 'xz', '5.4.5-2', 'xz-5.4.5-2-x86_64.pkg.tar.zst', 'x86_64')
 
         conn.execute(K_INSERT_TEST_DATA, []).expect("Failed to insert");
 
-        assert_eq!(crate::database_sqlite::remove_from_db_by_id_nf(&mut conn, 1), true);
-        assert_eq!(crate::database_sqlite::remove_from_db_by_id_nf(&mut conn, 1), false);
+        assert!(crate::database_sqlite::remove_from_db_by_id_nf(&mut conn, 1));
+        assert!(!crate::database_sqlite::remove_from_db_by_id_nf(&mut conn, 1));
     }
 }
