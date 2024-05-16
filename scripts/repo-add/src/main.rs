@@ -681,48 +681,55 @@ fn create_needed_repo_db_nf(cmd_line: &str) -> anyhow::Result<bool> {
 fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBool>) {
     let saved_dir = env::current_dir().unwrap_or("".into());
     {
-        let dirname = Path::new(argstruct.lockfile.as_ref().unwrap()).parent();
-        env::set_current_dir(dirname.unwrap()).expect("Failed to change pwd");
+        let dirname = Path::new(argstruct.lockfile.as_ref().unwrap())
+            .parent()
+            .expect("Failed to get parent path");
+        env::set_current_dir(dirname).expect("Failed to change pwd");
     }
 
     let repos = ["db", "files"];
     repos.into_par_iter().for_each(|repo| {
         handle_signal!(is_signaled);
-        let dirname = Path::new(argstruct.lockfile.as_ref().unwrap()).parent();
+        let dirname = Path::new(argstruct.lockfile.as_ref().unwrap())
+            .parent()
+            .expect("Failed to get parent path");
         let filename = format!(
             "{}.{}.{}",
             argstruct.repo_db_prefix.as_ref().unwrap(),
             repo,
             argstruct.repo_db_suffix.as_ref().unwrap()
         );
-        let tempname =
-            format!("{}/.tmp.{}", dirname.as_ref().unwrap().to_string_lossy(), &filename);
+        let tempname = format!("{}/.tmp.{}", dirname.to_string_lossy(), &filename);
         let sig_filename = format!("{}.sig", &filename);
 
         // hardlink or move the previous version of the database and signature to .old
         // extension as a backup measure
-        if dirname.as_ref().unwrap().exists() {
+        if Path::new(&filename).exists() {
             let old_filename = format!("{}.old", &filename);
-            if !utils::exec(
-                &format!("ln -f \"{}\" \"{}\" 2>/dev/null", &filename, &old_filename),
-                true,
-            )
-            .1
-            {
-                fs::rename(&filename, &old_filename).unwrap();
+            if fs::hard_link(&filename, &old_filename).is_err() {
+                if let Err(err_msg) = fs::rename(&filename, &old_filename) {
+                    log::error!(
+                        "Failed to rename file '{}'->'{}': {}",
+                        &filename,
+                        &old_filename,
+                        err_msg
+                    );
+                }
             }
 
             let old_sig_filename = format!("{}.sig", &old_filename);
             if Path::new(&sig_filename).exists() {
-                if !utils::exec(
-                    &format!("ln -f \"{}\" \"{}\" 2>/dev/null", &sig_filename, &old_sig_filename),
-                    true,
-                )
-                .1
-                {
-                    fs::rename(&sig_filename, &old_sig_filename).unwrap();
+                if fs::hard_link(&sig_filename, &old_sig_filename).is_err() {
+                    if let Err(err_msg) = fs::rename(&sig_filename, &old_sig_filename) {
+                        log::error!(
+                            "Failed to rename file '{}'->'{}': {}",
+                            &sig_filename,
+                            &old_sig_filename,
+                            err_msg
+                        );
+                    }
                 }
-            } else {
+            } else if Path::new(&old_sig_filename).exists() {
                 fs::remove_file(&old_sig_filename).unwrap();
             }
         }
@@ -736,26 +743,22 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
 
         let dblink = format!("{}.{}", argstruct.repo_db_prefix.as_ref().unwrap(), repo);
         let sig_dblink = format!("{}.sig", &dblink);
-        fs::remove_file(&dblink).unwrap();
-        fs::remove_file(&sig_dblink).unwrap();
+        if Path::new(&dblink).exists() {
+            fs::remove_file(&dblink).unwrap();
+        }
+        if Path::new(&sig_dblink).exists() {
+            fs::remove_file(&sig_dblink).unwrap();
+        }
 
-        if !utils::exec(&format!("ln -sf \"{}\" \"{}\" 2>/dev/null", filename, dblink), true).1
-            && !utils::exec(&format!("ln -f \"{}\" \"{}\" 2>/dev/null", filename, dblink), true).1
+        if std::os::unix::fs::symlink(&filename, &dblink).is_err()
+            && fs::hard_link(&filename, &dblink).is_err()
         {
             let _ = fs::copy(&filename, &dblink).expect("Failed to copy");
         }
 
         if Path::new(&sig_filename).exists()
-            && !utils::exec(
-                &format!("ln -sf \"{}\" \"{}\" 2>/dev/null", sig_filename, sig_dblink),
-                true,
-            )
-            .1
-            && !utils::exec(
-                &format!("ln -f \"{}\" \"{}\" 2>/dev/null", sig_filename, sig_dblink),
-                true,
-            )
-            .1
+            && std::os::unix::fs::symlink(&sig_filename, &sig_dblink).is_err()
+            && fs::hard_link(&sig_filename, &sig_dblink).is_err()
         {
             let _ = fs::copy(&sig_filename, &sig_dblink).expect("Failed to copy");
         }
