@@ -555,7 +555,7 @@ fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bo
                 return false;
             } else if cmd_line == "repo-add" {
                 // check if the file can be created (write permission, directory existence, etc)
-                if let Err(_) = utils::touch_file(&dbfile) {
+                if utils::touch_file(&dbfile).is_err() {
                     log::error!("Repository file '{}' could not be created.", &dbfile);
                     return false;
                 }
@@ -653,7 +653,7 @@ fn prepare_repo_db_nf(
                 return Ok(false);
             } else if cmd_line == "repo-add" {
                 // check if the file can be created (write permission, directory existence, etc)
-                if let Err(_) = utils::touch_file(&dbfile) {
+                if utils::touch_file(&dbfile).is_err() {
                     log::error!("Repository file '{}' could not be created.", &dbfile);
                     return Ok(false);
                 }
