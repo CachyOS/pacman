@@ -115,6 +115,7 @@ mod tests {
         assert!(argstruct.prevent_downgrade);
         assert!(argstruct.only_add_new);
         assert!(!argstruct.quiet);
+        assert!(argstruct.use_colors);
     }
 
     #[test]
@@ -144,6 +145,7 @@ mod tests {
         assert!(argstruct.prevent_downgrade);
         assert!(argstruct.only_add_new);
         assert!(!argstruct.quiet);
+        assert!(argstruct.use_colors);
     }
 
     #[test]
@@ -154,6 +156,13 @@ mod tests {
             "-p".to_owned(),
             "-n".to_owned(),
             "-s".to_owned(),
+            "-R".to_owned(),
+            "-k".to_owned(),
+            "F3B607488DB35A47".to_owned(),
+            "-q".to_owned(),
+            "--nocolor".to_owned(),
+            "--include-sigs".to_owned(),
+            "--use-new-db-format".to_owned(),
             "core.db.tar.zst".to_owned(),
         ];
         let (pos_args, argstruct) = crate::parse_args::parse_args(&mut args);
@@ -164,7 +173,13 @@ mod tests {
         assert!(argstruct.verify);
         assert!(argstruct.prevent_downgrade);
         assert!(argstruct.only_add_new);
-        assert!(!argstruct.quiet);
+        assert!(argstruct.quiet);
+        assert!(argstruct.rm_existing);
+        assert!(!argstruct.use_colors);
+        assert!(argstruct.include_sigs);
+        assert!(argstruct.use_new_db_format);
+        assert!(argstruct.key);
+        assert_eq!(argstruct.gpgkey, Some("F3B607488DB35A47".to_owned()));
     }
 
     #[test]
@@ -175,6 +190,13 @@ mod tests {
             "-p".to_owned(),
             "-n".to_owned(),
             "-s".to_owned(),
+            "-R".to_owned(),
+            "-k".to_owned(),
+            "F3B607488DB35A47".to_owned(),
+            "-q".to_owned(),
+            "--nocolor".to_owned(),
+            "--include-sigs".to_owned(),
+            "--use-new-db-format".to_owned(),
         ];
         let (pos_args, argstruct) = crate::parse_args::parse_args(&mut args);
 
@@ -184,6 +206,12 @@ mod tests {
         assert!(argstruct.verify);
         assert!(argstruct.prevent_downgrade);
         assert!(argstruct.only_add_new);
-        assert!(!argstruct.quiet);
+        assert!(argstruct.quiet);
+        assert!(argstruct.rm_existing);
+        assert!(!argstruct.use_colors);
+        assert!(argstruct.include_sigs);
+        assert!(argstruct.use_new_db_format);
+        assert!(argstruct.key);
+        assert_eq!(argstruct.gpgkey, Some("F3B607488DB35A47".to_owned()));
     }
 }
