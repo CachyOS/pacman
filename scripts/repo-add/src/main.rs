@@ -141,14 +141,14 @@ fn db_remove_entry(pkgname: &str, is_db_modified: &Arc<&mut AtomicBool>) -> bool
             "Removing existing entry '{}'...",
             Path::new(&pkgentry).file_name().unwrap().to_str().unwrap()
         );
-        let _ = fs::remove_dir_all(&pkgentry).unwrap();
+        fs::remove_dir_all(&pkgentry).unwrap();
 
         // remove entries in "files" database
         let (filesentry, _) = utils::exec(
             &format!("echo \"{}\" | sed 's/\\(.*\\)\\/db\\//\\1\\/files\\//'", &pkgentry),
             false,
         );
-        let _ = fs::remove_dir_all(filesentry).unwrap();
+        fs::remove_dir_all(filesentry).unwrap();
 
         is_db_modified.store(true, Ordering::Relaxed);
     }
@@ -331,7 +331,7 @@ fn db_write_entry(
     db_remove_entry(pkginfo.pkgname.as_ref().unwrap(), is_db_modified);
 
     // create package directory
-    let _ = fs::create_dir(format!("{}/{}", &workingdb_path, &pkg_entrypath))
+    fs::create_dir(format!("{}/{}", &workingdb_path, &pkg_entrypath))
         .expect("Failed to create dir");
 
     // create desc entry
@@ -365,13 +365,13 @@ fn db_write_entry(
     let files_path = format!("{}/files/{}/files", *G_TMPWORKINGDIR.lock().unwrap(), &pkg_entrypath);
 
     let sorted_files = utils::get_pkg_files(pkgpath);
-    let _ = utils::write_to_file(&files_path, &format!("%FILES%\n{}\n", sorted_files.join("\n")))
+    utils::write_to_file(&files_path, &format!("%FILES%\n{}\n", sorted_files.join("\n")))
         .expect("Failed to write data to file");
 
     if argstruct.rm_existing && oldfile.is_some() {
         log::info!("Removing old package file '{}'", oldfilename.as_ref().unwrap());
-        let _ = fs::remove_file(oldfile.as_ref().unwrap()).unwrap();
-        let _ = fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap())).unwrap();
+        fs::remove_file(oldfile.as_ref().unwrap()).unwrap();
+        fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap())).unwrap();
     }
 
     is_db_modified.store(true, Ordering::Relaxed);
@@ -480,8 +480,8 @@ fn db_write_entry_nf(
 
     if argstruct.rm_existing && oldfile.is_some() {
         log::info!("Removing old package file '{}'", oldfilename.as_ref().unwrap());
-        let _ = fs::remove_file(oldfile.as_ref().unwrap()).unwrap();
-        let _ = fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap())).unwrap();
+        fs::remove_file(oldfile.as_ref().unwrap()).unwrap();
+        fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap())).unwrap();
     }
 
     is_db_modified.store(true, Ordering::Relaxed);
@@ -559,7 +559,7 @@ fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bo
                     log::error!("Repository file '{}' could not be created.", &dbfile);
                     return false;
                 }
-                let _ = fs::remove_file(dbfile).expect("Failed to remove db file");
+                fs::remove_file(dbfile).expect("Failed to remove db file");
             }
         }
     }
@@ -657,7 +657,7 @@ fn prepare_repo_db_nf(
                     log::error!("Repository file '{}' could not be created.", &dbfile);
                     return Ok(false);
                 }
-                let _ = fs::remove_file(dbfile).expect("Failed to remove db file");
+                fs::remove_file(dbfile).expect("Failed to remove db file");
             }
         }
     }
@@ -682,7 +682,7 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
     let saved_dir = env::current_dir().unwrap_or("".into());
     {
         let dirname = Path::new(argstruct.lockfile.as_ref().unwrap()).parent();
-        let _ = env::set_current_dir(dirname.unwrap()).expect("Failed to change pwd");
+        env::set_current_dir(dirname.unwrap()).expect("Failed to change pwd");
     }
 
     let repos = ["db", "files"];
@@ -709,7 +709,7 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
             )
             .1
             {
-                let _ = fs::rename(&filename, &old_filename).unwrap();
+                fs::rename(&filename, &old_filename).unwrap();
             }
 
             let old_sig_filename = format!("{}.sig", &old_filename);
@@ -720,24 +720,24 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
                 )
                 .1
                 {
-                    let _ = fs::rename(&sig_filename, &old_sig_filename).unwrap();
+                    fs::rename(&sig_filename, &old_sig_filename).unwrap();
                 }
             } else {
-                let _ = fs::remove_file(&old_sig_filename).unwrap();
+                fs::remove_file(&old_sig_filename).unwrap();
             }
         }
 
         // rotate the newly-created database and signature into place
-        let _ = fs::rename(&tempname, &filename).unwrap();
+        fs::rename(&tempname, &filename).unwrap();
         let sig_tempname = format!("{}.sig", &tempname);
         if Path::new(&sig_tempname).exists() {
-            let _ = fs::rename(&sig_tempname, &sig_filename).unwrap();
+            fs::rename(&sig_tempname, &sig_filename).unwrap();
         }
 
         let dblink = format!("{}.{}", argstruct.repo_db_prefix.as_ref().unwrap(), repo);
         let sig_dblink = format!("{}.sig", &dblink);
-        let _ = fs::remove_file(&dblink).unwrap();
-        let _ = fs::remove_file(&sig_dblink).unwrap();
+        fs::remove_file(&dblink).unwrap();
+        fs::remove_file(&sig_dblink).unwrap();
 
         if !utils::exec(&format!("ln -sf \"{}\" \"{}\" 2>/dev/null", filename, dblink), true).1
             && !utils::exec(&format!("ln -f \"{}\" \"{}\" 2>/dev/null", filename, dblink), true).1
@@ -760,7 +760,7 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
             let _ = fs::copy(&sig_filename, &sig_dblink).expect("Failed to copy");
         }
     });
-    let _ = env::set_current_dir(saved_dir).expect("Failed to change pwd");
+    env::set_current_dir(saved_dir).expect("Failed to change pwd");
 }
 
 fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBool>) -> bool {
@@ -817,7 +817,7 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
         );
 
         if let Some(tmpfile_path) = tmpfile_path {
-            let _ = fs::remove_file(tmpfile_path).unwrap();
+            fs::remove_file(tmpfile_path).unwrap();
         }
 
         if !create_signature(&tempname, argstruct) {
@@ -948,7 +948,7 @@ fn main() {
     }
     for repo in ["db", "files"] {
         let repo_path = format!("{}/{}", *G_TMPWORKINGDIR.lock().unwrap(), repo);
-        let _ = fs::create_dir(repo_path).expect("Failed to create dir");
+        fs::create_dir(repo_path).expect("Failed to create dir");
     }
 
     // Create a shared atomic boolean to track if a signal was received
@@ -1115,7 +1115,7 @@ fn exit_term_callback(err_msg: &str) {
 
 fn clean_up() {
     if Path::new(&*G_TMPWORKINGDIR.lock().unwrap()).exists() {
-        let _ = fs::remove_dir_all(&*G_TMPWORKINGDIR.lock().unwrap()).expect("Failed to cleanup");
+        fs::remove_dir_all(&*G_TMPWORKINGDIR.lock().unwrap()).expect("Failed to cleanup");
     }
 }
 
