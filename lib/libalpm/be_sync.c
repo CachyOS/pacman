@@ -268,6 +268,7 @@ static int sync_db_read(alpm_db_t *db, struct archive *archive,
 		struct archive_entry *entry, alpm_pkg_t **likely_pkg);
 
 #ifdef HAVE_LIBSQLITE
+static int get_field_index(alpm_db_t *db, sqlite3_stmt* stmt, const char* req_col_name);
 static int sync_db_read_nf(alpm_db_t *db, struct archive *archive,
 		struct archive_entry *entry);
 #endif
@@ -463,7 +464,7 @@ static int sync_db_populate(alpm_db_t *db)
 			if(strcmp(archive_entry_pathname(entry), "pacman.db") == 0) {
 				if(sync_db_read_nf(db, archive, entry) != 0) {
 					_alpm_log(db->handle, ALPM_LOG_ERROR,
-							_("could not parse package description file '%s' from db '%s'\n"),
+							_("could not parse pacman.db file '%s' from db '%s'\n"),
 							archive_entry_pathname(entry), db->treename);
 					ret = -1;
 				}
@@ -739,43 +740,49 @@ error:
 
 #ifdef HAVE_LIBSQLITE
 
-#define READ_SQL_TEXT_AND_STORE(f, col_num) do { \
+#define READ_SQL_TEXT_AND_STORE(f, col_name) do { \
+    int col_num = get_field_index(db, sqlite_res, col_name); \
     char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
     if (text_val != NULL) { \
         STRDUP(f, text_val, ret = -1; GOTO_ERR(db->handle, ALPM_ERR_MEMORY, cleanup)); \
     } \
 } while(0)
 
-#define READ_SQL_DATE_AND_STORE(f, col_num) do { \
+#define READ_SQL_DATE_AND_STORE(f, col_name) do { \
+    int col_num = get_field_index(db, sqlite_res, col_name); \
     const char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
     if (text_val != NULL) { f = _alpm_parsedate(text_val); } \
 } while(0)
 
-#define READ_SQL_SIZE_AND_STORE(f, col_num) do { \
+#define READ_SQL_SIZE_AND_STORE(f, col_name) do { \
+    int col_num = get_field_index(db, sqlite_res, col_name); \
     const char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
     if (text_val != NULL) { f = _alpm_strtoofft(text_val); } \
 } while(0)
 
-#define READ_SQL_AND_STORE_ALL(f, col_num) do { \
+#define READ_SQL_AND_STORE_ALL(f, col_name) do { \
 	char *i, *save = NULL; \
+	int col_num = get_field_index(db, sqlite_res, col_name); \
     char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
 	if(text_val != NULL) { for(i = strtok_r(text_val, ",", &save); i; i = strtok_r(NULL, ",", &save)) { \
 		f = alpm_list_add(f, strdup(i)); \
 	} } \
 } while(0)
 
-#define READ_SQL_AND_SPLITDEP(f, col_num) do { \
+#define READ_SQL_AND_SPLITDEP(f, col_name) do { \
 	char *i, *save = NULL; \
+	int col_num = get_field_index(db, sqlite_res, col_name); \
     char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
 	if(text_val != NULL) { for(i = strtok_r(text_val, ",", &save); i; i = strtok_r(NULL, ",", &save)) { \
 		f = alpm_list_add(f, alpm_dep_from_string(i)); \
 	} } \
 } while(0)
 
-#define READ_SQL_AND_SPLIT_FILE(f, col_num) do { \
+#define READ_SQL_AND_SPLIT_FILE(f, col_name) do { \
 	char *i, *save = NULL; \
     size_t files_count = 0, files_size = 0; \
     alpm_file_t *files = NULL; \
+	int col_num = get_field_index(db, sqlite_res, col_name); \
     char* text_val = (char*)sqlite3_column_text(sqlite_res, col_num); \
 	if(text_val != NULL) { for(i = strtok_r(text_val, ",", &save); i; i = strtok_r(NULL, ",", &save)) { \
         if(!_alpm_greedy_grow((void **)&files, &files_size, \
@@ -796,6 +803,23 @@ error:
     f.files = files; \
     _alpm_filelist_sort(&f); } \
 } while(0)
+
+
+static int get_field_index(alpm_db_t *db, sqlite3_stmt* stmt, const char* req_col_name)
+{
+	int i = 0;
+	int column_count = sqlite3_column_count(stmt);
+
+	for (i = 0; i < column_count; ++i) {
+		const char *col_name = sqlite3_column_name(stmt, i);
+		if(strcmp(col_name, req_col_name) == 0) {
+			return i;
+		}
+	}
+	_alpm_log(db->handle, ALPM_LOG_DEBUG,
+			"requested column name wasn't found in result set\n");
+	return -1;
+}
 
 static int sync_db_read_nf(alpm_db_t *db, struct archive *archive,
 		struct archive_entry *entry)
@@ -859,36 +883,35 @@ static int sync_db_read_nf(alpm_db_t *db, struct archive *archive,
 			GOTO_ERR(db->handle, ALPM_ERR_MEMORY, cleanup);
 		}
 
-		READ_SQL_TEXT_AND_STORE(pkg->name, 1);
-		READ_SQL_TEXT_AND_STORE(pkg->version, 2);
+		READ_SQL_TEXT_AND_STORE(pkg->name, "name");
+		READ_SQL_TEXT_AND_STORE(pkg->version, "version");
 		pkg->name_hash = _alpm_hash_sdbm(pkg->name);
 
-		READ_SQL_TEXT_AND_STORE(pkg->filename, 3);
+		READ_SQL_TEXT_AND_STORE(pkg->filename, "filename");
 		if(_alpm_validate_filename(db, pkg->name, pkg->filename) < 0) {
 			ret = -1;
 			GOTO_ERR(db->handle, ALPM_ERR_MEMORY, cleanup);
 		}
-		READ_SQL_TEXT_AND_STORE(pkg->base, 4);
-		READ_SQL_TEXT_AND_STORE(pkg->desc, 5);
-		READ_SQL_AND_STORE_ALL(pkg->groups, 6);
-		READ_SQL_TEXT_AND_STORE(pkg->url, 7);
-		READ_SQL_AND_STORE_ALL(pkg->licenses, 8);
-		READ_SQL_TEXT_AND_STORE(pkg->arch, 9);
-		READ_SQL_DATE_AND_STORE(pkg->builddate, 10);
-		READ_SQL_TEXT_AND_STORE(pkg->packager, 11);
-		READ_SQL_SIZE_AND_STORE(pkg->size, 12);
-		READ_SQL_SIZE_AND_STORE(pkg->isize, 13);
-		READ_SQL_TEXT_AND_STORE(pkg->md5sum, 14);
-		READ_SQL_TEXT_AND_STORE(pkg->sha256sum, 15);
-		READ_SQL_TEXT_AND_STORE(pkg->base64_sig, 16);
-		READ_SQL_AND_SPLITDEP(pkg->replaces, 17);
-		READ_SQL_AND_SPLITDEP(pkg->depends, 18);
-		READ_SQL_AND_SPLITDEP(pkg->optdepends, 19);
-		READ_SQL_AND_SPLITDEP(pkg->makedepends, 20);
-		READ_SQL_AND_SPLITDEP(pkg->checkdepends, 21);
-		READ_SQL_AND_SPLITDEP(pkg->conflicts, 22);
-		READ_SQL_AND_SPLITDEP(pkg->provides, 23);
-		READ_SQL_AND_SPLIT_FILE(pkg->files, 24);
+		READ_SQL_TEXT_AND_STORE(pkg->base, "base");
+		READ_SQL_TEXT_AND_STORE(pkg->desc, "desc");
+		READ_SQL_AND_STORE_ALL(pkg->groups, "groups");
+		READ_SQL_TEXT_AND_STORE(pkg->url, "url");
+		READ_SQL_AND_STORE_ALL(pkg->licenses, "license");
+		READ_SQL_TEXT_AND_STORE(pkg->arch, "arch");
+		READ_SQL_DATE_AND_STORE(pkg->builddate, "builddate");
+		READ_SQL_TEXT_AND_STORE(pkg->packager, "packager");
+		READ_SQL_SIZE_AND_STORE(pkg->size, "csize");
+		READ_SQL_SIZE_AND_STORE(pkg->isize, "isize");
+		READ_SQL_TEXT_AND_STORE(pkg->sha256sum, "sha256sum");
+		READ_SQL_TEXT_AND_STORE(pkg->base64_sig, "pgpsig");
+		READ_SQL_AND_SPLITDEP(pkg->replaces, "replaces");
+		READ_SQL_AND_SPLITDEP(pkg->depends, "depends");
+		READ_SQL_AND_SPLITDEP(pkg->optdepends, "optdepends");
+		READ_SQL_AND_SPLITDEP(pkg->makedepends, "makedepends");
+		READ_SQL_AND_SPLITDEP(pkg->checkdepends, "checkdepends");
+		READ_SQL_AND_SPLITDEP(pkg->conflicts, "conflicts");
+		READ_SQL_AND_SPLITDEP(pkg->provides, "provides");
+		READ_SQL_AND_SPLIT_FILE(pkg->files, "files");
 
 		pkg->origin = ALPM_PKG_FROM_SYNCDB;
 		pkg->origin_data.db = db;
