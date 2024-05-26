@@ -3,6 +3,8 @@ use std::io::Write;
 use std::path::Path;
 use std::{env, fs, io, slice, str};
 
+use base64::engine::general_purpose::STANDARD;
+use base64::write::EncoderStringWriter;
 use rand::Rng;
 use sha2::Sha256;
 use subprocess::{Exec, Redirection};
@@ -290,7 +292,14 @@ pub fn gen_pkg_integrity(
             return false;
         }
         log::info!("Adding package signature...");
-        *pkg_pgpsig = Some(exec(&format!("base64 \"{}\" | tr -d '\n'", sig_filename), false).0);
+
+        {
+            let mut encoder = EncoderStringWriter::new(&STANDARD);
+            let mut file_obj = File::open(sig_filename).expect("Failed to open sig file to read");
+            io::copy(&mut file_obj, &mut encoder).expect("Failed to read sig file");
+
+            *pkg_pgpsig = Some(encoder.into_inner());
+        }
     }
 
     *csize = format!("{}", fs::metadata(pkgpath).unwrap().len());
