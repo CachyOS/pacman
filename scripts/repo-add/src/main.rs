@@ -318,7 +318,6 @@ fn db_write_entry(
 
     if !utils::gen_pkg_integrity(
         pkgpath,
-        &pkginfo,
         &mut csize,
         argstruct.include_sigs,
         &mut pkg_sha256sum,
@@ -441,7 +440,6 @@ fn db_write_entry_nf(
 
     if !utils::gen_pkg_integrity(
         pkgpath,
-        &pkginfo,
         &mut csize,
         argstruct.include_sigs,
         &mut pkg_sha256sum,

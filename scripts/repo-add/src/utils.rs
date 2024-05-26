@@ -269,7 +269,6 @@ pub fn create_db_desc_entry(
 
 pub fn gen_pkg_integrity(
     pkgpath: &str,
-    pkg_info: &crate::pkginfo::PkgInfo,
     csize: &mut String,
     include_sigs: bool,
     pkg_sha256sum: &mut Option<String>,
@@ -277,8 +276,9 @@ pub fn gen_pkg_integrity(
 ) -> bool {
     // compute base64'd PGP signature
     *pkg_pgpsig = None;
-    if include_sigs && Path::new(&format!("{}.sig", pkg_info.pkgname.as_ref().unwrap())).exists() {
-        let sig_filename = format!("{}.sig", pkg_info.pkgname.as_ref().unwrap());
+
+    let sig_filename = format!("{pkgpath}.sig");
+    if include_sigs && Path::new(&sig_filename).exists() {
         if exec(&format!("grep -q 'BEGIN PGP SIGNATURE' \"{}\"", &sig_filename), true).1 {
             log::error!("Cannot use armored signatures for packages: {}", &sig_filename);
             return false;
@@ -488,6 +488,46 @@ mod tests {
         assert_eq!(crate::utils::get_compression_command("", makepkgconf_path), "");
     }
     #[test]
+    fn generating_pkg_integrity() {
+        let pkg_info = crate::pkginfo::PkgInfo::from_archive(PKGPATH);
+
+        let mut pkg_csize = String::new();
+        let mut pkg_sha256sum: Option<String> = None;
+        let mut pkg_pgpsig: Option<String> = None;
+
+        assert!(crate::utils::gen_pkg_integrity(
+            PKGPATH,
+            &mut pkg_csize,
+            true,
+            &mut pkg_sha256sum,
+            &mut pkg_pgpsig,
+        ));
+        assert_eq!(pkg_csize, "648678".to_owned());
+        assert_eq!(
+            pkg_sha256sum,
+            Some("6bcf35ecc6869a74926b204f16f01704c60115b956b098d3e59b655d1d36a2aa".to_owned())
+        );
+        assert_eq!(pkg_pgpsig, Some("iQGzBAABCAAdFiEEiC3P5I4gUdSOJWKr87YHSI2zWkcFAmZHWccACgkQ87YHSI2zWkca+wv+NwT5s2m93pO+A7p9vs1XfrIEroK44wyYqqVqleBT0/1xIdVcDlZJCfN2ef6s56C+ZVf60EYaIo328VLzTY2dFARH+I9ILbpXfHPR2o8DPD0VnRMzgvI+k945pJd8xS+Oh9nGGUnf84hXLYsEZJAh134+Tefiqwukc50Mnlits0tlxIlFroNzOJT3F+xQ/PhiWMygeCSMg8fMORlUt3pV3FB8Dz826Yn+MxPcu6b8C001+kgCyjMJLUo8uxecQpHeuBJzcmK+PYdt0x3jNmJd2IVmH2XWXgn0lkqkOsofge8i22kbdrsS7E46Bt5FBI5BFt8R2zhkpCr4zInkNV4XUmW2zqvWZ88axNvYSx7NO4rCWmIw2hjJTsjkrVRD+qifJo5xzYXhQSSgzWEU7S8TvDwfTmT2ArOgI1+uCQ+dDtTviv4bTT/jQTKUHsj4jvZzCXEe7TkQAnckjZwNXMIeT0T8OWfneGc3j/CkeGYSm9+rZRsYqFa7GFbs47T0tQ8N".to_owned()));
+
+        let mut pkg_csize = String::new();
+        let mut pkg_sha256sum: Option<String> = None;
+        let mut pkg_pgpsig: Option<String> = None;
+
+        assert!(crate::utils::gen_pkg_integrity(
+            PKGPATH,
+            &mut pkg_csize,
+            false,
+            &mut pkg_sha256sum,
+            &mut pkg_pgpsig,
+        ));
+        assert_eq!(pkg_csize, "648678".to_owned());
+        assert_eq!(
+            pkg_sha256sum,
+            Some("6bcf35ecc6869a74926b204f16f01704c60115b956b098d3e59b655d1d36a2aa".to_owned())
+        );
+        assert_eq!(pkg_pgpsig, None);
+    }
+    #[test]
     fn creating_db_entry() {
         let pkg_info = crate::pkginfo::PkgInfo::from_archive(PKGPATH);
 
@@ -504,7 +544,6 @@ mod tests {
 
         assert!(crate::utils::gen_pkg_integrity(
             PKGPATH,
-            &pkg_info,
             &mut pkg_csize,
             true,
             &mut pkg_sha256sum,
