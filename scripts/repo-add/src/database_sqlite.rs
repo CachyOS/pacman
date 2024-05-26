@@ -308,7 +308,6 @@ VALUES (1, 'xz', '5.4.5-2', 'xz-5.4.5-2-x86_64.pkg.tar.zst', 'x86_64')
 
         assert!(crate::utils::gen_pkg_integrity(
             PKGPATH,
-            &pkg_info,
             &mut pkg_csize,
             true,
             &mut pkg_sha256sum,
