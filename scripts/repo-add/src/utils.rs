@@ -163,7 +163,7 @@ fn format_entry_mul(field_name: &str, values: &[String]) -> String {
 }
 
 // Retrieve the compression command for an archive extension, or cat for .tar
-pub fn get_compression_command(db_extension: &str, makepkgconf_path: &str) -> String {
+pub fn get_compression_command(db_extension: &str, makepkgconf_path: Option<&str>) -> String {
     let fallback_cmd = match db_extension {
         "tar.gz" => "gzip -c -f -n".to_owned(),
         "tar.bz2" => "bzip2 -c -f".to_owned(),
@@ -184,11 +184,11 @@ pub fn get_compression_command(db_extension: &str, makepkgconf_path: &str) -> St
         ""
     };
 
-    if db_extension.is_empty() {
+    if db_extension.is_empty() || makepkgconf_path.is_none() {
         return fallback_cmd;
     }
 
-    if let Ok(makepkgconfig_content) = fs::read_to_string(makepkgconf_path) {
+    if let Ok(makepkgconfig_content) = fs::read_to_string(makepkgconf_path.unwrap()) {
         let temp_compress_cmd = makepkgconfig_content
             .lines()
             .filter(|elem| elem.starts_with(&format!("COMPRESS{}", db_extension.to_uppercase())))
@@ -434,7 +434,7 @@ mod tests {
     }
     #[test]
     fn getting_compression_cmd() {
-        let makepkgconf_path = "makepkg.conf";
+        let makepkgconf_path = Some("makepkg.conf");
 
         // custom
         assert_eq!(
@@ -471,7 +471,33 @@ mod tests {
         assert_eq!(crate::utils::get_compression_command("", makepkgconf_path), "");
 
         // fallback
-        let makepkgconf_path = "makepkg-nonexist.conf";
+        let makepkgconf_path = Some("makepkg-nonexist.conf");
+        assert_eq!(
+            crate::utils::get_compression_command("tar.gz", makepkgconf_path),
+            "gzip -c -f -n"
+        );
+        assert_eq!(
+            crate::utils::get_compression_command("tar.bz2", makepkgconf_path),
+            "bzip2 -c -f"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar.xz", makepkgconf_path), "xz -c -z -");
+        assert_eq!(
+            crate::utils::get_compression_command("tar.zst", makepkgconf_path),
+            "zstd -c -z -q -"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar.lrz", makepkgconf_path), "lrzip -q");
+        assert_eq!(crate::utils::get_compression_command("tar.lzo", makepkgconf_path), "lzop -q");
+        assert_eq!(
+            crate::utils::get_compression_command("tar.Z", makepkgconf_path),
+            "compress -c -f"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar.lz4", makepkgconf_path), "lz4 -q");
+        assert_eq!(crate::utils::get_compression_command("tar.lz", makepkgconf_path), "lzip -c -f");
+        assert_eq!(crate::utils::get_compression_command("tar", makepkgconf_path), "cat");
+        assert_eq!(crate::utils::get_compression_command("", makepkgconf_path), "");
+
+        // fallback on None
+        let makepkgconf_path = None;
         assert_eq!(
             crate::utils::get_compression_command("tar.gz", makepkgconf_path),
             "gzip -c -f -n"
