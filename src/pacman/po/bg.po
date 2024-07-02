@@ -14,12 +14,11 @@ msgstr ""
 "POT-Creation-Date: 2025-11-01 17:34+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Alexander Angelov Nestorov <alexandernst@gmail.com>, 2013\n"
-"Language-Team: Bulgarian (http://app.transifex.com/toofishes/archlinux-"
-"pacman/language/bg/)\n"
-"Language: bg\n"
+"Language-Team: Bulgarian (http://app.transifex.com/toofishes/archlinux-pacman/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/pacman/callback.c:228
@@ -152,11 +151,10 @@ msgstr "%s-%s%s%s и %s-%s%s%s за в конфликт (%s). Да премах�
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
 msgid_plural ""
-"The following packages cannot be upgraded due to unresolvable dependencies:\n"
-msgstr[0] ""
-"Следният пакет не може да се поднови заради неразрешими зависимости:\n"
-msgstr[1] ""
-"Следните пакети не могат да се подновят заради  неразрешими зависимости:\n"
+"The following packages cannot be upgraded due to unresolvable "
+"dependencies:\n"
+msgstr[0] "Следният пакет не може да се поднови заради неразрешими зависимости:\n"
+msgstr[1] "Следните пакети не могат да се подновят заради  неразрешими зависимости:\n"
 
 #: src/pacman/callback.c:510
 #, c-format
@@ -177,9 +175,7 @@ msgstr[1] "Има %zu източници достъпни за %s:\n"
 msgid ""
 "File %s is corrupted (%s).\n"
 "Do you want to delete it?"
-msgstr ""
-"Файл %s е повреден (%s).\n"
-"Искате ли да го изтриете?"
+msgstr "Файл %s е повреден (%s).\nИскате ли да го изтриете?"
 
 #: src/pacman/callback.c:543
 #, c-format
@@ -274,9 +270,7 @@ msgstr "%s: %s (несъвпадение на типа)\n"
 #: src/pacman/check.c:82
 #, c-format
 msgid "%s: %s (UID mismatch)\n"
-msgstr ""
-"%s: %s (UID несъвпадение)\n"
-"\n"
+msgstr "%s: %s (UID несъвпадение)\n\n"
 
 #: src/pacman/check.c:91
 #, c-format
@@ -422,21 +416,17 @@ msgstr "config файл %s, ред %d: '%s' невалидна опция, бе�
 #, c-format
 msgid ""
 "config file %s, line %d: directive '%s' in section '%s' not recognized.\n"
-msgstr ""
-"config файл %s, ред %d: директива '%s' в секция '%s' не е разпозната.\n"
+msgstr "config файл %s, ред %d: директива '%s' в секция '%s' не е разпозната.\n"
 
 #: src/pacman/conf.c:781
 #, c-format
 msgid "config file %s, line %d: value for '%s' has to be positive : '%s'\n"
-msgstr ""
-"конфигурационен файл %s, ред %d: стойността за '%s' трябва да бъде "
-"положителна: '%s'\n"
+msgstr "конфигурационен файл %s, ред %d: стойността за '%s' трябва да бъде положителна: '%s'\n"
 
 #: src/pacman/conf.c:788
 #, c-format
 msgid "config file %s, line %d: value for '%s' is too large : '%s'\n"
-msgstr ""
-"конфигурационен файл %s, ред %d: стойността за '%s' е твърде голяма: '%s'\n"
+msgstr "конфигурационен файл %s, ред %d: стойността за '%s' е твърде голяма: '%s'\n"
 
 #: src/pacman/conf.c:808
 #, c-format
@@ -451,8 +441,7 @@ msgstr "не може да се регистрира '%s' база (%s)\n"
 #: src/pacman/conf.c:866
 #, c-format
 msgid "could not add cache server URL to database '%s': %s (%s)\n"
-msgstr ""
-"Не се добавя URL адрес на Cache сървъра към базата от данни'%s': %s (%s)\n"
+msgstr "Не се добавя URL адрес на Cache сървъра към базата от данни'%s': %s (%s)\n"
 
 #: src/pacman/conf.c:875
 #, c-format
@@ -465,10 +454,7 @@ msgid ""
 "failed to initialize alpm library:\n"
 "(root: %s, dbpath: %s)\n"
 "%s\n"
-msgstr ""
-"неуспешно инициализиране на alpm library:\n"
-"(root: %s, dbpath: %s)\n"
-"%s\n"
+msgstr "неуспешно инициализиране на alpm library:\n(root: %s, dbpath: %s)\n%s\n"
 
 #: src/pacman/conf.c:905
 #, c-format
@@ -528,8 +514,7 @@ msgstr "config файла %s не може да се чете: %s\n"
 #: src/pacman/conf.c:1294
 #, c-format
 msgid "config file %s, line %d: All directives must belong to a section.\n"
-msgstr ""
-"config файл %s, ред %d: Всички директиви трябва да принадлежат на секцията.\n"
+msgstr "config файл %s, ред %d: Всички директиви трябва да принадлежат на секцията.\n"
 
 #: src/pacman/database.c:50 src/pacman/files.c:335 src/pacman/query.c:434
 #: src/pacman/remove.c:85 src/pacman/sync.c:972 src/pacman/upgrade.c:76
@@ -824,14 +809,13 @@ msgstr "операции:\n"
 msgid ""
 "\n"
 "use '%s {-h --help}' with an operation for available options\n"
-msgstr ""
-"\n"
-"използвайте '%s {-h --help}' с операцията за налични настройки\n"
+msgstr "\nизползвайте '%s {-h --help}' с операцията за налични настройки\n"
 
 #: src/pacman/pacman.c:125
 #, c-format
 msgid ""
-"  -c, --cascade        remove packages and all packages that depend on them\n"
+"  -c, --cascade        remove packages and all packages that depend on "
+"them\n"
 msgstr "-c, --cascade премахване на пакети и всички пакети зависещи от тях\n"
 
 #: src/pacman/pacman.c:126
@@ -844,9 +828,7 @@ msgstr "-n, --nosave премахване на конфигурационни ф
 msgid ""
 "  -s, --recursive      remove unnecessary dependencies\n"
 "                       (-ss includes explicitly installed dependencies)\n"
-msgstr ""
-"-s, --recursive премахване на ненужни зависимости\n"
-"(-ss включване на изрично инсталирани зависимости)\n"
+msgstr "-s, --recursive премахване на ненужни зависимости\n(-ss включване на изрично инсталирани зависимости)\n"
 
 #: src/pacman/pacman.c:129
 #, c-format
@@ -881,8 +863,7 @@ msgstr "-g, --groups преглед на членовете в пакетнат�
 
 #: src/pacman/pacman.c:141
 #, c-format
-msgid ""
-"  -i, --info           view package information (-ii for backup files)\n"
+msgid "  -i, --info           view package information (-ii for backup files)\n"
 msgstr "-i, --info преглед на пакетната информация (-ii за резервно копие)\n"
 
 #: src/pacman/pacman.c:142
@@ -902,9 +883,7 @@ msgstr "-l, --list списък на файлове притежавани от 
 msgid ""
 "  -m, --foreign        list installed packages not found in sync db(s) "
 "[filter]\n"
-msgstr ""
-"  -m, --foreign списък на инсталираните пакети неоткрити в sync db(s) "
-"[filter]\n"
+msgstr "  -m, --foreign списък на инсталираните пакети неоткрити в sync db(s) [filter]\n"
 
 #: src/pacman/pacman.c:145
 #, c-format
@@ -933,19 +912,14 @@ msgstr "-q, --quiet показване на по-малко информация
 msgid ""
 "  -s, --search <regex> search locally-installed packages for matching "
 "strings\n"
-msgstr ""
-"-s, --search <regex> търсене на локално инсталирани пакети за съвпадащи "
-"думи\n"
+msgstr "-s, --search <regex> търсене на локално инсталирани пакети за съвпадащи думи\n"
 
 #: src/pacman/pacman.c:150
 #, c-format
 msgid ""
 "  -t, --unrequired     list packages not (optionally) required by any\n"
 "                       package (-tt to ignore optdepends) [filter]\n"
-msgstr ""
-"-t, --unrequired списък на не (опционално) изисквани\n"
-"пакети от никой пакет (-tt за игнориране на опционални)\n"
-"[филтър]\n"
+msgstr "-t, --unrequired списък на не (опционално) изисквани\nпакети от никой пакет (-tt за игнориране на опционални)\n[филтър]\n"
 
 #: src/pacman/pacman.c:152
 #, c-format
@@ -957,25 +931,21 @@ msgstr "-u, --upgrades списък на остарели пакети [filter]\
 msgid ""
 "  -c, --clean          remove old packages from cache directory (-cc for "
 "all)\n"
-msgstr ""
-" -c, --clean премахване на остарели пакети в кеш папката (-cc за всички)\n"
+msgstr " -c, --clean премахване на остарели пакети в кеш папката (-cc за всички)\n"
 
 #: src/pacman/pacman.c:157
 #, c-format
 msgid ""
 "  -g, --groups         view all members of a package group\n"
 "                       (-gg to view all groups and members)\n"
-msgstr ""
-"   -g, --groups преглед на членовете в пакетната група\n"
-"(-gg за преглед на всички групи и членове)\n"
+msgstr "   -g, --groups преглед на членовете в пакетната група\n(-gg за преглед на всички групи и членове)\n"
 
 #: src/pacman/pacman.c:159
 #, c-format
 msgid ""
 "  -i, --info           view package information (-ii for extended "
 "information)\n"
-msgstr ""
-"-i, --info преглед на пакетната информация (-ii за допълнителна информация)\n"
+msgstr "-i, --info преглед на пакетната информация (-ii за допълнителна информация)\n"
 
 #: src/pacman/pacman.c:160
 #, c-format
@@ -984,26 +954,21 @@ msgstr "-l, --list <repo> преглед на списъка от пакети �
 
 #: src/pacman/pacman.c:162
 #, c-format
-msgid ""
-"  -s, --search <regex> search remote repositories for matching strings\n"
+msgid "  -s, --search <regex> search remote repositories for matching strings\n"
 msgstr "-s, --search <regex> търсене в хранилища за съвпадащи думи\n"
 
 #: src/pacman/pacman.c:163
 #, c-format
 msgid ""
 "  -u, --sysupgrade     upgrade installed packages (-uu enables downgrades)\n"
-msgstr ""
-"-u, --sysupgrade обновяване на инсталирани пакети (-uu позволява "
-"понижаване)\n"
+msgstr "-u, --sysupgrade обновяване на инсталирани пакети (-uu позволява понижаване)\n"
 
 #: src/pacman/pacman.c:164 src/pacman/pacman.c:183
 #, c-format
 msgid ""
 "  -y, --refresh        download fresh package databases from the server\n"
 "                       (-yy to force a refresh even if up to date)\n"
-msgstr ""
-"-y, --refresh сваляне на най-новата пакетна база от сървъра\n"
-"(-yy за задължително обновяване дори ако е най-новата)\n"
+msgstr "-y, --refresh сваляне на най-новата пакетна база от сървъра\n(-yy за задължително обновяване дори ако е най-новата)\n"
 
 #: src/pacman/pacman.c:170
 #, c-format
@@ -1020,9 +985,7 @@ msgstr "--asexplicit отбелязване на пакетите като из�
 msgid ""
 "  -k, --check          test local database for validity (-kk for sync "
 "databases)\n"
-msgstr ""
-"  -k, --check проверка на локалната база за валидност (-kk за "
-"синхронизиране)\n"
+msgstr "  -k, --check проверка на локалната база за валидност (-kk за синхронизиране)\n"
 
 #: src/pacman/pacman.c:173
 #, c-format
@@ -1039,28 +1002,21 @@ msgstr "  -x, --regex търсене с използване на регуляр
 msgid ""
 "      --machinereadable\n"
 "                       produce machine-readable output\n"
-msgstr ""
-"      --machinereadable\n"
-"   процедура machine-readable output\n"
+msgstr "      --machinereadable\n   процедура machine-readable output\n"
 
 #: src/pacman/pacman.c:191
 #, c-format
 msgid ""
 "  -w, --downloadonly   download packages but do not install/upgrade "
 "anything\n"
-msgstr ""
-"  -w, --downloadonly сваляне на пакети, но без инсталиране/обновяване\n"
+msgstr "  -w, --downloadonly сваляне на пакети, но без инсталиране/обновяване\n"
 
 #: src/pacman/pacman.c:192
 #, c-format
 msgid ""
 "      --overwrite <glob>\n"
-"                       overwrite conflicting files (can be used more than "
-"once)\n"
-msgstr ""
-"      --overwrite <glob>\n"
-"                       презаписване на конфликтните файлове (може да се "
-"използва повече от веднъж)\n"
+"                       overwrite conflicting files (can be used more than once)\n"
+msgstr "      --overwrite <glob>\n                       презаписване на конфликтните файлове (може да се използва повече от веднъж)\n"
 
 #: src/pacman/pacman.c:194
 #, c-format
@@ -1077,41 +1033,32 @@ msgstr "--asexplicit инсталиране на пакети като изри�
 msgid ""
 "      --ignore <pkg>   ignore a package upgrade (can be used more than "
 "once)\n"
-msgstr ""
-"--ignore <pkg> игнориране на пакет за обновяване (може да се използва повече "
-"от един път)\n"
+msgstr "--ignore <pkg> игнориране на пакет за обновяване (може да се използва повече от един път)\n"
 
 #: src/pacman/pacman.c:197
 #, c-format
 msgid ""
 "      --ignoregroup <grp>\n"
 "                       ignore a group upgrade (can be used more than once)\n"
-msgstr ""
-"--ignoregroup <grp>\n"
-"игнориране на група за обновяване (може да се ползва повече от един път)\n"
+msgstr "--ignoregroup <grp>\nигнориране на група за обновяване (може да се ползва повече от един път)\n"
 
 #: src/pacman/pacman.c:201
 #, c-format
 msgid ""
 "  -d, --nodeps         skip dependency version checks (-dd to skip all "
 "checks)\n"
-msgstr ""
-"-d, --nodeps пропускане проверката за нужна версия (-dd за пропускане на "
-"всички)\n"
+msgstr "-d, --nodeps пропускане проверката за нужна версия (-dd за пропускане на всички)\n"
 
 #: src/pacman/pacman.c:202
 #, c-format
 msgid ""
 "      --assume-installed <package=version>\n"
 "                       add a virtual package to satisfy dependencies\n"
-msgstr ""
-"--assume-installed <пакет=версия>\n"
-"добави виртуален пакет за задоволяването на зависимостите\n"
+msgstr "--assume-installed <пакет=версия>\nдобави виртуален пакет за задоволяването на зависимостите\n"
 
 #: src/pacman/pacman.c:204
 #, c-format
-msgid ""
-"      --dbonly         only modify database entries, not package files\n"
+msgid "      --dbonly         only modify database entries, not package files\n"
 msgstr "--dbonly само модифицирани записи в базата, без файловете на пакета\n"
 
 #: src/pacman/pacman.c:205
@@ -1138,9 +1085,7 @@ msgstr "-p, --print отпечатай целите вместо извършв�
 msgid ""
 "      --print-format <string>\n"
 "                       specify how the targets should be printed\n"
-msgstr ""
-"--print-format <string>\n"
-"определяне как целите да се отпечатат\n"
+msgstr "--print-format <string>\nопределяне как целите да се отпечатат\n"
 
 #: src/pacman/pacman.c:213
 #, c-format
@@ -1165,8 +1110,7 @@ msgstr "--arch <arch> задаване на алтернативна архит�
 #: src/pacman/pacman.c:217
 #, c-format
 msgid "      --sysroot        operate on a mounted guest system (root-only)\n"
-msgstr ""
-"      --sysroot       работа на монтираната система за гост (root-only)\n"
+msgstr "      --sysroot       работа на монтираната система за гост (root-only)\n"
 
 #: src/pacman/pacman.c:218
 #, c-format
@@ -1176,9 +1120,7 @@ msgstr "--cachedir <dir> задаване на друго място за пак
 #: src/pacman/pacman.c:219
 #, c-format
 msgid "      --hookdir <dir>  set an alternate hook location\n"
-msgstr ""
-" --hookdir <dir> задаване на друго място на куката\n"
-"\n"
+msgstr " --hookdir <dir> задаване на друго място на куката\n\n"
 
 #: src/pacman/pacman.c:220
 #, c-format
@@ -1220,9 +1162,7 @@ msgstr "      --confirm        винаги питай за подвържден
 msgid ""
 "      --disable-download-timeout\n"
 "                       use relaxed timeouts for download\n"
-msgstr ""
-"      --disable-download-timeout\n"
-"                       удължаване времето за изчакване при изтегляне\n"
+msgstr "      --disable-download-timeout\n                       удължаване времето за изчакване при изтегляне\n"
 
 #: src/pacman/pacman.c:229
 #, c-format
@@ -1253,9 +1193,7 @@ msgstr ""
 msgid ""
 "                       This program may be freely redistributed under\n"
 "                       the terms of the GNU General Public License.\n"
-msgstr ""
-"Тази програма може свободно да бъде разпространявана\n"
-"при условията на GNU General Public License.\n"
+msgstr "Тази програма може свободно да бъде разпространявана\nпри условията на GNU General Public License.\n"
 
 #: src/pacman/pacman.c:286
 #, c-format
@@ -1495,9 +1433,7 @@ msgstr ""
 #: src/pacman/sync.c:443
 #, c-format
 msgid "repository '%s' does not exist\n"
-msgstr ""
-"хранилище '%s' не съществува\n"
-"\n"
+msgstr "хранилище '%s' не съществува\n\n"
 
 #: src/pacman/sync.c:489
 #, c-format
@@ -1611,9 +1547,7 @@ msgstr "не може да се заключи базата: %s\n"
 msgid ""
 "  if you're sure a package manager is not already\n"
 "  running, you can remove %s\n"
-msgstr ""
-"Ако сте убедени че пакетния мениджър не работи,\n"
-"можете да премахнете %s\n"
+msgstr "Ако сте убедени че пакетния мениджър не работи,\nможете да премахнете %s\n"
 
 #: src/pacman/util.c:116
 #, c-format
@@ -1863,8 +1797,7 @@ msgstr "-c, --config=<path> задаване на алтернативен ко�
 #: src/pacman/pacman-conf.c:46
 #, c-format
 msgid "  -R, --rootdir=<path> set an alternate installation root\n"
-msgstr ""
-"-R, --rootdir=<path> задаване на друга основна дитектория за инсталиране\n"
+msgstr "-R, --rootdir=<path> задаване на друга основна дитектория за инсталиране\n"
 
 #: src/pacman/pacman-conf.c:47
 #, c-format
@@ -1936,9 +1869,7 @@ msgstr "грешка: директивите не могат да бъдат о�
 msgid ""
 "Test a pacman package for validity.\n"
 "\n"
-msgstr ""
-"Тестване на Пакман пакет за валидност.\n"
-"\n"
+msgstr "Тестване на Пакман пакет за валидност.\n\n"
 
 #: src/util/testpkg.c:57
 #, c-format

@@ -17,12 +17,11 @@ msgstr ""
 "POT-Creation-Date: 2025-11-01 17:34+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Satoru Abe <s@polamjag.info>, 2015\n"
-"Language-Team: Japanese (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/ja/)\n"
-"Language: ja\n"
+"Language-Team: Japanese (http://app.transifex.com/toofishes/archlinux-pacman/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/pacman/callback.c:228
@@ -155,7 +154,8 @@ msgstr ""
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
 msgid_plural ""
-"The following packages cannot be upgraded due to unresolvable dependencies:\n"
+"The following packages cannot be upgraded due to unresolvable "
+"dependencies:\n"
 msgstr[0] "依存関係を解決できないために以下のパッケージを更新できません:\n"
 
 #: src/pacman/callback.c:510
@@ -175,9 +175,7 @@ msgstr[0] "%zu 個の選択肢が %s にはあります:\n"
 msgid ""
 "File %s is corrupted (%s).\n"
 "Do you want to delete it?"
-msgstr ""
-"ファイル %s は破損しています (%s)。\n"
-"ファイルを削除しますか?"
+msgstr "ファイル %s は破損しています (%s)。\nファイルを削除しますか?"
 
 #: src/pacman/callback.c:543
 #, c-format
@@ -414,9 +412,7 @@ msgstr "設定ファイル %s, %d 行: '%s' オプションは無効です\n"
 #, c-format
 msgid ""
 "config file %s, line %d: directive '%s' in section '%s' not recognized.\n"
-msgstr ""
-"設定ファイル %s, %d 行: セクション '%s' のディレクティブ '%s' が実行できませ"
-"ん。\n"
+msgstr "設定ファイル %s, %d 行: セクション '%s' のディレクティブ '%s' が実行できません。\n"
 
 #: src/pacman/conf.c:781
 #, c-format
@@ -431,8 +427,7 @@ msgstr "設定ファイル %s, %d 行: '%s' の値が大きすぎます : '%s'\n
 #: src/pacman/conf.c:808
 #, c-format
 msgid "mirror '%s' contains the '%s' variable, but no '%s' is defined.\n"
-msgstr ""
-"ミラー '%s' に '%s' 変数が含まれていますが、'%s' が定義されていません。\n"
+msgstr "ミラー '%s' に '%s' 変数が含まれていますが、'%s' が定義されていません。\n"
 
 #: src/pacman/conf.c:853
 #, c-format
@@ -455,10 +450,7 @@ msgid ""
 "failed to initialize alpm library:\n"
 "(root: %s, dbpath: %s)\n"
 "%s\n"
-msgstr ""
-"alpm ライブラリの初期化に失敗しました:\n"
-"(root: %s, dbpath: %s)\n"
-"%s\n"
+msgstr "alpm ライブラリの初期化に失敗しました:\n(root: %s, dbpath: %s)\n%s\n"
 
 #: src/pacman/conf.c:905
 #, c-format
@@ -518,9 +510,7 @@ msgstr "設定ファイル %s を読み込めませんでした: %s\n"
 #: src/pacman/conf.c:1294
 #, c-format
 msgid "config file %s, line %d: All directives must belong to a section.\n"
-msgstr ""
-"設定ファイル %s, %d 行: 全てのディレクティブはセクションに入れる必要がありま"
-"す。\n"
+msgstr "設定ファイル %s, %d 行: 全てのディレクティブはセクションに入れる必要があります。\n"
 
 #: src/pacman/database.c:50 src/pacman/files.c:335 src/pacman/query.c:434
 #: src/pacman/remove.c:85 src/pacman/sync.c:972 src/pacman/upgrade.c:76
@@ -541,8 +531,7 @@ msgstr "パッケージ %s のインストール方法を設定できません�
 #: src/pacman/database.c:79
 #, c-format
 msgid "%s: install reason has been set to 'installed as dependency'\n"
-msgstr ""
-"%s: インストール方法は '依存関係としてインストール' に設定されています\n"
+msgstr "%s: インストール方法は '依存関係としてインストール' に設定されています\n"
 
 #: src/pacman/database.c:81
 #, c-format
@@ -816,18 +805,14 @@ msgstr "オペレーション:\n"
 msgid ""
 "\n"
 "use '%s {-h --help}' with an operation for available options\n"
-msgstr ""
-"\n"
-"オペレーションと一緒に '%s {-h --help}' を使うことでオプションを一覧できま"
-"す\n"
+msgstr "\nオペレーションと一緒に '%s {-h --help}' を使うことでオプションを一覧できます\n"
 
 #: src/pacman/pacman.c:125
 #, c-format
 msgid ""
-"  -c, --cascade        remove packages and all packages that depend on them\n"
-msgstr ""
-"  -c, --cascade        指定したパッケージとそのパッケージに依存している全ての"
-"パッケージを削除\n"
+"  -c, --cascade        remove packages and all packages that depend on "
+"them\n"
+msgstr "  -c, --cascade        指定したパッケージとそのパッケージに依存している全てのパッケージを削除\n"
 
 #: src/pacman/pacman.c:126
 #, c-format
@@ -839,9 +824,7 @@ msgstr "  -n, --nosave         設定ファイルを削除\n"
 msgid ""
 "  -s, --recursive      remove unnecessary dependencies\n"
 "                       (-ss includes explicitly installed dependencies)\n"
-msgstr ""
-"  -s, --recursive      不要な依存関係を削除\n"
-"                       (-ss で明示的にインストールした依存関係も削除)\n"
+msgstr "  -s, --recursive      不要な依存関係を削除\n                       (-ss で明示的にインストールした依存関係も削除)\n"
 
 #: src/pacman/pacman.c:129
 #, c-format
@@ -862,62 +845,48 @@ msgstr "  -c, --changelog      パッケージの変更履歴を表示\n"
 #, c-format
 msgid ""
 "  -d, --deps           list packages installed as dependencies [filter]\n"
-msgstr ""
-"  -d, --deps           依存関係としてインストールされたパッケージを表示 "
-"[filter]\n"
+msgstr "  -d, --deps           依存関係としてインストールされたパッケージを表示 [filter]\n"
 
 #: src/pacman/pacman.c:139
 #, c-format
 msgid "  -e, --explicit       list packages explicitly installed [filter]\n"
-msgstr ""
-"  -e, --explicit       明示的にインストールされたパッケージを表示 [filter]\n"
+msgstr "  -e, --explicit       明示的にインストールされたパッケージを表示 [filter]\n"
 
 #: src/pacman/pacman.c:140
 #, c-format
 msgid "  -g, --groups         view all members of a package group\n"
-msgstr ""
-"  -g, --groups         パッケージグループに含まれている全てのパッケージを表"
-"示\n"
+msgstr "  -g, --groups         パッケージグループに含まれている全てのパッケージを表示\n"
 
 #: src/pacman/pacman.c:141
 #, c-format
-msgid ""
-"  -i, --info           view package information (-ii for backup files)\n"
-msgstr ""
-"  -i, --info           パッケージ情報の表示 (-ii でバックアップの表示)\n"
+msgid "  -i, --info           view package information (-ii for backup files)\n"
+msgstr "  -i, --info           パッケージ情報の表示 (-ii でバックアップの表示)\n"
 
 #: src/pacman/pacman.c:142
 #, c-format
 msgid ""
 "  -k, --check          check that package files exist (-kk for file "
 "properties)\n"
-msgstr ""
-"  -k, --check          パッケージファイルが存在しているかチェックする (-kk で"
-"ファイルプロパティ)\n"
+msgstr "  -k, --check          パッケージファイルが存在しているかチェックする (-kk でファイルプロパティ)\n"
 
 #: src/pacman/pacman.c:143 src/pacman/pacman.c:180
 #, c-format
 msgid "  -l, --list           list the files owned by the queried package\n"
-msgstr ""
-"  -l, --list           指定したパッケージが保有しているファイルを表示\n"
+msgstr "  -l, --list           指定したパッケージが保有しているファイルを表示\n"
 
 #: src/pacman/pacman.c:144
 #, c-format
 msgid ""
 "  -m, --foreign        list installed packages not found in sync db(s) "
 "[filter]\n"
-msgstr ""
-"  -m, --foreign        インストールしたパッケージの中で同期データベースに存在"
-"しないパッケージを表示 [filter]\n"
+msgstr "  -m, --foreign        インストールしたパッケージの中で同期データベースに存在しないパッケージを表示 [filter]\n"
 
 #: src/pacman/pacman.c:145
 #, c-format
 msgid ""
 "  -n, --native         list installed packages only found in sync db(s) "
 "[filter]\n"
-msgstr ""
-"  -n, --native         インストールしたパッケージの中で同期データベースに存在"
-"するパッケージだけ表示 [filter]\n"
+msgstr "  -n, --native         インストールしたパッケージの中で同期データベースに存在するパッケージだけ表示 [filter]\n"
 
 #: src/pacman/pacman.c:146
 #, c-format
@@ -946,9 +915,7 @@ msgstr "  -s, --search <regex> インストールされたパッケージの部�
 msgid ""
 "  -t, --unrequired     list packages not (optionally) required by any\n"
 "                       package (-tt to ignore optdepends) [filter]\n"
-msgstr ""
-"  -t, --unrequired     どのパッケージからも必要とされないパッケージを表示\n"
-"                       (-tt で optdepends を無視する) [filter]\n"
+msgstr "  -t, --unrequired     どのパッケージからも必要とされないパッケージを表示\n                       (-tt で optdepends を無視する) [filter]\n"
 
 #: src/pacman/pacman.c:152
 #, c-format
@@ -960,18 +927,14 @@ msgstr "  -u, --upgrades       バージョンが古いパッケージを表示 
 msgid ""
 "  -c, --clean          remove old packages from cache directory (-cc for "
 "all)\n"
-msgstr ""
-"  -c, --clean          キャッシュディレクトリから古いパッケージを削除 (-cc で"
-"全てのキャッシュを削除)\n"
+msgstr "  -c, --clean          キャッシュディレクトリから古いパッケージを削除 (-cc で全てのキャッシュを削除)\n"
 
 #: src/pacman/pacman.c:157
 #, c-format
 msgid ""
 "  -g, --groups         view all members of a package group\n"
 "                       (-gg to view all groups and members)\n"
-msgstr ""
-"  -g, --groups         パッケージグループに含まれているパッケージを全て表示\n"
-"                       (-gg で全てのグループとそのパッケージを表示)\n"
+msgstr "  -g, --groups         パッケージグループに含まれているパッケージを全て表示\n                       (-gg で全てのグループとそのパッケージを表示)\n"
 
 #: src/pacman/pacman.c:159
 #, c-format
@@ -983,54 +946,42 @@ msgstr "  -i, --info           パッケージ情報を表示 (-ii で詳細情�
 #: src/pacman/pacman.c:160
 #, c-format
 msgid "  -l, --list <repo>    view a list of packages in a repo\n"
-msgstr ""
-"  -l, --list <repo>    リポジトリに含まれているパッケージの一覧を表示\n"
+msgstr "  -l, --list <repo>    リポジトリに含まれているパッケージの一覧を表示\n"
 
 #: src/pacman/pacman.c:162
 #, c-format
-msgid ""
-"  -s, --search <regex> search remote repositories for matching strings\n"
+msgid "  -s, --search <regex> search remote repositories for matching strings\n"
 msgstr "  -s, --search <regex> 外部リポジトリの部分一致検索\n"
 
 #: src/pacman/pacman.c:163
 #, c-format
 msgid ""
 "  -u, --sysupgrade     upgrade installed packages (-uu enables downgrades)\n"
-msgstr ""
-"  -u, --sysupgrade     インストールしたパッケージのアップグレード (-uu でダウ"
-"ングレードを有効)\n"
+msgstr "  -u, --sysupgrade     インストールしたパッケージのアップグレード (-uu でダウングレードを有効)\n"
 
 #: src/pacman/pacman.c:164 src/pacman/pacman.c:183
 #, c-format
 msgid ""
 "  -y, --refresh        download fresh package databases from the server\n"
 "                       (-yy to force a refresh even if up to date)\n"
-msgstr ""
-"  -y, --refresh        サーバーから最新のパッケージデータベースをダウンロー"
-"ド\n"
-"                       (-yy で最新の場合も強制的に更新を行う)\n"
+msgstr "  -y, --refresh        サーバーから最新のパッケージデータベースをダウンロード\n                       (-yy で最新の場合も強制的に更新を行う)\n"
 
 #: src/pacman/pacman.c:170
 #, c-format
 msgid "      --asdeps         mark packages as non-explicitly installed\n"
-msgstr ""
-"      --asdeps         パッケージを依存関係としてインストールしたと印をつけ"
-"る\n"
+msgstr "      --asdeps         パッケージを依存関係としてインストールしたと印をつける\n"
 
 #: src/pacman/pacman.c:171
 #, c-format
 msgid "      --asexplicit     mark packages as explicitly installed\n"
-msgstr ""
-"      --asexplicit     パッケージを明示的にインストールしたと印をつける\n"
+msgstr "      --asexplicit     パッケージを明示的にインストールしたと印をつける\n"
 
 #: src/pacman/pacman.c:172
 #, c-format
 msgid ""
 "  -k, --check          test local database for validity (-kk for sync "
 "databases)\n"
-msgstr ""
-"  -k, --check          ローカルデータベースの整合性をテスト (-kk でデータベー"
-"スを同期)\n"
+msgstr "  -k, --check          ローカルデータベースの整合性をテスト (-kk でデータベースを同期)\n"
 
 #: src/pacman/pacman.c:173
 #, c-format
@@ -1047,42 +998,31 @@ msgstr "  -x, --regex          正規表現による検索を使用する\n"
 msgid ""
 "      --machinereadable\n"
 "                       produce machine-readable output\n"
-msgstr ""
-"      --machinereadable\n"
-"                       コンピュータが扱える出力を生成\n"
+msgstr "      --machinereadable\n                       コンピュータが扱える出力を生成\n"
 
 #: src/pacman/pacman.c:191
 #, c-format
 msgid ""
 "  -w, --downloadonly   download packages but do not install/upgrade "
 "anything\n"
-msgstr ""
-"  -w, --downloadonly   インストール・アップグレードをせずパッケージのダウン"
-"ロードだけ行う\n"
+msgstr "  -w, --downloadonly   インストール・アップグレードをせずパッケージのダウンロードだけ行う\n"
 
 #: src/pacman/pacman.c:192
 #, c-format
 msgid ""
 "      --overwrite <glob>\n"
-"                       overwrite conflicting files (can be used more than "
-"once)\n"
-msgstr ""
-"      --overwrite <glob>\n"
-"                       衝突するファイルを上書きする (複数回使うことができま"
-"す)\n"
+"                       overwrite conflicting files (can be used more than once)\n"
+msgstr "      --overwrite <glob>\n                       衝突するファイルを上書きする (複数回使うことができます)\n"
 
 #: src/pacman/pacman.c:194
 #, c-format
 msgid "      --asdeps         install packages as non-explicitly installed\n"
-msgstr ""
-"      --asdeps         パッケージを依存関係としてインストールしたと印をつけ"
-"る\n"
+msgstr "      --asdeps         パッケージを依存関係としてインストールしたと印をつける\n"
 
 #: src/pacman/pacman.c:195
 #, c-format
 msgid "      --asexplicit     install packages as explicitly installed\n"
-msgstr ""
-"      --asexplicit     パッケージを明示的にインストールしたと印をつける\n"
+msgstr "      --asexplicit     パッケージを明示的にインストールしたと印をつける\n"
 
 #: src/pacman/pacman.c:196
 #, c-format
@@ -1096,50 +1036,38 @@ msgstr "      --ignore <pkg>   指定したパッケージの更新を無視\n"
 msgid ""
 "      --ignoregroup <grp>\n"
 "                       ignore a group upgrade (can be used more than once)\n"
-msgstr ""
-"      --ignoregroup <grp>\n"
-"                       指定したグループの更新を無視\n"
+msgstr "      --ignoregroup <grp>\n                       指定したグループの更新を無視\n"
 
 #: src/pacman/pacman.c:201
 #, c-format
 msgid ""
 "  -d, --nodeps         skip dependency version checks (-dd to skip all "
 "checks)\n"
-msgstr ""
-"  -d, --nodeps         依存バージョンチェックをスキップ (-dd で全てのチェック"
-"をスキップ)\n"
+msgstr "  -d, --nodeps         依存バージョンチェックをスキップ (-dd で全てのチェックをスキップ)\n"
 
 #: src/pacman/pacman.c:202
 #, c-format
 msgid ""
 "      --assume-installed <package=version>\n"
 "                       add a virtual package to satisfy dependencies\n"
-msgstr ""
-"      --assume-installed <package=version>\n"
-"                       依存関係を満たすための仮想パッケージを追加\n"
+msgstr "      --assume-installed <package=version>\n                       依存関係を満たすための仮想パッケージを追加\n"
 
 #: src/pacman/pacman.c:204
 #, c-format
-msgid ""
-"      --dbonly         only modify database entries, not package files\n"
-msgstr ""
-"      --dbonly         データベースエントリだけを修正してパッケージファイルを"
-"触らない\n"
+msgid "      --dbonly         only modify database entries, not package files\n"
+msgstr "      --dbonly         データベースエントリだけを修正してパッケージファイルを触らない\n"
 
 #: src/pacman/pacman.c:205
 #, c-format
 msgid ""
 "      --noprogressbar  do not show a progress bar when downloading files\n"
-msgstr ""
-"      --noprogressbar  ファイルのダウンロード中にプログレスバーを表示しない\n"
+msgstr "      --noprogressbar  ファイルのダウンロード中にプログレスバーを表示しない\n"
 
 #: src/pacman/pacman.c:206
 #, c-format
 msgid ""
 "      --noscriptlet    do not execute the install scriptlet if one exists\n"
-msgstr ""
-"      --noscriptlet    インストールスクリプトレットが存在する場合それを実行し"
-"ない\n"
+msgstr "      --noscriptlet    インストールスクリプトレットが存在する場合それを実行しない\n"
 
 #: src/pacman/pacman.c:207
 #, c-format
@@ -1153,9 +1081,7 @@ msgstr "  -p, --print          操作を実行するかわりに対象を表示�
 msgid ""
 "      --print-format <string>\n"
 "                       specify how the targets should be printed\n"
-msgstr ""
-"      --print-format <string>\n"
-"                       対象を表示する形式を指定する\n"
+msgstr "      --print-format <string>\n                       対象を表示する形式を指定する\n"
 
 #: src/pacman/pacman.c:213
 #, c-format
@@ -1180,8 +1106,7 @@ msgstr "      --arch <arch>    アーキテクチャを指定\n"
 #: src/pacman/pacman.c:217
 #, c-format
 msgid "      --sysroot        operate on a mounted guest system (root-only)\n"
-msgstr ""
-"      --sysroot        マウントされたゲストシステムを操作する (root のみ)\n"
+msgstr "      --sysroot        マウントされたゲストシステムを操作する (root のみ)\n"
 
 #: src/pacman/pacman.c:218
 #, c-format
@@ -1233,9 +1158,7 @@ msgstr "      --confirm        毎回確認を行います\n"
 msgid ""
 "      --disable-download-timeout\n"
 "                       use relaxed timeouts for download\n"
-msgstr ""
-"      --disable-download-timeout\n"
-"                       ダウンロード時のタイムアウトを無効化する\n"
+msgstr "      --disable-download-timeout\n                       ダウンロード時のタイムアウトを無効化する\n"
 
 #: src/pacman/pacman.c:229
 #, c-format
@@ -1266,9 +1189,7 @@ msgstr ""
 msgid ""
 "                       This program may be freely redistributed under\n"
 "                       the terms of the GNU General Public License.\n"
-msgstr ""
-"                       This program may be freely redistributed under\n"
-"                       the terms of the GNU General Public License.\n"
+msgstr "                       This program may be freely redistributed under\n                       the terms of the GNU General Public License.\n"
 
 #: src/pacman/pacman.c:286
 #, c-format
@@ -1534,8 +1455,7 @@ msgstr "データベースが見つかりませんでした: %s\n"
 #: src/pacman/sync.c:698
 #, c-format
 msgid "'%s' is a file, did you mean %s instead of %s?\n"
-msgstr ""
-"'%s' はファイルです、あなたが行いたいのは %s で %s ではありませんか？\n"
+msgstr "'%s' はファイルです、あなたが行いたいのは %s で %s ではありませんか？\n"
 
 #: src/pacman/sync.c:729
 #, c-format
@@ -1585,8 +1505,7 @@ msgstr "%s が '%s' と '%s' の両方に存在しています\n"
 #: src/pacman/sync.c:863
 #, c-format
 msgid "%s: %s exists in filesystem (owned by %s)\n"
-msgstr ""
-"%s: %s がファイルシステムに存在しています (%s によって所有されています)\n"
+msgstr "%s: %s がファイルシステムに存在しています (%s によって所有されています)\n"
 
 #: src/pacman/sync.c:866
 #, c-format
@@ -1623,9 +1542,7 @@ msgstr "データベースをロックできませんでした: %s\n"
 msgid ""
 "  if you're sure a package manager is not already\n"
 "  running, you can remove %s\n"
-msgstr ""
-"  パッケージマネージャを動かしてないのなら\n"
-"  %s を削除することができます\n"
+msgstr "  パッケージマネージャを動かしてないのなら\n  %s を削除することができます\n"
 
 #: src/pacman/util.c:116
 #, c-format
@@ -1947,9 +1864,7 @@ msgstr "エラー: ディレクティブは %s で指定されていません\n"
 msgid ""
 "Test a pacman package for validity.\n"
 "\n"
-msgstr ""
-"pacman パッケージの整合性をテスト。\n"
-"\n"
+msgstr "pacman パッケージの整合性をテスト。\n\n"
 
 #: src/util/testpkg.c:57
 #, c-format

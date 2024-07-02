@@ -12,12 +12,11 @@ msgstr ""
 "POT-Creation-Date: 2025-11-01 17:34+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Galin Iskrenov <loot270@abv.bg>, 2017-2019,2022,2024\n"
-"Language-Team: Bulgarian (http://app.transifex.com/toofishes/archlinux-"
-"pacman/language/bg/)\n"
-"Language: bg\n"
+"Language-Team: Bulgarian (http://app.transifex.com/toofishes/archlinux-pacman/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -58,9 +57,7 @@ msgstr "не може да се преименува %s на %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"файл не е намерен в листа с файлове на пекет %s. пропускане извличането на "
-"%s\n"
+msgstr "файл не е намерен в листа с файлове на пекет %s. пропускане извличането на %s\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -72,18 +69,14 @@ msgstr "неспешно извличането на %s%s: пътят е твъ�
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"разлика в правата на папка за %s\n"
-"filesystem: %o  пакет: %o\n"
+msgstr "разлика в правата на папка за %s\nfilesystem: %o  пакет: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"правата на директория се различава от %s\n"
-"filesystem: %u:%u пакет: %u:%u\n"
+msgstr "правата на директория се различава от %s\nfilesystem: %u:%u пакет: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -323,9 +316,7 @@ msgstr "не се отворя файл: %s: %s\n"
 #: lib/libalpm/diskspace.c:154 lib/libalpm/diskspace.c:167
 #, c-format
 msgid "could not get filesystem information\n"
-msgstr ""
-"не се получава системна информация\n"
-"\n"
+msgstr "не се получава системна информация\n\n"
 
 #: lib/libalpm/diskspace.c:254
 #, c-format
@@ -391,9 +382,7 @@ msgstr "неуспех при извличане на файл '%s' от %s : %s
 #: lib/libalpm/dload.c:565
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"неуспех при получаването на файл '%s' от %s : очакваният размер за сваляне е "
-"надвишен\n"
+msgstr "неуспех при получаването на файл '%s' от %s : очакваният размер за сваляне е надвишен\n"
 
 #: lib/libalpm/dload.c:688
 #, c-format
@@ -850,8 +839,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -1107,8 +1095,7 @@ msgstr "засечени нерешени пакетни конфликти\n"
 #: lib/libalpm/sync.c:566
 #, c-format
 msgid "removing '%s-%s' from target list because it conflicts with '%s-%s'\n"
-msgstr ""
-"Премахване на '%s-%s' от целевия списък, защото противоречи на '%s-%s'\n"
+msgstr "Премахване на '%s-%s' от целевия списък, защото противоречи на '%s-%s'\n"
 
 #: lib/libalpm/sync.c:1021 lib/libalpm/sync.c:1188
 #, c-format
