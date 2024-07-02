@@ -22,15 +22,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
-"Last-Translator: Jiří Podhorný <jp@email.cz>, 2023-2024\n"
-"Language-Team: Czech (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/cs/)\n"
-"Language: cs\n"
+"Last-Translator: Vojtěch Gondžala <vojtech.gondzala@gmail.com>, 2011,2013\n"
+"Language-Team: Czech (http://app.transifex.com/toofishes/archlinux-pacman/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
-"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
 #, c-format
@@ -70,8 +68,7 @@ msgstr "nelze přejmenovat %s na %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"soubor nenalezen v seznamu souborů balíčku %s. přeskakuje se rozbalení %s\n"
+msgstr "soubor nenalezen v seznamu souborů balíčku %s. přeskakuje se rozbalení %s\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -83,18 +80,14 @@ msgstr "nelze rozbalit %s%s: příliš dlouhá cesta"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"přístupová práva adresáře %s se neshodují\n"
-"souborový systém: %o   balíček: %o\n"
+msgstr "přístupová práva adresáře %s se neshodují\nsouborový systém: %o   balíček: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"rozdílný vlastník adresáře %s\n"
-"souborový systém: %u:%u balíček: %u:%u\n"
+msgstr "rozdílný vlastník adresáře %s\nsouborový systém: %u:%u balíček: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -400,9 +393,7 @@ msgstr "selhalo získání souboru '%s' z %s: %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"selhalo získání souboru '%s' z %s : překročení očekávané velikosti "
-"stahování\n"
+msgstr "selhalo získání souboru '%s' z %s : překročení očekávané velikosti stahování\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -821,32 +812,26 @@ msgstr "neplatná metadata balíčku (chybí jméno nebo verze)"
 msgid ""
 "invalid metadata for package %s-%s (package name cannot start with '.' or "
 "'-')\n"
-msgstr ""
-"neplatná metadata balíčku %s-%s (jméno balíčku nesmí začínat na '.' nebo "
-"'-')\n"
+msgstr "neplatná metadata balíčku %s-%s (jméno balíčku nesmí začínat na '.' nebo '-')\n"
 
 #: lib/libalpm/package.c:878
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package name contains invalid "
 "characters)\n"
-msgstr ""
-"neplatná metadata balíčku %s-%s (jméno balíčku obsahuje neplatné znaky)\n"
+msgstr "neplatná metadata balíčku %s-%s (jméno balíčku obsahuje neplatné znaky)\n"
 
 #: lib/libalpm/package.c:885 lib/libalpm/package.c:889
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package version contains invalid "
 "characters)\n"
-msgstr ""
-"neplatná metadata balíčku %s-%s (verze balíčku obsahuje neplatné znaky)\n"
+msgstr "neplatná metadata balíčku %s-%s (verze balíčku obsahuje neplatné znaky)\n"
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
-msgstr ""
-"neplatná metadata balíčku %s-%s (jméno a verze balíčku je příliš dlouhé)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
+msgstr "neplatná metadata balíčku %s-%s (jméno a verze balíčku je příliš dlouhé)\n"
 
 #: lib/libalpm/remove.c:111
 #, c-format
@@ -1018,8 +1003,7 @@ msgstr "zjištěn neřešitelný konflikt balíčků\n"
 #: lib/libalpm/sync.c:564
 #, c-format
 msgid "removing '%s-%s' from target list because it conflicts with '%s-%s'\n"
-msgstr ""
-"odstraňuji '%s-%s' z cílového seznamu, protože je v konfliktu s '%s-%s'\n"
+msgstr "odstraňuji '%s-%s' z cílového seznamu, protože je v konfliktu s '%s-%s'\n"
 
 #: lib/libalpm/sync.c:1002 lib/libalpm/sync.c:1169
 #, c-format
@@ -1124,6 +1108,4 @@ msgstr "neexistuje mezipaměť %s, vytváří se...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"nepodařilo se najít nebo vytvořit mezipaměť pro balíčky, používám místo toho "
-"%s\n"
+msgstr "nepodařilo se najít nebo vytvořit mezipaměť pro balíčky, používám místo toho %s\n"

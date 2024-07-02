@@ -15,12 +15,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: Harald H. <haarektrans@gmail.com>, 2016\n"
-"Language-Team: Norwegian Bokmål (http://app.transifex.com/toofishes/"
-"archlinux-pacman/language/nb/)\n"
-"Language: nb\n"
+"Language-Team: Norwegian Bokmål (http://app.transifex.com/toofishes/archlinux-pacman/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: scripts/makepkg.sh.in:139
@@ -199,7 +198,8 @@ msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "Pakkegruppen har alt blitt bygget. (bruk %s for å erstatte)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
 msgstr "Deler av pakkegruppen er ferdig bygget. (bruk %s for å overskrive)"
 
 #: scripts/makepkg.sh.in:874
@@ -231,7 +231,8 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     Hopp over avhengighetstestene"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
 msgstr ""
 
 #: scripts/makepkg.sh.in:884
@@ -273,11 +274,11 @@ msgstr "  -p <fil>         Bruk andre byggeinstrukser (istedenfor '%s')"
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps     Fjern installerte avhengigheter etter vellykket bygging"
+msgstr "  -r, --rmdeps     Fjern installerte avhengigheter etter vellykket bygging"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
 msgstr "  -R, --repackage  Pakk inn pakken på nytt, men ikke bygg den på nytt"
 
 #: scripts/makepkg.sh.in:895
@@ -287,8 +288,7 @@ msgstr "  -s, --syncdeps   Installer manglende avhengigheter med %s"
 #: scripts/makepkg.sh.in:896
 msgid ""
 "  -S, --source     Generate a source-only tarball without downloaded sources"
-msgstr ""
-"  -S, --source     Opprett en .tar fil med kildekode, uten nedlastede kilder"
+msgstr "  -S, --source     Opprett en .tar fil med kildekode, uten nedlastede kilder"
 
 #: scripts/makepkg.sh.in:897
 msgid "  -V, --version    Show version information and exit"
@@ -298,8 +298,7 @@ msgstr "  -V, --version    Vis versjonsinformasjon og avslutt"
 msgid ""
 "  --allsource      Generate a source-only tarball including downloaded "
 "sources"
-msgstr ""
-"  --allsource      Opprett en .tar fil med kildekode og nedlastede kilder"
+msgstr "  --allsource      Opprett en .tar fil med kildekode og nedlastede kilder"
 
 #: scripts/makepkg.sh.in:899
 msgid "  --check          Run the %s function in the %s"
@@ -315,7 +314,8 @@ msgstr "  --holdver        Ikke oppdater VCS kilder"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
 msgstr "  --key <key>      Oppgi en annen signeringsnøkkel for %s"
 
 #: scripts/makepkg.sh.in:903
@@ -363,8 +363,7 @@ msgstr "  --skippgpcheck   Ikke verifiser kildefiler med PGP signaturer"
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"  --verifysource   Last ned kildefiler (om nødvendig) og utfør sjekksumtester"
+msgstr "  --verifysource   Last ned kildefiler (om nødvendig) og utfør sjekksumtester"
 
 #: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
@@ -377,14 +376,12 @@ msgstr "  --asdeps         Installér pakker som avhengigheter"
 #: scripts/makepkg.sh.in:918
 msgid ""
 "  --needed         Do not reinstall the targets that are already up to date"
-msgstr ""
-"  --needed         Ikke reinstallér pakker som allerede er i nyeste versjon"
+msgstr "  --needed         Ikke reinstallér pakker som allerede er i nyeste versjon"
 
 #: scripts/makepkg.sh.in:919
 msgid ""
 "  --noconfirm      Do not ask for confirmation when resolving dependencies"
-msgstr ""
-"  --noconfirm      Ikke spør om bekreftelse ved oppnøsting av avhengigheter"
+msgstr "  --noconfirm      Ikke spør om bekreftelse ved oppnøsting av avhengigheter"
 
 #: scripts/makepkg.sh.in:920
 msgid "  --noprogressbar  Do not show a progress bar when downloading files"
@@ -399,9 +396,7 @@ msgstr "Dersom %s ikke er spesifisert vil %s se etter '%s'."
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
 "WARRANTY, to the extent permitted by law.\\n"
-msgstr ""
-"Dette er fri programvare; se kildekoden for kopibetingelser.\\nDet medfølger "
-"INGEN GARANTI, til den grad det er tillat i lovverket.\\n"
+msgstr "Dette er fri programvare; se kildekoden for kopibetingelser.\\nDet medfølger INGEN GARANTI, til den grad det er tillat i lovverket.\\n"
 
 #: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
@@ -411,9 +406,7 @@ msgstr "fanget %s signalet. Avslutter..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"Det er ikke mulig å kjøre %s med administratortilgang\\nfordi det kan rote "
-"til systemet."
+msgstr "Det er ikke mulig å kjøre %s med administratortilgang\\nfordi det kan rote til systemet."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
@@ -557,9 +550,7 @@ msgstr "Database fra før versjon 4.2 funnet - oppgraderer..."
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"den symbolske lenken '%s' peker utenfor pacman sin hovedmappe, dette må "
-"ordnes manuelt"
+msgstr "den symbolske lenken '%s' peker utenfor pacman sin hovedmappe, dette må ordnes manuelt"
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -588,9 +579,7 @@ msgstr "  -e, --export              Eksporter de angitte, eller alle, nøklene"
 #: scripts/pacman-key.sh.in:66
 msgid ""
 "  -f, --finger              List fingerprint for specified or all keyids"
-msgstr ""
-"  -f, --finger              Rams opp fingeravtrykk for angitte, eller alle, "
-"nøkler"
+msgstr "  -f, --finger              Rams opp fingeravtrykk for angitte, eller alle, nøkler"
 
 #: scripts/pacman-key.sh.in:67
 msgid "  -l, --list-keys           List the specified or all keys"
@@ -602,8 +591,7 @@ msgstr "  -r, --recv-keys           Hent de angitte nøklene"
 
 #: scripts/pacman-key.sh.in:69
 msgid "  -u, --updatedb            Update the trustdb of pacman"
-msgstr ""
-"  -u, --updatedb                 Oppdater pacmans liste over betrodde kilder"
+msgstr "  -u, --updatedb                 Oppdater pacmans liste over betrodde kilder"
 
 #: scripts/pacman-key.sh.in:70
 msgid ""
@@ -613,8 +601,7 @@ msgstr "  -v, --verify              Sjekk fil(ene) gitt i signaturen(e)"
 #: scripts/pacman-key.sh.in:71
 msgid ""
 "  --edit-key                Present a menu for key management task on keyids"
-msgstr ""
-"  --edit-key                Vis en meny for nøkkelhåndtering av nøkkel IDer"
+msgstr "  --edit-key                Vis en meny for nøkkelhåndtering av nøkkel IDer"
 
 #: scripts/pacman-key.sh.in:72
 msgid "  --import                  Imports pubring.gpg from dir(s)"
@@ -624,15 +611,11 @@ msgstr "  --import                  Importér pubring.gpg fra mappe(r)"
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"  --import-trustdb          Importér eiertro verdier fra trustdb.gpg i "
-"mappe(r)"
+msgstr "  --import-trustdb          Importér eiertro verdier fra trustdb.gpg i mappe(r)"
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
-msgstr ""
-"  --init                         Forsikre at nøkkelknippet er korrekt "
-"initialisert"
+msgstr "  --init                         Forsikre at nøkkelknippet er korrekt initialisert"
 
 #: scripts/pacman-key.sh.in:75
 msgid "  --list-sigs               List keys and their signatures"
@@ -646,16 +629,12 @@ msgstr "  --lsign-key               Signér den gitte nøkkel IDen lokalt"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate                Last standardnøkler fra (angitte) nøkkelknipper "
-"på nytt\\n                            i '%s'"
+msgstr "  --populate                Last standardnøkler fra (angitte) nøkkelknipper på nytt\\n                            i '%s'"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"  --refresh-keys            Oppdatér de angitte, eller alle, nøklene fra en "
-"nøkkelserver"
+msgstr "  --refresh-keys            Oppdatér de angitte, eller alle, nøklene fra en nøkkelserver"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -663,19 +642,15 @@ msgstr "  --verbose                 Vis ekstra informasjon"
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <fil>                 Bruk en annen konfigurasjonsfil "
-"(istedenfor\\n                                 '%s')"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <fil>                 Bruk en annen konfigurasjonsfil (istedenfor\\n                                 '%s')"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <mappe>               Bruk en annen mappe for GnuPG "
-"(istedenfor\\n                                 '%s')"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <mappe>               Bruk en annen mappe for GnuPG (istedenfor\\n                                 '%s')"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
@@ -685,8 +660,7 @@ msgstr ""
 
 #: scripts/pacman-key.sh.in:89
 msgid "  --keyserver <server-url>  Specify a keyserver to use if necessary"
-msgstr ""
-"  --keyserver <server-url>  Angi en nøkkelserver som kan brukes, om nødvendig"
+msgstr "  --keyserver <server-url>  Angi en nøkkelserver som kan brukes, om nødvendig"
 
 #: scripts/pacman-key.sh.in:91
 msgid "  -h, --help                Show this help message and exit"
@@ -827,8 +801,7 @@ msgstr[1] ""
 
 #: scripts/pacman-key.sh.in:529
 msgid "Remote key not fetched correctly from WKD or keyserver."
-msgstr ""
-"Kan ikke hente ekstern nøkkel fra hverken nøkkelkatalog eller nøkkeltjener."
+msgstr "Kan ikke hente ekstern nøkkel fra hverken nøkkelkatalog eller nøkkeltjener."
 
 #: scripts/pacman-key.sh.in:534
 msgid "Remote key not fetched correctly from keyserver."
@@ -892,11 +865,9 @@ msgstr "Bruk: repo-add [tilvalg] <path-to-db> <package> ...\\n"
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add kan oppdatere en pakkedatabase ved å lese en pakkefil.\\nFlere "
-"pakker kan legges til ved å angi dem på kommandolinjen.\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add kan oppdatere en pakkedatabase ved å lese en pakkefil.\\nFlere pakker kan legges til ved å angi dem på kommandolinjen.\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -904,26 +875,21 @@ msgstr "Tilvalg:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
-msgstr ""
-"  -n, --new          legg bare til pakker som ikke finnes i databasen fra "
-"før\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
+msgstr "  -n, --new          legg bare til pakker som ikke finnes i databasen fra før\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"  -R, --remove       fjern den gamle pakkefilen når databasen har blitt "
-"oppdatert\\n"
+msgstr "  -R, --remove       fjern den gamle pakkefilen når databasen har blitt oppdatert\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
-msgstr ""
-"  -p, --prevent-downgrade  legg ikke pakken til databasen hvis en nyere "
-"versjon allerede er tilstede\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
+msgstr "  -p, --prevent-downgrade  legg ikke pakken til databasen hvis en nyere versjon allerede er tilstede\\n"
 
 #: scripts/repo-add.sh.in:72
 msgid "Usage: repo-remove [options] <path-to-db> <packagename> ...\\n"
@@ -934,10 +900,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove kan oppdatere en pakkedatabase ved å fjerne pakkenavnet \\nsom "
-"angis på kommandolinjen, fra den gitte pakkedatabasen. Flere\\npakker kan "
-"fjernes ved å angi dem på kommandolinjen.\\n"
+msgstr "repo-remove kan oppdatere en pakkedatabase ved å fjerne pakkenavnet \\nsom angis på kommandolinjen, fra den gitte pakkedatabasen. Flere\\npakker kan fjernes ved å angi dem på kommandolinjen.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -957,8 +920,7 @@ msgstr "  -s, --sign         signer database med GnuPG etter oppdatering\\n"
 
 #: scripts/repo-add.sh.in:87
 msgid "  -k, --key <key>   use the specified key to sign the database\\n"
-msgstr ""
-"  -k, --key <nøkkel> bruk den angitte nøkkelen for å signere databasen\\n"
+msgstr "  -k, --key <nøkkel> bruk den angitte nøkkelen for å signere databasen\\n"
 
 #: scripts/repo-add.sh.in:88
 msgid "  -v, --verify      verify database's signature before update\\n"
@@ -967,14 +929,12 @@ msgstr "  -v, --verify       verifiser databasens signatur før oppdatering\\n"
 #: scripts/repo-add.sh.in:89
 msgid ""
 "\\nSee %s(8) for more details and descriptions of the available options.\\n"
-msgstr ""
-"\\nSe %s(8) for en mer detaljert beskrivelse av de tilgjengelige valgene.\\n"
+msgstr "\\nSe %s(8) for en mer detaljert beskrivelse av de tilgjengelige valgene.\\n"
 
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Eksempel: repo-add /sti/til/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
+msgstr "Eksempel: repo-add /sti/til/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1363,9 +1323,7 @@ msgstr "%s må være på formen 'integer[.integer]', ikke %s."
 #: scripts/libmakepkg/lint_pkgbuild/pkgver.sh.in:41
 msgid ""
 "%s is not allowed to contain colons, forward slashes, hyphens or whitespace."
-msgstr ""
-"%skan ikke inneholde kolon, foroverlente skråstreker, bindestreker eller "
-"mellomrom."
+msgstr "%skan ikke inneholde kolon, foroverlente skråstreker, bindestreker eller mellomrom."
 
 #: scripts/libmakepkg/lint_pkgbuild/provides.sh.in:46
 msgid "%s array cannot contain comparison (< or >) operators."
@@ -1409,12 +1367,14 @@ msgstr "Feil ved henting av %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Ukjent referanse: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "Kloner lokalt %s arkiv over %s..."
@@ -1457,12 +1417,14 @@ msgstr "Klarte ikke å pakke ut %s"
 msgid "NOT FOUND"
 msgstr "MANGLER"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "Kopierer %s %s arkiv..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "Kunne ikke laste ned %s %s arkiv"
@@ -1471,12 +1433,14 @@ msgstr "Kunne ikke laste ned %s %s arkiv"
 msgid "%s is not a clone of %s"
 msgstr "%s er ikke en kopi av %s"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "Oppdaterer %s %s arkiv..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "Kunne ikke oppdatere %s %s arkiv"

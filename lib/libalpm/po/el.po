@@ -23,12 +23,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: th_ts <tsesmelistheodore@gmail.com>, 2014\n"
-"Language-Team: Greek (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/el/)\n"
-"Language: el\n"
+"Language-Team: Greek (http://app.transifex.com/toofishes/archlinux-pacman/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -69,9 +68,7 @@ msgstr "αδυναμία μετονομασίας %s σε %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"αρχείο δεν βρέθηκε στην λίστα αρχείων του πακέτου %s. παράλειψη εξαγωγής του "
-"%s\n"
+msgstr "αρχείο δεν βρέθηκε στην λίστα αρχείων του πακέτου %s. παράλειψη εξαγωγής του %s\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -83,18 +80,14 @@ msgstr "αδυναμία εξαγωγής %s%s: πολύ μεγάλο μήκος
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"τα δικαιώματα καταλόγου διαφέρουν στο %s\n"
-"σύστημα αρχείων: %o  πακέτο: %o\n"
+msgstr "τα δικαιώματα καταλόγου διαφέρουν στο %s\nσύστημα αρχείων: %o  πακέτο: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"κυριότητα καταλόγου διαφορετική από του %s\n"
-"σύστημα αρχείων: %u:%u πακέτου: %u:%u\n"
+msgstr "κυριότητα καταλόγου διαφορετική από του %s\nσύστημα αρχείων: %u:%u πακέτου: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -254,9 +247,7 @@ msgstr "αδυναμία ανάγνωσης αρχείου υπογραφής: %
 #: lib/libalpm/be_package.c:768 lib/libalpm/sync.c:958
 #, c-format
 msgid "required key missing from keyring\n"
-msgstr ""
-"απόν κλειδί από τον κλειδούχο\n"
-"\n"
+msgstr "απόν κλειδί από τον κλειδούχο\n\n"
 
 #: lib/libalpm/be_sync.c:61
 #, c-format
@@ -266,8 +257,7 @@ msgstr "διαγραφή άκυρου αρχείου: %s\n"
 #: lib/libalpm/be_sync.c:454
 #, c-format
 msgid "could not parse package description file '%s' from db '%s'\n"
-msgstr ""
-"αδυναμία ανάλυσης αρχείου περιγραφής πακέτου '%s' στη βάση δεδομένων '%s'\n"
+msgstr "αδυναμία ανάλυσης αρχείου περιγραφής πακέτου '%s' στη βάση δεδομένων '%s'\n"
 
 #: lib/libalpm/be_sync.c:469
 #, c-format
@@ -342,9 +332,7 @@ msgstr "αδυναμία λήψης πληροφοριών συστήματος 
 #: lib/libalpm/diskspace.c:254
 #, c-format
 msgid "could not get file information for %s\n"
-msgstr ""
-"αδυναμία λήψης πληροφοριών αρχείου για το %s:\n"
-"\n"
+msgstr "αδυναμία λήψης πληροφοριών αρχείου για το %s:\n\n"
 
 #: lib/libalpm/diskspace.c:268 lib/libalpm/diskspace.c:327
 #, c-format
@@ -380,8 +368,7 @@ msgstr "Η κατάτμηση %s είναι προσαρτημένη μόνο γ
 #, c-format
 msgid ""
 "too many errors from %s, skipping for the remainder of this transaction\n"
-msgstr ""
-"πάρα πολλά σφάλματα από %s, παράλειψη για το υπόλοιπο αυτής της συναλλαγής\n"
+msgstr "πάρα πολλά σφάλματα από %s, παράλειψη για το υπόλοιπο αυτής της συναλλαγής\n"
 
 #: lib/libalpm/dload.c:145
 #, c-format
@@ -406,8 +393,7 @@ msgstr "αποτυχία λήψης αρχείου '%s' από %s : %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"αποτυχία λήψης αρχείου '%s' από %s : υπέρβαση αναμενομένου μεγέθους λήψης\n"
+msgstr "αποτυχία λήψης αρχείου '%s' από %s : υπέρβαση αναμενομένου μεγέθους λήψης\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -844,8 +830,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111

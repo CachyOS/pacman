@@ -12,14 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Viktor Coric <viktor_coric94@hotmail.com>, 2016\n"
-"Language-Team: Croatian (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/hr/)\n"
-"Language: hr\n"
+"Language-Team: Croatian (http://app.transifex.com/toofishes/archlinux-pacman/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Language: hr\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
 #, c-format
@@ -49,10 +47,7 @@ msgstr "dano upozorenje tijekom raspakiranja  %s (%s)\n"
 #: lib/libalpm/add.c:146 lib/libalpm/util.c:392
 #, c-format
 msgid "could not extract %s (%s)\n"
-msgstr ""
-"ne mogu raspakirati %s (%s)\n"
-"\n"
-"\n"
+msgstr "ne mogu raspakirati %s (%s)\n\n\n"
 
 #: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
@@ -62,8 +57,7 @@ msgstr "ne mogu preimenivati %s u %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"datoteka nije pronađena u listi datoteka za %s, preskačem raspakiranje %s\n"
+msgstr "datoteka nije pronađena u listi datoteka za %s, preskačem raspakiranje %s\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -75,18 +69,14 @@ msgstr "nije moguće raspakirati %s%s: putanja je preduga"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"dozvole direktorija razlikuju se na %s\n"
-"datotečni sustav: %o paket: %o\n"
+msgstr "dozvole direktorija razlikuju se na %s\ndatotečni sustav: %o paket: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"vlasništvo direktorija se razlikuje na %s\n"
-"datotečni sustav: %u:%u paket: %u:%u\n"
+msgstr "vlasništvo direktorija se razlikuje na %s\ndatotečni sustav: %u:%u paket: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -112,23 +102,17 @@ msgstr "ne mogu promjeniti direktorij u  %s (%s)\n"
 #: lib/libalpm/add.c:571 lib/libalpm/util.c:410 lib/libalpm/util.c:789
 #, c-format
 msgid "could not restore working directory (%s)\n"
-msgstr ""
-"ne mogu obnoviti radni direktorij (%s)\n"
-"\n"
+msgstr "ne mogu obnoviti radni direktorij (%s)\n\n"
 
 #: lib/libalpm/add.c:579
 #, c-format
 msgid "problem occurred while upgrading %s\n"
-msgstr ""
-"došlo je do greške prilikom nadogradnje %s\n"
-"\n"
+msgstr "došlo je do greške prilikom nadogradnje %s\n\n"
 
 #: lib/libalpm/add.c:585
 #, c-format
 msgid "problem occurred while installing %s\n"
-msgstr ""
-"došlo je do greške prilikom instaliranja %s\n"
-"\n"
+msgstr "došlo je do greške prilikom instaliranja %s\n\n"
 
 #: lib/libalpm/add.c:600
 #, c-format
@@ -158,9 +142,7 @@ msgstr "ne mogu napraviti direktorij %s: %s\n"
 #: lib/libalpm/be_local.c:608 lib/libalpm/be_sync.c:322
 #, c-format
 msgid "invalid name for database entry '%s'\n"
-msgstr ""
-"neispravno ime za unos baze podataka '%s'\n"
-"\n"
+msgstr "neispravno ime za unos baze podataka '%s'\n\n"
 
 #: lib/libalpm/be_local.c:616
 #, c-format
@@ -193,8 +175,7 @@ msgstr "%s baza podatak je nedosljedna: ime se ne podudara sa paketom %s\n"
 #: lib/libalpm/be_local.c:765 lib/libalpm/be_sync.c:601
 #, c-format
 msgid "%s database is inconsistent: version mismatch on package %s\n"
-msgstr ""
-"%s baza podataka je nedosljedna: verzija se ne podudara sa paketom %s\n"
+msgstr "%s baza podataka je nedosljedna: verzija se ne podudara sa paketom %s\n"
 
 #: lib/libalpm/be_local.c:806
 #, c-format
@@ -220,9 +201,7 @@ msgstr "greška prilikom čitanja paketa %s: %s\n"
 #: lib/libalpm/be_package.c:495 lib/libalpm/be_package.c:518
 #, c-format
 msgid "error while reading mtree of package %s: %s\n"
-msgstr ""
-"greška pri čitanju mtree paketa %s: %s\n"
-"\n"
+msgstr "greška pri čitanju mtree paketa %s: %s\n\n"
 
 #: lib/libalpm/be_package.c:601
 #, c-format
@@ -337,9 +316,7 @@ msgstr "ne mogu otvoriti datoteku: %s: %s\n"
 #: lib/libalpm/diskspace.c:154 lib/libalpm/diskspace.c:167
 #, c-format
 msgid "could not get filesystem information\n"
-msgstr ""
-"ne mogu dobiti informaciju datotečnog sustava\n"
-"\n"
+msgstr "ne mogu dobiti informaciju datotečnog sustava\n\n"
 
 #: lib/libalpm/diskspace.c:254
 #, c-format
@@ -354,8 +331,7 @@ msgstr "ne mogu odrediti točku montiranja za datoteku  %s\n"
 #: lib/libalpm/diskspace.c:366
 #, c-format
 msgid "Partition %s too full: %jd blocks needed, %ju blocks free\n"
-msgstr ""
-"Particija %s je prepuna: %jd blokova je potrebno, %ju blokova je slobodno\n"
+msgstr "Particija %s je prepuna: %jd blokova je potrebno, %ju blokova je slobodno\n"
 
 #: lib/libalpm/diskspace.c:391 lib/libalpm/diskspace.c:445
 #, c-format
@@ -406,9 +382,7 @@ msgstr "neuspjelo primanje datoteke '%s' iz %s : %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"greška pri dobavljanju datoteke '%s' iz %s: veličina preuzimanja je veća od "
-"očekivane\n"
+msgstr "greška pri dobavljanju datoteke '%s' iz %s: veličina preuzimanja je veća od očekivane\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -845,8 +819,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -872,9 +845,7 @@ msgstr ""
 #: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
-msgstr ""
-"ne mogu ukloniti %s (%s)\n"
-"\n"
+msgstr "ne mogu ukloniti %s (%s)\n\n"
 
 #: lib/libalpm/remove.c:743
 #, c-format
@@ -929,9 +900,7 @@ msgstr ""
 #: lib/libalpm/signing.c:932 lib/libalpm/sync.c:1034
 #, c-format
 msgid "%s: missing required signature\n"
-msgstr ""
-"%s: nedostaje potrebni potpis\n"
-"\n"
+msgstr "%s: nedostaje potrebni potpis\n\n"
 
 #: lib/libalpm/signing.c:947
 #, c-format
@@ -983,9 +952,7 @@ msgstr "%s: nepodržani format potpisa\n"
 #: lib/libalpm/sync.c:96
 #, c-format
 msgid "%s: ignoring package upgrade (%s => %s)\n"
-msgstr ""
-"%s: ignoriram nadogradnju paketa (%s => %s)\n"
-"\n"
+msgstr "%s: ignoriram nadogradnju paketa (%s => %s)\n\n"
 
 #: lib/libalpm/sync.c:108
 #, c-format

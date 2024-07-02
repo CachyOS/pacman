@@ -20,16 +20,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
-"Last-Translator: Dan McGee <dpmcgee@gmail.com>, 2011\n"
-"Language-Team: Lithuanian (http://app.transifex.com/toofishes/archlinux-"
-"pacman/language/lt/)\n"
-"Language: lt\n"
+"Last-Translator: Moo, 2023-2024\n"
+"Language-Team: Lithuanian (http://app.transifex.com/toofishes/archlinux-pacman/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
-"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
-"1 : n % 1 != 0 ? 2: 3);\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
 #, c-format
@@ -69,8 +66,7 @@ msgstr "nepavyko pervadint %s į %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"paketo %s failų sąraše failas nerastas. praledžiama %s išarchyvavimas\n"
+msgstr "paketo %s failų sąraše failas nerastas. praledžiama %s išarchyvavimas\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -82,18 +78,14 @@ msgstr "nepavyko išskleisti %s%s: per ilgas kelias"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"%s aplanko leidimai skiriasi\n"
-"failų sistema: %o  paketas: %o\n"
+msgstr "%s aplanko leidimai skiriasi\nfailų sistema: %o  paketas: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"aplanko nuosavybės teisės skiriasi %s\n"
-"failų sistema: %u:%u paketas: %u:%u\n"
+msgstr "aplanko nuosavybės teisės skiriasi %s\nfailų sistema: %u:%u paketas: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -187,14 +179,12 @@ msgstr "nepavyko atverti failo %s: %s\n"
 #: lib/libalpm/be_local.c:759 lib/libalpm/be_sync.c:595
 #, c-format
 msgid "%s database is inconsistent: name mismatch on package %s\n"
-msgstr ""
-"%s duomenų bazės nesuderinamumas: pavadinimas neatitinka nurodyto pakete %s\n"
+msgstr "%s duomenų bazės nesuderinamumas: pavadinimas neatitinka nurodyto pakete %s\n"
 
 #: lib/libalpm/be_local.c:765 lib/libalpm/be_sync.c:601
 #, c-format
 msgid "%s database is inconsistent: version mismatch on package %s\n"
-msgstr ""
-"%s duomenų bazės nesuderinamumas: versija neatitinka nurodytos pakete %s\n"
+msgstr "%s duomenų bazės nesuderinamumas: versija neatitinka nurodytos pakete %s\n"
 
 #: lib/libalpm/be_local.c:806
 #, c-format
@@ -275,8 +265,7 @@ msgstr "nepavyko perskaityti duomenų bazės \"%s\" (%s)\n"
 #: lib/libalpm/be_sync.c:502 lib/libalpm/be_sync.c:507
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is illegal\n"
-msgstr ""
-"%s duomenų bazės nesuderinamumas: netinkamas paketo „%s“ failo vardas\n"
+msgstr "%s duomenų bazės nesuderinamumas: netinkamas paketo „%s“ failo vardas\n"
 
 #: lib/libalpm/be_sync.c:512
 #, c-format
@@ -361,9 +350,7 @@ msgstr "nepavyko nustatyt failų sistemos prijungimo taškų\n"
 #: lib/libalpm/diskspace.c:397
 #, c-format
 msgid "could not determine cachedir mount point %s\n"
-msgstr ""
-"nepavyko nustatyt „cachedir“ prijungimo taško %s\n"
-"\n"
+msgstr "nepavyko nustatyt „cachedir“ prijungimo taško %s\n\n"
 
 #: lib/libalpm/diskspace.c:450
 #, c-format
@@ -384,8 +371,7 @@ msgstr "per daug klaidų iš %s, praleidžiama likusi šios operacijos dalis\n"
 #: lib/libalpm/dload.c:145
 #, c-format
 msgid "fatal error from %s, skipping for the remainder of this transaction\n"
-msgstr ""
-"lemtingoji klaida iš %s, praleidžiama likusiai šios operacijos daliai\n"
+msgstr "lemtingoji klaida iš %s, praleidžiama likusiai šios operacijos daliai\n"
 
 #: lib/libalpm/dload.c:263
 #, c-format
@@ -405,8 +391,7 @@ msgstr "nepavyko gauti failo „%s“ iš %s : %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"gauti failo „%s“ iš %s nepavyko: viršytas tikėtasis parsiuntimo dydis\n"
+msgstr "gauti failo „%s“ iš %s nepavyko: viršytas tikėtasis parsiuntimo dydis\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -825,27 +810,26 @@ msgstr "neteisingi paketo metaduomenys (trūksta pavadinimo ar versijos)"
 msgid ""
 "invalid metadata for package %s-%s (package name cannot start with '.' or "
 "'-')\n"
-msgstr ""
+msgstr "neteisingi paketo metaduomenys %s-%s (paketo pavadinimas negali prasidėti „.“ ar „-“)\n"
 
 #: lib/libalpm/package.c:878
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package name contains invalid "
 "characters)\n"
-msgstr ""
+msgstr "neteisingi paketo metaduomenys %s-%s (paketo pavadinime yra netinkamų simbolių)\n"
 
 #: lib/libalpm/package.c:885 lib/libalpm/package.c:889
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package version contains invalid "
 "characters)\n"
-msgstr ""
+msgstr "neteisingi paketo metaduomenys %s-%s (paketo versijoje yra netinkamų simbolių)\n"
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
-msgstr ""
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
+msgstr "neteisingi paketo metaduomenys %s-%s (per ilgas paketo pavadinimas ir versija)\n"
 
 #: lib/libalpm/remove.c:111
 #, c-format

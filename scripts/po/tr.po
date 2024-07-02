@@ -22,12 +22,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: Serpil Acar <acarserpil89@gmail.com>, 2016\n"
-"Language-Team: Turkish (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/tr/)\n"
-"Language: tr\n"
+"Language-Team: Turkish (http://app.transifex.com/toofishes/archlinux-pacman/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: scripts/makepkg.sh.in:139
@@ -194,8 +193,7 @@ msgstr "Paketlerden biri zaten derlenmiş, mevcut paket yükleniyor..."
 
 #: scripts/makepkg.sh.in:792
 msgid "A package has already been built. (use %s to overwrite)"
-msgstr ""
-"Bir paket zaten önceden oluşturulmuş. (üzerine yazmak için %s kullanın)"
+msgstr "Bir paket zaten önceden oluşturulmuş. (üzerine yazmak için %s kullanın)"
 
 #: scripts/makepkg.sh.in:811
 msgid ""
@@ -204,14 +202,12 @@ msgstr "Paket grubu zaten derlenmiş, var olan paketler kuruluyor..."
 
 #: scripts/makepkg.sh.in:815
 msgid "The package group has already been built. (use %s to overwrite)"
-msgstr ""
-"Paket grubu zaten önceden oluşturulmuş. (üzerine yazmak için %s kullanın)"
+msgstr "Paket grubu zaten önceden oluşturulmuş. (üzerine yazmak için %s kullanın)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
-msgstr ""
-"Paket grubunun bir kısmı zaten önceden oluşturulmuş. (üzerine yazmak için %s "
-"kullanın)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
+msgstr "Paket grubunun bir kısmı zaten önceden oluşturulmuş. (üzerine yazmak için %s kullanın)"
 
 #: scripts/makepkg.sh.in:874
 msgid "Make packages compatible for use with pacman"
@@ -242,7 +238,8 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     Tüm bağımlılık kontrollerini atla"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
 msgstr ""
 
 #: scripts/makepkg.sh.in:884
@@ -284,12 +281,11 @@ msgstr "  -p <dosya>  '%s' yerine farklı bir derleme betiği kullan"
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps     Derlenme tamamlandıktan sonra yüklenen bağımlılıkları "
-"kaldır"
+msgstr "  -r, --rmdeps     Derlenme tamamlandıktan sonra yüklenen bağımlılıkları kaldır"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
 msgstr "  -R, --repackage  Derleme yapmadan yeniden paketle"
 
 #: scripts/makepkg.sh.in:895
@@ -299,9 +295,7 @@ msgstr "  -s, --syncdeps   Eksik bağımlılıkları %s ile kur"
 #: scripts/makepkg.sh.in:896
 msgid ""
 "  -S, --source     Generate a source-only tarball without downloaded sources"
-msgstr ""
-"  -S, --source     İndirilen kaynak dosyaları olmadan bir kaynak arşivi "
-"oluştur."
+msgstr "  -S, --source     İndirilen kaynak dosyaları olmadan bir kaynak arşivi oluştur."
 
 #: scripts/makepkg.sh.in:897
 msgid "  -V, --version    Show version information and exit"
@@ -311,9 +305,7 @@ msgstr "  -V, --version    Sürüm bilgisini göster ve çık"
 msgid ""
 "  --allsource      Generate a source-only tarball including downloaded "
 "sources"
-msgstr ""
-"  --allsource      İndirilmiş arşivlerle birlikte sadece kaynak barındıran "
-"bir arşiv oluştur"
+msgstr "  --allsource      İndirilmiş arşivlerle birlikte sadece kaynak barındıran bir arşiv oluştur"
 
 #: scripts/makepkg.sh.in:899
 msgid "  --check          Run the %s function in the %s"
@@ -329,10 +321,9 @@ msgstr "  --holdver        Sürüm takip sistemi kaynaklarını güncelleme"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
-msgstr ""
-"  --key <key>      Öntanımlı yerine %s imzalama işlemi için başka bir "
-"anahtar belirt"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
+msgstr "  --key <key>      Öntanımlı yerine %s imzalama işlemi için başka bir anahtar belirt"
 
 #: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
@@ -369,8 +360,7 @@ msgstr "  --skipchecksums  Kaynak dosyaların sağlama toplamalarını denetleme
 #: scripts/makepkg.sh.in:911
 msgid ""
 "  --skipinteg      Do not perform any verification checks on source files"
-msgstr ""
-"  --skipinteg      Kaynak dosyalarında herhangi bir doğrulama denetimi yapma"
+msgstr "  --skipinteg      Kaynak dosyalarında herhangi bir doğrulama denetimi yapma"
 
 #: scripts/makepkg.sh.in:912
 msgid "  --skippgpcheck   Do not verify source files with PGP signatures"
@@ -413,9 +403,7 @@ msgstr "%s belirtilmemişse; %s, '%s' arayacaktır"
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
 "WARRANTY, to the extent permitted by law.\\n"
-msgstr ""
-"Bu bir özgür yazılımdır. Kopyalama koşulları için kaynak kodlara bakınız."
-"\\nYasaların izin verdiği ölçüde HİÇBİR GARANTİSİ YOKTUR.\\n"
+msgstr "Bu bir özgür yazılımdır. Kopyalama koşulları için kaynak kodlara bakınız.\\nYasaların izin verdiği ölçüde HİÇBİR GARANTİSİ YOKTUR.\\n"
 
 #: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
@@ -425,15 +413,11 @@ msgstr "%s sinyalı yakalandı. Çıkılıyor ..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"%s kök olarak çalıştırılamaz. Çünkü,\\nsisteminizde kalıcı hasara yol "
-"açabilir."
+msgstr "%s kök olarak çalıştırılamaz. Çünkü,\\nsisteminizde kalıcı hasara yol açabilir."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
-msgstr ""
-"%s seçeneğini kullanmayın. Bu seçenek sadece %s tarafından iç kullanımda "
-"kullanılabilir."
+msgstr "%s seçeneğini kullanmayın. Bu seçenek sadece %s tarafından iç kullanımda kullanılabilir."
 
 #: scripts/makepkg.sh.in:1131
 msgid "%s does not exist."
@@ -465,9 +449,7 @@ msgstr "%s paketi oluşturuluyor"
 
 #: scripts/makepkg.sh.in:1276
 msgid "A source package has already been built. (use %s to overwrite)"
-msgstr ""
-"Bir kaynak paketi zaten önceden oluşturulmuş. (üzerine yazmak için %s "
-"kullanın)"
+msgstr "Bir kaynak paketi zaten önceden oluşturulmuş. (üzerine yazmak için %s kullanın)"
 
 #: scripts/makepkg.sh.in:1296
 msgid "Signing package..."
@@ -575,9 +557,7 @@ msgstr "4.2 sürümü öncesi veritabanı biçimi algılandı - yükseltiliyor..
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"'%s' sembolik bağlantısı pacman kökünden başka yere bağlanıyor, elle onarım "
-"gerekli"
+msgstr "'%s' sembolik bağlantısı pacman kökünden başka yere bağlanıyor, elle onarım gerekli"
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -606,8 +586,7 @@ msgstr "  -e, --export             Belirtilen anahtarları dışarı aktar"
 #: scripts/pacman-key.sh.in:66
 msgid ""
 "  -f, --finger              List fingerprint for specified or all keyids"
-msgstr ""
-"  -f, --finger              Belirtilen anahtarların parmak izini listele"
+msgstr "  -f, --finger              Belirtilen anahtarların parmak izini listele"
 
 #: scripts/pacman-key.sh.in:67
 msgid "  -l, --list-keys           List the specified or all keys"
@@ -629,28 +608,21 @@ msgstr "  -v, --verify             Dosyaları belirtilen imza ile doğrula"
 #: scripts/pacman-key.sh.in:71
 msgid ""
 "  --edit-key                Present a menu for key management task on keyids"
-msgstr ""
-"  --edit-key              Belirtilen anahtarlar için anahtar yönetimi menüsü "
-"aç"
+msgstr "  --edit-key              Belirtilen anahtarlar için anahtar yönetimi menüsü aç"
 
 #: scripts/pacman-key.sh.in:72
 msgid "  --import                  Imports pubring.gpg from dir(s)"
-msgstr ""
-"  --import                 Dizindeki pubring.pgp dosyasını içeri aktarır"
+msgstr "  --import                 Dizindeki pubring.pgp dosyasını içeri aktarır"
 
 #: scripts/pacman-key.sh.in:73
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"  --import-trustdb           trustdb.gpg dosyasındaki güvenirlilik "
-"bilgilerini içeri aktarır"
+msgstr "  --import-trustdb           trustdb.gpg dosyasındaki güvenirlilik bilgilerini içeri aktarır"
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
-msgstr ""
-"  --init                    Anahtarlığın uygun şekilde başlatıldığından emin "
-"ol"
+msgstr "  --init                    Anahtarlığın uygun şekilde başlatıldığından emin ol"
 
 #: scripts/pacman-key.sh.in:75
 msgid "  --list-sigs               List keys and their signatures"
@@ -664,16 +636,12 @@ msgstr "  --lsign-key              Belirtilen anahtarı yerelde imzala"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate             Belirtilen anahtarlıktan anahtarları tekrar "
-"yükle\\n                            '%s'"
+msgstr "  --populate             Belirtilen anahtarlıktan anahtarları tekrar yükle\\n                            '%s'"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"  --refresh-keys          Belirtilen veya tüm anahtarları anahtar sunucudan "
-"güncelle"
+msgstr "  --refresh-keys          Belirtilen veya tüm anahtarları anahtar sunucudan güncelle"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -681,32 +649,25 @@ msgstr "  --verbose                 Ek bilgilendirmeleri göster"
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <file>           Farklı bir yapılandırma dosyası kullan. ('%s'\n"
-"                            yerine)"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <file>           Farklı bir yapılandırma dosyası kullan. ('%s'\n                            yerine)"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <dir>            GnuPG için farklı bir dizin ayarla. ('%s'\n"
-"                            yerine)"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <dir>            GnuPG için farklı bir dizin ayarla. ('%s'\n                            yerine)"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
 "  --populate-from <dir>     Set an alternate directory for --populate "
 "(instead\\n                            of '%s')"
-msgstr ""
-"--populate-from <dir> --populate için alternatif bir dizin ayarlayın ('%s' "
-"instead\\n )"
+msgstr "--populate-from <dir> --populate için alternatif bir dizin ayarlayın ('%s' instead\\n )"
 
 #: scripts/pacman-key.sh.in:89
 msgid "  --keyserver <server-url>  Specify a keyserver to use if necessary"
-msgstr ""
-"  --keyserver <sunucu-url>  Gerektiğinde kullanılabilecek anahtar sunucu"
+msgstr "  --keyserver <sunucu-url>  Gerektiğinde kullanılabilecek anahtar sunucu"
 
 #: scripts/pacman-key.sh.in:91
 msgid "  -h, --help                Show this help message and exit"
@@ -911,11 +872,9 @@ msgstr "Kullanımı: repo-add [seçenekler] <path-to-db> <package> ...\\n"
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add bir paket dosyası okuyarak paket veritabanını güncelleyecektir."
-"\\nEklenecek birden fazla paket komut satırından belirtilebilir.\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add bir paket dosyası okuyarak paket veritabanını güncelleyecektir.\\nEklenecek birden fazla paket komut satırından belirtilebilir.\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -923,24 +882,21 @@ msgstr "Seçenekler:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
 msgstr "  -n, --new        sadece veritabanında yer almayan paketleri ekle\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"  -R, --remove      veritabanını güncelledikten sonra eski paket dosyasını "
-"diskten kaldır\\n"
+msgstr "  -R, --remove      veritabanını güncelledikten sonra eski paket dosyasını diskten kaldır\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
-msgstr ""
-"  -p, --prevent-downgrade  veritabanında yeni sürüm bulunuyorsa paketi "
-"veritabanına ekleme\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
+msgstr "  -p, --prevent-downgrade  veritabanında yeni sürüm bulunuyorsa paketi veritabanına ekleme\\n"
 
 #: scripts/repo-add.sh.in:72
 msgid "Usage: repo-remove [options] <path-to-db> <packagename> ...\\n"
@@ -951,10 +907,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove komut satırından verilen veritabanını kullanarak paket  "
-"ismini\\n paket veritabanından çıkararak paket veritabanını günceller. "
-"Birden\\n fazla paket komut satırından belirtilebilir.\\n"
+msgstr "repo-remove komut satırından verilen veritabanını kullanarak paket  ismini\\n paket veritabanından çıkararak paket veritabanını günceller. Birden\\n fazla paket komut satırından belirtilebilir.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -970,31 +923,25 @@ msgstr "  -q, --quiet       çıktıyı en aza indir\\n"
 
 #: scripts/repo-add.sh.in:86
 msgid "  -s, --sign        sign database with GnuPG after update\\n"
-msgstr ""
-"  -s, --sign        güncellemeden sonra veritabanını GnuPG ile imzala\\n"
+msgstr "  -s, --sign        güncellemeden sonra veritabanını GnuPG ile imzala\\n"
 
 #: scripts/repo-add.sh.in:87
 msgid "  -k, --key <key>   use the specified key to sign the database\\n"
-msgstr ""
-"  -k, --key <key>   veritabanını imzalamak için belirtilen anahtarı kullan\\n"
+msgstr "  -k, --key <key>   veritabanını imzalamak için belirtilen anahtarı kullan\\n"
 
 #: scripts/repo-add.sh.in:88
 msgid "  -v, --verify      verify database's signature before update\\n"
-msgstr ""
-"  -v, --verify      güncellemeden önce veritabanlarının imzalarını doğrula\\n"
+msgstr "  -v, --verify      güncellemeden önce veritabanlarının imzalarını doğrula\\n"
 
 #: scripts/repo-add.sh.in:89
 msgid ""
 "\\nSee %s(8) for more details and descriptions of the available options.\\n"
-msgstr ""
-"\\nMevcut seçeneklere ilişkin ayrıntılı bilgi almak için %s(8) "
-"inceleyebilirsiniz.\\n"
+msgstr "\\nMevcut seçeneklere ilişkin ayrıntılı bilgi almak için %s(8) inceleyebilirsiniz.\\n"
 
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Örnek:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
+msgstr "Örnek:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1126,8 +1073,7 @@ msgstr "Geçersiz komut '%s' belirtilmiş."
 
 #: scripts/repo-add.sh.in:593
 msgid "Cannot create temp directory for database building."
-msgstr ""
-"Veritabanı oluşturulması için gerekli olan geçici dizin oluşturulamadı."
+msgstr "Veritabanı oluşturulması için gerekli olan geçici dizin oluşturulamadı."
 
 #: scripts/repo-add.sh.in:704
 msgid "Package database was not modified due to errors."
@@ -1207,9 +1153,7 @@ msgstr "Bir ya da daha fazla dosya doğrulama kontrolünü geçemedi."
 
 #: scripts/libmakepkg/integrity/verify_checksum.sh.in:125
 msgid "Integrity checks (%s) differ in size from the source array."
-msgstr ""
-"Bütünlük kontrolleri (%s) kaynak dizisindeki dosyaların boyutlarıyla "
-"örtüşmüyor."
+msgstr "Bütünlük kontrolleri (%s) kaynak dizisindeki dosyaların boyutlarıyla örtüşmüyor."
 
 #: scripts/libmakepkg/integrity/verify_signature.sh.in:39
 msgid "Verifying source file signatures with %s..."
@@ -1296,8 +1240,7 @@ msgstr "%s bir dizi olmamalı"
 
 #: scripts/libmakepkg/lint_config/variable.sh.in:66
 msgid "PACKAGER should have the format 'Example Name <email@address.invalid>'"
-msgstr ""
-"PACKAGER şu şekilde biçimlendirilmeli: 'Örnek İsim <email@address.invalid>'"
+msgstr "PACKAGER şu şekilde biçimlendirilmeli: 'Örnek İsim <email@address.invalid>'"
 
 #: scripts/libmakepkg/lint_package.sh.in:41
 msgid "Checking for packaging issues..."
@@ -1431,12 +1374,14 @@ msgstr "%s çekilirken hata meydana geldi"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Bilinmeyen referans: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "%s %s deposunun çalışan bir kopyası oluşturuluyor..."
@@ -1479,12 +1424,14 @@ msgstr "%s arşivi açılamadı"
 msgid "NOT FOUND"
 msgstr "BULUNAMADI"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "%s %s deposu klonlanıyor..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "%s %s deposu indirilirken hata meydana geldi"
@@ -1493,12 +1440,14 @@ msgstr "%s %s deposu indirilirken hata meydana geldi"
 msgid "%s is not a clone of %s"
 msgstr "%s %s deposunun klonu değil"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "%s %s deposu güncelleniyor..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "%s %s deposu güncellenirken hata meydana geldi"
@@ -1537,14 +1486,11 @@ msgstr "Statik kütüphane dosyaları kaldırılıyor..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:145
 msgid "Stripping unneeded symbols from binaries and libraries..."
-msgstr ""
-"İkilik dosyalardan ve kütüphanelerden gereksiz ayıklama sembolleri "
-"ayıklanıyor..."
+msgstr "İkilik dosyalardan ve kütüphanelerden gereksiz ayıklama sembolleri ayıklanıyor..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:190
 msgid "Copying source files needed for debug symbols..."
-msgstr ""
-"Hata ayıklama sembollerinin gerektirdiği kaynak dosyalarının kopyalanması..."
+msgstr "Hata ayıklama sembollerinin gerektirdiği kaynak dosyalarının kopyalanması..."
 
 #: scripts/libmakepkg/tidy/zipman.sh.in:35
 msgid "Compressing man and info pages..."

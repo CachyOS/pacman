@@ -18,12 +18,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Alexandre Filgueira <faidoc@gmail.com>, 2013\n"
-"Language-Team: Galician (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/gl/)\n"
-"Language: gl\n"
+"Language-Team: Galician (http://app.transifex.com/toofishes/archlinux-pacman/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -64,9 +63,7 @@ msgstr "Non foi posíbel cambiar o nome de «%s» a «%s» (%s).\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"Non se atopou o ficheiro na lista de ficheiros do paquete «%s». Non se "
-"extraerá «%s».\n"
+msgstr "Non se atopou o ficheiro na lista de ficheiros do paquete «%s». Non se extraerá «%s».\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -78,24 +75,19 @@ msgstr "non se pode extraer %s%s: ruta demasiado longa"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"Os permisos dun directorio son distintos en «%s».\n"
-"No sistema de ficheiros: «%o». No paquete: «%o».\n"
+msgstr "Os permisos dun directorio son distintos en «%s».\nNo sistema de ficheiros: «%o». No paquete: «%o».\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"O dono do cartafol «%s» non cadra.\n"
-"No sistema de ficheiros é «%u:%u», no paquete é «%u:%u».\n"
+msgstr "O dono do cartafol «%s» non cadra.\nNo sistema de ficheiros é «%u:%u», no paquete é «%u:%u».\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
 msgid "extract: not overwriting dir with file %s\n"
-msgstr ""
-"[Extracción] Non é posíbel substituír un directorio polo ficheiro «%s».\n"
+msgstr "[Extracción] Non é posíbel substituír un directorio polo ficheiro «%s».\n"
 
 #: lib/libalpm/add.c:320
 #, c-format
@@ -179,21 +171,17 @@ msgstr ""
 #: lib/libalpm/util.c:270
 #, c-format
 msgid "could not open file %s: %s\n"
-msgstr ""
-"non se puido abrir o arquivo %s: %s\n"
-"\n"
+msgstr "non se puido abrir o arquivo %s: %s\n\n"
 
 #: lib/libalpm/be_local.c:759 lib/libalpm/be_sync.c:595
 #, c-format
 msgid "%s database is inconsistent: name mismatch on package %s\n"
-msgstr ""
-"a base de datos %s é inconsistente: o nome no paquete %s non concorda\n"
+msgstr "a base de datos %s é inconsistente: o nome no paquete %s non concorda\n"
 
 #: lib/libalpm/be_local.c:765 lib/libalpm/be_sync.c:601
 #, c-format
 msgid "%s database is inconsistent: version mismatch on package %s\n"
-msgstr ""
-"a base de datos %s é inconsistente: a versión no paquete %s non concorda\n"
+msgstr "a base de datos %s é inconsistente: a versión no paquete %s non concorda\n"
 
 #: lib/libalpm/be_local.c:806
 #, c-format
@@ -264,9 +252,7 @@ msgstr "eliminando arquivo inválido: %s\n"
 #: lib/libalpm/be_sync.c:454
 #, c-format
 msgid "could not parse package description file '%s' from db '%s'\n"
-msgstr ""
-"non se puido analizar o arquivo de descrición do paquete '%s'  da base de "
-"datos '%s'\n"
+msgstr "non se puido analizar o arquivo de descrición do paquete '%s'  da base de datos '%s'\n"
 
 #: lib/libalpm/be_sync.c:469
 #, c-format
@@ -276,16 +262,12 @@ msgstr "non se puido ler a base de datos '%s' (%s)\n"
 #: lib/libalpm/be_sync.c:502 lib/libalpm/be_sync.c:507
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is illegal\n"
-msgstr ""
-"a base de datos %s é inconsistente: o nome do ficheiro do paquete %s non "
-"está permitido\n"
+msgstr "a base de datos %s é inconsistente: o nome do ficheiro do paquete %s non está permitido\n"
 
 #: lib/libalpm/be_sync.c:512
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is too long\n"
-msgstr ""
-"a base de datos %s é inconsistente: o nome do ficheiro do paquete %s é "
-"demasiado longo\n"
+msgstr "a base de datos %s é inconsistente: o nome do ficheiro do paquete %s é demasiado longo\n"
 
 #: lib/libalpm/be_sync.c:577
 #, c-format
@@ -355,9 +337,7 @@ msgstr "non se puido determinar o punto de montaxe para o arquivo %s\n"
 #: lib/libalpm/diskspace.c:366
 #, c-format
 msgid "Partition %s too full: %jd blocks needed, %ju blocks free\n"
-msgstr ""
-"A partición %s está moi chea: necesítanse %jd bloques, quedan %ju bloques "
-"libres\n"
+msgstr "A partición %s está moi chea: necesítanse %jd bloques, quedan %ju bloques libres\n"
 
 #: lib/libalpm/diskspace.c:391 lib/libalpm/diskspace.c:445
 #, c-format
@@ -367,8 +347,7 @@ msgstr "non se puido determinar o punto de montaxe do sistema de ficheiros\n"
 #: lib/libalpm/diskspace.c:397
 #, c-format
 msgid "could not determine cachedir mount point %s\n"
-msgstr ""
-"non foi posíbel determinar o punto de montaxe do directorio de caché «%s»\n"
+msgstr "non foi posíbel determinar o punto de montaxe do directorio de caché «%s»\n"
 
 #: lib/libalpm/diskspace.c:450
 #, c-format
@@ -409,9 +388,7 @@ msgstr "error ao obter o arquivo '%s' dende %s: %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"Non foi posíbel obter o ficheiro «%s» de «%s»: superouse o tamaño de "
-"descarga esperado.\n"
+msgstr "Non foi posíbel obter o ficheiro «%s» de «%s»: superouse o tamaño de descarga esperado.\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -596,8 +573,7 @@ msgstr "a operación non é compatible co tipo de transacción"
 #: lib/libalpm/error.c:104
 #, c-format
 msgid "transaction commit attempt when database is not locked"
-msgstr ""
-"intento de envío da transacción canda a base de datos non está bloqueada"
+msgstr "intento de envío da transacción canda a base de datos non está bloqueada"
 
 #: lib/libalpm/error.c:106
 #, c-format
@@ -849,8 +825,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -871,9 +846,7 @@ msgstr "non se puido quitar o ficheiro '%s': %s\n"
 #: lib/libalpm/remove.c:403 lib/libalpm/remove.c:412
 #, c-format
 msgid "could not backup %s due to PATH_MAX overflow\n"
-msgstr ""
-"non se puido facer unha copia de seguranza %s debido a que a ruta supera o "
-"tamaño de PATH_MAX\n"
+msgstr "non se puido facer unha copia de seguranza %s debido a que a ruta supera o tamaño de PATH_MAX\n"
 
 #: lib/libalpm/remove.c:570
 #, c-format
@@ -893,8 +866,7 @@ msgstr "non se puido quitar a entrada '%s' do caché\n"
 #: lib/libalpm/signing.c:163
 #, c-format
 msgid "Public keyring not found; have you run '%s'?\n"
-msgstr ""
-"Non se atopou o depósito de claves público; probaches a executar '%s'?\n"
+msgstr "Non se atopou o depósito de claves público; probaches a executar '%s'?\n"
 
 #: lib/libalpm/signing.c:199 lib/libalpm/signing.c:773
 #, c-format
@@ -1026,9 +998,7 @@ msgstr "detectáronse paquetes con conflictos non resolvibles\n"
 #: lib/libalpm/sync.c:564
 #, c-format
 msgid "removing '%s-%s' from target list because it conflicts with '%s-%s'\n"
-msgstr ""
-"quitando '%s-%s' da lista de obxectivos porque entra en conflito con '%s-"
-"%s'\n"
+msgstr "quitando '%s-%s' da lista de obxectivos porque entra en conflito con '%s-%s'\n"
 
 #: lib/libalpm/sync.c:1002 lib/libalpm/sync.c:1169
 #, c-format
@@ -1133,5 +1103,4 @@ msgstr "non existe o caché %s, creando...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"non se puido atopar ou crear a caché do paquete, en lugar utilizarase %s\n"
+msgstr "non se puido atopar ou crear a caché do paquete, en lugar utilizarase %s\n"

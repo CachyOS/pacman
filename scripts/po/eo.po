@@ -15,12 +15,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: pizzaiolo, 2015\n"
-"Language-Team: Esperanto (http://app.transifex.com/toofishes/archlinux-"
-"pacman/language/eo/)\n"
-"Language: eo\n"
+"Language-Team: Esperanto (http://app.transifex.com/toofishes/archlinux-pacman/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: eo\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: scripts/makepkg.sh.in:139
@@ -199,9 +198,9 @@ msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "La pakaĵa grupo jam estis konstruita. (uzu %s por superskribi)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
-msgstr ""
-"Parto de la pakaĵa grupo jam estis konstruita. (uzu %s por superskribi)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
+msgstr "Parto de la pakaĵa grupo jam estis konstruita. (uzu %s por superskribi)"
 
 #: scripts/makepkg.sh.in:874
 msgid "Make packages compatible for use with pacman"
@@ -232,13 +231,13 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     Preterpasi ĉiujn dependaĵajn kontrolojn"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
 msgstr ""
 
 #: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
-msgstr ""
-"  -e, --noextract  Ne eltiri fontdosierojn (uzi estantan dosierujon %s)"
+msgstr "  -e, --noextract  Ne eltiri fontdosierojn (uzi estantan dosierujon %s)"
 
 #: scripts/makepkg.sh.in:885
 msgid "  -f, --force      Overwrite existing package"
@@ -275,11 +274,11 @@ msgstr "  -p <file>        Uzi alian konstruan skripton (anstataŭ '%s')"
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps     Forigi instalitajn dependencojn post sukcesa konstruado"
+msgstr "  -r, --rmdeps     Forigi instalitajn dependencojn post sukcesa konstruado"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
 msgstr "  -R, --repackage  Repaki la enhavojn de la pakaĵo sen rekonstrui"
 
 #: scripts/makepkg.sh.in:895
@@ -315,10 +314,9 @@ msgstr "  --holdver        Ne ĝisdatigi VCS-fontojn"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
-msgstr ""
-"  --key <key>      Specifi ŝlosilon por uzi dum subskribado de %s anstataŭ "
-"la defaŭlto"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
+msgstr "  --key <key>      Specifi ŝlosilon por uzi dum subskribado de %s anstataŭ la defaŭlto"
 
 #: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
@@ -365,9 +363,7 @@ msgstr "  --skippgpcheck   Ne konfirmi fontdosierojn kun PGP-subskriboj"
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"  --verifysource   Elŝuti fontdosierojn (se postulataj) kaj kontrolu "
-"integrecon"
+msgstr "  --verifysource   Elŝuti fontdosierojn (se postulataj) kaj kontrolu integrecon"
 
 #: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
@@ -389,8 +385,7 @@ msgstr "      --noconfirm      ne petu konfirmon kiam solvante dependencojn"
 
 #: scripts/makepkg.sh.in:920
 msgid "  --noprogressbar  Do not show a progress bar when downloading files"
-msgstr ""
-"      --noprogressbar  Ne montri progresbreton kiam elŝutante dosierojn"
+msgstr "      --noprogressbar  Ne montri progresbreton kiam elŝutante dosierojn"
 
 #: scripts/makepkg.sh.in:922
 msgid "If %s is not specified, %s will look for '%s'"
@@ -411,9 +406,7 @@ msgstr "Signalo de %s kaptita. Elirante..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"Funkciigi %s kiel ĉefuzanto ne estas permesata ĉar gi povas krei daŭran,"
-"\\nkatastrofan difekton en via sistemo."
+msgstr "Funkciigi %s kiel ĉefuzanto ne estas permesata ĉar gi povas krei daŭran,\\nkatastrofan difekton en via sistemo."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
@@ -541,9 +534,7 @@ msgstr "Vi bezonas havi la ĝustajn permesojn por ĝisdatigi la datumbazo."
 
 #: scripts/pacman-db-upgrade.sh.in:140
 msgid "Pacman lock file was found. Cannot run while pacman is running."
-msgstr ""
-"Ŝlosdosiero de pacman estis trovita. Ne eblas daŭrigi kvankam pacman "
-"funkcias."
+msgstr "Ŝlosdosiero de pacman estis trovita. Ne eblas daŭrigi kvankam pacman funkcias."
 
 #: scripts/pacman-db-upgrade.sh.in:152
 msgid "Pre-3.5 database format detected - upgrading..."
@@ -559,9 +550,7 @@ msgstr "Datumbazo-formato pra-4.2 detektita - ĝisdatigante..."
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"la simbola ligilo '%s' indikas eksteren al pacman kun ĉefuzantaj rajtoj, "
-"mana riparo estas bezonata"
+msgstr "la simbola ligilo '%s' indikas eksteren al pacman kun ĉefuzantaj rajtoj, mana riparo estas bezonata"
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -577,9 +566,7 @@ msgstr "Agoj:"
 
 #: scripts/pacman-key.sh.in:63
 msgid "  -a, --add                 Add the specified keys (empty for stdin)"
-msgstr ""
-"  -a, --add                 Aldoni la precizigitajn ŝlosilojn (malplena por "
-"stdin)"
+msgstr "  -a, --add                 Aldoni la precizigitajn ŝlosilojn (malplena por stdin)"
 
 #: scripts/pacman-key.sh.in:64
 msgid "  -d, --delete              Remove the specified keyids"
@@ -587,15 +574,12 @@ msgstr "  -d, --delete              Forviŝi precizigitajn keyid-dosierojn"
 
 #: scripts/pacman-key.sh.in:65
 msgid "  -e, --export              Export the specified or all keyids"
-msgstr ""
-"  -e, --export              Eksporti precizigitajn aŭ ĉiujn keyid-dosierojn"
+msgstr "  -e, --export              Eksporti precizigitajn aŭ ĉiujn keyid-dosierojn"
 
 #: scripts/pacman-key.sh.in:66
 msgid ""
 "  -f, --finger              List fingerprint for specified or all keyids"
-msgstr ""
-"  -f, --finger              Listigi fingrospuron por precizigitaj aŭ ĉiuj "
-"keyid-dosieroj"
+msgstr "  -f, --finger              Listigi fingrospuron por precizigitaj aŭ ĉiuj keyid-dosieroj"
 
 #: scripts/pacman-key.sh.in:67
 msgid "  -l, --list-keys           List the specified or all keys"
@@ -612,16 +596,12 @@ msgstr "  -u, --updatedb            Ĝisdatigi la trustdb de pacman"
 #: scripts/pacman-key.sh.in:70
 msgid ""
 "  -v, --verify              Verify the file(s) specified by the signature(s)"
-msgstr ""
-"  -v, --verify              Konfirmi la precizigita(j)n dosiero(j)n per "
-"subskribo"
+msgstr "  -v, --verify              Konfirmi la precizigita(j)n dosiero(j)n per subskribo"
 
 #: scripts/pacman-key.sh.in:71
 msgid ""
 "  --edit-key                Present a menu for key management task on keyids"
-msgstr ""
-"  --edit-key                Montri menuon por tasko de ŝlosila administrado "
-"pri keyid"
+msgstr "  --edit-key                Montri menuon por tasko de ŝlosila administrado pri keyid"
 
 #: scripts/pacman-key.sh.in:72
 msgid "  --import                  Imports pubring.gpg from dir(s)"
@@ -631,14 +611,11 @@ msgstr "  --import                  Importi pubring.gpg de dosierujo(j)"
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"  --import-trustdb          Importi posedantajn fidajn valorojn de trustdb."
-"gpg en dosierujo(j)"
+msgstr "  --import-trustdb          Importi posedantajn fidajn valorojn de trustdb.gpg en dosierujo(j)"
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
-msgstr ""
-"  --init                    Certigi ke la ŝlosilingo estu ĝuste ekigita"
+msgstr "  --init                    Certigi ke la ŝlosilingo estu ĝuste ekigita"
 
 #: scripts/pacman-key.sh.in:75
 msgid "  --list-sigs               List keys and their signatures"
@@ -652,16 +629,12 @@ msgstr "  --lsign-key               Loke subskribi la difinitan keyid"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate                Reŝarĝi la defaŭltajn ŝlosilojn de ĉi tiuj "
-"ŝlosilingoj\\n                            en '%s'"
+msgstr "  --populate                Reŝarĝi la defaŭltajn ŝlosilojn de ĉi tiuj ŝlosilingoj\\n                            en '%s'"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"  --refresh-keys            Ĝisdatigi specifajn aŭ ĉiujn ŝlosilojn de "
-"ŝlosilservilo"
+msgstr "  --refresh-keys            Ĝisdatigi specifajn aŭ ĉiujn ŝlosilojn de ŝlosilservilo"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -669,19 +642,15 @@ msgstr ""
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <file>           Uzi alian agordan dosieron "
-"(anstataŭ\\n                            '%s')"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <file>           Uzi alian agordan dosieron (anstataŭ\\n                            '%s')"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <dir>            Elekti alian dosierujon por GnuPG "
-"(anstataŭ\\n                            '%s')"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <dir>            Elekti alian dosierujon por GnuPG (anstataŭ\\n                            '%s')"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
@@ -691,8 +660,7 @@ msgstr ""
 
 #: scripts/pacman-key.sh.in:89
 msgid "  --keyserver <server-url>  Specify a keyserver to use if necessary"
-msgstr ""
-"  --keyserver <server-url>  Specifi ŝlosilservilon por uzi se postulata"
+msgstr "  --keyserver <server-url>  Specifi ŝlosilservilon por uzi se postulata"
 
 #: scripts/pacman-key.sh.in:91
 msgid "  -h, --help                Show this help message and exit"
@@ -897,11 +865,9 @@ msgstr ""
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add ĝisdatigos pakaĵan datumbazon legante pakaĵdosieron.\\nMultoblaj "
-"pakaĵoj povas esti aldonitaj komandlinie.\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add ĝisdatigos pakaĵan datumbazon legante pakaĵdosieron.\\nMultoblaj pakaĵoj povas esti aldonitaj komandlinie.\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -909,22 +875,20 @@ msgstr "Opcioj:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
-msgstr ""
-"  -n, --new         nur aldoni pakaĵojn ke ne jam estas en la datumbazo\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
+msgstr "  -n, --new         nur aldoni pakaĵojn ke ne jam estas en la datumbazo\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"  -R, --remove      forviŝi malnovan pakaĵan dosieron el la disko post "
-"ĝisdatigado de datumbazo\\n"
+msgstr "  -R, --remove      forviŝi malnovan pakaĵan dosieron el la disko post ĝisdatigado de datumbazo\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
 msgstr ""
 
 #: scripts/repo-add.sh.in:72
@@ -936,10 +900,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove ĝisdatigos pakaĵan datumbazon forviŝante la pakaĵan "
-"nomon\\ndifinita en la komandlinio de la cela deponeja datumbazo. "
-"Multoblaj\\npakaĵojn por forviŝi povas esti difinita en la komandlinio.\\n"
+msgstr "repo-remove ĝisdatigos pakaĵan datumbazon forviŝante la pakaĵan nomon\\ndifinita en la komandlinio de la cela deponeja datumbazo. Multoblaj\\npakaĵojn por forviŝi povas esti difinita en la komandlinio.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -955,31 +916,25 @@ msgstr "  -q, --quiet       etigi eligon\\n"
 
 #: scripts/repo-add.sh.in:86
 msgid "  -s, --sign        sign database with GnuPG after update\\n"
-msgstr ""
-"  -s, --sign        subskribi la datumbazon kun GnuPG post la ĝisdatigo\\n"
+msgstr "  -s, --sign        subskribi la datumbazon kun GnuPG post la ĝisdatigo\\n"
 
 #: scripts/repo-add.sh.in:87
 msgid "  -k, --key <key>   use the specified key to sign the database\\n"
-msgstr ""
-"  -k, --key <key>   uzi la difinitan ŝlosilon por subskribi la datumbazon\\n"
+msgstr "  -k, --key <key>   uzi la difinitan ŝlosilon por subskribi la datumbazon\\n"
 
 #: scripts/repo-add.sh.in:88
 msgid "  -v, --verify      verify database's signature before update\\n"
-msgstr ""
-"  -v, --verify      konfirmi la subskribon de la datumbazo antaŭ la "
-"ĝisdatigo\\n"
+msgstr "  -v, --verify      konfirmi la subskribon de la datumbazo antaŭ la ĝisdatigo\\n"
 
 #: scripts/repo-add.sh.in:89
 msgid ""
 "\\nSee %s(8) for more details and descriptions of the available options.\\n"
-msgstr ""
-"\\n\\nVidu %s(8) por pliaj detaloj kaj priskriboj sur la fareblaj opcioj.\\n"
+msgstr "\\n\\nVidu %s(8) por pliaj detaloj kaj priskriboj sur la fareblaj opcioj.\\n"
 
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Ekzemple:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
+msgstr "Ekzemple:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1191,8 +1146,7 @@ msgstr "Unu aŭ pli dosieroj ne sukcesis dum la valida kontrolo!"
 
 #: scripts/libmakepkg/integrity/verify_checksum.sh.in:125
 msgid "Integrity checks (%s) differ in size from the source array."
-msgstr ""
-"Kontroloj de integreco (%s) malsamas pri grandeco rilate al la fonta tabelo."
+msgstr "Kontroloj de integreco (%s) malsamas pri grandeco rilate al la fonta tabelo."
 
 #: scripts/libmakepkg/integrity/verify_signature.sh.in:39
 msgid "Verifying source file signatures with %s..."
@@ -1413,12 +1367,14 @@ msgstr "Malsukcesis dum tirado de %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Neagnoskita referenco: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "Kreante funkciantan kopion de deponejo %s %s..."
@@ -1461,12 +1417,14 @@ msgstr "Malsukcesis eltiri %s"
 msgid "NOT FOUND"
 msgstr "NE TROVITA"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "Klonante deponejon %s %s..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "Malsukceso dum elŝuto de deponejo de %s %s"
@@ -1475,12 +1433,14 @@ msgstr "Malsukceso dum elŝuto de deponejo de %s %s"
 msgid "%s is not a clone of %s"
 msgstr "%s ne estas klono de %s"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "Ĝisdatigante deponejon %s %s..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "Malsukceso dum ĝisdatigo de deponejo %s %s"

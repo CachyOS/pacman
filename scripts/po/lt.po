@@ -23,16 +23,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
-"Last-Translator: Dan McGee <dpmcgee@gmail.com>, 2011\n"
-"Language-Team: Lithuanian (http://app.transifex.com/toofishes/archlinux-"
-"pacman/language/lt/)\n"
-"Language: lt\n"
+"Last-Translator: Moo, 2023-2024\n"
+"Language-Team: Lithuanian (http://app.transifex.com/toofishes/archlinux-pacman/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
-"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
-"1 : n % 1 != 0 ? 2: 3);\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: scripts/makepkg.sh.in:139
 msgid "Cleaning up..."
@@ -210,7 +207,8 @@ msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "Paketų grupė jau sukurta. (naudok %s perrašyt)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
 msgstr "Dalis paketo jau sukurta. (naudok %s perrašyt)"
 
 #: scripts/makepkg.sh.in:874
@@ -242,14 +240,13 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     Praleisti visas priklausomybių patikras"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
-msgstr ""
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgstr "  -D, --dir <dir>  Keisti į katalogą <dir> prieš apdorojant PKGBUILD"
 
 #: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
-msgstr ""
-"  -e, --noextract  Neišarchyvuoti pradinio kodo failų (naudoti esantį %s "
-"aplanką)"
+msgstr "  -e, --noextract  Neišarchyvuoti pradinio kodo failų (naudoti esantį %s aplanką)"
 
 #: scripts/makepkg.sh.in:885
 msgid "  -f, --force      Overwrite existing package"
@@ -257,8 +254,7 @@ msgstr "  -f, --force      Perrašyti egzistuojantį paketą"
 
 #: scripts/makepkg.sh.in:886
 msgid "  -g, --geninteg   Generate integrity checks for source files"
-msgstr ""
-"  -g, --geninteg   Generuoti vientisumo patikras pradinių kodų failams "
+msgstr "  -g, --geninteg   Generuoti vientisumo patikras pradinių kodų failams "
 
 #: scripts/makepkg.sh.in:887
 msgid "  -h, --help       Show this help message and exit"
@@ -282,17 +278,16 @@ msgstr "  -o, --nobuild    Failus tik parsiųsti ir išarchyvuoti"
 
 #: scripts/makepkg.sh.in:892
 msgid "  -p <file>        Use an alternate build script (instead of '%s')"
-msgstr ""
-"  -p <failas>        Naudoti alternatyvų kūrimo scenarijų (vietoj „%s“)"
+msgstr "  -p <failas>        Naudoti alternatyvų kūrimo scenarijų (vietoj „%s“)"
 
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps     Po sėkmingo sukūrimo pašalinti įdiegtas priklausomybes"
+msgstr "  -r, --rmdeps     Po sėkmingo sukūrimo pašalinti įdiegtas priklausomybes"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
 msgstr "  -R, --repackage  Perpakuoti paketo turinį neperkuriant"
 
 #: scripts/makepkg.sh.in:895
@@ -302,9 +297,7 @@ msgstr "  -s, --syncdeps   Įdiegti trūkstamas priklausomybes su %s"
 #: scripts/makepkg.sh.in:896
 msgid ""
 "  -S, --source     Generate a source-only tarball without downloaded sources"
-msgstr ""
-"  -S, --source     Sukuria tik tai pradinio kodo archyvą be parsiųstų "
-"išeities kodų"
+msgstr "  -S, --source     Sukuria tik tai pradinio kodo archyvą be parsiųstų išeities kodų"
 
 #: scripts/makepkg.sh.in:897
 msgid "  -V, --version    Show version information and exit"
@@ -314,9 +307,7 @@ msgstr "  -V, --version Parodyti programos versiją ir išeiti"
 msgid ""
 "  --allsource      Generate a source-only tarball including downloaded "
 "sources"
-msgstr ""
-"  --allsource      Sukurti tik pradinio kodo „tarball“ pridedant parsiųstus "
-"pradinius kodus "
+msgstr "  --allsource      Sukurti tik pradinio kodo „tarball“ pridedant parsiųstus pradinius kodus "
 
 #: scripts/makepkg.sh.in:899
 msgid "  --check          Run the %s function in the %s"
@@ -324,8 +315,7 @@ msgstr "  --check          Paleisti funkciją %s %s"
 
 #: scripts/makepkg.sh.in:900
 msgid "  --config <file>  Use an alternate config file (instead of '%s')"
-msgstr ""
-"  --config <failas>  Naudoti alternatyvų konfigūracijos failą (vietoj „%s“)"
+msgstr "  --config <failas>  Naudoti alternatyvų konfigūracijos failą (vietoj „%s“)"
 
 #: scripts/makepkg.sh.in:901
 msgid "  --holdver        Do not update VCS sources"
@@ -333,10 +323,9 @@ msgstr "  --holdver        Neatnaujinti VCS pradinių kodų"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
-msgstr ""
-"  --key <raktas>      Nurodyti raktą %s kuris bus naudojamas vietoj "
-"numatytojo"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
+msgstr "  --key <raktas>      Nurodyti raktą %s kuris bus naudojamas vietoj numatytojo"
 
 #: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
@@ -383,9 +372,7 @@ msgstr "  --skippgpcheck   Netikrinti pradinio kodo failų PGP parašų"
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"  --verifysource   Parsiųsti pradinio kodo failus (jei reikia) ir atlikti "
-"vientisumo patikras"
+msgstr "  --verifysource   Parsiųsti pradinio kodo failus (jei reikia) ir atlikti vientisumo patikras"
 
 #: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
@@ -418,10 +405,7 @@ msgstr "Jei %s nenurodytas, %s ieškos „%s“"
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
 "WARRANTY, to the extent permitted by law.\\n"
-msgstr ""
-"Tai yra laisvoji progaminė įranga; norėdami sužinoti kopijavimo sąlygas, "
-"žiūrėkite pradinį kodą.\\nNėra JOKIOS GARANTIJOS iki įstatymu leistinos "
-"ribos.\\n"
+msgstr "Tai yra laisvoji progaminė įranga; norėdami sužinoti kopijavimo sąlygas, žiūrėkite pradinį kodą.\\nNėra JOKIOS GARANTIJOS iki įstatymu leistinos ribos.\\n"
 
 #: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
@@ -431,15 +415,11 @@ msgstr "%s signalas pagautas. Išeinama..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"%s vykdymas \"root\" teisėmis nėra leidžiamas, kadangi jis gali sukelti "
-"ilgalaikę,\\npražūtingą žalą jūsų sistemai."
+msgstr "%s vykdymas \"root\" teisėmis nėra leidžiamas, kadangi jis gali sukelti ilgalaikę,\\npražūtingą žalą jūsų sistemai."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
-msgstr ""
-"Nenaudokite %s pasirinkties. Ši pasirinktis skirta vidiniam naudojimui tik "
-"su %s."
+msgstr "Nenaudokite %s pasirinkties. Ši pasirinktis skirta vidiniam naudojimui tik su %s."
 
 #: scripts/makepkg.sh.in:1131
 msgid "%s does not exist."
@@ -535,8 +515,7 @@ msgstr "  -h, --help           parodyti šį pagalbos pranešimą ir išeiti"
 
 #: scripts/pacman-db-upgrade.sh.in:46
 msgid "  -r, --root <path>    set an alternate installation root"
-msgstr ""
-"  -r, --root <kelias>    nustatyti alternatyvų įdiegimo šakninį katalogą"
+msgstr "  -r, --root <kelias>    nustatyti alternatyvų įdiegimo šakninį katalogą"
 
 #: scripts/pacman-db-upgrade.sh.in:47
 msgid "  -V, --version        show version information and exit"
@@ -580,9 +559,7 @@ msgstr "Aptiktas pre-4.2 duomenų bazės formatas - atnaujinama..."
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"simbolinė nuoroda \"%s\" nurodo už pacman root ribų, reikalingas taisymas "
-"rankiniu būdu"
+msgstr "simbolinė nuoroda \"%s\" nurodo už pacman root ribų, reikalingas taisymas rankiniu būdu"
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -611,9 +588,7 @@ msgstr "  -e, --export              Eksportuoti nurodytus arba visus keyids"
 #: scripts/pacman-key.sh.in:66
 msgid ""
 "  -f, --finger              List fingerprint for specified or all keyids"
-msgstr ""
-"  -f, --finger              Parodyti fingerprint sąrašą nurodytiems arba "
-"visiems keyid"
+msgstr "  -f, --finger              Parodyti fingerprint sąrašą nurodytiems arba visiems keyid"
 
 #: scripts/pacman-key.sh.in:67
 msgid "  -l, --list-keys           List the specified or all keys"
@@ -630,8 +605,7 @@ msgstr "  -u, --updatedb            Atnaujinti patikimas pacman duomenų bazes"
 #: scripts/pacman-key.sh.in:70
 msgid ""
 "  -v, --verify              Verify the file(s) specified by the signature(s)"
-msgstr ""
-"  -v, --verify              Patikrinti failą (-us) pagal nurodytus parašus"
+msgstr "  -v, --verify              Patikrinti failą (-us) pagal nurodytus parašus"
 
 #: scripts/pacman-key.sh.in:71
 msgid ""
@@ -646,14 +620,11 @@ msgstr "  --import                  Importuoja pubring.gpg iš aplanko(ų)"
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"  --import-trustdb          Importuoja savininko pasitikėjimo reikšmes iš "
-"trustdb.gpg aplanke(-uose)"
+msgstr "  --import-trustdb          Importuoja savininko pasitikėjimo reikšmes iš trustdb.gpg aplanke(-uose)"
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
-msgstr ""
-"  --init                    Užtikrinti jog raktų saugykla tinkamai inicijuota"
+msgstr "  --init                    Užtikrinti jog raktų saugykla tinkamai inicijuota"
 
 #: scripts/pacman-key.sh.in:75
 msgid "  --list-sigs               List keys and their signatures"
@@ -667,16 +638,12 @@ msgstr "  --lsign-key               Pasirašyti lokaliai nurodytą keyid"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate                Perkrauti numatytus raktus iš (duotosios) "
-"raktinės\\n                             „%s“"
+msgstr "  --populate                Perkrauti numatytus raktus iš (duotosios) raktinės\\n                             „%s“"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"  --refresh-keys            Atnaujinti nurodytus arba visus raktus iš raktų "
-"serverio"
+msgstr "  --refresh-keys            Atnaujinti nurodytus arba visus raktus iš raktų serverio"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -684,27 +651,21 @@ msgstr "  --verbose                 Rodyti papildomą informaciją"
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <failas>           Naudoti alternatyvų konfigūracijos failą "
-"(vietoj\\n                    „%s“)"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <failas>           Naudoti alternatyvų konfigūracijos failą (vietoj\\n                    „%s“)"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <dir>            Nurodyti alternatyvų GnuPG aplanką "
-"(vietoj\\n                             „%s“)"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <dir>            Nurodyti alternatyvų GnuPG aplanką (vietoj\\n                             „%s“)"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
 "  --populate-from <dir>     Set an alternate directory for --populate "
 "(instead\\n                            of '%s')"
-msgstr ""
-"  --populate-from <dir>     Nustatyti alternatyvųjį katalogą, skirtą --"
-"populate (vietoj\\n                            „%s“)"
+msgstr "  --populate-from <dir>     Nustatyti alternatyvųjį katalogą, skirtą --populate (vietoj\\n                            „%s“)"
 
 #: scripts/pacman-key.sh.in:89
 msgid "  --keyserver <server-url>  Specify a keyserver to use if necessary"
@@ -917,11 +878,9 @@ msgstr "Naudojimas: repo-add [parinktys] <path-to-db> <package> ...\\n"
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add atnaujins paketų duomenų bazę perskaitęs paketo failą."
-"\\nKomandinėje eilutėje gali būti nurodyti keli paketai pridėjimui.\\n\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add atnaujins paketų duomenų bazę perskaitęs paketo failą.\\nKomandinėje eilutėje gali būti nurodyti keli paketai pridėjimui.\\n\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -929,25 +888,21 @@ msgstr "Pasirinktys:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
-msgstr ""
-"  -n, --new         pridėti tik tuos paketus kurių nėra duomenų bazėje\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
+msgstr "  -n, --new         pridėti tik tuos paketus kurių nėra duomenų bazėje\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"  -R, --remove      atnaujinus duomenų bazę, šalinti seną paketo failą iš "
-"disko\\n"
+msgstr "  -R, --remove      atnaujinus duomenų bazę, šalinti seną paketo failą iš disko\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
-msgstr ""
-"  -p, --prevent-downgrade  nepridėti paketo į duomenų bazę, jeigu jau yra "
-"naujesnė versija\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
+msgstr "  -p, --prevent-downgrade  nepridėti paketo į duomenų bazę, jeigu jau yra naujesnė versija\\n"
 
 #: scripts/repo-add.sh.in:72
 msgid "Usage: repo-remove [options] <path-to-db> <packagename> ...\\n"
@@ -958,10 +913,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove atnaujins paketų duomenų bazę pašalindamas\\npaketą nurodytą "
-"komandinėj eilutėj iš nurodytos repo duomenų bazės. Gali\\nbūti nurodyti "
-"keli paketai pašalinimui\\n\\n"
+msgstr "repo-remove atnaujins paketų duomenų bazę pašalindamas\\npaketą nurodytą komandinėj eilutėj iš nurodytos repo duomenų bazės. Gali\\nbūti nurodyti keli paketai pašalinimui\\n\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -981,27 +933,21 @@ msgstr "  -s, --sign        po atnaujinimo pasirašyti duomenų bazę su GnuPG\\
 
 #: scripts/repo-add.sh.in:87
 msgid "  -k, --key <key>   use the specified key to sign the database\\n"
-msgstr ""
-"  -k, --key <raktas>   naudoti nurodytą raktą duomenų bazės pasirašymui\\n"
+msgstr "  -k, --key <raktas>   naudoti nurodytą raktą duomenų bazės pasirašymui\\n"
 
 #: scripts/repo-add.sh.in:88
 msgid "  -v, --verify      verify database's signature before update\\n"
-msgstr ""
-"  -v, --verify      patikrinti duomenų bazės parašą prieš atnaujinimą\\n"
+msgstr "  -v, --verify      patikrinti duomenų bazės parašą prieš atnaujinimą\\n"
 
 #: scripts/repo-add.sh.in:89
 msgid ""
 "\\nSee %s(8) for more details and descriptions of the available options.\\n"
-msgstr ""
-"\\nPeržiūrėkite %s(8) detalesniai informacijai bei galimų pasirinkčių "
-"aprašymus.\\n"
+msgstr "\\nPeržiūrėkite %s(8) detalesniai informacijai bei galimų pasirinkčių aprašymus.\\n"
 
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Pavyzdys:  repo-add /kelias/iki/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar."
-"gz\\n"
+msgstr "Pavyzdys:  repo-add /kelias/iki/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1300,9 +1246,7 @@ msgstr "%s neturėtų būti masyvas"
 
 #: scripts/libmakepkg/lint_config/variable.sh.in:66
 msgid "PACKAGER should have the format 'Example Name <email@address.invalid>'"
-msgstr ""
-"PACKAGER turėtų būti tokio formato 'Pavyzdinis Vardas <el.paštas@adresas."
-"sritis>'"
+msgstr "PACKAGER turėtų būti tokio formato 'Pavyzdinis Vardas <el.paštas@adresas.sritis>'"
 
 #: scripts/libmakepkg/lint_package.sh.in:41
 msgid "Checking for packaging issues..."
@@ -1436,12 +1380,14 @@ msgstr "Klaida gaunant %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Neatpažinta nuoroda: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "Kuriama %s %s saugyklos darbinė kopija..."
@@ -1484,12 +1430,14 @@ msgstr "%s išarchyvuoti nepavyko"
 msgid "NOT FOUND"
 msgstr "NERASTA"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "Klonuojama %s %s saugykla..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "Klaida parsiunčiant %s %s saugyklą"
@@ -1498,12 +1446,14 @@ msgstr "Klaida parsiunčiant %s %s saugyklą"
 msgid "%s is not a clone of %s"
 msgstr "%s nėra %s klonas"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "Atnaujinama %s %s saugykla..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "Atnaujinti  %s %s saugyklos nepavyko"
@@ -1542,8 +1492,7 @@ msgstr "Šalinami nekintami bibliotekos failai..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:145
 msgid "Stripping unneeded symbols from binaries and libraries..."
-msgstr ""
-"Šalinami nereikalingi simboliai iš sukompiliuotos programos bei bibliotekų..."
+msgstr "Šalinami nereikalingi simboliai iš sukompiliuotos programos bei bibliotekų..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:190
 msgid "Copying source files needed for debug symbols..."

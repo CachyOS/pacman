@@ -17,12 +17,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: scootergrisen, 2017\n"
-"Language-Team: Danish (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/da/)\n"
-"Language: da\n"
+"Language-Team: Danish (http://app.transifex.com/toofishes/archlinux-pacman/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -63,8 +62,7 @@ msgstr "kunne ikke omdøbe %s til %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"fil ikke fundet i fillisten for pakke %s. springer over udpakkelse af %s\n"
+msgstr "fil ikke fundet i fillisten for pakke %s. springer over udpakkelse af %s\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -76,18 +74,14 @@ msgstr "kan ikke pakke %s%s ud: sti for lang"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"mapperettigheder er forskellige for %s\n"
-"filsystem: %o  pakke: %o\n"
+msgstr "mapperettigheder er forskellige for %s\nfilsystem: %o  pakke: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"mapperettigheder er forskellige for %s\n"
-"filsystem: %u:%u pakke: %u:%u\n"
+msgstr "mapperettigheder er forskellige for %s\nfilsystem: %u:%u pakke: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -393,9 +387,7 @@ msgstr "fejlede i indhentning af fil '%s' fra %s: %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"kunne ikke indhente fil '%s' fra %s: forventet downloadstørrelse "
-"overskredet\n"
+msgstr "kunne ikke indhente fil '%s' fra %s: forventet downloadstørrelse overskredet\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -832,8 +824,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111

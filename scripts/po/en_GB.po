@@ -13,12 +13,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: Dan McGee <dpmcgee@gmail.com>, 2011\n"
-"Language-Team: English (United Kingdom) (http://app.transifex.com/toofishes/"
-"archlinux-pacman/language/en_GB/)\n"
-"Language: en_GB\n"
+"Language-Team: English (United Kingdom) (http://app.transifex.com/toofishes/archlinux-pacman/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: scripts/makepkg.sh.in:139
@@ -190,17 +189,16 @@ msgstr "A package has already been built. (use %s to overwrite)"
 #: scripts/makepkg.sh.in:811
 msgid ""
 "The package group has already been built, installing existing packages..."
-msgstr ""
-"The package group has already been built, installing existing packages..."
+msgstr "The package group has already been built, installing existing packages..."
 
 #: scripts/makepkg.sh.in:815
 msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "The package group has already been built. (use %s to overwrite)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
-msgstr ""
+msgid ""
 "Part of the package group has already been built. (use %s to overwrite)"
+msgstr "Part of the package group has already been built. (use %s to overwrite)"
 
 #: scripts/makepkg.sh.in:874
 msgid "Make packages compatible for use with pacman"
@@ -231,7 +229,8 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     Skip all dependency checks"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
 msgstr ""
 
 #: scripts/makepkg.sh.in:884
@@ -273,13 +272,12 @@ msgstr "  -p <file>        Use an alternate build script (instead of '%s')"
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps     Remove installed dependencies after a successful build"
+msgstr "  -r, --rmdeps     Remove installed dependencies after a successful build"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
-msgstr ""
+msgid ""
 "  -R, --repackage  Repackage contents of the package without rebuilding"
+msgstr "  -R, --repackage  Repackage contents of the package without rebuilding"
 
 #: scripts/makepkg.sh.in:895
 msgid "  -s, --syncdeps   Install missing dependencies with %s"
@@ -288,8 +286,7 @@ msgstr "  -s, --syncdeps   Install missing dependencies with %s"
 #: scripts/makepkg.sh.in:896
 msgid ""
 "  -S, --source     Generate a source-only tarball without downloaded sources"
-msgstr ""
-"  -S, --source     Generate a source-only tarball without downloaded sources"
+msgstr "  -S, --source     Generate a source-only tarball without downloaded sources"
 
 #: scripts/makepkg.sh.in:897
 msgid "  -V, --version    Show version information and exit"
@@ -299,9 +296,7 @@ msgstr "  -V, --version Show version information and exit"
 msgid ""
 "  --allsource      Generate a source-only tarball including downloaded "
 "sources"
-msgstr ""
-"  --allsource      Generate a source-only tarball including downloaded "
-"sources"
+msgstr "  --allsource      Generate a source-only tarball including downloaded sources"
 
 #: scripts/makepkg.sh.in:899
 msgid "  --check          Run the %s function in the %s"
@@ -317,9 +312,9 @@ msgstr "  --holdver        Do not update VCS sources"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
-msgstr ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
+msgstr "  --key <key>      Specify a key to use for %s signing instead of the default"
 
 #: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
@@ -356,8 +351,7 @@ msgstr "  --skipchecksums  Do not verify checksums of the source files"
 #: scripts/makepkg.sh.in:911
 msgid ""
 "  --skipinteg      Do not perform any verification checks on source files"
-msgstr ""
-"  --skipinteg      Do not perform any verification checks on source files"
+msgstr "  --skipinteg      Do not perform any verification checks on source files"
 
 #: scripts/makepkg.sh.in:912
 msgid "  --skippgpcheck   Do not verify source files with PGP signatures"
@@ -367,9 +361,7 @@ msgstr "  --skippgpcheck   Do not verify source files with PGP signatures"
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"  --verifysource Download source files (if needed) and perform integrity "
-"checks"
+msgstr "  --verifysource Download source files (if needed) and perform integrity checks"
 
 #: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
@@ -382,14 +374,12 @@ msgstr "  --asdeps         Install packages as non-explicitly installed"
 #: scripts/makepkg.sh.in:918
 msgid ""
 "  --needed         Do not reinstall the targets that are already up to date"
-msgstr ""
-"  --needed         Do not reinstall the targets that are already up to date"
+msgstr "  --needed         Do not reinstall the targets that are already up to date"
 
 #: scripts/makepkg.sh.in:919
 msgid ""
 "  --noconfirm      Do not ask for confirmation when resolving dependencies"
-msgstr ""
-"  --noconfirm      Do not ask for confirmation when resolving dependencies"
+msgstr "  --noconfirm      Do not ask for confirmation when resolving dependencies"
 
 #: scripts/makepkg.sh.in:920
 msgid "  --noprogressbar  Do not show a progress bar when downloading files"
@@ -404,9 +394,7 @@ msgstr "If %s is not specified, %s will look for '%s'"
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
 "WARRANTY, to the extent permitted by law.\\n"
-msgstr ""
-"This is free software; see the source for copying conditions.\\nThere is NO "
-"WARRANTY, to the extent permitted by law.\\n"
+msgstr "This is free software; see the source for copying conditions.\\nThere is NO WARRANTY, to the extent permitted by law.\\n"
 
 #: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
@@ -416,9 +404,7 @@ msgstr "%s signal caught. Exiting..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
-"damage to your system."
+msgstr "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic damage to your system."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
@@ -613,8 +599,7 @@ msgstr "  -v, --verify        Verify the file(s) specified by the signature(s)"
 #: scripts/pacman-key.sh.in:71
 msgid ""
 "  --edit-key                Present a menu for key management task on keyids"
-msgstr ""
-"  --edit-key                Present a menu for key management task on keyids"
+msgstr "  --edit-key                Present a menu for key management task on keyids"
 
 #: scripts/pacman-key.sh.in:72
 msgid "  --import                  Imports pubring.gpg from dir(s)"
@@ -624,9 +609,7 @@ msgstr "  --import                  Imports pubring.gpg from dir(s)"
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
-"dir(s)"
+msgstr "  --import-trustdb          Imports ownertrust values from trustdb.gpg in dir(s)"
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
@@ -644,15 +627,12 @@ msgstr "  --lsign-key               Locally sign the specified keyid"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate                Reload the default keys from the (given) "
-"keyrings\\n in '%s'"
+msgstr "  --populate                Reload the default keys from the (given) keyrings\\n in '%s'"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"  --refresh-keys            Update specified or all keys from a keyserver"
+msgstr "  --refresh-keys            Update specified or all keys from a keyserver"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -660,19 +640,15 @@ msgstr "  --verbose                 Show extra information"
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <file>           Use an alternate config file (instead of\\n                            '%s')"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n                            of '%s')"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
@@ -887,11 +863,9 @@ msgstr "Usage: repo-add [options] <path-to-db> <package> ...\\n"
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add will update a package database by reading a package file.\\nMultiple packages to add can be specified on the command line.\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -899,25 +873,21 @@ msgstr "Options:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
-msgstr ""
-"  -n, --new         only add packages that are not already in the database\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
+msgstr "  -n, --new         only add packages that are not already in the database\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"  -R, --remove      remove old package file from disk after updating "
-"database\\n"
+msgstr "  -R, --remove      remove old package file from disk after updating database\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
-msgstr ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
+msgstr "  -p, --prevent-downgrade  do not add package to database if a newer version is already present\\n"
 
 #: scripts/repo-add.sh.in:72
 msgid "Usage: repo-remove [options] <path-to-db> <packagename> ...\\n"
@@ -928,10 +898,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove will update a package database by removing the package "
-"name\\nspecified on the command line from the given repo database. "
-"Multiple\\npackages to remove can be specified on the command line.\\n"
+msgstr "repo-remove will update a package database by removing the package name\\nspecified on the command line from the given repo database. Multiple\\npackages to remove can be specified on the command line.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -960,14 +927,12 @@ msgstr "  -v, --verify      verify database's signature before update\\n"
 #: scripts/repo-add.sh.in:89
 msgid ""
 "\\nSee %s(8) for more details and descriptions of the available options.\\n"
-msgstr ""
-"\\nSee %s(8) for more details and descriptions of the available options.\\n"
+msgstr "\\nSee %s(8) for more details and descriptions of the available options.\\n"
 
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
+msgstr "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1356,8 +1321,7 @@ msgstr "%s must be of the form 'integer[.integer]', not %s."
 #: scripts/libmakepkg/lint_pkgbuild/pkgver.sh.in:41
 msgid ""
 "%s is not allowed to contain colons, forward slashes, hyphens or whitespace."
-msgstr ""
-"%s is not allowed to contain colons, forward slashes, hyphens or whitespace."
+msgstr "%s is not allowed to contain colons, forward slashes, hyphens or whitespace."
 
 #: scripts/libmakepkg/lint_pkgbuild/provides.sh.in:46
 msgid "%s array cannot contain comparison (< or >) operators."
@@ -1401,12 +1365,14 @@ msgstr "Failure while pulling %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Unrecognised reference: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "Creating working copy of %s %s repo..."
@@ -1449,12 +1415,14 @@ msgstr "Failed to extract %s"
 msgid "NOT FOUND"
 msgstr "NOT FOUND"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "Cloning %s %s repo..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "Failure while downloading %s %s repo"
@@ -1463,12 +1431,14 @@ msgstr "Failure while downloading %s %s repo"
 msgid "%s is not a clone of %s"
 msgstr "%s is not a clone of %s"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "Updating %s %s repo..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "Failure while updating %s %s repo"

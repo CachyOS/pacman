@@ -19,12 +19,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Ramon Buldó <rbuldo@gmail.com>, 2014\n"
-"Language-Team: Catalan (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/ca/)\n"
-"Language: ca\n"
+"Language-Team: Catalan (http://app.transifex.com/toofishes/archlinux-pacman/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -65,9 +64,7 @@ msgstr "no s'ha pogut canviar el nom %s a %s (%s).\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"fitxer no trobat a la llista de fitxers per al paquet %s. S'omet l'extracció "
-"de %s.\n"
+msgstr "fitxer no trobat a la llista de fitxers per al paquet %s. S'omet l'extracció de %s.\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -79,18 +76,14 @@ msgstr "no es pot extreure %s%s: camí massa llarg."
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"els permisos del directori difereixen a %s\n"
-"sistema de fitxers: %o paquet: %o\n"
+msgstr "els permisos del directori difereixen a %s\nsistema de fitxers: %o paquet: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"els permisos del directori difereixen a %s\n"
-"sistema de fitxers: %u:%u paquet: %u:%u\n"
+msgstr "els permisos del directori difereixen a %s\nsistema de fitxers: %u:%u paquet: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -184,15 +177,12 @@ msgstr "no s'ha pogut obrir el fitxer %s: %s\n"
 #: lib/libalpm/be_local.c:759 lib/libalpm/be_sync.c:595
 #, c-format
 msgid "%s database is inconsistent: name mismatch on package %s\n"
-msgstr ""
-"la base de dades %s és inconsistent: no coincidència de nom al paquet %s.\n"
+msgstr "la base de dades %s és inconsistent: no coincidència de nom al paquet %s.\n"
 
 #: lib/libalpm/be_local.c:765 lib/libalpm/be_sync.c:601
 #, c-format
 msgid "%s database is inconsistent: version mismatch on package %s\n"
-msgstr ""
-"la base de dades %s és inconsistent: no coincidència de versió al paquet "
-"%s.\n"
+msgstr "la base de dades %s és inconsistent: no coincidència de versió al paquet %s.\n"
 
 #: lib/libalpm/be_local.c:806
 #, c-format
@@ -263,9 +253,7 @@ msgstr "Se suprimeix el fitxer no vàlid %s.\n"
 #: lib/libalpm/be_sync.c:454
 #, c-format
 msgid "could not parse package description file '%s' from db '%s'\n"
-msgstr ""
-"no s'ha pogut analitzar el fitxer de descripció de paquet \"%s\" de la base "
-"de dades \"%s\".\n"
+msgstr "no s'ha pogut analitzar el fitxer de descripció de paquet \"%s\" de la base de dades \"%s\".\n"
 
 #: lib/libalpm/be_sync.c:469
 #, c-format
@@ -280,8 +268,7 @@ msgstr "La base de dades %s és inconsistent: nom erroni al paquet %s.\\n\n"
 #: lib/libalpm/be_sync.c:512
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is too long\n"
-msgstr ""
-"La base de dades %s és inconsistent: el nom del paquet %s és massa llarg\\n\n"
+msgstr "La base de dades %s és inconsistent: el nom del paquet %s és massa llarg\\n\n"
 
 #: lib/libalpm/be_sync.c:577
 #, c-format
@@ -326,8 +313,7 @@ msgstr "no es pot resoldre \"%s\", una dependència de \"%s\".\n"
 #: lib/libalpm/diskspace.c:78
 #, c-format
 msgid "could not get filesystem information for %s: %s\n"
-msgstr ""
-"no s'ha pogut obtenir la informació del sistema de fitxers per a %s: %s\n"
+msgstr "no s'ha pogut obtenir la informació del sistema de fitxers per a %s: %s\n"
 
 #: lib/libalpm/diskspace.c:108
 #, c-format
@@ -352,14 +338,12 @@ msgstr "no s'ha pogut determinar el punt de muntatge per al fitxer %s.\n"
 #: lib/libalpm/diskspace.c:366
 #, c-format
 msgid "Partition %s too full: %jd blocks needed, %ju blocks free\n"
-msgstr ""
-"La partició %s està massa plena: %jd blocs necessaris, %ju blocs lliures.\n"
+msgstr "La partició %s està massa plena: %jd blocs necessaris, %ju blocs lliures.\n"
 
 #: lib/libalpm/diskspace.c:391 lib/libalpm/diskspace.c:445
 #, c-format
 msgid "could not determine filesystem mount points\n"
-msgstr ""
-"no s'han pogut determinar els punts de muntatge del sistema de fitxers.\n"
+msgstr "no s'han pogut determinar els punts de muntatge del sistema de fitxers.\n"
 
 #: lib/libalpm/diskspace.c:397
 #, c-format
@@ -369,8 +353,7 @@ msgstr "no s'ha pogut determinar el punt de muntatge cachedir %s.\n"
 #: lib/libalpm/diskspace.c:450
 #, c-format
 msgid "could not determine root mount point %s\n"
-msgstr ""
-"no s'ha pogut determinar el punt de muntatge del directori d'arrel %s.\n"
+msgstr "no s'ha pogut determinar el punt de muntatge del directori d'arrel %s.\n"
 
 #: lib/libalpm/diskspace.c:498
 #, c-format
@@ -381,8 +364,7 @@ msgstr "La partició %s està muntada només en mode de lectura.\n"
 #, c-format
 msgid ""
 "too many errors from %s, skipping for the remainder of this transaction\n"
-msgstr ""
-"hi ha massa errors de %s, s'ometen per a la resta d'aquesta transacció\n"
+msgstr "hi ha massa errors de %s, s'ometen per a la resta d'aquesta transacció\n"
 
 #: lib/libalpm/dload.c:145
 #, c-format
@@ -407,9 +389,7 @@ msgstr "ha fallat la recuperació del fitxer \"%s\" des de %s: %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"ha fallat recuperar el fitxer \"%s\" des de %s: mida de la baixada superior "
-"a l'esperada.\n"
+msgstr "ha fallat recuperar el fitxer \"%s\" des de %s: mida de la baixada superior a l'esperada.\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -444,8 +424,7 @@ msgstr "ha fallat la recuperació d'alguns fitxers.\n"
 #: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
-msgstr ""
-"la baixada s'ha completat correctament però no hi ha cap fitxer a la cau\n"
+msgstr "la baixada s'ha completat correctament però no hi ha cap fitxer a la cau\n"
 
 #: lib/libalpm/error.c:40
 #, c-format
@@ -595,8 +574,7 @@ msgstr "l'operació no és compatible amb el tipus de transacció."
 #: lib/libalpm/error.c:104
 #, c-format
 msgid "transaction commit attempt when database is not locked"
-msgstr ""
-"intent de publicació de la transacció amb la base de dades no bloquejada."
+msgstr "intent de publicació de la transacció amb la base de dades no bloquejada."
 
 #: lib/libalpm/error.c:106
 #, c-format
@@ -818,8 +796,7 @@ msgstr "no s'ha pogut llegir el directori: %s: %s\n"
 #: lib/libalpm/package.c:614
 #, c-format
 msgid "could not fully load metadata for package %s-%s\n"
-msgstr ""
-"no s'han pogut carregar completament les metadades per al paquet %s-%s.\n"
+msgstr "no s'han pogut carregar completament les metadades per al paquet %s-%s.\n"
 
 #: lib/libalpm/package.c:869
 #, c-format
@@ -831,35 +808,26 @@ msgstr "metadades del paquet no vàlides (en falta el nom o la versió)"
 msgid ""
 "invalid metadata for package %s-%s (package name cannot start with '.' or "
 "'-')\n"
-msgstr ""
-"metadades no vàlides per al paquet %s-%s (el nom del paquet no pot començar "
-"per . o -)\n"
+msgstr "metadades no vàlides per al paquet %s-%s (el nom del paquet no pot començar per . o -)\n"
 
 #: lib/libalpm/package.c:878
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package name contains invalid "
 "characters)\n"
-msgstr ""
-"metadades no vàlides per al paquet %s-%s (el nom del paquet conté caràcters "
-"no vàlids)\n"
+msgstr "metadades no vàlides per al paquet %s-%s (el nom del paquet conté caràcters no vàlids)\n"
 
 #: lib/libalpm/package.c:885 lib/libalpm/package.c:889
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package version contains invalid "
 "characters)\n"
-msgstr ""
-"metadades no vàlides per al paquet %s-%s (la versió del paquet conté "
-"caràcters no vàlids)\n"
+msgstr "metadades no vàlides per al paquet %s-%s (la versió del paquet conté caràcters no vàlids)\n"
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
-msgstr ""
-"metadades no vàlides per al paquet %s-%s (nom del paquet i la versió són "
-"massa llargs)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
+msgstr "metadades no vàlides per al paquet %s-%s (nom del paquet i la versió són massa llargs)\n"
 
 #: lib/libalpm/remove.c:111
 #, c-format
@@ -879,9 +847,7 @@ msgstr "no s'ha pogut suprimir el fitxer \"%s\": %s\n"
 #: lib/libalpm/remove.c:403 lib/libalpm/remove.c:412
 #, c-format
 msgid "could not backup %s due to PATH_MAX overflow\n"
-msgstr ""
-"no s'ha pogut fer una còpia de seguretat de %s a causa d'un desbordament de "
-"CAMÍ_MAX.\n"
+msgstr "no s'ha pogut fer una còpia de seguretat de %s a causa d'un desbordament de CAMÍ_MAX.\n"
 
 #: lib/libalpm/remove.c:570
 #, c-format
@@ -1033,8 +999,7 @@ msgstr "s'han detectat conflictes de paquets impossibles de resoldre.\n"
 #: lib/libalpm/sync.c:564
 #, c-format
 msgid "removing '%s-%s' from target list because it conflicts with '%s-%s'\n"
-msgstr ""
-"Se suprimeix %s-%s de la llista d'objectius perquè té conflicte amb %s-%s.\n"
+msgstr "Se suprimeix %s-%s de la llista d'objectius perquè té conflicte amb %s-%s.\n"
 
 #: lib/libalpm/sync.c:1002 lib/libalpm/sync.c:1169
 #, c-format
@@ -1139,6 +1104,4 @@ msgstr "no existeix la memòria cau %s, es crea...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"No s'ha pogut trobar o crear el paquet de memòria cau; en lloc d'això, "
-"s'usa%s.\n"
+msgstr "No s'ha pogut trobar o crear el paquet de memòria cau; en lloc d'això, s'usa%s.\n"

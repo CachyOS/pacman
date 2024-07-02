@@ -15,13 +15,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
-"Last-Translator: Zaur_Baku, 2015\n"
-"Language-Team: Azerbaijani (Azerbaijan) (http://app.transifex.com/toofishes/"
-"archlinux-pacman/language/az_AZ/)\n"
-"Language: az_AZ\n"
+"Last-Translator: Xəyyam Qocayev <xxmn77@gmail.com>, 2021-2024\n"
+"Language-Team: Azerbaijani (Azerbaijan) (http://app.transifex.com/toofishes/archlinux-pacman/language/az_AZ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: az_AZ\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/pacman/callback.c:228
@@ -37,12 +36,12 @@ msgstr "Əməliyyat sonrası tutmalar işlənir...\n"
 #: src/pacman/callback.c:243
 #, c-format
 msgid "checking dependencies...\n"
-msgstr "bağlılıqların yoxlanılması\n"
+msgstr "asılılıqlar yoxlanılır...\n"
 
 #: src/pacman/callback.c:247
 #, c-format
 msgid "checking for file conflicts...\n"
-msgstr "faylla olan uyğunsuzluqların yoxlanması\n"
+msgstr "fayl ziddiyyətləri yoxlanılır...\n"
 
 #: src/pacman/callback.c:251
 #, c-format
@@ -92,7 +91,7 @@ msgstr "paketin bütövlüyü yoxlanır...\n"
 #: src/pacman/callback.c:305
 #, c-format
 msgid "checking keyring...\n"
-msgstr "açar yoxlanır...\n"
+msgstr "açarlar bağı yoxlanır...\n"
 
 #: src/pacman/callback.c:309
 #, c-format
@@ -112,7 +111,7 @@ msgstr "Paketlər alınır...\n"
 #: src/pacman/callback.c:335
 #, c-format
 msgid "checking available disk space...\n"
-msgstr "boş disk sahəsi yoxlanılır...\n"
+msgstr "əlçatan disk sahəsi yoxlanılır...\n"
 
 #: src/pacman/callback.c:342
 #, c-format
@@ -142,9 +141,7 @@ msgstr "%s %s/%s ilə əvəz edilsin?"
 #: src/pacman/callback.c:468
 #, c-format
 msgid "%s-%s%s%s and %s-%s%s%s are in conflict. Remove %s?"
-msgstr ""
-"%s-%s-%s-%s və %s-%s-%s-%s bir-biriləri ilə zidiyyət təşkil edir. %s "
-"silinsin?"
+msgstr "%s-%s-%s-%s və %s-%s-%s-%s bir-biriləri ilə zidiyyət təşkil edir. %s silinsin?"
 
 #: src/pacman/callback.c:479
 #, c-format
@@ -156,11 +153,10 @@ msgstr "%s-%s%s%s və %s-%s%s%s ziddiyyətlidirlər. (%s) %s silinsin?"
 msgid ""
 "The following package cannot be upgraded due to unresolvable dependencies:\n"
 msgid_plural ""
-"The following packages cannot be upgraded due to unresolvable dependencies:\n"
-msgstr[0] ""
-"Aşağıdakı paketlər həll olmayan bağlılıklarına görə yenilənə bilməz:\n"
-msgstr[1] ""
-"Aşağıdakı paketlər həll olmayan bağlılıklarına görə yenilənə bilməz:\n"
+"The following packages cannot be upgraded due to unresolvable "
+"dependencies:\n"
+msgstr[0] "Aşağıdakı paketlər həll olmayan bağlılıklarına görə yenilənə bilməz:\n"
+msgstr[1] "Aşağıdakı paketlər həll olmayan bağlılıklarına görə yenilənə bilməz:\n"
 
 #: src/pacman/callback.c:510
 #, c-format
@@ -181,9 +177,7 @@ msgstr[1] "%2$s üçün %1$zu təminatçı əlçatandır:\n"
 msgid ""
 "File %s is corrupted (%s).\n"
 "Do you want to delete it?"
-msgstr ""
-"%s faylı pozulub (%s).\n"
-"Onu silmək istəyirsiniz?"
+msgstr "%s faylı pozulub (%s).\nOnu silmək istəyirsiniz?"
 
 #: src/pacman/callback.c:543
 #, c-format
@@ -223,22 +217,22 @@ msgstr "pozulması"
 #: src/pacman/callback.c:623
 #, c-format
 msgid "checking for file conflicts"
-msgstr "faylın konfliktlərinin yoxlanılması"
+msgstr "fayl ziddiyyətlərinin yoxlanılması"
 
 #: src/pacman/callback.c:626
 #, c-format
 msgid "checking available disk space"
-msgstr "mövcud disk sahəsi yoxlanılır"
+msgstr "əlçatan disk sahəsinin yoxlanılması"
 
 #: src/pacman/callback.c:629
 #, c-format
 msgid "checking package integrity"
-msgstr "paketin bütövlüyü yoxlanır"
+msgstr "paketin bütövlüyünün yoxlanılması"
 
 #: src/pacman/callback.c:632
 #, c-format
 msgid "checking keys in keyring"
-msgstr "açarlar bağındakı açarlar yoxlanılır"
+msgstr "açarlar bağındakı açarların yoxlanılması"
 
 #: src/pacman/callback.c:635
 #, c-format
@@ -318,7 +312,7 @@ msgstr "%s: %s (Ölçü uyğun deyil)\n"
 #: src/pacman/check.c:185
 #, c-format
 msgid "%s: %s (failed to calculate %s checksum)\n"
-msgstr "%s: %s (%s yoxlama cəmi hesablana bilmir)\n"
+msgstr "%s: %s (%s yoxlama cəmi hesablamaq mümkün olmadı)\n"
 
 #: src/pacman/check.c:193
 #, c-format
@@ -419,8 +413,7 @@ msgstr "tənzimləmə faylı %s, sətir %d, '%s' səhv seçim, imza dəstəyi yo
 #, c-format
 msgid ""
 "config file %s, line %d: directive '%s' in section '%s' not recognized.\n"
-msgstr ""
-"tənzimləmə faylı %s, sətir %d: direktiv '%s' '%s' bölməsində tanınmadı.\n"
+msgstr "tənzimləmə faylı %s, sətir %d: direktiv '%s' '%s' bölməsində tanınmadı.\n"
 
 #: src/pacman/conf.c:736
 #, c-format
@@ -435,8 +428,7 @@ msgstr "tənzimləmə faylı %s, sətir %d: '%s' üçün dəyər çox böyükdur
 #: src/pacman/conf.c:763
 #, c-format
 msgid "mirror '%s' contains the '%s' variable, but no '%s' is defined.\n"
-msgstr ""
-"güzgü '%s' '%s' dəyişənindən ibarətdir, lakin, '%s' müəyyən olunmayıb.\n"
+msgstr "güzgü '%s' '%s' dəyişənindən ibarətdir, lakin, '%s' müəyyən olunmayıb.\n"
 
 #: src/pacman/conf.c:808
 #, c-format
@@ -446,9 +438,7 @@ msgstr "'%s' verilənlər bazası qeydiyyat oluna bilmədi (%s)\n"
 #: src/pacman/conf.c:821
 #, c-format
 msgid "could not add cache server URL to database '%s': %s (%s)\n"
-msgstr ""
-"Keş serveri URL ünvanını \"%s\" verilənlər bazasına əlavə tmək mümkün "
-"olmadı: %s (%s)\n"
+msgstr "Keş serveri URL ünvanını \"%s\" verilənlər bazasına əlavə tmək mümkün olmadı: %s (%s)\n"
 
 #: src/pacman/conf.c:830
 #, c-format
@@ -461,10 +451,7 @@ msgid ""
 "failed to initialize alpm library:\n"
 "(root: %s, dbpath: %s)\n"
 "%s\n"
-msgstr ""
-"alpm kitabxanası başladıla bilmədi:\n"
-"(root: %s, dbpath: %s)\n"
-"%s\n"
+msgstr "alpm kitabxanası başladıla bilmədi:\n(root: %s, dbpath: %s)\n%s\n"
 
 #: src/pacman/conf.c:860
 #, c-format
@@ -499,8 +486,7 @@ msgstr "%s yazısı libalpm kitabxanasına ötürülə bilmədi"
 #: src/pacman/conf.c:985
 #, c-format
 msgid "config file %s, line %d: '%s' option '%s' not recognized\n"
-msgstr ""
-"tənzimləmə faylı %s, sətir %d: parametr '%s', '%s' bölməsində tanınmadı\n"
+msgstr "tənzimləmə faylı %s, sətir %d: parametr '%s', '%s' bölməsində tanınmadı\n"
 
 #: src/pacman/conf.c:1005 src/pacman/conf.c:1163
 #, c-format
@@ -520,8 +506,7 @@ msgstr "tənzimləmə faylı %s oxuna bilmir: %s\n"
 #: src/pacman/conf.c:1241
 #, c-format
 msgid "config file %s, line %d: All directives must belong to a section.\n"
-msgstr ""
-"tənzimləmə faylı %s, sətir %d: Bütün göstərişlər bir hissəyə aid olmalıdır.\n"
+msgstr "tənzimləmə faylı %s, sətir %d: Bütün göstərişlər bir hissəyə aid olmalıdır.\n"
 
 #: src/pacman/database.c:50 src/pacman/files.c:335 src/pacman/query.c:434
 #: src/pacman/remove.c:85 src/pacman/sync.c:970 src/pacman/upgrade.c:76
@@ -542,8 +527,7 @@ msgstr "%s paketi üçün quraşdırılma səbəbi təin edilməyib (%s)\n"
 #: src/pacman/database.c:79
 #, c-format
 msgid "%s: install reason has been set to 'installed as dependency'\n"
-msgstr ""
-"%s: quraşdırilma səbəbi \"asılılıq kimi quraşdırılıb\" olaraq təyin edilib\n"
+msgstr "%s: quraşdırilma səbəbi \"asılılıq kimi quraşdırılıb\" olaraq təyin edilib\n"
 
 #: src/pacman/database.c:81
 #, c-format
@@ -817,17 +801,14 @@ msgstr "əməliyyatlar:\n"
 msgid ""
 "\n"
 "use '%s {-h --help}' with an operation for available options\n"
-msgstr ""
-"\n"
-"əlçatan seçimlər üçün əməliyyatı '%s {-h --help} ilə istifadə edin\n"
+msgstr "\nəlçatan seçimlər üçün əməliyyatı '%s {-h --help} ilə istifadə edin\n"
 
 #: src/pacman/pacman.c:125
 #, c-format
 msgid ""
-"  -c, --cascade        remove packages and all packages that depend on them\n"
-msgstr ""
-"  -c, --cascade       paketləri və onlardan asılı olan bütün paketləri "
-"silin\n"
+"  -c, --cascade        remove packages and all packages that depend on "
+"them\n"
+msgstr "  -c, --cascade       paketləri və onlardan asılı olan bütün paketləri silin\n"
 
 #: src/pacman/pacman.c:126
 #, c-format
@@ -839,10 +820,7 @@ msgstr "  -n, --nosave        tənzimləmə fayllarını silin\n"
 msgid ""
 "  -s, --recursive      remove unnecessary dependencies\n"
 "                       (-ss includes explicitly installed dependencies)\n"
-msgstr ""
-"  -s, --təkrarlanan    lazımsız asılılıqları silin\n"
-"                       (-ss açıqca quraşdırılan asılılıqlar da daxil "
-"olmqla)\n"
+msgstr "  -s, --təkrarlanan    lazımsız asılılıqları silin\n                       (-ss açıqca quraşdırılan asılılıqlar da daxil olmqla)\n"
 
 #: src/pacman/pacman.c:129
 #, c-format
@@ -863,15 +841,12 @@ msgstr "  -c, --changlog      paketin dəyişiklik jurnalına baxış\n"
 #, c-format
 msgid ""
 "  -d, --deps           list packages installed as dependencies [filter]\n"
-msgstr ""
-"  -d, --deps          asılılıqlar kimi quraşdırılmış paketləri sıralayın "
-"[filter]\n"
+msgstr "  -d, --deps          asılılıqlar kimi quraşdırılmış paketləri sıralayın [filter]\n"
 
 #: src/pacman/pacman.c:139
 #, c-format
 msgid "  -e, --explicit       list packages explicitly installed [filter]\n"
-msgstr ""
-"  -e, --explicit       açıqca quraşdırılmış paketləri sıralayın [filter]\n"
+msgstr "  -e, --explicit       açıqca quraşdırılmış paketləri sıralayın [filter]\n"
 
 #: src/pacman/pacman.c:140
 #, c-format
@@ -880,45 +855,34 @@ msgstr "  -g, --groups        paket ruplarının bütün üzvlərinə baxış\n"
 
 #: src/pacman/pacman.c:141
 #, c-format
-msgid ""
-"  -i, --info           view package information (-ii for backup files)\n"
-msgstr ""
-"  -i, --info          paket məlumatlarına baxış (-ii faylların ehtiyyat "
-"saxlanılması üçün)\n"
+msgid "  -i, --info           view package information (-ii for backup files)\n"
+msgstr "  -i, --info          paket məlumatlarına baxış (-ii faylların ehtiyyat saxlanılması üçün)\n"
 
 #: src/pacman/pacman.c:142
 #, c-format
 msgid ""
 "  -k, --check          check that package files exist (-kk for file "
 "properties)\n"
-msgstr ""
-"  -k, --check        paket fayllarının mövcudluğunu yoxlamaq (-kk, fayl "
-"xüsusiyyətləri üçün)\n"
+msgstr "  -k, --check        paket fayllarının mövcudluğunu yoxlamaq (-kk, fayl xüsusiyyətləri üçün)\n"
 
 #: src/pacman/pacman.c:143 src/pacman/pacman.c:180
 #, c-format
 msgid "  -l, --list           list the files owned by the queried package\n"
-msgstr ""
-"  -l, --list         tələb olunan paket tərəfindən sahiblənmiş faylların "
-"siyahısı\n"
+msgstr "  -l, --list         tələb olunan paket tərəfindən sahiblənmiş faylların siyahısı\n"
 
 #: src/pacman/pacman.c:144
 #, c-format
 msgid ""
 "  -m, --foreign        list installed packages not found in sync db(s) "
 "[filter]\n"
-msgstr ""
-"  -m, --foreign       eyniləşdirmə verilənlər bazasında (bazalarında) "
-"tapılmayan quraşdırılmış paketləri sıralayın [filtr]\n"
+msgstr "  -m, --foreign       eyniləşdirmə verilənlər bazasında (bazalarında) tapılmayan quraşdırılmış paketləri sıralayın [filtr]\n"
 
 #: src/pacman/pacman.c:145
 #, c-format
 msgid ""
 "  -n, --native         list installed packages only found in sync db(s) "
 "[filter]\n"
-msgstr ""
-"  -n, --native        yalnız -sync db(s)- eyniləşdirilən verilənlər "
-"bazasında [filter] tapılmış quraşdırılmış paketlərin siyahısı\n"
+msgstr "  -n, --native        yalnız -sync db(s)- eyniləşdirilən verilənlər bazasında [filter] tapılmış quraşdırılmış paketlərin siyahısı\n"
 
 #: src/pacman/pacman.c:146
 #, c-format
@@ -928,33 +892,26 @@ msgstr "  -o, --owns <file>    <file> faylından ibarət paketi tələb edin\n"
 #: src/pacman/pacman.c:147
 #, c-format
 msgid "  -p, --file <package> query a package file instead of the database\n"
-msgstr ""
-"  -p, --file <package> verilənlər bazası əvəzinə paket faylını tələb edir\n"
+msgstr "  -p, --file <package> verilənlər bazası əvəzinə paket faylını tələb edir\n"
 
 #: src/pacman/pacman.c:148 src/pacman/pacman.c:161 src/pacman/pacman.c:181
 #, c-format
 msgid "  -q, --quiet          show less information for query and search\n"
-msgstr ""
-"  -q,  --quit          sorğu və axtarış üçün daha az məlumat göstərilsin\n"
+msgstr "  -q,  --quit          sorğu və axtarış üçün daha az məlumat göstərilsin\n"
 
 #: src/pacman/pacman.c:149
 #, c-format
 msgid ""
 "  -s, --search <regex> search locally-installed packages for matching "
 "strings\n"
-msgstr ""
-"  -s,  --search <regex> oxşar sətirlərə üzrə yerli quraşdırılmış paketləri "
-"axtarın\n"
+msgstr "  -s,  --search <regex> oxşar sətirlərə üzrə yerli quraşdırılmış paketləri axtarın\n"
 
 #: src/pacman/pacman.c:150
 #, c-format
 msgid ""
 "  -t, --unrequired     list packages not (optionally) required by any\n"
 "                       package (-tt to ignore optdepends) [filter]\n"
-msgstr ""
-"  -t, --unrequired    ixtiyari olaraq hər hansı paket tərəfindən\n"
-"                       tələb olunmayan paketlərin siyahısı (-tt, əlavə "
-"asılılıqları nəzərə almamaq üçün) [filter]\n"
+msgstr "  -t, --unrequired    ixtiyari olaraq hər hansı paket tərəfindən\n                       tələb olunmayan paketlərin siyahısı (-tt, əlavə asılılıqları nəzərə almamaq üçün) [filter]\n"
 
 #: src/pacman/pacman.c:152
 #, c-format
@@ -966,27 +923,21 @@ msgstr "  -u, --upgrades       köhnəlmiş paketlərin siyahısı [filtr]\n"
 msgid ""
 "  -c, --clean          remove old packages from cache directory (-cc for "
 "all)\n"
-msgstr ""
-"  -c, --clean         keş kataloqundan köhnə paketləri silin (-cc hamısı "
-"üçün)\n"
+msgstr "  -c, --clean         keş kataloqundan köhnə paketləri silin (-cc hamısı üçün)\n"
 
 #: src/pacman/pacman.c:157
 #, c-format
 msgid ""
 "  -g, --groups         view all members of a package group\n"
 "                       (-gg to view all groups and members)\n"
-msgstr ""
-"  -g? --groups         paket qrupunun bütün uzvülərinə baxmaq\n"
-"                       (-gg, bütün qruplara və üzvlərinə baxmaq üçün)\n"
+msgstr "  -g? --groups         paket qrupunun bütün uzvülərinə baxmaq\n                       (-gg, bütün qruplara və üzvlərinə baxmaq üçün)\n"
 
 #: src/pacman/pacman.c:159
 #, c-format
 msgid ""
 "  -i, --info           view package information (-ii for extended "
 "information)\n"
-msgstr ""
-"  -i, --info          paket məlumatlarına baxmaq (-ii, ətraflı məlumat "
-"üçün)\n"
+msgstr "  -i, --info          paket məlumatlarına baxmaq (-ii, ətraflı məlumat üçün)\n"
 
 #: src/pacman/pacman.c:160
 #, c-format
@@ -995,150 +946,112 @@ msgstr " -l, --list    saxalnma yerindəki paketlərin siyahısını göstərir\
 
 #: src/pacman/pacman.c:162
 #, c-format
-msgid ""
-"  -s, --search <regex> search remote repositories for matching strings\n"
-msgstr ""
-"  -s,  -- search <regex> uyğun sətirlərdə uzaq verilənlər anbarını axtarın\n"
+msgid "  -s, --search <regex> search remote repositories for matching strings\n"
+msgstr "  -s,  -- search <regex> uyğun sətirlərdə uzaq verilənlər anbarını axtarın\n"
 
 #: src/pacman/pacman.c:163
 #, c-format
 msgid ""
 "  -u, --sysupgrade     upgrade installed packages (-uu enables downgrades)\n"
-msgstr ""
-"  -u, --sysupgrade    quraşdırılmış paketləri ən son versiyaya yeniləmək (-"
-"uu, versiyanı aşağı salmağı aktiv edir)\n"
+msgstr "  -u, --sysupgrade    quraşdırılmış paketləri ən son versiyaya yeniləmək (-uu, versiyanı aşağı salmağı aktiv edir)\n"
 
 #: src/pacman/pacman.c:164 src/pacman/pacman.c:183
 #, c-format
 msgid ""
 "  -y, --refresh        download fresh package databases from the server\n"
 "                       (-yy to force a refresh even if up to date)\n"
-msgstr ""
-"  -y, --refresh        serverdən təzə verilənlər bazası paketini endirmək\n"
-"                      (-yy, ən son versiyada olsa belə məcburi yeniləmək "
-"üçün)\n"
+msgstr "  -y, --refresh        serverdən təzə verilənlər bazası paketini endirmək\n                      (-yy, ən son versiyada olsa belə məcburi yeniləmək üçün)\n"
 
 #: src/pacman/pacman.c:170
 #, c-format
 msgid "      --asdeps         mark packages as non-explicitly installed\n"
-msgstr ""
-"      --asdeps        paketləri qeyri-dürüst quraşdırılmış kimi işarələmək\n"
+msgstr "      --asdeps        paketləri qeyri-dürüst quraşdırılmış kimi işarələmək\n"
 
 #: src/pacman/pacman.c:171
 #, c-format
 msgid "      --asexplicit     mark packages as explicitly installed\n"
-msgstr ""
-"     --asexplicit      paketləri açıq-açığına quraşdırılmış kimi işarələmək\n"
+msgstr "     --asexplicit      paketləri açıq-açığına quraşdırılmış kimi işarələmək\n"
 
 #: src/pacman/pacman.c:172
 #, c-format
 msgid ""
 "  -k, --check          test local database for validity (-kk for sync "
 "databases)\n"
-msgstr ""
-"  -k, --check         yerli verilənlər bazasının etibarlığını yoxlamaq (-kk, "
-"verilənlər bazasını eyniləşdirmək üçün)\n"
+msgstr "  -k, --check         yerli verilənlər bazasının etibarlığını yoxlamaq (-kk, verilənlər bazasını eyniləşdirmək üçün)\n"
 
 #: src/pacman/pacman.c:173
 #, c-format
 msgid "  -q, --quiet          suppress output of success messages\n"
-msgstr ""
-" -q, --quiet          əməliyyatın uğurlu olması haqqında ismarıclar "
-"göstərilməsin\n"
+msgstr " -q, --quiet          əməliyyatın uğurlu olması haqqında ismarıclar göstərilməsin\n"
 
 #: src/pacman/pacman.c:182
 #, c-format
 msgid "  -x, --regex          enable searching using regular expressions\n"
-msgstr ""
-"  -x, --regex          müntəzəm ifadədən istifadə edərək axtarışı aktiv "
-"etmək\n"
+msgstr "  -x, --regex          müntəzəm ifadədən istifadə edərək axtarışı aktiv etmək\n"
 
 #: src/pacman/pacman.c:185
 #, c-format
 msgid ""
 "      --machinereadable\n"
 "                       produce machine-readable output\n"
-msgstr ""
-"      --machinereadable\n"
-"                       maşın-oxuma çıxışını yaratmaq\n"
+msgstr "      --machinereadable\n                       maşın-oxuma çıxışını yaratmaq\n"
 
 #: src/pacman/pacman.c:191
 #, c-format
 msgid ""
 "  -w, --downloadonly   download packages but do not install/upgrade "
 "anything\n"
-msgstr ""
-" -w,  --downloadonly   paketləri endirmək, lakin heç nəyi quraşdırmamaq/"
-"yeniləməmək\n"
+msgstr " -w,  --downloadonly   paketləri endirmək, lakin heç nəyi quraşdırmamaq/yeniləməmək\n"
 
 #: src/pacman/pacman.c:192
 #, c-format
 msgid ""
 "      --overwrite <glob>\n"
-"                       overwrite conflicting files (can be used more than "
-"once)\n"
-msgstr ""
-"      --overwrite <glob>\n"
-"                        ziddiyyətli faylların üzərinə yazmaq (bir dəfədən "
-"çox istifadə oluna bilər)\n"
+"                       overwrite conflicting files (can be used more than once)\n"
+msgstr "      --overwrite <glob>\n                        ziddiyyətli faylların üzərinə yazmaq (bir dəfədən çox istifadə oluna bilər)\n"
 
 #: src/pacman/pacman.c:194
 #, c-format
 msgid "      --asdeps         install packages as non-explicitly installed\n"
-msgstr ""
-"      --asdes          paketləri qeyri-dürüst quraşdırılmış kimi quraşdırın\n"
+msgstr "      --asdes          paketləri qeyri-dürüst quraşdırılmış kimi quraşdırın\n"
 
 #: src/pacman/pacman.c:195
 #, c-format
 msgid "      --asexplicit     install packages as explicitly installed\n"
-msgstr ""
-"      --asexplicit     paketləri açıqca quraşdırılmış kimi quraşdırın\n"
+msgstr "      --asexplicit     paketləri açıqca quraşdırılmış kimi quraşdırın\n"
 
 #: src/pacman/pacman.c:196
 #, c-format
 msgid ""
 "      --ignore <pkg>   ignore a package upgrade (can be used more than "
 "once)\n"
-msgstr ""
-"      --ignore <pkg>   paketin yenilənməsini gözardı etmək (bir dəfədən çox "
-"istifadə oluna bilər)\n"
+msgstr "      --ignore <pkg>   paketin yenilənməsini gözardı etmək (bir dəfədən çox istifadə oluna bilər)\n"
 
 #: src/pacman/pacman.c:197
 #, c-format
 msgid ""
 "      --ignoregroup <grp>\n"
 "                       ignore a group upgrade (can be used more than once)\n"
-msgstr ""
-"     --ignoregroup <grp>\n"
-"                      qrup yenilənməsini gözardı etmək (bir dəfədən çox "
-"istifadə edilə bilər)\n"
+msgstr "     --ignoregroup <grp>\n                      qrup yenilənməsini gözardı etmək (bir dəfədən çox istifadə edilə bilər)\n"
 
 #: src/pacman/pacman.c:201
 #, c-format
 msgid ""
 "  -d, --nodeps         skip dependency version checks (-dd to skip all "
 "checks)\n"
-msgstr ""
-"  -d, --nodeps         asılılıq versiyası yoxlamalarını ötürmək (-dd, bütün "
-"yoxlamaları ötürmək üçün)\n"
+msgstr "  -d, --nodeps         asılılıq versiyası yoxlamalarını ötürmək (-dd, bütün yoxlamaları ötürmək üçün)\n"
 
 #: src/pacman/pacman.c:202
 #, c-format
 msgid ""
 "      --assume-installed <package=version>\n"
 "                       add a virtual package to satisfy dependencies\n"
-msgstr ""
-"     --assume-installed <package=version>\n"
-"                        asılılıqları təmin etmək üçün virtual paket əlavə "
-"etmək\n"
+msgstr "     --assume-installed <package=version>\n                        asılılıqları təmin etmək üçün virtual paket əlavə etmək\n"
 
 #: src/pacman/pacman.c:204
 #, c-format
-msgid ""
-"      --dbonly         only modify database entries, not package files\n"
-msgstr ""
-"      --dbonly         yalnız verilənlər bazası girişlərini dəyişmək, paket "
-"fayllarını deyil\n"
+msgid "      --dbonly         only modify database entries, not package files\n"
+msgstr "      --dbonly         yalnız verilənlər bazası girişlərini dəyişmək, paket fayllarını deyil\n"
 
 #: src/pacman/pacman.c:205
 #, c-format
@@ -1150,27 +1063,21 @@ msgstr "      --noprogressbar  fayllar endirilməsi vəziyyəti göstərilməsin
 #, c-format
 msgid ""
 "      --noscriptlet    do not execute the install scriptlet if one exists\n"
-msgstr ""
-"      --noscriptlet    əgər quraşdırma skripti mövcuddursa o, icra "
-"olunmasın\n"
+msgstr "      --noscriptlet    əgər quraşdırma skripti mövcuddursa o, icra olunmasın\n"
 
 #: src/pacman/pacman.c:207
 #, c-format
 msgid ""
 "  -p, --print          print the targets instead of performing the "
 "operation\n"
-msgstr ""
-"  -p, --print            əməliyyatların icra olunması əvəzinə hədəfləri "
-"göstərmək\n"
+msgstr "  -p, --print            əməliyyatların icra olunması əvəzinə hədəfləri göstərmək\n"
 
 #: src/pacman/pacman.c:208
 #, c-format
 msgid ""
 "      --print-format <string>\n"
 "                       specify how the targets should be printed\n"
-msgstr ""
-"      --print-format <string>\n"
-"                        hədəflərin necə yazılmalı olduğunu göstərin\n"
+msgstr "      --print-format <string>\n                        hədəflərin necə yazılmalı olduğunu göstərin\n"
 
 #: src/pacman/pacman.c:213
 #, c-format
@@ -1195,8 +1102,7 @@ msgstr "      --arch <arch>    alternativ arxitekturanı təyin etmək\n"
 #: src/pacman/pacman.c:217
 #, c-format
 msgid "      --sysroot        operate on a mounted guest system (root-only)\n"
-msgstr ""
-"      --sysroot        qoşulmuş qonaq sistemindəki əməliyyat (yalnız kök)\n"
+msgstr "      --sysroot        qoşulmuş qonaq sistemindəki əməliyyat (yalnız kök)\n"
 
 #: src/pacman/pacman.c:218
 #, c-format
@@ -1226,15 +1132,12 @@ msgstr "      --debug          sazlama bildirişlərini göstərmək\n"
 #: src/pacman/pacman.c:223
 #, c-format
 msgid "      --gpgdir <path>  set an alternate home directory for GnuPG\n"
-msgstr ""
-"      --gpgdir <path>  GnuPG üçün alternativ ev qovluğunu təyin etmək\n"
+msgstr "      --gpgdir <path>  GnuPG üçün alternativ ev qovluğunu təyin etmək\n"
 
 #: src/pacman/pacman.c:224
 #, c-format
 msgid "      --logfile <path> set an alternate log file\n"
-msgstr ""
-"      --logfile <path> alternativ jurnal faylını qurmaq\n"
-"\n"
+msgstr "      --logfile <path> alternativ jurnal faylını qurmaq\n\n"
 
 #: src/pacman/pacman.c:225
 #, c-format
@@ -1251,18 +1154,14 @@ msgstr "      --confirm        həmişə təsdiqini soruşmaq\n"
 msgid ""
 "      --disable-download-timeout\n"
 "                       use relaxed timeouts for download\n"
-msgstr ""
-"      --disable-download-timeout\n"
-"                       endirmək üçün fasilə vaxtından istifadə etmək\n"
+msgstr "      --disable-download-timeout\n                       endirmək üçün fasilə vaxtından istifadə etmək\n"
 
 #: src/pacman/pacman.c:247
 #, c-format
 msgid ""
 "                       This program may be freely redistributed under\n"
 "                       the terms of the GNU General Public License.\n"
-msgstr ""
-"                       Bu proqram GNU Əsas Publik Lisenziyası\n"
-"                       şərtləri altında sərbəst şəkildə paylana bilər.\n"
+msgstr "                       Bu proqram GNU Əsas Publik Lisenziyası\n                       şərtləri altında sərbəst şəkildə paylana bilər.\n"
 
 #: src/pacman/pacman.c:280
 #, c-format
@@ -1611,8 +1510,7 @@ msgstr "verilənlər bazası kilidlənə bilmədi: %s\n"
 msgid ""
 "  if you're sure a package manager is not already\n"
 "  running, you can remove %s\n"
-msgstr ""
-"  paket menecerinin işləmədiyinə əminsinizsə, %s faylını silə bilərsiniz\n"
+msgstr "  paket menecerinin işləmədiyinə əminsinizsə, %s faylını silə bilərsiniz\n"
 
 #: src/pacman/util.c:116
 #, c-format

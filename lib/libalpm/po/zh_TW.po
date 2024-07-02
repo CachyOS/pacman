@@ -21,12 +21,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2014,2019,2021-2022,2024\n"
-"Language-Team: Chinese (Taiwan) (http://app.transifex.com/toofishes/"
-"archlinux-pacman/language/zh_TW/)\n"
-"Language: zh_TW\n"
+"Language-Team: Chinese (Taiwan) (http://app.transifex.com/toofishes/archlinux-pacman/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -79,19 +78,14 @@ msgstr "無法解壓縮 %s%s：路徑過長"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"目錄權限不一致 %s\n"
-"檔案系統：%o  軟體包：%o\n"
+msgstr "目錄權限不一致 %s\n檔案系統：%o  軟體包：%o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"目錄擁有者不一致 %s\n"
-"檔案系統：%u:%u 軟體包: %u:%u\n"
-"\n"
+msgstr "目錄擁有者不一致 %s\n檔案系統：%u:%u 軟體包: %u:%u\n\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -834,8 +828,7 @@ msgstr "軟體包 %s-%s 有無效的詮釋資料（軟體包版本包含無效�
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr "軟體包 %s-%s 有無效的詮釋資料（軟體包名稱與版本太長）\n"
 
 #: lib/libalpm/remove.c:111

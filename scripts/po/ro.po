@@ -21,14 +21,12 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: Arthur Țițeică <arthur.titeica@gmail.com>, 2013\n"
-"Language-Team: Romanian (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/ro/)\n"
-"Language: ro\n"
+"Language-Team: Romanian (http://app.transifex.com/toofishes/archlinux-pacman/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
-"2:1));\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
 #: scripts/makepkg.sh.in:139
 msgid "Cleaning up..."
@@ -199,19 +197,16 @@ msgstr "Un pachet a fost deja construit. (folosește %s pentru a suprascrie)"
 #: scripts/makepkg.sh.in:811
 msgid ""
 "The package group has already been built, installing existing packages..."
-msgstr ""
-"Grupul de pachete a fost deja construit, se instalează pachetele existente..."
+msgstr "Grupul de pachete a fost deja construit, se instalează pachetele existente..."
 
 #: scripts/makepkg.sh.in:815
 msgid "The package group has already been built. (use %s to overwrite)"
-msgstr ""
-"Grupul de pachete a fost deja construit. (folosește %s pentru a suprascrie)"
+msgstr "Grupul de pachete a fost deja construit. (folosește %s pentru a suprascrie)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
-msgstr ""
-"O parte din grupul de pachete a fost deja construită. (folosește %s pentru a "
-"suprascrie)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
+msgstr "O parte din grupul de pachete a fost deja construită. (folosește %s pentru a suprascrie)"
 
 #: scripts/makepkg.sh.in:874
 msgid "Make packages compatible for use with pacman"
@@ -235,22 +230,20 @@ msgstr "  -c, --clean       Curăță fișierele de lucru după construire"
 
 #: scripts/makepkg.sh.in:881
 msgid "  -C, --cleanbuild Remove %s dir before building the package"
-msgstr ""
-"  -C, --cleanbuild  Elimină directorul %s înainte de construcția pachetului"
+msgstr "  -C, --cleanbuild  Elimină directorul %s înainte de construcția pachetului"
 
 #: scripts/makepkg.sh.in:882
 msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps      Se omit toate verificările de dependențe"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
 msgstr ""
 
 #: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
-msgstr ""
-"  -e, --noextract   Nu extrage fișierele sursă (folosește directorul %s "
-"existent)"
+msgstr "  -e, --noextract   Nu extrage fișierele sursă (folosește directorul %s existent)"
 
 #: scripts/makepkg.sh.in:885
 msgid "  -f, --force      Overwrite existing package"
@@ -258,9 +251,7 @@ msgstr "  -f, --force       Suprascrie pachetul existent"
 
 #: scripts/makepkg.sh.in:886
 msgid "  -g, --geninteg   Generate integrity checks for source files"
-msgstr ""
-"  -g, --geninteg    Generează verificări de integritate pentru fișierele "
-"sursă"
+msgstr "  -g, --geninteg    Generează verificări de integritate pentru fișierele sursă"
 
 #: scripts/makepkg.sh.in:887
 msgid "  -h, --help       Show this help message and exit"
@@ -268,13 +259,11 @@ msgstr "  -h, --help        Afișează acest mesaj de ajutor și ieși"
 
 #: scripts/makepkg.sh.in:888
 msgid "  -i, --install    Install package after successful build"
-msgstr ""
-"  -i, --install     Instalează pachetul după ce construirea are loc cu succes"
+msgstr "  -i, --install     Instalează pachetul după ce construirea are loc cu succes"
 
 #: scripts/makepkg.sh.in:889
 msgid "  -L, --log        Log package build process"
-msgstr ""
-"  -L, --log         Scrie în jurnal procesului de construire a pachetului"
+msgstr "  -L, --log         Scrie în jurnal procesului de construire a pachetului"
 
 #: scripts/makepkg.sh.in:890
 msgid "  -m, --nocolor    Disable colorized output messages"
@@ -286,21 +275,17 @@ msgstr "  -o, --nobuild     Doar descarcă și extrage fișierele"
 
 #: scripts/makepkg.sh.in:892
 msgid "  -p <file>        Use an alternate build script (instead of '%s')"
-msgstr ""
-"  -p <fișier>       Foloseşte un script de construire alternativ (în locul "
-"'%s')"
+msgstr "  -p <fișier>       Foloseşte un script de construire alternativ (în locul '%s')"
 
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps      Elimină dependențele instalate după ce construirea are "
-"loc cu succes"
+msgstr "  -r, --rmdeps      Elimină dependențele instalate după ce construirea are loc cu succes"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
-msgstr ""
-"  -R, --repackage   Reîmpachetează conținutul pachetului fără reconstruire"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
+msgstr "  -R, --repackage   Reîmpachetează conținutul pachetului fără reconstruire"
 
 #: scripts/makepkg.sh.in:895
 msgid "  -s, --syncdeps   Install missing dependencies with %s"
@@ -309,8 +294,7 @@ msgstr "  -s, --syncdeps    Instalează dependențele lipsă cu %s"
 #: scripts/makepkg.sh.in:896
 msgid ""
 "  -S, --source     Generate a source-only tarball without downloaded sources"
-msgstr ""
-"  -S, --source      Generează o arhivă doar-sursă fără sursele descărcate"
+msgstr "  -S, --source      Generează o arhivă doar-sursă fără sursele descărcate"
 
 #: scripts/makepkg.sh.in:897
 msgid "  -V, --version    Show version information and exit"
@@ -320,9 +304,7 @@ msgstr "  -V, --version     Arată informații despre versiune și ieși"
 msgid ""
 "  --allsource      Generate a source-only tarball including downloaded "
 "sources"
-msgstr ""
-"  --allsource       Generează o arhivă doar-sursă incluzând sursele "
-"descărcate"
+msgstr "  --allsource       Generează o arhivă doar-sursă incluzând sursele descărcate"
 
 #: scripts/makepkg.sh.in:899
 msgid "  --check          Run the %s function in the %s"
@@ -330,8 +312,7 @@ msgstr "  --check           Execută funcția %s în %s"
 
 #: scripts/makepkg.sh.in:900
 msgid "  --config <file>  Use an alternate config file (instead of '%s')"
-msgstr ""
-"  --config <fișier> Folosește un fișier config alternativ (în locul '%s')"
+msgstr "  --config <fișier> Folosește un fișier config alternativ (în locul '%s')"
 
 #: scripts/makepkg.sh.in:901
 msgid "  --holdver        Do not update VCS sources"
@@ -339,10 +320,9 @@ msgstr "  --holdver         Nu actualiza sursele VCS"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
-msgstr ""
-"  --key <cheie>     Specifică o cheie pentru semnarea %s în loc de cea "
-"implicită."
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
+msgstr "  --key <cheie>     Specifică o cheie pentru semnarea %s în loc de cea implicită."
 
 #: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
@@ -362,9 +342,7 @@ msgstr "  --nosign          Nu crea o semnătură pentru pachet"
 
 #: scripts/makepkg.sh.in:907
 msgid "  --packagelist    Only list package filepaths that would be produced"
-msgstr ""
-"  --packagelist    Arată doar căile către fișierele de pachet care ar fi "
-"produse"
+msgstr "  --packagelist    Arată doar căile către fișierele de pachet care ar fi produse"
 
 #: scripts/makepkg.sh.in:908
 msgid "  --printsrcinfo   Print the generated SRCINFO and exit"
@@ -391,9 +369,7 @@ msgstr "  --skippgpcheck    Nu verifica fișierele sursă cu semnături PGP"
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"  --verifysource    Descarcă fișierele sursă (dacă e nevoie) și efectuează "
-"verificările de integritate"
+msgstr "  --verifysource    Descarcă fișierele sursă (dacă e nevoie) și efectuează verificările de integritate"
 
 #: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
@@ -401,8 +377,7 @@ msgstr "Aceste opțiuni sunt valabile pentru %s:"
 
 #: scripts/makepkg.sh.in:917
 msgid "  --asdeps         Install packages as non-explicitly installed"
-msgstr ""
-"  --asdeps          Instalează pachetele ca pachete instalate neexplicit."
+msgstr "  --asdeps          Instalează pachetele ca pachete instalate neexplicit."
 
 #: scripts/makepkg.sh.in:918
 msgid ""
@@ -427,9 +402,7 @@ msgstr "Dacă %s nu este specificat, %s va căuta '%s'"
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
 "WARRANTY, to the extent permitted by law.\\n"
-msgstr ""
-"Acest program este gratuit; vezi sursa pentru condițiile de copiere.\\nNU "
-"EXISTĂ NICIO GARANȚIE, în măsura permisă de lege.\\n"
+msgstr "Acest program este gratuit; vezi sursa pentru condițiile de copiere.\\nNU EXISTĂ NICIO GARANȚIE, în măsura permisă de lege.\\n"
 
 #: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
@@ -439,15 +412,11 @@ msgstr "Semnalul %s interceptat. Se închide..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"Executarea %s ca root nu este permisă și poate cauza daune permanente,"
-"\\ncatastrofale pentru sistem."
+msgstr "Executarea %s ca root nu este permisă și poate cauza daune permanente,\\ncatastrofale pentru sistem."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
-msgstr ""
-"Nu utiliza opțiunea %s. Această opțiune este menită doar pentru uz intern de "
-"către %s."
+msgstr "Nu utiliza opțiunea %s. Această opțiune este menită doar pentru uz intern de către %s."
 
 #: scripts/makepkg.sh.in:1131
 msgid "%s does not exist."
@@ -479,8 +448,7 @@ msgstr "Se face pachetul: %s"
 
 #: scripts/makepkg.sh.in:1276
 msgid "A source package has already been built. (use %s to overwrite)"
-msgstr ""
-"Un pachet sursă a fost deja construit. (folosește %s pentru a suprascrie)"
+msgstr "Un pachet sursă a fost deja construit. (folosește %s pentru a suprascrie)"
 
 #: scripts/makepkg.sh.in:1296
 msgid "Signing package..."
@@ -536,8 +504,7 @@ msgstr "opțiuni:"
 
 #: scripts/pacman-db-upgrade.sh.in:44
 msgid "  -d, --dbpath <path>  set an alternate database location"
-msgstr ""
-"  -d, --dbpath <path>  setează o locație alternativă pentru baza de date"
+msgstr "  -d, --dbpath <path>  setează o locație alternativă pentru baza de date"
 
 #: scripts/pacman-db-upgrade.sh.in:45
 msgid "  -h, --help           show this help message and exit"
@@ -557,8 +524,7 @@ msgstr "      --config <cale>     setează un fișier alternativ de configurare"
 
 #: scripts/pacman-db-upgrade.sh.in:49
 msgid "  --nocolor            disable colorized output messages"
-msgstr ""
-"  --nocolor               se dezactivează colorarea mesajelor returnate"
+msgstr "  --nocolor               se dezactivează colorarea mesajelor returnate"
 
 #: scripts/pacman-db-upgrade.sh.in:122 scripts/repo-add.sh.in:396
 msgid "%s does not exist or is not a directory."
@@ -570,15 +536,11 @@ msgstr "Directorul %s nu conține o bază de date pacman."
 
 #: scripts/pacman-db-upgrade.sh.in:130
 msgid "You must have correct permissions to upgrade the database."
-msgstr ""
-"Trebuie să aveți permisiunile corespunzătoare pentru a actualiza baza de "
-"date."
+msgstr "Trebuie să aveți permisiunile corespunzătoare pentru a actualiza baza de date."
 
 #: scripts/pacman-db-upgrade.sh.in:140
 msgid "Pacman lock file was found. Cannot run while pacman is running."
-msgstr ""
-"A fost găsit fișierul de blocare al pacman. Nu se poate rula programul cât "
-"timp pacman rulează."
+msgstr "A fost găsit fișierul de blocare al pacman. Nu se poate rula programul cât timp pacman rulează."
 
 #: scripts/pacman-db-upgrade.sh.in:152
 msgid "Pre-3.5 database format detected - upgrading..."
@@ -594,9 +556,7 @@ msgstr "S-a detectat formatul bazei de date Pre-4.2 - se actualizează..."
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"legătura simbolică '%s' trimite în afara root-ului pacman, este necesară "
-"depanarea manuală"
+msgstr "legătura simbolică '%s' trimite în afara root-ului pacman, este necesară depanarea manuală"
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -612,8 +572,7 @@ msgstr "Operații:"
 
 #: scripts/pacman-key.sh.in:63
 msgid "  -a, --add                 Add the specified keys (empty for stdin)"
-msgstr ""
-"  -a, --add                 Adaugă cheile specificate (gol pentru stdin)"
+msgstr "  -a, --add                 Adaugă cheile specificate (gol pentru stdin)"
 
 #: scripts/pacman-key.sh.in:64
 msgid "  -d, --delete              Remove the specified keyids"
@@ -621,15 +580,12 @@ msgstr "  -d, --delete              Elimină keyid-urile specificate"
 
 #: scripts/pacman-key.sh.in:65
 msgid "  -e, --export              Export the specified or all keyids"
-msgstr ""
-"  -e, --export              Exportă keyid-urile specificate sau pe toate"
+msgstr "  -e, --export              Exportă keyid-urile specificate sau pe toate"
 
 #: scripts/pacman-key.sh.in:66
 msgid ""
 "  -f, --finger              List fingerprint for specified or all keyids"
-msgstr ""
-"  -f, --finger              Afișează amprentele pentru keyid-urile "
-"specificate sau pentru toate"
+msgstr "  -f, --finger              Afișează amprentele pentru keyid-urile specificate sau pentru toate"
 
 #: scripts/pacman-key.sh.in:67
 msgid "  -l, --list-keys           List the specified or all keys"
@@ -646,15 +602,12 @@ msgstr "  -u, --updatedb            Actualizează baza trustdb a pacman"
 #: scripts/pacman-key.sh.in:70
 msgid ""
 "  -v, --verify              Verify the file(s) specified by the signature(s)"
-msgstr ""
-"  -v, --verify              Verifică fișierele specificate de semnături"
+msgstr "  -v, --verify              Verifică fișierele specificate de semnături"
 
 #: scripts/pacman-key.sh.in:71
 msgid ""
 "  --edit-key                Present a menu for key management task on keyids"
-msgstr ""
-"  --edit-key                Afișează un meniu pentru operațiuni de "
-"administrare a cheilor după keyid-uri."
+msgstr "  --edit-key                Afișează un meniu pentru operațiuni de administrare a cheilor după keyid-uri."
 
 #: scripts/pacman-key.sh.in:72
 msgid "  --import                  Imports pubring.gpg from dir(s)"
@@ -664,15 +617,11 @@ msgstr "  --import                  Importă pubring.gpg din director(oare)"
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"  --import-trustdb          Importă valorile nivelurilor de încredere a "
-"deținătorilor\n"
-"                            din trustdb.gpg în director(oare)"
+msgstr "  --import-trustdb          Importă valorile nivelurilor de încredere a deținătorilor\n                            din trustdb.gpg în director(oare)"
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
-msgstr ""
-"  --init                    Verifică inițializarea corectă a inelului de chei"
+msgstr "  --init                    Verifică inițializarea corectă a inelului de chei"
 
 #: scripts/pacman-key.sh.in:75
 msgid "  --list-sigs               List keys and their signatures"
@@ -686,16 +635,12 @@ msgstr "  --lsign-key               Semnează keyid-urile locale specificate"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate                Reîncarcă cheile implicite din fișierele (date) "
-"de chei\\n                            din '%s'"
+msgstr "  --populate                Reîncarcă cheile implicite din fișierele (date) de chei\\n                            din '%s'"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"  --refresh-keys            Actualizează cheile specificate sau toate cheile "
-"de la un server de chei."
+msgstr "  --refresh-keys            Actualizează cheile specificate sau toate cheile de la un server de chei."
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -703,19 +648,15 @@ msgstr "  --verbose                 Arată informații extra"
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <fișier>         Folosește un fișier de configurare alternativ "
-"(în loc de\\n                            '%s')"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <fișier>         Folosește un fișier de configurare alternativ (în loc de\\n                            '%s')"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <dir>            Alege un director alternativ pentru GnuPG (în "
-"loc de\\n                            of '%s')"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <dir>            Alege un director alternativ pentru GnuPG (în loc de\\n                            of '%s')"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
@@ -725,8 +666,7 @@ msgstr ""
 
 #: scripts/pacman-key.sh.in:89
 msgid "  --keyserver <server-url>  Specify a keyserver to use if necessary"
-msgstr ""
-"  --keyserver <url-server>  Specifică un server de chei, dacă este necesar"
+msgstr "  --keyserver <url-server>  Specifică un server de chei, dacă este necesar"
 
 #: scripts/pacman-key.sh.in:91
 msgid "  -h, --help                Show this help message and exit"
@@ -869,9 +809,7 @@ msgstr[2] ""
 
 #: scripts/pacman-key.sh.in:529
 msgid "Remote key not fetched correctly from WKD or keyserver."
-msgstr ""
-"Cheia de la distantă nu a fost preluată corect de pe WKD sau de pe serverul "
-"de chei."
+msgstr "Cheia de la distantă nu a fost preluată corect de pe WKD sau de pe serverul de chei."
 
 #: scripts/pacman-key.sh.in:534
 msgid "Remote key not fetched correctly from keyserver."
@@ -935,11 +873,9 @@ msgstr "Utilizare: repo-add [opțiuni] <path-to-db> <package> ...\\n"
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add va actualiza o bază de date de pachete prin citirea unei fișier "
-"pachet.\\nMultiple pachete pot fi specificate în linia de comandă.\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add va actualiza o bază de date de pachete prin citirea unei fișier pachet.\\nMultiple pachete pot fi specificate în linia de comandă.\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -947,26 +883,21 @@ msgstr "Opțiuni:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
-msgstr ""
-"  -n, --new         adaugă doar pachetele care nu sunt deja în baza de "
-"date\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
+msgstr "  -n, --new         adaugă doar pachetele care nu sunt deja în baza de date\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"  -R, --remove      elimină fișierul vechi al pachetului de pe disc după "
-"actualizarea bazei de date\\n"
+msgstr "  -R, --remove      elimină fișierul vechi al pachetului de pe disc după actualizarea bazei de date\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
-msgstr ""
-"  -p, --prevent-downgrade  nu adăuga pachetul în baza de date dacă există "
-"deja o versiune mai nouă\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
+msgstr "  -p, --prevent-downgrade  nu adăuga pachetul în baza de date dacă există deja o versiune mai nouă\\n"
 
 #: scripts/repo-add.sh.in:72
 msgid "Usage: repo-remove [options] <path-to-db> <packagename> ...\\n"
@@ -977,11 +908,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"rep-remove va actualiza o bază de date de pachete prin eliminarea "
-"numelui\\npachetului specificat în linia de comanda din baza de date dată a "
-"depozitului.\\nPachetele multiple de eliminat pot fi specificate în linia de "
-"comandă.\\n"
+msgstr "rep-remove va actualiza o bază de date de pachete prin eliminarea numelui\\npachetului specificat în linia de comanda din baza de date dată a depozitului.\\nPachetele multiple de eliminat pot fi specificate în linia de comandă.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -1001,29 +928,21 @@ msgstr "  -s, --sign        semnează baza de date cu GnuPG după actualizare\\n
 
 #: scripts/repo-add.sh.in:87
 msgid "  -k, --key <key>   use the specified key to sign the database\\n"
-msgstr ""
-"  -k, --key <cheie> folosește cheia specificată pentru a semna baza de "
-"date\\n"
+msgstr "  -k, --key <cheie> folosește cheia specificată pentru a semna baza de date\\n"
 
 #: scripts/repo-add.sh.in:88
 msgid "  -v, --verify      verify database's signature before update\\n"
-msgstr ""
-"  -v, --verify      verifică semnătura bazei de date înainte de "
-"actualizare\\n"
+msgstr "  -v, --verify      verifică semnătura bazei de date înainte de actualizare\\n"
 
 #: scripts/repo-add.sh.in:89
 msgid ""
 "\\nSee %s(8) for more details and descriptions of the available options.\\n"
-msgstr ""
-"\\nVezi %s(8) pentru mai multe detalii și descrieri pentru opțiunile "
-"disponibile.\\n"
+msgstr "\\nVezi %s(8) pentru mai multe detalii și descrieri pentru opțiunile disponibile.\\n"
 
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Exemplu: repo-add /cale/către/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar."
-"gz\\n"
+msgstr "Exemplu: repo-add /cale/către/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1155,8 +1074,7 @@ msgstr "Numele comenzii specificate, '%s', este nevalid."
 
 #: scripts/repo-add.sh.in:593
 msgid "Cannot create temp directory for database building."
-msgstr ""
-"Nu poate fi creat directorul temporar pentru construirea bazei de date."
+msgstr "Nu poate fi creat directorul temporar pentru construirea bazei de date."
 
 #: scripts/repo-add.sh.in:704
 msgid "Package database was not modified due to errors."
@@ -1236,8 +1154,7 @@ msgstr "Unul sau mai multe fișiere nu au trecut de verificarea validității!"
 
 #: scripts/libmakepkg/integrity/verify_checksum.sh.in:125
 msgid "Integrity checks (%s) differ in size from the source array."
-msgstr ""
-"Verificările de integritate (%s) diferă ca mărime față de matricea sursă."
+msgstr "Verificările de integritate (%s) diferă ca mărime față de matricea sursă."
 
 #: scripts/libmakepkg/integrity/verify_signature.sh.in:39
 msgid "Verifying source file signatures with %s..."
@@ -1324,8 +1241,7 @@ msgstr "%s nu ar trebui să fie un array"
 
 #: scripts/libmakepkg/lint_config/variable.sh.in:66
 msgid "PACKAGER should have the format 'Example Name <email@address.invalid>'"
-msgstr ""
-"PACKAGER ar trebui sa aibă formatul 'Nume Exemplu <email@adresă.invalid>'"
+msgstr "PACKAGER ar trebui sa aibă formatul 'Nume Exemplu <email@adresă.invalid>'"
 
 #: scripts/libmakepkg/lint_package.sh.in:41
 msgid "Checking for packaging issues..."
@@ -1415,9 +1331,7 @@ msgstr "%s poate fi doar de forma 'integer[.integer]', și nu %s."
 #: scripts/libmakepkg/lint_pkgbuild/pkgver.sh.in:41
 msgid ""
 "%s is not allowed to contain colons, forward slashes, hyphens or whitespace."
-msgstr ""
-"Nu este permis ca %s să conțină două puncte, bară înainte, cratime sau "
-"spații albe."
+msgstr "Nu este permis ca %s să conțină două puncte, bară înainte, cratime sau spații albe."
 
 #: scripts/libmakepkg/lint_pkgbuild/provides.sh.in:46
 msgid "%s array cannot contain comparison (< or >) operators."
@@ -1461,12 +1375,14 @@ msgstr "Eșec la preluarea %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Referință nerecunoscută: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "Se creează o copie de lucru a depozitului %s %s ..."
@@ -1509,12 +1425,14 @@ msgstr "Eșec la extragerea %s"
 msgid "NOT FOUND"
 msgstr "NU S-A GĂSIT"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "Se clonează depozitul %s %s..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "Eșec la descărcarea depozitului %s %s"
@@ -1523,12 +1441,14 @@ msgstr "Eșec la descărcarea depozitului %s %s"
 msgid "%s is not a clone of %s"
 msgstr "%s nu este o clonă a %s"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "Se actulizează depozitul %s %s ..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "Eșec la actualizarea depozitului %s %s"
@@ -1567,8 +1487,7 @@ msgstr "Se elimină fișierele de biblioteci statice..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:145
 msgid "Stripping unneeded symbols from binaries and libraries..."
-msgstr ""
-"Se elimină simbolurile de depanare din fișierele binare și biblioteci..."
+msgstr "Se elimină simbolurile de depanare din fișierele binare și biblioteci..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:190
 msgid "Copying source files needed for debug symbols..."

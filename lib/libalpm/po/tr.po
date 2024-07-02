@@ -20,12 +20,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: tarakbumba <tarakbumba@gmail.com>, 2011,2014\n"
-"Language-Team: Turkish (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/tr/)\n"
-"Language: tr\n"
+"Language-Team: Turkish (http://app.transifex.com/toofishes/archlinux-pacman/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -66,9 +65,7 @@ msgstr "%s dosyasının ismi %s olarak değiştirilemiyor (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"%s paketinin dosya listesinde dosya bulunamadı. %s paketinin açılması "
-"atlanıyor\n"
+msgstr "%s paketinin dosya listesinde dosya bulunamadı. %s paketinin açılması atlanıyor\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -80,18 +77,14 @@ msgstr "%s%s dışarı aktarılamadı: yol çok uzun"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"%s paketi üzerinde dizin izinleri farklı\n"
-"dosya sistemi: %o paket: %o\n"
+msgstr "%s paketi üzerinde dizin izinleri farklı\ndosya sistemi: %o paket: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"%s üzerinde dizin sahipliği farklı\n"
-"dosya sistemi: %u:%u paket: %u:%u\n"
+msgstr "%s üzerinde dizin sahipliği farklı\ndosya sistemi: %u:%u paket: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -346,9 +339,7 @@ msgstr "%s dosyası için bağlama noktası belirlenemedi\n"
 #: lib/libalpm/diskspace.c:366
 #, c-format
 msgid "Partition %s too full: %jd blocks needed, %ju blocks free\n"
-msgstr ""
-"%s diski çok dolu: %jd blok gerekiyor, %ju blok boşta\n"
-"\n"
+msgstr "%s diski çok dolu: %jd blok gerekiyor, %ju blok boşta\n\n"
 
 #: lib/libalpm/diskspace.c:391 lib/libalpm/diskspace.c:445
 #, c-format
@@ -399,9 +390,7 @@ msgstr "%3$s hatası nedeniyle '%1$s' dosyası %2$s adresinden alınamadı\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"'%s' dosyası %s üzerinden alınırken hata oluştu: beklenen indirme boyutuna "
-"ulaşıldı\n"
+msgstr "'%s' dosyası %s üzerinden alınırken hata oluştu: beklenen indirme boyutuna ulaşıldı\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -838,8 +827,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -987,8 +975,7 @@ msgstr "%s: %s sürümünden %s sürümüne çevriliyor.\n"
 #: lib/libalpm/sync.c:117
 #, c-format
 msgid "%s: local (%s) is newer than %s (%s)\n"
-msgstr ""
-"%s: yerel depodaki paket (%s) %s deposundaki paketten (%s) daha güncel\n"
+msgstr "%s: yerel depodaki paket (%s) %s deposundaki paketten (%s) daha güncel\n"
 
 #: lib/libalpm/sync.c:158
 #, c-format
@@ -1118,5 +1105,4 @@ msgstr "%s önbelleği yok, oluşturuluyor...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"paket önbelleği oluşturulamıyor veya bulunamıyor, yerine %s kullanılıyor\n"
+msgstr "paket önbelleği oluşturulamıyor veya bulunamıyor, yerine %s kullanılıyor\n"

@@ -19,14 +19,12 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: ~Smlb <smlb@riseup.net>, 2014\n"
-"Language-Team: Italian (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/it/)\n"
-"Language: it\n"
+"Language-Team: Italian (http://app.transifex.com/toofishes/archlinux-pacman/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
-"1 : 2;\n"
+"Language: it\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
 #, c-format
@@ -41,9 +39,7 @@ msgstr "%s-%s è aggiornato ma sarà reinstallato\n"
 #: lib/libalpm/add.c:99
 #, c-format
 msgid "downgrading package %s (%s => %s)\n"
-msgstr ""
-"installazione in corso di una versione meno recente del pacchetto %s (%s => "
-"%s)\n"
+msgstr "installazione in corso di una versione meno recente del pacchetto %s (%s => %s)\n"
 
 #: lib/libalpm/add.c:129
 #, c-format
@@ -68,9 +64,7 @@ msgstr "impossibile rinominare %s in %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"Il file non esiste nel pacchetto %s. L'estrazione di %s sarà, quindi, "
-"ignorata\n"
+msgstr "Il file non esiste nel pacchetto %s. L'estrazione di %s sarà, quindi, ignorata\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -82,18 +76,14 @@ msgstr "impossibile estrarre %s%s: percorso troppo lungo"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"i permessi delle directory differiscono su %s\n"
-"filesystem: %o pacchetto: %o\n"
+msgstr "i permessi delle directory differiscono su %s\nfilesystem: %o pacchetto: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"i permessi della cartella %s differiscono\n"
-"disco: %u:%u pacchetto: %u:%u\n"
+msgstr "i permessi della cartella %s differiscono\ndisco: %u:%u pacchetto: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -187,15 +177,12 @@ msgstr "impossibile aprire il file %s: %s\n"
 #: lib/libalpm/be_local.c:759 lib/libalpm/be_sync.c:595
 #, c-format
 msgid "%s database is inconsistent: name mismatch on package %s\n"
-msgstr ""
-"il database %s è inconsistente: il nome non corrisponde con il pacchetto %s\n"
+msgstr "il database %s è inconsistente: il nome non corrisponde con il pacchetto %s\n"
 
 #: lib/libalpm/be_local.c:765 lib/libalpm/be_sync.c:601
 #, c-format
 msgid "%s database is inconsistent: version mismatch on package %s\n"
-msgstr ""
-"il database %s è inconsistente: la versione non corrisponde con il pacchetto "
-"%s\n"
+msgstr "il database %s è inconsistente: la versione non corrisponde con il pacchetto %s\n"
 
 #: lib/libalpm/be_local.c:806
 #, c-format
@@ -266,9 +253,7 @@ msgstr "rimozione del file non valido: %s\n"
 #: lib/libalpm/be_sync.c:454
 #, c-format
 msgid "could not parse package description file '%s' from db '%s'\n"
-msgstr ""
-"impossibile analizzare il file della descrizione del pacchetto '%s' dal "
-"database '%s'\n"
+msgstr "impossibile analizzare il file della descrizione del pacchetto '%s' dal database '%s'\n"
 
 #: lib/libalpm/be_sync.c:469
 #, c-format
@@ -278,15 +263,12 @@ msgstr "impossibile leggere il database '%s' (%s)\n"
 #: lib/libalpm/be_sync.c:502 lib/libalpm/be_sync.c:507
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is illegal\n"
-msgstr ""
-"il database %s è inconsistente: il nome del pacchetto %s è illegale\n"
-" \n"
+msgstr "il database %s è inconsistente: il nome del pacchetto %s è illegale\n \n"
 
 #: lib/libalpm/be_sync.c:512
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is too long\n"
-msgstr ""
-"il database %s è inconsistente: il nome del pacchetto %s è troppo lungo\n"
+msgstr "il database %s è inconsistente: il nome del pacchetto %s è troppo lungo\n"
 
 #: lib/libalpm/be_sync.c:577
 #, c-format
@@ -331,8 +313,7 @@ msgstr "impossibile risolvere \"%s\", una dipendenza di \"%s\"\n"
 #: lib/libalpm/diskspace.c:78
 #, c-format
 msgid "could not get filesystem information for %s: %s\n"
-msgstr ""
-"impossibile ottenere le informazione relative al filesystem di %s: %s\n"
+msgstr "impossibile ottenere le informazione relative al filesystem di %s: %s\n"
 
 #: lib/libalpm/diskspace.c:108
 #, c-format
@@ -357,8 +338,7 @@ msgstr "impossibile determinare il punto di montaggio del file %s\n"
 #: lib/libalpm/diskspace.c:366
 #, c-format
 msgid "Partition %s too full: %jd blocks needed, %ju blocks free\n"
-msgstr ""
-"La partizione %s è troppo piena: %jd blocchi necessari, %ju blocchi liberi\n"
+msgstr "La partizione %s è troppo piena: %jd blocchi necessari, %ju blocchi liberi\n"
 
 #: lib/libalpm/diskspace.c:391 lib/libalpm/diskspace.c:445
 #, c-format
@@ -368,9 +348,7 @@ msgstr "impossibile determinare i punti di montaggio del filesystem\n"
 #: lib/libalpm/diskspace.c:397
 #, c-format
 msgid "could not determine cachedir mount point %s\n"
-msgstr ""
-"impossibile determinare il punto di montaggio della directory della cache "
-"%s\n"
+msgstr "impossibile determinare il punto di montaggio della directory della cache %s\n"
 
 #: lib/libalpm/diskspace.c:450
 #, c-format
@@ -411,9 +389,7 @@ msgstr "impossibile scaricare il pacchetto '%s' da %s : %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"impossibile scaricare il file '%s' da %s: la dimensione di download supera "
-"quella attesa\n"
+msgstr "impossibile scaricare il file '%s' da %s: la dimensione di download supera quella attesa\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -832,35 +808,26 @@ msgstr "metadati del pacchetto non validi (nome o versione mancanti)"
 msgid ""
 "invalid metadata for package %s-%s (package name cannot start with '.' or "
 "'-')\n"
-msgstr ""
-"metadati non validi del pacchetto %s-%s (il nome del pacchetto non può "
-"iniziare con '.' or '-')\n"
+msgstr "metadati non validi del pacchetto %s-%s (il nome del pacchetto non può iniziare con '.' or '-')\n"
 
 #: lib/libalpm/package.c:878
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package name contains invalid "
 "characters)\n"
-msgstr ""
-"metadati non validi del pacchetto %s-%s (il nome del pacchetto contiene "
-"caratteri non validi)\n"
+msgstr "metadati non validi del pacchetto %s-%s (il nome del pacchetto contiene caratteri non validi)\n"
 
 #: lib/libalpm/package.c:885 lib/libalpm/package.c:889
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package version contains invalid "
 "characters)\n"
-msgstr ""
-"metadati non validi del pacchetto %s-%s (la versione del pacchetto contiene "
-"caratteri non validi)\n"
+msgstr "metadati non validi del pacchetto %s-%s (la versione del pacchetto contiene caratteri non validi)\n"
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
-msgstr ""
-"metadati non validi del pacchetto %s-%s (nome e versione del pacchetto "
-"troppo lunghi)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
+msgstr "metadati non validi del pacchetto %s-%s (nome e versione del pacchetto troppo lunghi)\n"
 
 #: lib/libalpm/remove.c:111
 #, c-format
@@ -880,8 +847,7 @@ msgstr "impossibile rimuovere il file '%s': %s\n"
 #: lib/libalpm/remove.c:403 lib/libalpm/remove.c:412
 #, c-format
 msgid "could not backup %s due to PATH_MAX overflow\n"
-msgstr ""
-"impossibile eseguire il backup di %s a causa di un overflow di PATH_MAX\n"
+msgstr "impossibile eseguire il backup di %s a causa di un overflow di PATH_MAX\n"
 
 #: lib/libalpm/remove.c:570
 #, c-format
@@ -956,8 +922,7 @@ msgstr "%s: la firma di \"%s\" ha un'affidabilità sconosciuta\n"
 #: lib/libalpm/signing.c:962
 #, c-format
 msgid "%s: signature from \"%s\" should never be trusted\n"
-msgstr ""
-"%s: la firma di \"%s\" non dovrebbe mai essere considerata affidabile\n"
+msgstr "%s: la firma di \"%s\" non dovrebbe mai essere considerata affidabile\n"
 
 #: lib/libalpm/signing.c:974
 #, c-format
@@ -1009,8 +974,7 @@ msgstr "%s: è in corso il downgrade dalla versione %s alla versione %s\n"
 #: lib/libalpm/sync.c:117
 #, c-format
 msgid "%s: local (%s) is newer than %s (%s)\n"
-msgstr ""
-"%s: la versione installata (%s) è più recente di quella presente in %s (%s)\n"
+msgstr "%s: la versione installata (%s) è più recente di quella presente in %s (%s)\n"
 
 #: lib/libalpm/sync.c:158
 #, c-format
@@ -1035,9 +999,7 @@ msgstr "sono stati rilevati dei conflitti irrisolvibili tra i pacchetti\n"
 #: lib/libalpm/sync.c:564
 #, c-format
 msgid "removing '%s-%s' from target list because it conflicts with '%s-%s'\n"
-msgstr ""
-"rimozione in corso di '%s-%s' dall'elenco perché va in conflitto con '%s-"
-"%s'\n"
+msgstr "rimozione in corso di '%s-%s' dall'elenco perché va in conflitto con '%s-%s'\n"
 
 #: lib/libalpm/sync.c:1002 lib/libalpm/sync.c:1169
 #, c-format
@@ -1142,6 +1104,4 @@ msgstr "la cache di %s non esiste, creazione in corso...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"impossibile trovare o creare la cache del pacchetto, al suo posto sarà usato "
-"%s\n"
+msgstr "impossibile trovare o creare la cache del pacchetto, al suo posto sarà usato %s\n"

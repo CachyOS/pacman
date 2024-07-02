@@ -22,14 +22,12 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: 35e31c1f7beb9a73365b56f93b1457f5_fbd83d3, 2014\n"
-"Language-Team: Slovenian (http://app.transifex.com/toofishes/archlinux-"
-"pacman/language/sl/)\n"
-"Language: sl\n"
+"Language-Team: Slovenian (http://app.transifex.com/toofishes/archlinux-pacman/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
 #, c-format
@@ -69,9 +67,7 @@ msgstr "%s ni mogoče preimenovati v %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"datoteke ni bilo mogoče najti v seznamu datotek za paket %s. preskoči "
-"razširjanje %s\n"
+msgstr "datoteke ni bilo mogoče najti v seznamu datotek za paket %s. preskoči razširjanje %s\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -83,25 +79,19 @@ msgstr "ni mogoče razširiti %s%s: pot predolga"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"dovoljenje mape na %s se razlikuje\n"
-"datotečni sistem: %o paket: %o\n"
+msgstr "dovoljenje mape na %s se razlikuje\ndatotečni sistem: %o paket: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"lastnik mape na %s se razlikuje\n"
-"datotečni sistem: %u:%u paket: %u:%u\n"
+msgstr "lastnik mape na %s se razlikuje\ndatotečni sistem: %u:%u paket: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
 msgid "extract: not overwriting dir with file %s\n"
-msgstr ""
-"razširi: ne prepiši mape z datoteko %s\n"
-"\n"
+msgstr "razširi: ne prepiši mape z datoteko %s\n\n"
 
 #: lib/libalpm/add.c:320
 #, c-format
@@ -266,9 +256,7 @@ msgstr "odstranjevanje neveljavne datoteke: %s\n"
 #: lib/libalpm/be_sync.c:454
 #, c-format
 msgid "could not parse package description file '%s' from db '%s'\n"
-msgstr ""
-"ni bilo mogoče razčleniti datoteke opisa paketa '%s' iz podatkovne baze "
-"'%s'\n"
+msgstr "ni bilo mogoče razčleniti datoteke opisa paketa '%s' iz podatkovne baze '%s'\n"
 
 #: lib/libalpm/be_sync.c:469
 #, c-format
@@ -278,8 +266,7 @@ msgstr "ni mogoče prebrati podatkovne baze '%s' (%s)\n"
 #: lib/libalpm/be_sync.c:502 lib/libalpm/be_sync.c:507
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is illegal\n"
-msgstr ""
-"%s podatkovna baza je v neskladju: ime datoteke paketa %s je neveljavno\n"
+msgstr "%s podatkovna baza je v neskladju: ime datoteke paketa %s je neveljavno\n"
 
 #: lib/libalpm/be_sync.c:512
 #, c-format
@@ -405,9 +392,7 @@ msgstr "napaka pri pridobivanju datoteke '%s' iz %s : %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"napaka pri pridobivanju datoteke '%s' iz %s : pričakovana velikost prenosa "
-"presežena\n"
+msgstr "napaka pri pridobivanju datoteke '%s' iz %s : pričakovana velikost prenosa presežena\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -844,8 +829,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -1123,6 +1107,4 @@ msgstr "%s predpomnilnik ne obstaja, se ustvarja ...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"predpomnilnika paketa ni bilo mogoče najti ali ustvariti, zato se uporabi "
-"%s\n"
+msgstr "predpomnilnika paketa ni bilo mogoče najti ali ustvariti, zato se uporabi %s\n"

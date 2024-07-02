@@ -24,12 +24,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: user14 <nleknh@gmail.com>, 2019\n"
-"Language-Team: Hungarian (http://app.transifex.com/toofishes/archlinux-"
-"pacman/language/hu/)\n"
-"Language: hu\n"
+"Language-Team: Hungarian (http://app.transifex.com/toofishes/archlinux-pacman/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -70,8 +69,7 @@ msgstr "nem sikerült az átnevezés: %s -> %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"fájl nem található a(z) %s csomag fájllistájában. %s kibontásának kihagyása\n"
+msgstr "fájl nem található a(z) %s csomag fájllistájában. %s kibontásának kihagyása\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -83,18 +81,14 @@ msgstr "%s%s kibontása nem sikerült: az útvonal túl hosszú"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"eltérő könyvtárjogosultságok: %s\n"
-"fájlrendszer: %o  csomag: %o\n"
+msgstr "eltérő könyvtárjogosultságok: %s\nfájlrendszer: %o  csomag: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"eltérő könyvtártulajdonos: %s\n"
-"fájlrendszer: %u:%u  csomag: %u:%u\n"
+msgstr "eltérő könyvtártulajdonos: %s\nfájlrendszer: %u:%u  csomag: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -264,9 +258,7 @@ msgstr "hibás fájl eltávolítása: %s\n"
 #: lib/libalpm/be_sync.c:454
 #, c-format
 msgid "could not parse package description file '%s' from db '%s'\n"
-msgstr ""
-"nem sikerült értelmezni a(z) '%s' csomagleíró fájlját a(z) '%s' "
-"adatbázisból\n"
+msgstr "nem sikerült értelmezni a(z) '%s' csomagleíró fájlját a(z) '%s' adatbázisból\n"
 
 #: lib/libalpm/be_sync.c:469
 #, c-format
@@ -276,8 +268,7 @@ msgstr "(%s) nem lehetett olvasni a(z) '%s' adatbázist\n"
 #: lib/libalpm/be_sync.c:502 lib/libalpm/be_sync.c:507
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is illegal\n"
-msgstr ""
-"a(z) %s adatbázis inkonzisztens: a(z) %s csomag fájlneve nem megengedett\n"
+msgstr "a(z) %s adatbázis inkonzisztens: a(z) %s csomag fájlneve nem megengedett\n"
 
 #: lib/libalpm/be_sync.c:512
 #, c-format
@@ -352,8 +343,7 @@ msgstr "nem sikerült meghatározni a csatolási pontot a %s fájlhoz\n"
 #: lib/libalpm/diskspace.c:366
 #, c-format
 msgid "Partition %s too full: %jd blocks needed, %ju blocks free\n"
-msgstr ""
-"A(z) %s partició túlságosan tele van: %jd blokk szükséges, %ju blokk szabad\n"
+msgstr "A(z) %s partició túlságosan tele van: %jd blokk szükséges, %ju blokk szabad\n"
 
 #: lib/libalpm/diskspace.c:391 lib/libalpm/diskspace.c:445
 #, c-format
@@ -363,8 +353,7 @@ msgstr "nem sikerült meghatározni a csatolási pontokat\n"
 #: lib/libalpm/diskspace.c:397
 #, c-format
 msgid "could not determine cachedir mount point %s\n"
-msgstr ""
-"nem sikerült meghatározni a %s csomaggyorsítótár-könyvtár csatolási pontját\n"
+msgstr "nem sikerült meghatározni a %s csomaggyorsítótár-könyvtár csatolási pontját\n"
 
 #: lib/libalpm/diskspace.c:450
 #, c-format
@@ -405,9 +394,7 @@ msgstr "nem sikerült a(z) '%s' fájlt letölteni a %s helyről : %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"nem sikerült a(z) '%s' fájlt letölteni a %s helyről : a várt letöltési méret "
-"túlhaladva\n"
+msgstr "nem sikerült a(z) '%s' fájlt letölteni a %s helyről : a várt letöltési méret túlhaladva\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -814,8 +801,7 @@ msgstr "könyvtár nem olvasható: %s: %s\n"
 #: lib/libalpm/package.c:614
 #, c-format
 msgid "could not fully load metadata for package %s-%s\n"
-msgstr ""
-"nem sikerült teljesen betölteni az információs fájlt a(z) %s-%s csomaghoz\n"
+msgstr "nem sikerült teljesen betölteni az információs fájlt a(z) %s-%s csomaghoz\n"
 
 #: lib/libalpm/package.c:869
 #, c-format
@@ -845,8 +831,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -867,8 +852,7 @@ msgstr "nem sikerült eltávolítani a '%s' fájlt : %s\n"
 #: lib/libalpm/remove.c:403 lib/libalpm/remove.c:412
 #, c-format
 msgid "could not backup %s due to PATH_MAX overflow\n"
-msgstr ""
-"nem lehet biztonsági másolatot készíteni %s a PATH_MAX túlcsordulása miatt\n"
+msgstr "nem lehet biztonsági másolatot készíteni %s a PATH_MAX túlcsordulása miatt\n"
 
 #: lib/libalpm/remove.c:570
 #, c-format
@@ -1125,6 +1109,4 @@ msgstr "nem létezik a(z) %s gyorsítótár, létrehozás...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"nem található vagy nem hozható létre a csomaggyorsítótár, a %s könyvtárat "
-"használom helyette\n"
+msgstr "nem található vagy nem hozható létre a csomaggyorsítótár, a %s könyvtárat használom helyette\n"

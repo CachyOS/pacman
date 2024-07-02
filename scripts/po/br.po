@@ -11,17 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: Gwenn M <tornoz@laposte.net>, 2015-2016,2019\n"
-"Language-Team: Breton (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/br/)\n"
-"Language: br\n"
+"Language-Team: Breton (http://app.transifex.com/toofishes/archlinux-pacman/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !"
-"=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && "
-"(n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 "
-"> 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != "
-"0 && n % 1000000 == 0) ? 3 : 4);\n"
+"Language: br\n"
+"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
 #: scripts/makepkg.sh.in:139
 msgid "Cleaning up..."
@@ -199,10 +194,9 @@ msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "Savet eo bet ar strollad pakad endeo (implijit %s evit flastrañ)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
-msgstr ""
-"Savet eo bet ul lodenn eus ar strollad pakadoù endeo. (implijit %s evit "
-"flastrañ)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
+msgstr "Savet eo bet ul lodenn eus ar strollad pakadoù endeo. (implijit %s evit flastrañ)"
 
 #: scripts/makepkg.sh.in:874
 msgid "Make packages compatible for use with pacman"
@@ -233,14 +227,13 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps leuskel an holl gwiriadurioù amzalc'hoù a-gostez"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
 msgstr ""
 
 #: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
-msgstr ""
-"  -e, --noextract  Chom hep eztennañ ar restroù tarzh (implijout ar "
-"c'havlec'h %s)"
+msgstr "  -e, --noextract  Chom hep eztennañ ar restroù tarzh (implijout ar c'havlec'h %s)"
 
 #: scripts/makepkg.sh.in:885
 msgid "  -f, --force      Overwrite existing package"
@@ -277,12 +270,11 @@ msgstr "-p <restr> Ober gant ur skript kempunañ a-eil (e plas '%s')"
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps Dilemel an amzalc'hoù staliet goude bezañ bet kempunet gant "
-"berzh"
+msgstr "  -r, --rmdeps Dilemel an amzalc'hoù staliet goude bezañ bet kempunet gant berzh"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
 msgstr "  -R, --repackage Adpakañ endalc'had ar pakad hep adkempunañ"
 
 #: scripts/makepkg.sh.in:895
@@ -318,10 +310,9 @@ msgstr "--holver Chom hep hizivaat an tarzhioù VCS"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
-msgstr ""
-"--key <alc'hwez> Erspizañ un alc'hwez evit ober gant ar sinañ %s e plas an "
-"hini dre ziouer"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
+msgstr "--key <alc'hwez> Erspizañ un alc'hwez evit ober gant ar sinañ %s e plas an hini dre ziouer"
 
 #: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
@@ -368,9 +359,7 @@ msgstr "--skippgpcheck Chom hep gwiriañ ar restroù tarzh gant sinadurioù PGP"
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"--verifysource Pellgargañ ar restroù tarzh (m'eo dleet) hag ober "
-"gwiriadurioù anterinder"
+msgstr "--verifysource Pellgargañ ar restroù tarzh (m'eo dleet) hag ober gwiriadurioù anterinder"
 
 #: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
@@ -392,9 +381,7 @@ msgstr "--noconfirm Chom hep goulenn kadarnañ an diskoulmoù amzalc'hoù"
 
 #: scripts/makepkg.sh.in:920
 msgid "  --noprogressbar  Do not show a progress bar when downloading files"
-msgstr ""
-"--noprogressbar Chom hep diskouez ur varenn araokaat e-pad pellgargadur ar "
-"restroù"
+msgstr "--noprogressbar Chom hep diskouez ur varenn araokaat e-pad pellgargadur ar restroù"
 
 #: scripts/makepkg.sh.in:922
 msgid "If %s is not specified, %s will look for '%s'"
@@ -415,9 +402,7 @@ msgstr "Tapet an arhent %s. O kuitaat..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"N'eo ket aotreet erounit %s evel root rak e c'hell sevel freuzioù "
-"peurbadus\\nha grevus-tre d'ho reizhad."
+msgstr "N'eo ket aotreet erounit %s evel root rak e c'hell sevel freuzioù peurbadus\\nha grevus-tre d'ho reizhad."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
@@ -545,9 +530,7 @@ msgstr "An aotreoù a-zere eo ret deoc'h kaout evit hizivaat ar stlennvon."
 
 #: scripts/pacman-db-upgrade.sh.in:140
 msgid "Pacman lock file was found. Cannot run while pacman is running."
-msgstr ""
-"Kavet eo bet ar restr morailh pacman. N'haller ket lañsañ ket m'emañ lañset "
-"Pacman."
+msgstr "Kavet eo bet ar restr morailh pacman. N'haller ket lañsañ ket m'emañ lañset Pacman."
 
 #: scripts/pacman-db-upgrade.sh.in:152
 msgid "Pre-3.5 database format detected - upgrading..."
@@ -563,9 +546,7 @@ msgstr "Dinoet eo bet ur stlennvon gant ur mentrezh rak-4.2 - hizivadenn..."
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"an ere arouezus %s a za davet ur poent e diavaez gwrizienn pacman, ret eo "
-"ratreañ gant an dorn "
+msgstr "an ere arouezus %s a za davet ur poent e diavaez gwrizienn pacman, ret eo ratreañ gant an dorn "
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -589,14 +570,12 @@ msgstr "-d, --delete Dilemel an naoudi alc'hwezioù erspizet"
 
 #: scripts/pacman-key.sh.in:65
 msgid "  -e, --export              Export the specified or all keyids"
-msgstr ""
-"-e, --export Ezporzhiañ an naoudi alc'hwezioù erspizet pe an holl anezho"
+msgstr "-e, --export Ezporzhiañ an naoudi alc'hwezioù erspizet pe an holl anezho"
 
 #: scripts/pacman-key.sh.in:66
 msgid ""
 "  -f, --finger              List fingerprint for specified or all keyids"
-msgstr ""
-"-f, --finger Roll ar roudoù bizied evit an holl naoudi alc'hwezioù erspizet"
+msgstr "-f, --finger Roll ar roudoù bizied evit an holl naoudi alc'hwezioù erspizet"
 
 #: scripts/pacman-key.sh.in:67
 msgid "  -l, --list-keys           List the specified or all keys"
@@ -618,9 +597,7 @@ msgstr "-v, --verify Gwiriañ ar restr(où) erspizet er sinadur(ioù)"
 #: scripts/pacman-key.sh.in:71
 msgid ""
 "  --edit-key                Present a menu for key management task on keyids"
-msgstr ""
-"--edit-key Kinnig ul lañser evit merañ an trevelloù merañ an alc'hwezioù war "
-"an naoudi alc'hwezioù"
+msgstr "--edit-key Kinnig ul lañser evit merañ an trevelloù merañ an alc'hwezioù war an naoudi alc'hwezioù"
 
 #: scripts/pacman-key.sh.in:72
 msgid "  --import                  Imports pubring.gpg from dir(s)"
@@ -630,9 +607,7 @@ msgstr "--import Enporzhiañ pubring.pgp adalek ar c'havlec'h(ioù)"
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"--import-trustdb Enporzhiañ talvoudoù ar fiziadurioù implijer adalek trustdb."
-"gpg er c'havlec'h(ioù)"
+msgstr "--import-trustdb Enporzhiañ talvoudoù ar fiziadurioù implijer adalek trustdb.gpg er c'havlec'h(ioù)"
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
@@ -650,16 +625,12 @@ msgstr "--lsign-key Sinañ an naoudi alc'hwez erspized en un doare lec'hel"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"--populate Adkargañ an alc'hwezioù dre ziouer adalek an troñselloù roet\\n e "
-"'%s'"
+msgstr "--populate Adkargañ an alc'hwezioù dre ziouer adalek an troñselloù roet\\n e '%s'"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"--refresh-keys Hizivaat an alc'hwezioù erspizet pe an holl anezho adalek un "
-"dafariad alc'hwezioù"
+msgstr "--refresh-keys Hizivaat an alc'hwezioù erspizet pe an holl anezho adalek un dafariad alc'hwezioù"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -667,17 +638,15 @@ msgstr ""
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
 msgstr "--config <restr> Ober gant ur restr keflunian a-eil (e plas\\n '%s')"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"--gpgdir <kavlec'h> Arventennañ ur c'havlec'h a-eil evit GNuPG (e plas\\n "
-"'%s')"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "--gpgdir <kavlec'h> Arventennañ ur c'havlec'h a-eil evit GNuPG (e plas\\n '%s')"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
@@ -898,12 +867,9 @@ msgstr ""
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"Hizivaet e vo stlenncon ur pakad gant repo-add en ul lenn ur restr pakad."
-"\\nMeur a pakad a c'hell bezan ouzhpennet en ur erspizañ anezhe el linenn "
-"urzhiañ.\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "Hizivaet e vo stlenncon ur pakad gant repo-add en ul lenn ur restr pakad.\\nMeur a pakad a c'hell bezan ouzhpennet en ur erspizañ anezhe el linenn urzhiañ.\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -911,21 +877,20 @@ msgstr "Dibarzhioù : \\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
 msgstr "-n, --new ouzhpennañ pakadoù ha n'int ket er stlennvon nemetken\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"-R, --remove dilemel ar restroù pakad kozh eus ar bladenn pa vez hizivaet ar "
-"stlennvon\\n"
+msgstr "-R, --remove dilemel ar restroù pakad kozh eus ar bladenn pa vez hizivaet ar stlennvon\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
 msgstr ""
 
 #: scripts/repo-add.sh.in:72
@@ -937,10 +902,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"Hizivaet e vo ur stlennvon pakadoù gant repo-remove en ur dilemel anv ar "
-"pakad\\nerspizet el linenn-urzhiañ adalek ar stlennvon mirlec'h roet. Meur a "
-"\\npakad a c'heller dilemel en ur erspizañ anezhe el linenn-urzhiañ.\\n"
+msgstr "Hizivaet e vo ur stlennvon pakadoù gant repo-remove en ur dilemel anv ar pakad\\nerspizet el linenn-urzhiañ adalek ar stlennvon mirlec'h roet. Meur a \\npakad a c'heller dilemel en ur erspizañ anezhe el linenn-urzhiañ.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -960,8 +922,7 @@ msgstr "-s, --sign sinañ ar stlennvon gant GnuPG goude un hizivadenn\\n"
 
 #: scripts/repo-add.sh.in:87
 msgid "  -k, --key <key>   use the specified key to sign the database\\n"
-msgstr ""
-"-k, --key <alc'hwez> implij ar alc'hwez erspizet evit sinañ ar stlennvon\\n"
+msgstr "-k, --key <alc'hwez> implij ar alc'hwez erspizet evit sinañ ar stlennvon\\n"
 
 #: scripts/repo-add.sh.in:88
 msgid "  -v, --verify      verify database's signature before update\\n"
@@ -970,15 +931,12 @@ msgstr "-v, --verify gwiriañ sinadur ar stlennvon a-raok an hizivadenn\\n"
 #: scripts/repo-add.sh.in:89
 msgid ""
 "\\nSee %s(8) for more details and descriptions of the available options.\\n"
-msgstr ""
-"\\n\\nLenn %s(8) evit titouroù ha deskrivadurioù hiroc'h an dibarzhioù "
-"hegerz.\\n"
+msgstr "\\n\\nLenn %s(8) evit titouroù ha deskrivadurioù hiroc'h an dibarzhioù hegerz.\\n"
 
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Skouer :  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
+msgstr "Skouer :  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1190,8 +1148,7 @@ msgstr "Ur restr pe muioc'h n'o deus ket tremenet ar wiriadur reizhidigezh."
 
 #: scripts/libmakepkg/integrity/verify_checksum.sh.in:125
 msgid "Integrity checks (%s) differ in size from the source array."
-msgstr ""
-"Gwiriadurioù anterinder (%s) o deus ur ment disheñvel evit an daolenn tarzh."
+msgstr "Gwiriadurioù anterinder (%s) o deus ur ment disheñvel evit an daolenn tarzh."
 
 #: scripts/libmakepkg/integrity/verify_signature.sh.in:39
 msgid "Verifying source file signatures with %s..."
@@ -1412,12 +1369,14 @@ msgstr "C'hwitet war sachadenn %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Dave dianavezet : %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "O krouiñ un eilenn labour eus ar mirlec'h %s %s..."
@@ -1460,12 +1419,14 @@ msgstr "C'hwitet war eztennañ %s"
 msgid "NOT FOUND"
 msgstr "N'EO KET BET KAVET"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "O klonañ ar mirlec'h %s %s..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "C'hwitet war pellgargañ ar mirlec'h %s %s"
@@ -1474,12 +1435,14 @@ msgstr "C'hwitet war pellgargañ ar mirlec'h %s %s"
 msgid "%s is not a clone of %s"
 msgstr "%s n'eo ket ur c'hlon eus %s"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "Oc'h hizivaat ar mirlec'h %s %s..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "C'hwitet war hizivadur ar mirlec'h %s %s"
@@ -1518,8 +1481,7 @@ msgstr "O tilemel restroù levraoueg difiñv..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:145
 msgid "Stripping unneeded symbols from binaries and libraries..."
-msgstr ""
-"O tennañ an arouezioù diezhomm eus an daouredel hag eus al levraouegoù..."
+msgstr "O tennañ an arouezioù diezhomm eus an daouredel hag eus al levraouegoù..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:190
 msgid "Copying source files needed for debug symbols..."

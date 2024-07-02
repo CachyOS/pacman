@@ -27,12 +27,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: zenlord <zenlord@gmail.com>, 2015,2018\n"
-"Language-Team: Dutch (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/nl/)\n"
-"Language: nl\n"
+"Language-Team: Dutch (http://app.transifex.com/toofishes/archlinux-pacman/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: scripts/makepkg.sh.in:139
@@ -195,8 +194,7 @@ msgstr "Installatie van gebouwd(e) pakket(ten) is mislukt."
 
 #: scripts/makepkg.sh.in:788
 msgid "A package has already been built, installing existing package..."
-msgstr ""
-"Er werd al een pakket gebouwd, zal het het bestaande pakket installeren..."
+msgstr "Er werd al een pakket gebouwd, zal het het bestaande pakket installeren..."
 
 #: scripts/makepkg.sh.in:792
 msgid "A package has already been built. (use %s to overwrite)"
@@ -212,9 +210,9 @@ msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "De pakketgroep werd al gebouwd. (gebruik %s om te overschrijven)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
-msgstr ""
-"Een deel van de pakketgroep werd al gemaakt. (gebruik %s om te overschrijven)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
+msgstr "Een deel van de pakketgroep werd al gemaakt. (gebruik %s om te overschrijven)"
 
 #: scripts/makepkg.sh.in:874
 msgid "Make packages compatible for use with pacman"
@@ -245,13 +243,13 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "-d, --nodeps Alle afhankelijkscontroles overslaan"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
 msgstr ""
 
 #: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
-msgstr ""
-"-e, --noextract Bronbestanden niet extraheren (gebruik bestaande map %s)"
+msgstr "-e, --noextract Bronbestanden niet extraheren (gebruik bestaande map %s)"
 
 #: scripts/makepkg.sh.in:885
 msgid "  -f, --force      Overwrite existing package"
@@ -288,15 +286,12 @@ msgstr "-p <bestand> gebruik een ander creatiescript (in plaats van '%s')"
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"-r, --rmdeps Verwijder geïnstalleerde afhankelijkheden na een succesvolle "
-"creatie"
+msgstr "-r, --rmdeps Verwijder geïnstalleerde afhankelijkheden na een succesvolle creatie"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
-msgstr ""
-"-R, --repackage Herverpak de inhoud van het pakket zonder het opnieuw te "
-"creëren"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
+msgstr "-R, --repackage Herverpak de inhoud van het pakket zonder het opnieuw te creëren"
 
 #: scripts/makepkg.sh.in:895
 msgid "  -s, --syncdeps   Install missing dependencies with %s"
@@ -305,8 +300,7 @@ msgstr "-s, --syncdeps Installeer ontbrekende afhankelijkheden met %s"
 #: scripts/makepkg.sh.in:896
 msgid ""
 "  -S, --source     Generate a source-only tarball without downloaded sources"
-msgstr ""
-"-S, --source Genereer een brontarball zonder de gedownloade bronbestanden"
+msgstr "-S, --source Genereer een brontarball zonder de gedownloade bronbestanden"
 
 #: scripts/makepkg.sh.in:897
 msgid "  -V, --version    Show version information and exit"
@@ -324,8 +318,7 @@ msgstr "--check Voer de %s functie uit in het %s"
 
 #: scripts/makepkg.sh.in:900
 msgid "  --config <file>  Use an alternate config file (instead of '%s')"
-msgstr ""
-"--config <file> Gebruik een ander configuratiebestand (in plaats van '%s')"
+msgstr "--config <file> Gebruik een ander configuratiebestand (in plaats van '%s')"
 
 #: scripts/makepkg.sh.in:901
 msgid "  --holdver        Do not update VCS sources"
@@ -333,10 +326,9 @@ msgstr "--holdver Vernieuw de VCS bronbestanden niet"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
-msgstr ""
-"--key <key> Specifieer een sleutel voor het %s versleutelen in plaats van de "
-"standaardsleutel"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
+msgstr "--key <key> Specifieer een sleutel voor het %s versleutelen in plaats van de standaardsleutel"
 
 #: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
@@ -356,9 +348,7 @@ msgstr "--nosign Maak geen signatuur aan voor het pakket"
 
 #: scripts/makepkg.sh.in:907
 msgid "  --packagelist    Only list package filepaths that would be produced"
-msgstr ""
-"--packagelist  Enkel de bestandsnamen oplijsten van de paketten die zouden "
-"worden gebouwd"
+msgstr "--packagelist  Enkel de bestandsnamen oplijsten van de paketten die zouden worden gebouwd"
 
 #: scripts/makepkg.sh.in:908
 msgid "  --printsrcinfo   Print the generated SRCINFO and exit"
@@ -385,9 +375,7 @@ msgstr "--skippgpcheck Verifieer de PGP signaturen van de bronbestanden niet"
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"--verifysource Download bronbestanden (indien nodig) en voer "
-"integriteitscontrole uit"
+msgstr "--verifysource Download bronbestanden (indien nodig) en voer integriteitscontrole uit"
 
 #: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
@@ -405,8 +393,7 @@ msgstr "--needed Herinstalleer de doelen die al up to date zijn niet"
 #: scripts/makepkg.sh.in:919
 msgid ""
 "  --noconfirm      Do not ask for confirmation when resolving dependencies"
-msgstr ""
-"--noconfirm Vraag geen bevestiging wanneer afhankelijkheden worden opgelost"
+msgstr "--noconfirm Vraag geen bevestiging wanneer afhankelijkheden worden opgelost"
 
 #: scripts/makepkg.sh.in:920
 msgid "  --noprogressbar  Do not show a progress bar when downloading files"
@@ -421,9 +408,7 @@ msgstr "Als %s niet werd gespecificeerd, zal %s zoeken naar '%s'"
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
 "WARRANTY, to the extent permitted by law.\\n"
-msgstr ""
-"Dit is vrije software; zie bronbestanden voor de voorwaarden tot reproductie."
-"\\nEr wordt GEEN ENKELE GARANTIE gegeven, voor zover toegelaten bij wet.\\n"
+msgstr "Dit is vrije software; zie bronbestanden voor de voorwaarden tot reproductie.\\nEr wordt GEEN ENKELE GARANTIE gegeven, voor zover toegelaten bij wet.\\n"
 
 #: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
@@ -433,14 +418,11 @@ msgstr "%s signaal gevonden. Afsluiten..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"Het draaien van %s als root is niet toegestaan omdat het permanente,"
-"\\ncatastrofale schade kan toebrengen aan uw systeem."
+msgstr "Het draaien van %s als root is niet toegestaan omdat het permanente,\\ncatastrofale schade kan toebrengen aan uw systeem."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
-msgstr ""
-"Gebruik de optie %s niet. Deze optie is enkel voor intern gebruik door %s."
+msgstr "Gebruik de optie %s niet. Deze optie is enkel voor intern gebruik door %s."
 
 #: scripts/makepkg.sh.in:1131
 msgid "%s does not exist."
@@ -564,8 +546,7 @@ msgstr "Om de database to upgraden heb je de juiste rechten nodig."
 
 #: scripts/pacman-db-upgrade.sh.in:140
 msgid "Pacman lock file was found. Cannot run while pacman is running."
-msgstr ""
-"Pacman lockbestand gevonden. Kan niet uitvoeren wanneer pacman actief is."
+msgstr "Pacman lockbestand gevonden. Kan niet uitvoeren wanneer pacman actief is."
 
 #: scripts/pacman-db-upgrade.sh.in:152
 msgid "Pre-3.5 database format detected - upgrading..."
@@ -581,8 +562,7 @@ msgstr "Pre-4.2 database formaat gedetecteerd - upgraden...."
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"symlink '%s' verwijzing ligt buiten de pacman root, handmatig herstel nodig"
+msgstr "symlink '%s' verwijzing ligt buiten de pacman root, handmatig herstel nodig"
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -628,8 +608,7 @@ msgstr "-u, --updatedb Werk de trustdb van pacman bij"
 #: scripts/pacman-key.sh.in:70
 msgid ""
 "  -v, --verify              Verify the file(s) specified by the signature(s)"
-msgstr ""
-"-v, --verify Verifieer de bestand(en) gespecificeerd door de signatu(u)r(en)"
+msgstr "-v, --verify Verifieer de bestand(en) gespecificeerd door de signatu(u)r(en)"
 
 #: scripts/pacman-key.sh.in:71
 msgid ""
@@ -662,16 +641,12 @@ msgstr "--lsign-key Onderteken de gespecificeerde sleutelid lokaal"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"--populate Herlaad de standaard sleutels van de (gegeven) sleutelbossen\\n "
-"in '%s'"
+msgstr "--populate Herlaad de standaard sleutels van de (gegeven) sleutelbossen\\n in '%s'"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"--refresh-keys Werk de gespecificeerde of alle sleutels bij van een "
-"sleutelserver"
+msgstr "--refresh-keys Werk de gespecificeerde of alle sleutels bij van een sleutelserver"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -679,19 +654,15 @@ msgstr "  --verbose                 Extra informatie tonen"
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"--config <bestand> Gebruik een alternatief configuratiebestand (in plaats "
-"van\\n '%s')"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "--config <bestand> Gebruik een alternatief configuratiebestand (in plaats van\\n '%s')"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"--gpgdir <map> Stel een alternatieve map in voor GnuPG (in plaats van\\n "
-"'%s')"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "--gpgdir <map> Stel een alternatieve map in voor GnuPG (in plaats van\\n '%s')"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
@@ -701,9 +672,7 @@ msgstr ""
 
 #: scripts/pacman-key.sh.in:89
 msgid "  --keyserver <server-url>  Specify a keyserver to use if necessary"
-msgstr ""
-"--keyserver <server-url> Specificeer een sleutelserver om te gebruiken "
-"indien nodig"
+msgstr "--keyserver <server-url> Specificeer een sleutelserver om te gebruiken indien nodig"
 
 #: scripts/pacman-key.sh.in:91
 msgid "  -h, --help                Show this help message and exit"
@@ -794,14 +763,11 @@ msgstr[1] ""
 
 #: scripts/pacman-key.sh.in:385
 msgid "A specified keyfile could not be added to the keyring."
-msgstr ""
-"Een gespecificeerd sleutelbestand kon niet aan de sleutelbos toegevoegd "
-"worden."
+msgstr "Een gespecificeerd sleutelbestand kon niet aan de sleutelbos toegevoegd worden."
 
 #: scripts/pacman-key.sh.in:393
 msgid "A specified key could not be removed from the keyring."
-msgstr ""
-"Een gespecificeerde sleutel kon niet verwijderd worden uit de sleutelbos."
+msgstr "Een gespecificeerde sleutel kon niet verwijderd worden uit de sleutelbos."
 
 #: scripts/pacman-key.sh.in:403
 msgid "The key identified by %s could not be edited."
@@ -879,9 +845,7 @@ msgstr "Trust database kon niet worden bijgewerkt..."
 
 #: scripts/pacman-key.sh.in:690
 msgid "Cannot find the %s binary required for all %s operations."
-msgstr ""
-"Kan het uitvoerbare bestand %s, vereist voor alle %s bewerkingen, niet "
-"vinden."
+msgstr "Kan het uitvoerbare bestand %s, vereist voor alle %s bewerkingen, niet vinden."
 
 #: scripts/pacman-key.sh.in:695
 msgid "%s needs to be run as root for this operation."
@@ -913,12 +877,9 @@ msgstr "Gebruik: repo-add [opties] <path-to-db> <package> ...\\n"
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add zal een pakketten database bijwerken door het uitlezen van een "
-"pakketbestand.\\nMeerdere pakketten kunnen worden gespecificeerd in de "
-"opdrachtregel.\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add zal een pakketten database bijwerken door het uitlezen van een pakketbestand.\\nMeerdere pakketten kunnen worden gespecificeerd in de opdrachtregel.\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -926,25 +887,21 @@ msgstr "Opties:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
-msgstr ""
-"-n, --new alleen pakketten toevoegen die nog niet in de database voorkomen\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
+msgstr "-n, --new alleen pakketten toevoegen die nog niet in de database voorkomen\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"-R, --remove verwijder oud pakket van harde schijf nadat de database is "
-"bijgewerkt\\n"
+msgstr "-R, --remove verwijder oud pakket van harde schijf nadat de database is bijgewerkt\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
-msgstr ""
-"-p, --prevent-downgrade pakket niet toevoegen aan database indien reeds een "
-"nieuwere versie aanwezig is\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
+msgstr "-p, --prevent-downgrade pakket niet toevoegen aan database indien reeds een nieuwere versie aanwezig is\\n"
 
 #: scripts/repo-add.sh.in:72
 msgid "Usage: repo-remove [options] <path-to-db> <packagename> ...\\n"
@@ -955,10 +912,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove zal een pakketdatabase bijwerkendoor de pakketnaam\\zoals "
-"gespecificeerd op de cli van die repo database. Meerdere\\npakketten om te "
-"verwijderen kunnen worden gespecificeerd op de cli.\\n"
+msgstr "repo-remove zal een pakketdatabase bijwerkendoor de pakketnaam\\zoals gespecificeerd op de cli van die repo database. Meerdere\\npakketten om te verwijderen kunnen worden gespecificeerd op de cli.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -978,8 +932,7 @@ msgstr "-s, --sign onderteken database met GnuPG na update\\n"
 
 #: scripts/repo-add.sh.in:87
 msgid "  -k, --key <key>   use the specified key to sign the database\\n"
-msgstr ""
-"-k, --key <sleutel> gebruik deze sleutel om de database te ondertekenen\\n"
+msgstr "-k, --key <sleutel> gebruik deze sleutel om de database te ondertekenen\\n"
 
 #: scripts/repo-add.sh.in:88
 msgid "  -v, --verify      verify database's signature before update\\n"
@@ -988,16 +941,12 @@ msgstr "-v, --verify verifieer de signatuur van de database voor de update\\n"
 #: scripts/repo-add.sh.in:89
 msgid ""
 "\\nSee %s(8) for more details and descriptions of the available options.\\n"
-msgstr ""
-"\\nZie %s(8) voor meer details en beschrijvingen van de beschikbare opties."
-"\\n"
+msgstr "\\nZie %s(8) voor meer details en beschrijvingen van de beschikbare opties.\\n"
 
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Bijvoorbeeld: repo-add /pad/naar/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar."
-"gz\\n"
+msgstr "Bijvoorbeeld: repo-add /pad/naar/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1296,8 +1245,7 @@ msgstr "%s mag geen array zijn"
 
 #: scripts/libmakepkg/lint_config/variable.sh.in:66
 msgid "PACKAGER should have the format 'Example Name <email@address.invalid>'"
-msgstr ""
-"PACKAGER moet volgend formaat hebben: 'Voorbeeld Naam <email@adres.ongeldig>'"
+msgstr "PACKAGER moet volgend formaat hebben: 'Voorbeeld Naam <email@adres.ongeldig>'"
 
 #: scripts/libmakepkg/lint_package.sh.in:41
 msgid "Checking for packaging issues..."
@@ -1387,9 +1335,7 @@ msgstr "%s moet voldoen aan de vorm 'integer[.integer]', niet %s."
 #: scripts/libmakepkg/lint_pkgbuild/pkgver.sh.in:41
 msgid ""
 "%s is not allowed to contain colons, forward slashes, hyphens or whitespace."
-msgstr ""
-"%s mag geen dubbele punten, voorwaartse schuine strepen, liggende streepjes "
-"noch witruimte bevatten."
+msgstr "%s mag geen dubbele punten, voorwaartse schuine strepen, liggende streepjes noch witruimte bevatten."
 
 #: scripts/libmakepkg/lint_pkgbuild/provides.sh.in:46
 msgid "%s array cannot contain comparison (< or >) operators."
@@ -1433,12 +1379,14 @@ msgstr "Fout tijdens ophalen van %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Referentie niet herkend: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "Een werkkopie van pakketlijst %s %s aan het aanmaken..."
@@ -1481,12 +1429,14 @@ msgstr "Uitpakken van %s mislukt"
 msgid "NOT FOUND"
 msgstr "NIET GEVONDEN"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "%s %s repo klonen..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "Fout tijdens downloaden %s %s repo"
@@ -1495,12 +1445,14 @@ msgstr "Fout tijdens downloaden %s %s repo"
 msgid "%s is not a clone of %s"
 msgstr "%s is geen kloon van %s"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "%s %s repo bijwerken..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "Fout tijdens bijwerken %s %s repo"
@@ -1539,8 +1491,7 @@ msgstr "Bezig met het verwijderen van statische bibliotheekbestanden..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:145
 msgid "Stripping unneeded symbols from binaries and libraries..."
-msgstr ""
-"Strippen van onnodige symbolen van uitvoerbare bestanden en bibliotheken..."
+msgstr "Strippen van onnodige symbolen van uitvoerbare bestanden en bibliotheken..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:190
 msgid "Copying source files needed for debug symbols..."

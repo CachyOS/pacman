@@ -25,14 +25,12 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: Pablo Lezaeta Reyes <prflr88@gmail.com>, 2013,2015\n"
-"Language-Team: Spanish (Latin America) (http://app.transifex.com/toofishes/"
-"archlinux-pacman/language/es_419/)\n"
-"Language: es_419\n"
+"Language-Team: Spanish (Latin America) (http://app.transifex.com/toofishes/archlinux-pacman/language/es_419/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
-"1 : 2;\n"
+"Language: es_419\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: scripts/makepkg.sh.in:139
 msgid "Cleaning up..."
@@ -210,9 +208,9 @@ msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "El grupo de paquetes ya se ha compilado. (use %s para sobrescribirlo)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
-msgstr ""
-"Parte del grupo de paquetes ya se ha compilado. (use %s para sobrescribirlo)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
+msgstr "Parte del grupo de paquetes ya se ha compilado. (use %s para sobrescribirlo)"
 
 #: scripts/makepkg.sh.in:874
 msgid "Make packages compatible for use with pacman"
@@ -236,15 +234,15 @@ msgstr "  -c, --clean      Limpia los archivos tras la compilación"
 
 #: scripts/makepkg.sh.in:881
 msgid "  -C, --cleanbuild Remove %s dir before building the package"
-msgstr ""
-"  -C, --cleanbuild Elimina el directorio %s antes de compilar el paquete"
+msgstr "  -C, --cleanbuild Elimina el directorio %s antes de compilar el paquete"
 
 #: scripts/makepkg.sh.in:882
 msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     Omite todas las comprobaciones de dependencias"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
 msgstr ""
 
 #: scripts/makepkg.sh.in:884
@@ -281,22 +279,17 @@ msgstr "  -o, --nobuild Únicamente descarga y extrae los archivos"
 
 #: scripts/makepkg.sh.in:892
 msgid "  -p <file>        Use an alternate build script (instead of '%s')"
-msgstr ""
-"  -p <archivo>     Usa un archivo de órdenes de compilación alternativo (en "
-"lugar de «%s»)"
+msgstr "  -p <archivo>     Usa un archivo de órdenes de compilación alternativo (en lugar de «%s»)"
 
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps     Elimina las dependencias instaladas tras una compilación "
-"exitosa."
+msgstr "  -r, --rmdeps     Elimina las dependencias instaladas tras una compilación exitosa."
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
-msgstr ""
-"  -R, --repackage  Vuelve a empaquetar el contenido del paquete sin "
-"recompilar"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
+msgstr "  -R, --repackage  Vuelve a empaquetar el contenido del paquete sin recompilar"
 
 #: scripts/makepkg.sh.in:895
 msgid "  -s, --syncdeps   Install missing dependencies with %s"
@@ -305,9 +298,7 @@ msgstr "  -s, --syncdeps   Instala las dependencias que faltan para %s"
 #: scripts/makepkg.sh.in:896
 msgid ""
 "  -S, --source     Generate a source-only tarball without downloaded sources"
-msgstr ""
-"  -S, --source Genera un archivo comprimido de fuentes únicamente, "
-"excluyendo las fuentes descargadas"
+msgstr "  -S, --source Genera un archivo comprimido de fuentes únicamente, excluyendo las fuentes descargadas"
 
 #: scripts/makepkg.sh.in:897
 msgid "  -V, --version    Show version information and exit"
@@ -317,9 +308,7 @@ msgstr "  -V, --version Muestra información de la versión y sale"
 msgid ""
 "  --allsource      Generate a source-only tarball including downloaded "
 "sources"
-msgstr ""
-"  --allsource Genera un archivo comprimido de fuentes únicamente, incluyendo "
-"las fuentes descargadas"
+msgstr "  --allsource Genera un archivo comprimido de fuentes únicamente, incluyendo las fuentes descargadas"
 
 #: scripts/makepkg.sh.in:899
 msgid "  --check          Run the %s function in the %s"
@@ -327,9 +316,7 @@ msgstr "  --check          Ejecuta la función %s en el %s"
 
 #: scripts/makepkg.sh.in:900
 msgid "  --config <file>  Use an alternate config file (instead of '%s')"
-msgstr ""
-"  --config <archivo>  Usa un archivo de configuración alternativo (en vez de "
-"«%s»)"
+msgstr "  --config <archivo>  Usa un archivo de configuración alternativo (en vez de «%s»)"
 
 #: scripts/makepkg.sh.in:901
 msgid "  --holdver        Do not update VCS sources"
@@ -337,10 +324,9 @@ msgstr "  --holdver          No actualiza las fuentes VCS"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
-msgstr ""
-"  --key <clave>   Especifica la clave a usar para firmar %s en lugar de la "
-"clave por defecto"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
+msgstr "  --key <clave>   Especifica la clave a usar para firmar %s en lugar de la clave por defecto"
 
 #: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
@@ -377,8 +363,7 @@ msgstr "  --skipchecksums  No verifica las sumas de control de las fuentes"
 #: scripts/makepkg.sh.in:911
 msgid ""
 "  --skipinteg      Do not perform any verification checks on source files"
-msgstr ""
-"  --skipinteg      No ejecuta ningún control de integridad sobre las fuentes"
+msgstr "  --skipinteg      No ejecuta ningún control de integridad sobre las fuentes"
 
 #: scripts/makepkg.sh.in:912
 msgid "  --skippgpcheck   Do not verify source files with PGP signatures"
@@ -388,9 +373,7 @@ msgstr "  --skippgpcheck   No verifica las fuentes con las firmas PGP"
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"  --verifysource    Descarga el código fuente (si es necesario) y realiza "
-"las comprobaciones de integridad"
+msgstr "  --verifysource    Descarga el código fuente (si es necesario) y realiza las comprobaciones de integridad"
 
 #: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
@@ -408,14 +391,11 @@ msgstr "--needed          No reinstala los objetivos que ya están actualizados"
 #: scripts/makepkg.sh.in:919
 msgid ""
 "  --noconfirm      Do not ask for confirmation when resolving dependencies"
-msgstr ""
-"      --noconfirm      No solicita confirmación alguna cuando se encuentra "
-"resolviendo dependencias"
+msgstr "      --noconfirm      No solicita confirmación alguna cuando se encuentra resolviendo dependencias"
 
 #: scripts/makepkg.sh.in:920
 msgid "  --noprogressbar  Do not show a progress bar when downloading files"
-msgstr ""
-"  --noprogressbar  No muestra la barra de progreso al descargar los archivos"
+msgstr "  --noprogressbar  No muestra la barra de progreso al descargar los archivos"
 
 #: scripts/makepkg.sh.in:922
 msgid "If %s is not specified, %s will look for '%s'"
@@ -436,9 +416,7 @@ msgstr "Captada la señal %s. Saliendo…"
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"Ejecutar %s como administrador no está permitido ya que puede causar "
-"daños\\npermanentes y catastróficos a su sistema."
+msgstr "Ejecutar %s como administrador no está permitido ya que puede causar daños\\npermanentes y catastróficos a su sistema."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
@@ -546,8 +524,7 @@ msgstr "  -V, --version       muestra información de la versión y sale"
 
 #: scripts/pacman-db-upgrade.sh.in:48
 msgid "  --config <path>      set an alternate configuration file"
-msgstr ""
-"  --config <ruta>      establece un archivo de configuración alternativo"
+msgstr "  --config <ruta>      establece un archivo de configuración alternativo"
 
 #: scripts/pacman-db-upgrade.sh.in:49
 msgid "  --nocolor            disable colorized output messages"
@@ -567,9 +544,7 @@ msgstr "Debe tener los permisos adecuados para actualizar la base de datos."
 
 #: scripts/pacman-db-upgrade.sh.in:140
 msgid "Pacman lock file was found. Cannot run while pacman is running."
-msgstr ""
-"Se encontró el archivo de bloqueo de pacman. No se puede ejecutar mientras "
-"pacman esté funcionando."
+msgstr "Se encontró el archivo de bloqueo de pacman. No se puede ejecutar mientras pacman esté funcionando."
 
 #: scripts/pacman-db-upgrade.sh.in:152
 msgid "Pre-3.5 database format detected - upgrading..."
@@ -585,9 +560,7 @@ msgstr "Formato de base de datos previo a 4.2 encontrado, actualizando…"
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"el enlace simbólico «%s» apunta fuera de la raíz de pacman, es necesario una "
-"reparación manual"
+msgstr "el enlace simbólico «%s» apunta fuera de la raíz de pacman, es necesario una reparación manual"
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -603,71 +576,52 @@ msgstr "Operaciones:"
 
 #: scripts/pacman-key.sh.in:63
 msgid "  -a, --add                 Add the specified keys (empty for stdin)"
-msgstr ""
-"  -a, --add                  Añade las claves especificadas (vacío para la "
-"entrada)"
+msgstr "  -a, --add                  Añade las claves especificadas (vacío para la entrada)"
 
 #: scripts/pacman-key.sh.in:64
 msgid "  -d, --delete              Remove the specified keyids"
-msgstr ""
-"  -d, --delete                Elimina los identificadores de claves (keyids) "
-"especificados"
+msgstr "  -d, --delete                Elimina los identificadores de claves (keyids) especificados"
 
 #: scripts/pacman-key.sh.in:65
 msgid "  -e, --export              Export the specified or all keyids"
-msgstr ""
-"  -e, --export                Exporta todos los identificadores de claves o "
-"los especificados"
+msgstr "  -e, --export                Exporta todos los identificadores de claves o los especificados"
 
 #: scripts/pacman-key.sh.in:66
 msgid ""
 "  -f, --finger              List fingerprint for specified or all keyids"
-msgstr ""
-"  -f, --finger                Lista las huellas de todos los identificadores "
-"de claves o los especificados"
+msgstr "  -f, --finger                Lista las huellas de todos los identificadores de claves o los especificados"
 
 #: scripts/pacman-key.sh.in:67
 msgid "  -l, --list-keys           List the specified or all keys"
-msgstr ""
-"  -l, --list-keys            Lista todas las claves o las especificadas"
+msgstr "  -l, --list-keys            Lista todas las claves o las especificadas"
 
 #: scripts/pacman-key.sh.in:68
 msgid "  -r, --recv-keys           Fetch the specified keyids"
-msgstr ""
-"  -r, --recv-keys            Obtiene los identificadores de claves "
-"especificados"
+msgstr "  -r, --recv-keys            Obtiene los identificadores de claves especificados"
 
 #: scripts/pacman-key.sh.in:69
 msgid "  -u, --updatedb            Update the trustdb of pacman"
-msgstr ""
-"  -u, --updatedb            Actualiza la base de datos de confianza de pacman"
+msgstr "  -u, --updatedb            Actualiza la base de datos de confianza de pacman"
 
 #: scripts/pacman-key.sh.in:70
 msgid ""
 "  -v, --verify              Verify the file(s) specified by the signature(s)"
-msgstr ""
-"  -v, --verify               Verifica el archivo(s) especificado por la "
-"firma(s)"
+msgstr "  -v, --verify               Verifica el archivo(s) especificado por la firma(s)"
 
 #: scripts/pacman-key.sh.in:71
 msgid ""
 "  --edit-key                Present a menu for key management task on keyids"
-msgstr ""
-"  --edit-key                 Muestra un menú para la administración de las "
-"claves en base a los identificadores de claves"
+msgstr "  --edit-key                 Muestra un menú para la administración de las claves en base a los identificadores de claves"
 
 #: scripts/pacman-key.sh.in:72
 msgid "  --import                  Imports pubring.gpg from dir(s)"
-msgstr ""
-"  --import                    Importa pubring.gpg desde el directorio(s)"
+msgstr "  --import                    Importa pubring.gpg desde el directorio(s)"
 
 #: scripts/pacman-key.sh.in:73
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"  --import-trustdb            Importa los valores de los propietarios de "
-"confianza desde trustdb.gpg en el directorio(s)"
+msgstr "  --import-trustdb            Importa los valores de los propietarios de confianza desde trustdb.gpg en el directorio(s)"
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
@@ -685,16 +639,12 @@ msgstr "  --lsign-key Firma localmente el identificador de clave especificado"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate Recarga las claves por defecto de los llaveros (dados)\\n en "
-"«%s»"
+msgstr "  --populate Recarga las claves por defecto de los llaveros (dados)\\n en «%s»"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"  --refresh-keys            Actualiza todas las claves o las especificadas "
-"desde un servidor de claves"
+msgstr "  --refresh-keys            Actualiza todas las claves o las especificadas desde un servidor de claves"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -702,19 +652,15 @@ msgstr ""
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <archivo>        Usa un archivo de configuración "
-"alternativo\\n                            (en lugar de «%s»)"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <archivo>        Usa un archivo de configuración alternativo\\n                            (en lugar de «%s»)"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <directorio>            Configura un directorio alternativo para "
-"GnuPG\\n                            (en lugar de «%s»)"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <directorio>            Configura un directorio alternativo para GnuPG\\n                            (en lugar de «%s»)"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
@@ -724,9 +670,7 @@ msgstr ""
 
 #: scripts/pacman-key.sh.in:89
 msgid "  --keyserver <server-url>  Specify a keyserver to use if necessary"
-msgstr ""
-"  --keyserver <dirección URL del servidor> Especifica un servidor de claves "
-"para utilizar cuando sea necesario"
+msgstr "  --keyserver <dirección URL del servidor> Especifica un servidor de claves para utilizar cuando sea necesario"
 
 #: scripts/pacman-key.sh.in:91
 msgid "  -h, --help                Show this help message and exit"
@@ -873,8 +817,7 @@ msgstr ""
 
 #: scripts/pacman-key.sh.in:534
 msgid "Remote key not fetched correctly from keyserver."
-msgstr ""
-"La clave remota no se pudo obtener correctamente desde el servidor de claves."
+msgstr "La clave remota no se pudo obtener correctamente desde el servidor de claves."
 
 #: scripts/pacman-key.sh.in:566
 msgid "Could not update key: %s"
@@ -902,9 +845,7 @@ msgstr "No se pudo actualizar la base de datos de claves de confianza."
 
 #: scripts/pacman-key.sh.in:690
 msgid "Cannot find the %s binary required for all %s operations."
-msgstr ""
-"No se pudo encontrar el binario %s requerido para todas las operaciones de "
-"%s."
+msgstr "No se pudo encontrar el binario %s requerido para todas las operaciones de %s."
 
 #: scripts/pacman-key.sh.in:695
 msgid "%s needs to be run as root for this operation."
@@ -936,12 +877,9 @@ msgstr ""
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add actualizará la base de datos de paquetes leyendo desde un paquete."
-"\\nPueden ser agregados varios paquetes especificándolo en la línea de "
-"órdenes.\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add actualizará la base de datos de paquetes leyendo desde un paquete.\\nPueden ser agregados varios paquetes especificándolo en la línea de órdenes.\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -949,21 +887,20 @@ msgstr "Opciones:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
 msgstr "-n, --new solamente agrega paquetes nuevos a la base de datos\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"  -R, --remove      elimina el archivo del paquete del disco cuando la "
-"entrada de la base de datos sea actualizada\\n"
+msgstr "  -R, --remove      elimina el archivo del paquete del disco cuando la entrada de la base de datos sea actualizada\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
 msgstr ""
 
 #: scripts/repo-add.sh.in:72
@@ -975,11 +912,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove actualiza una base de datos de paquetes al eliminar el nombre "
-"del paquete\\nespecificado en la linea de órdenes de la base de datos del "
-"repositorio en cuestión. Es posible\\nquitar varios paquetes especificándolo "
-"en la línea de órdenes.\\n"
+msgstr "repo-remove actualiza una base de datos de paquetes al eliminar el nombre del paquete\\nespecificado en la linea de órdenes de la base de datos del repositorio en cuestión. Es posible\\nquitar varios paquetes especificándolo en la línea de órdenes.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -995,33 +928,25 @@ msgstr "  -q, --quiet       reduce la salida\\n"
 
 #: scripts/repo-add.sh.in:86
 msgid "  -s, --sign        sign database with GnuPG after update\\n"
-msgstr ""
-"  -s, --sign        firma la base de datos con GnuPG tras la actualización\\n"
+msgstr "  -s, --sign        firma la base de datos con GnuPG tras la actualización\\n"
 
 #: scripts/repo-add.sh.in:87
 msgid "  -k, --key <key>   use the specified key to sign the database\\n"
-msgstr ""
-"  -k, --key <clave> usa la clave especificada para firmar la base de datos\\n"
+msgstr "  -k, --key <clave> usa la clave especificada para firmar la base de datos\\n"
 
 #: scripts/repo-add.sh.in:88
 msgid "  -v, --verify      verify database's signature before update\\n"
-msgstr ""
-"  -v, --verify      verifica la firma de la base de datos antes de "
-"actualizar\\n"
+msgstr "  -v, --verify      verifica la firma de la base de datos antes de actualizar\\n"
 
 #: scripts/repo-add.sh.in:89
 msgid ""
 "\\nSee %s(8) for more details and descriptions of the available options.\\n"
-msgstr ""
-"\\nVéase %s(8) para obtener mas detalles y descripciones de las opciones "
-"disponibles.\\n"
+msgstr "\\nVéase %s(8) para obtener mas detalles y descripciones de las opciones disponibles.\\n"
 
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Ejemplo:  repo-add /ruta/hasta/repo.db.tar.gz pacman-3.5.0-1-i686.pkg.tar."
-"gz\\n"
+msgstr "Ejemplo:  repo-add /ruta/hasta/repo.db.tar.gz pacman-3.5.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1109,8 +1034,7 @@ msgstr "Detenido por el proceso %s"
 
 #: scripts/repo-add.sh.in:418
 msgid "Repository file '%s' is not a proper pacman database."
-msgstr ""
-"El archivo del repositorio «%s» no es una base de datos de pacman válida."
+msgstr "El archivo del repositorio «%s» no es una base de datos de pacman válida."
 
 #: scripts/repo-add.sh.in:423
 msgid "Extracting %s to a temporary location..."
@@ -1154,8 +1078,7 @@ msgstr "El nombre de la orden «%s» especificado no es válido"
 
 #: scripts/repo-add.sh.in:593
 msgid "Cannot create temp directory for database building."
-msgstr ""
-"No se puede crear el directorio temporal para compilar la base de datos."
+msgstr "No se puede crear el directorio temporal para compilar la base de datos."
 
 #: scripts/repo-add.sh.in:704
 msgid "Package database was not modified due to errors."
@@ -1235,9 +1158,7 @@ msgstr "¡Uno o más archivos no superaron el control de validación!"
 
 #: scripts/libmakepkg/integrity/verify_checksum.sh.in:125
 msgid "Integrity checks (%s) differ in size from the source array."
-msgstr ""
-"Los controles de integridad (%s) difieren en tamaño de los especificados en "
-"la fuente."
+msgstr "Los controles de integridad (%s) difieren en tamaño de los especificados en la fuente."
 
 #: scripts/libmakepkg/integrity/verify_signature.sh.in:39
 msgid "Verifying source file signatures with %s..."
@@ -1287,9 +1208,7 @@ msgstr "¡Una o más firmas PGP no pudieron ser verificadas!"
 
 #: scripts/libmakepkg/integrity/verify_signature.sh.in:121
 msgid "Warnings have occurred while verifying the signatures."
-msgstr ""
-"Se han producido avisos de problemas durante las verificaciones de las "
-"firmas."
+msgstr "Se han producido avisos de problemas durante las verificaciones de las firmas."
 
 #: scripts/libmakepkg/integrity/verify_signature.sh.in:122
 msgid "Please make sure you really trust them."
@@ -1460,12 +1379,14 @@ msgstr "Hubo fallos durante el sondeo de %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Referencia desconocida: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "Creando copia de trabajo de %s del repositorio %s…"
@@ -1474,18 +1395,14 @@ msgstr "Creando copia de trabajo de %s del repositorio %s…"
 #: scripts/libmakepkg/source/git.sh.in:97
 #: scripts/libmakepkg/source/hg.sh.in:102
 msgid "Failure while updating working copy of %s %s repo"
-msgstr ""
-"Hubo fallos durante la creación de la copia de trabajo de %s del repositorio "
-"%s"
+msgstr "Hubo fallos durante la creación de la copia de trabajo de %s del repositorio %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:105
 #: scripts/libmakepkg/source/git.sh.in:103
 #: scripts/libmakepkg/source/git.sh.in:137
 #: scripts/libmakepkg/source/hg.sh.in:107
 msgid "Failure while creating working copy of %s %s repo"
-msgstr ""
-"Hubo fallos durante la creación de la copia de trabajo de %s del repositorio "
-"%s"
+msgstr "Hubo fallos durante la creación de la copia de trabajo de %s del repositorio %s"
 
 #: scripts/libmakepkg/source/file.sh.in:36
 #: scripts/libmakepkg/source/local.sh.in:36
@@ -1512,12 +1429,14 @@ msgstr "Hubo fallos al extraer %s"
 msgid "NOT FOUND"
 msgstr "NO ENCONTRADO"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "Clonando %s del repositorio %s…"
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "Hubo fallos durante la descarga de %s del repositorio %s"
@@ -1526,12 +1445,14 @@ msgstr "Hubo fallos durante la descarga de %s del repositorio %s"
 msgid "%s is not a clone of %s"
 msgstr "%s no es un clon de %s"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "Actualizando %s del repositorio %s…"
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "Hubo fallos durante la actualización de %s del repositorio %s"
@@ -1542,9 +1463,7 @@ msgstr ""
 
 #: scripts/libmakepkg/source/local.sh.in:39
 msgid "%s was not found in the build directory and is not a URL."
-msgstr ""
-"%s no fue encontrado en el directorio de compilación, y no es una dirección "
-"URL."
+msgstr "%s no fue encontrado en el directorio de compilación, y no es una dirección URL."
 
 #: scripts/libmakepkg/tidy.sh.in:41
 msgid "Tidying install..."

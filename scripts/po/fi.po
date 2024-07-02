@@ -21,12 +21,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: Sami Korkalainen, 2016,2018\n"
-"Language-Team: Finnish (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/fi/)\n"
-"Language: fi\n"
+"Language-Team: Finnish (http://app.transifex.com/toofishes/archlinux-pacman/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: scripts/makepkg.sh.in:139
@@ -193,26 +192,21 @@ msgstr "Paketti on jo käännetty. Asennetaan valmista pakettia..."
 
 #: scripts/makepkg.sh.in:792
 msgid "A package has already been built. (use %s to overwrite)"
-msgstr ""
-"Paketti on jo käännetty. (käytä valitsinta %s kääntääksesi paketin uudelleen)"
+msgstr "Paketti on jo käännetty. (käytä valitsinta %s kääntääksesi paketin uudelleen)"
 
 #: scripts/makepkg.sh.in:811
 msgid ""
 "The package group has already been built, installing existing packages..."
-msgstr ""
-"Pakettiryhmä on jo käännetty. Asennetaan valmiiksi käännettyjä paketteja..."
+msgstr "Pakettiryhmä on jo käännetty. Asennetaan valmiiksi käännettyjä paketteja..."
 
 #: scripts/makepkg.sh.in:815
 msgid "The package group has already been built. (use %s to overwrite)"
-msgstr ""
-"Pakettiryhmä on jo käännetty. (käytä valitsinta %s kääntääksesi paketit "
-"uudelleen)"
+msgstr "Pakettiryhmä on jo käännetty. (käytä valitsinta %s kääntääksesi paketit uudelleen)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
-msgstr ""
-"Osa pakettiryhmästä on jo käännetty. (käytä valitsinta %s kääntääksesi "
-"paketit uudelleen)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
+msgstr "Osa pakettiryhmästä on jo käännetty. (käytä valitsinta %s kääntääksesi paketit uudelleen)"
 
 #: scripts/makepkg.sh.in:874
 msgid "Make packages compatible for use with pacman"
@@ -243,14 +237,13 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     Ohita riippuvuustarkastukset"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
 msgstr ""
 
 #: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
-msgstr ""
-"  -e, --noextract  Älä pura lähdetiedostoja (käytt'' olemassa olevaa %s "
-"kansiota)"
+msgstr "  -e, --noextract  Älä pura lähdetiedostoja (käytt'' olemassa olevaa %s kansiota)"
 
 #: scripts/makepkg.sh.in:885
 msgid "  -f, --force      Overwrite existing package"
@@ -278,13 +271,11 @@ msgstr "  -m, --nocolor    Älä käytä värejä viesteissä"
 
 #: scripts/makepkg.sh.in:891
 msgid "  -o, --nobuild    Download and extract files only"
-msgstr ""
-"  -o, --nobuild    Älä käännä pakettia, mutta lataa ja pura lähdetiedostot"
+msgstr "  -o, --nobuild    Älä käännä pakettia, mutta lataa ja pura lähdetiedostot"
 
 #: scripts/makepkg.sh.in:892
 msgid "  -p <file>        Use an alternate build script (instead of '%s')"
-msgstr ""
-"  -p <tiedosto>    Käytä vaihtoehtoista käännösskriptiä ('%s':in sjaan)"
+msgstr "  -p <tiedosto>    Käytä vaihtoehtoista käännösskriptiä ('%s':in sjaan)"
 
 #: scripts/makepkg.sh.in:893
 msgid ""
@@ -292,7 +283,8 @@ msgid ""
 msgstr "  -r, --rmdeps     Poista asennetut riippuvuudet kääntämisen jälkeen"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
 msgstr "  -R, --repackage  Uudelleenpakkaa paketin sisältö ilman kääntämistä"
 
 #: scripts/makepkg.sh.in:895
@@ -312,9 +304,7 @@ msgstr "-V, --version Näytä versiotiedot"
 msgid ""
 "  --allsource      Generate a source-only tarball including downloaded "
 "sources"
-msgstr ""
-"  --allsource      Luo lähdepaketti ja sisällytä myös ladatut lähdetiedostot "
-"siihen"
+msgstr "  --allsource      Luo lähdepaketti ja sisällytä myös ladatut lähdetiedostot siihen"
 
 #: scripts/makepkg.sh.in:899
 msgid "  --check          Run the %s function in the %s"
@@ -322,8 +312,7 @@ msgstr "  --check          Suorita funktio %s kohteessa %s"
 
 #: scripts/makepkg.sh.in:900
 msgid "  --config <file>  Use an alternate config file (instead of '%s')"
-msgstr ""
-"  --config<tiedosto> Käytä vaihtoehtoista asetustiedostoa ('%s':in sijaan)"
+msgstr "  --config<tiedosto> Käytä vaihtoehtoista asetustiedostoa ('%s':in sijaan)"
 
 #: scripts/makepkg.sh.in:901
 msgid "  --holdver        Do not update VCS sources"
@@ -331,9 +320,9 @@ msgstr "--holdver Älä päivitä VCS-lähteitä"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
-msgstr ""
-"  --key <avain>    Määrritä paketin allekirjoittamiseen käytettävä %s avain"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
+msgstr "  --key <avain>    Määrritä paketin allekirjoittamiseen käytettävä %s avain"
 
 #: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
@@ -459,9 +448,7 @@ msgstr "Käännetään pakettia: %s"
 
 #: scripts/makepkg.sh.in:1276
 msgid "A source package has already been built. (use %s to overwrite)"
-msgstr ""
-"Lähdepaketti on jo luotu. (käytä valitsinta %s luodaksesi lähdepaketin "
-"uudelleen)"
+msgstr "Lähdepaketti on jo luotu. (käytä valitsinta %s luodaksesi lähdepaketin uudelleen)"
 
 #: scripts/makepkg.sh.in:1296
 msgid "Signing package..."
@@ -553,14 +540,11 @@ msgstr "Sinulla tulee olla oikeat oikeudet tietokannan päivittämiseen."
 
 #: scripts/pacman-db-upgrade.sh.in:140
 msgid "Pacman lock file was found. Cannot run while pacman is running."
-msgstr ""
-"Pacmanin lukitustiedosto löytyi. Et voi ajaa kahta pacmania samanaikaisesti."
+msgstr "Pacmanin lukitustiedosto löytyi. Et voi ajaa kahta pacmania samanaikaisesti."
 
 #: scripts/pacman-db-upgrade.sh.in:152
 msgid "Pre-3.5 database format detected - upgrading..."
-msgstr ""
-"Vanhanaikainen pakettitietokantaformaatti havaittu. Päivitetään sitä uuteen "
-"3.5 formaattiin..."
+msgstr "Vanhanaikainen pakettitietokantaformaatti havaittu. Päivitetään sitä uuteen 3.5 formaattiin..."
 
 #: scripts/pacman-db-upgrade.sh.in:159
 msgid "Done."
@@ -588,9 +572,7 @@ msgstr "Operaatiot:"
 
 #: scripts/pacman-key.sh.in:63
 msgid "  -a, --add                 Add the specified keys (empty for stdin)"
-msgstr ""
-"  -a, --add                 Lisää luetellut avaimet (tyhjäksi jätettynä "
-"luetaan stdinistä)"
+msgstr "  -a, --add                 Lisää luetellut avaimet (tyhjäksi jätettynä luetaan stdinistä)"
 
 #: scripts/pacman-key.sh.in:64
 msgid "  -d, --delete              Remove the specified keyids"
@@ -603,9 +585,7 @@ msgstr "  -e, --export               Vie määritetyt avaintunnisteet"
 #: scripts/pacman-key.sh.in:66
 msgid ""
 "  -f, --finger              List fingerprint for specified or all keyids"
-msgstr ""
-" -f, --finger Luetteloi sormenjäljet määritetyille tai kaikille "
-"avaintunnisteille"
+msgstr " -f, --finger Luetteloi sormenjäljet määritetyille tai kaikille avaintunnisteille"
 
 #: scripts/pacman-key.sh.in:67
 msgid "  -l, --list-keys           List the specified or all keys"
@@ -622,9 +602,7 @@ msgstr "  -u, --updatedb                Päivittää pacmanin trustdb tietokanna
 #: scripts/pacman-key.sh.in:70
 msgid ""
 "  -v, --verify              Verify the file(s) specified by the signature(s)"
-msgstr ""
-"-v, --verify              Varmenna allekirjotusten perusteella määritetyt "
-"tiedostot"
+msgstr "-v, --verify              Varmenna allekirjotusten perusteella määritetyt tiedostot"
 
 #: scripts/pacman-key.sh.in:71
 msgid ""
@@ -662,8 +640,7 @@ msgstr ""
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-" --refresh-keys Päivitä määritetyt tai kaikki avaimet avainpalvelimelta"
+msgstr " --refresh-keys Päivitä määritetyt tai kaikki avaimet avainpalvelimelta"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -671,19 +648,15 @@ msgstr ""
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <tiedosto>           Käytä omavalintaista asetustiedostoa "
-"(tiedoston\\n                                '%s' sijaan)"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <tiedosto>           Käytä omavalintaista asetustiedostoa (tiedoston\\n                                '%s' sijaan)"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <kansio>             Käytä omavalintaista GnuPG kansiota "
-"(kansion\\n                                '%s' sijaan)"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <kansio>             Käytä omavalintaista GnuPG kansiota (kansion\\n                                '%s' sijaan)"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
@@ -693,9 +666,7 @@ msgstr ""
 
 #: scripts/pacman-key.sh.in:89
 msgid "  --keyserver <server-url>  Specify a keyserver to use if necessary"
-msgstr ""
-" --keyserver <palvelimen-osoite> Määritä tarvittaessa käytettävä "
-"avainpalvelin"
+msgstr " --keyserver <palvelimen-osoite> Määritä tarvittaessa käytettävä avainpalvelin"
 
 #: scripts/pacman-key.sh.in:91
 msgid "  -h, --help                Show this help message and exit"
@@ -900,11 +871,9 @@ msgstr ""
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add päivittää pakettitietokannan lukemalla pakettitiedoston."
-"\\nKomentorivillä voi antaa useita päivitettäviä paketteja.\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add päivittää pakettitietokannan lukemalla pakettitiedoston.\\nKomentorivillä voi antaa useita päivitettäviä paketteja.\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -912,7 +881,8 @@ msgstr "Valinnat:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
 msgstr ""
 
 #: scripts/repo-add.sh.in:69
@@ -923,8 +893,8 @@ msgstr ""
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
 msgstr ""
 
 #: scripts/repo-add.sh.in:72
@@ -936,10 +906,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove päivittää pakettitietokannan poistamalla "
-"komentorivillä\\nannetun nimisen paketin annetusta varastotietokannasta."
-"\\nKomentorivillä voi antaa useita poistettavia paketteja.\\n"
+msgstr "repo-remove päivittää pakettitietokannan poistamalla komentorivillä\\nannetun nimisen paketin annetusta varastotietokannasta.\\nKomentorivillä voi antaa useita poistettavia paketteja.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -959,14 +926,11 @@ msgstr "  -s, --sign        allekirjoita tietokanta GnuGP:llä\\n"
 
 #: scripts/repo-add.sh.in:87
 msgid "  -k, --key <key>   use the specified key to sign the database\\n"
-msgstr ""
-"  -k, --key <avain> käytä annettua avainta tietokannan allekirjoittamiseen\\n"
+msgstr "  -k, --key <avain> käytä annettua avainta tietokannan allekirjoittamiseen\\n"
 
 #: scripts/repo-add.sh.in:88
 msgid "  -v, --verify      verify database's signature before update\\n"
-msgstr ""
-"  -v, --verify      tarkasta tietokannan allekirjoitus, ennen "
-"päivittämistä\\n"
+msgstr "  -v, --verify      tarkasta tietokannan allekirjoitus, ennen päivittämistä\\n"
 
 #: scripts/repo-add.sh.in:89
 msgid ""
@@ -976,9 +940,7 @@ msgstr "\\nMan-sivulta %s(8) löydät lisätietoja käytettävistä valinnoista.
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Esimerkki:  repo-add /polku/varastoon/repo.db.tar.gz pacman-3.0.0-1-i686.pkg."
-"tar.gz\\n"
+msgstr "Esimerkki:  repo-add /polku/varastoon/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1066,8 +1028,7 @@ msgstr "Prosessin %s hallinnassa"
 
 #: scripts/repo-add.sh.in:418
 msgid "Repository file '%s' is not a proper pacman database."
-msgstr ""
-"Pakettivarastotiedosto '%s' ei ole kelvollinen pacmanin pakettitietokanta."
+msgstr "Pakettivarastotiedosto '%s' ei ole kelvollinen pacmanin pakettitietokanta."
 
 #: scripts/repo-add.sh.in:423
 msgid "Extracting %s to a temporary location..."
@@ -1412,12 +1373,14 @@ msgstr "Virhe vedettäessä sijainnista %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Tunnistamaton viite: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "Luodaan työkopio varastosta %s %s ..."
@@ -1460,12 +1423,14 @@ msgstr "tiedoston %s purkaminen epäonnistui"
 msgid "NOT FOUND"
 msgstr "EI LÖYDY"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "Kloonataan varasto %s %s ..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "Varaston %s %s lataaminen epäonnistui"
@@ -1474,12 +1439,14 @@ msgstr "Varaston %s %s lataaminen epäonnistui"
 msgid "%s is not a clone of %s"
 msgstr "%s ei ole varaston %s klooni"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "Päivitetään varasto %s %s ..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "Varaston %s %s päivitys epäonnistui"

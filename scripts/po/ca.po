@@ -16,13 +16,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
-"Last-Translator: xanb <xancorreu@gmail.com>, 2014\n"
-"Language-Team: Catalan (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/ca/)\n"
-"Language: ca\n"
+"Last-Translator: Davidmp <medipas@gmail.com>, 2015-2019,2021,2023-2024\n"
+"Language-Team: Catalan (http://app.transifex.com/toofishes/archlinux-pacman/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: scripts/makepkg.sh.in:139
@@ -194,17 +193,16 @@ msgstr "Ja s'ha construït un paquet. (Useu %s per sobreescriure'l.)"
 #: scripts/makepkg.sh.in:811
 msgid ""
 "The package group has already been built, installing existing packages..."
-msgstr ""
-"Ja s'ha construït el grup de paquets. S'instal·len els paquets existents..."
+msgstr "Ja s'ha construït el grup de paquets. S'instal·len els paquets existents..."
 
 #: scripts/makepkg.sh.in:815
 msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "Ja s'ha construït el grup de paquets. (Useu %s per sobreescriure'l.)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
-msgstr ""
-"Ja s'ha construït part del grup de paquets. (Useu %s per sobreescriure'l.)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
+msgstr "Ja s'ha construït part del grup de paquets. (Useu %s per sobreescriure'l.)"
 
 #: scripts/makepkg.sh.in:874
 msgid "Make packages compatible for use with pacman"
@@ -224,27 +222,24 @@ msgstr "  -A, --ignorearch Ignora el camp %s incomplet a %s."
 
 #: scripts/makepkg.sh.in:880
 msgid "  -c, --clean      Clean up work files after build"
-msgstr ""
-"  -c, --clean      Neteja els fitxers de treball després de la construcció."
+msgstr "  -c, --clean      Neteja els fitxers de treball després de la construcció."
 
 #: scripts/makepkg.sh.in:881
 msgid "  -C, --cleanbuild Remove %s dir before building the package"
-msgstr ""
-"  -C, --cleanbuild Suprimeix el directori %s abans de construir el paquet."
+msgstr "  -C, --cleanbuild Suprimeix el directori %s abans de construir el paquet."
 
 #: scripts/makepkg.sh.in:882
 msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     Omet totes les comprovacions de dependències."
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
-msgstr ""
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgstr "  -D, --dir <dir>  Canvia al directori <dir> abans de processar el PKGBUILD."
 
 #: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
-msgstr ""
-"  -e, --noextract  No extreguis els fitxers de codi font (usa la carpeta "
-"existent %s)."
+msgstr "  -e, --noextract  No extreguis els fitxers de codi font (usa la carpeta existent %s)."
 
 #: scripts/makepkg.sh.in:885
 msgid "  -f, --force      Overwrite existing package"
@@ -252,9 +247,7 @@ msgstr "  -f, --force      Sobreescriu el paquet existent."
 
 #: scripts/makepkg.sh.in:886
 msgid "  -g, --geninteg   Generate integrity checks for source files"
-msgstr ""
-"  -g, --geninteg   Genera comprovacions d'integritat per als fitxers de codi "
-"font."
+msgstr "  -g, --geninteg   Genera comprovacions d'integritat per als fitxers de codi font."
 
 #: scripts/makepkg.sh.in:887
 msgid "  -h, --help       Show this help message and exit"
@@ -262,13 +255,11 @@ msgstr "  -h, --help       Mostra aquest missatge d'ajuda i surt."
 
 #: scripts/makepkg.sh.in:888
 msgid "  -i, --install    Install package after successful build"
-msgstr ""
-"  -i, --install    Instal·la el paquet després d'una construcció correcta."
+msgstr "  -i, --install    Instal·la el paquet després d'una construcció correcta."
 
 #: scripts/makepkg.sh.in:889
 msgid "  -L, --log        Log package build process"
-msgstr ""
-"  -L, --log        Crea un registre del procés de construcció del paquet."
+msgstr "  -L, --log        Crea un registre del procés de construcció del paquet."
 
 #: scripts/makepkg.sh.in:890
 msgid "  -m, --nocolor    Disable colorized output messages"
@@ -280,22 +271,17 @@ msgstr "  -o, --nobuild    Només baixa i extreu els fitxers."
 
 #: scripts/makepkg.sh.in:892
 msgid "  -p <file>        Use an alternate build script (instead of '%s')"
-msgstr ""
-"  -p <file>        Usa un script de construcció alternatiu (en lloc de "
-"\"%s\")."
+msgstr "  -p <file>        Usa un script de construcció alternatiu (en lloc de \"%s\")."
 
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps     Suprimeix les dependències instal·lades després d'una "
-"construcció correcta."
+msgstr "  -r, --rmdeps     Suprimeix les dependències instal·lades després d'una construcció correcta."
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
-msgstr ""
-"  -R, --repackage  Reempaqueta el contingut del paquet sense tornar-lo a "
-"construir."
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
+msgstr "  -R, --repackage  Reempaqueta el contingut del paquet sense tornar-lo a construir."
 
 #: scripts/makepkg.sh.in:895
 msgid "  -s, --syncdeps   Install missing dependencies with %s"
@@ -304,9 +290,7 @@ msgstr "  -s, --syncdeps   Instal·la les dependències que manquen amb %s."
 #: scripts/makepkg.sh.in:896
 msgid ""
 "  -S, --source     Generate a source-only tarball without downloaded sources"
-msgstr ""
-"  -S, --source         Genera una tarball de només codi font sense el codi "
-"font baixat."
+msgstr "  -S, --source         Genera una tarball de només codi font sense el codi font baixat."
 
 #: scripts/makepkg.sh.in:897
 msgid "  -V, --version    Show version information and exit"
@@ -316,9 +300,7 @@ msgstr "  -V, --version    Mostra la informació de la versió i surt."
 msgid ""
 "  --allsource      Generate a source-only tarball including downloaded "
 "sources"
-msgstr ""
-"  --allsource      Genera una tarball de només codi font que inclogui els "
-"codis font baixats."
+msgstr "  --allsource      Genera una tarball de només codi font que inclogui els codis font baixats."
 
 #: scripts/makepkg.sh.in:899
 msgid "  --check          Run the %s function in the %s"
@@ -326,9 +308,7 @@ msgstr "  --check          Executa la funció %s a %s."
 
 #: scripts/makepkg.sh.in:900
 msgid "  --config <file>  Use an alternate config file (instead of '%s')"
-msgstr ""
-"  --config <file>  Usa un fitxer de configuració alternatiu (en lloc de "
-"\"%s\")."
+msgstr "  --config <file>  Usa un fitxer de configuració alternatiu (en lloc de \"%s\")."
 
 #: scripts/makepkg.sh.in:901
 msgid "  --holdver        Do not update VCS sources"
@@ -336,10 +316,9 @@ msgstr "  --holdver        No actualitzis fonts de VCS."
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
-msgstr ""
-"  --key <key>      Especifica una clau per a la signatura de %s en lloc de "
-"la predeterminada."
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
+msgstr "  --key <key>      Especifica una clau per a la signatura de %s en lloc de la predeterminada."
 
 #: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
@@ -359,9 +338,7 @@ msgstr "  --nosign         No creïs una signatura per al paquet."
 
 #: scripts/makepkg.sh.in:907
 msgid "  --packagelist    Only list package filepaths that would be produced"
-msgstr ""
-"  --packagelist    Llista només els camins de fitxer dels paquets que es "
-"produirien."
+msgstr "  --packagelist    Llista només els camins de fitxer dels paquets que es produirien."
 
 #: scripts/makepkg.sh.in:908
 msgid "  --printsrcinfo   Print the generated SRCINFO and exit"
@@ -373,29 +350,22 @@ msgstr "  --sign           Signa el paquet resultant amb %s."
 
 #: scripts/makepkg.sh.in:910
 msgid "  --skipchecksums  Do not verify checksums of the source files"
-msgstr ""
-"  --skipchecksums  No verifiquis les sumes de comprovació dels fitxers de "
-"codi font."
+msgstr "  --skipchecksums  No verifiquis les sumes de comprovació dels fitxers de codi font."
 
 #: scripts/makepkg.sh.in:911
 msgid ""
 "  --skipinteg      Do not perform any verification checks on source files"
-msgstr ""
-"  --skipinteg      No facis cap comprovació de verificació als fitxers de "
-"codi font."
+msgstr "  --skipinteg      No facis cap comprovació de verificació als fitxers de codi font."
 
 #: scripts/makepkg.sh.in:912
 msgid "  --skippgpcheck   Do not verify source files with PGP signatures"
-msgstr ""
-"  --skippgpcheck   No verifiquis els fitxers de codi font amb signatures PGP."
+msgstr "  --skippgpcheck   No verifiquis els fitxers de codi font amb signatures PGP."
 
 #: scripts/makepkg.sh.in:913
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"  --verifysource   Baixa els fitxers de codi font (si cal) i fes "
-"comprovacions d'integritat."
+msgstr "  --verifysource   Baixa els fitxers de codi font (si cal) i fes comprovacions d'integritat."
 
 #: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
@@ -403,14 +373,12 @@ msgstr "Aquestes opcions es poden passar a %s:"
 
 #: scripts/makepkg.sh.in:917
 msgid "  --asdeps         Install packages as non-explicitly installed"
-msgstr ""
-"  --asdeps         Instal·la els paquets com a no instal·lats explícitament."
+msgstr "  --asdeps         Instal·la els paquets com a no instal·lats explícitament."
 
 #: scripts/makepkg.sh.in:918
 msgid ""
 "  --needed         Do not reinstall the targets that are already up to date"
-msgstr ""
-"  --needed         No reinstal·lis els paquets que ja estan actualitzats."
+msgstr "  --needed         No reinstal·lis els paquets que ja estan actualitzats."
 
 #: scripts/makepkg.sh.in:919
 msgid ""
@@ -430,9 +398,7 @@ msgstr "Si %s no s'ha especificat, %s buscarà \"%s\"."
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
 "WARRANTY, to the extent permitted by law.\\n"
-msgstr ""
-"Això és programari lliure. Consulteu-ne el codi font per a les condicions de "
-"còpia.\\nNO hi ha CAP GARANTIA, en la mesura permesa per la llei.\\n"
+msgstr "Això és programari lliure. Consulteu-ne el codi font per a les condicions de còpia.\\nNO hi ha CAP GARANTIA, en la mesura permesa per la llei.\\n"
 
 #: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
@@ -442,9 +408,7 @@ msgstr "Senyal %s agafat. Se surt..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"Executar %s com a root no està permès ja que pot causar danys\\npermanents, "
-"catastròfics, al sistema."
+msgstr "Executar %s com a root no està permès ja que pot causar danys\\npermanents, catastròfics, al sistema."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
@@ -480,8 +444,7 @@ msgstr "Es fa el paquet: %s"
 
 #: scripts/makepkg.sh.in:1276
 msgid "A source package has already been built. (use %s to overwrite)"
-msgstr ""
-"Ja s'ha construït un paquet de codi font. (Useu %s per sobreescriure'l.)"
+msgstr "Ja s'ha construït un paquet de codi font. (Useu %s per sobreescriure'l.)"
 
 #: scripts/makepkg.sh.in:1296
 msgid "Signing package..."
@@ -537,8 +500,7 @@ msgstr "Opcions:"
 
 #: scripts/pacman-db-upgrade.sh.in:44
 msgid "  -d, --dbpath <path>  set an alternate database location"
-msgstr ""
-"  -d, --dbpath <path>  Estableix una ubicació de base de dades alternativa."
+msgstr "  -d, --dbpath <path>  Estableix una ubicació de base de dades alternativa."
 
 #: scripts/pacman-db-upgrade.sh.in:45
 msgid "  -h, --help           show this help message and exit"
@@ -554,8 +516,7 @@ msgstr "  -V, --version        Mostra la informació de la versió i surt."
 
 #: scripts/pacman-db-upgrade.sh.in:48
 msgid "  --config <path>      set an alternate configuration file"
-msgstr ""
-"  --config <path>       Estableix un fitxer de configuració alternatiu."
+msgstr "  --config <path>       Estableix un fitxer de configuració alternatiu."
 
 #: scripts/pacman-db-upgrade.sh.in:49
 msgid "  --nocolor            disable colorized output messages"
@@ -575,9 +536,7 @@ msgstr "Heu de tenir els permisos correctes per actualitzar la base de dades."
 
 #: scripts/pacman-db-upgrade.sh.in:140
 msgid "Pacman lock file was found. Cannot run while pacman is running."
-msgstr ""
-"S'ha trobat el fitxer de bloqueig del Pacman. No es pot executar mentre el "
-"Pacman s'executi."
+msgstr "S'ha trobat el fitxer de bloqueig del Pacman. No es pot executar mentre el Pacman s'executi."
 
 #: scripts/pacman-db-upgrade.sh.in:152
 msgid "Pre-3.5 database format detected - upgrading..."
@@ -593,9 +552,7 @@ msgstr "Format de base de dades Pre-4.2 detectat - s'actualitza..."
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"l'enllaç simbòlic \"%s\" apunta fora de l'arrel del Pacman. Cal una "
-"reparació manual."
+msgstr "l'enllaç simbòlic \"%s\" apunta fora de l'arrel del Pacman. Cal una reparació manual."
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -611,28 +568,20 @@ msgstr "Operacions:"
 
 #: scripts/pacman-key.sh.in:63
 msgid "  -a, --add                 Add the specified keys (empty for stdin)"
-msgstr ""
-"  -a, --add                 Afegeix les claus especificades (buit per a "
-"stdin)."
+msgstr "  -a, --add                 Afegeix les claus especificades (buit per a stdin)."
 
 #: scripts/pacman-key.sh.in:64
 msgid "  -d, --delete              Remove the specified keyids"
-msgstr ""
-"  -d, --delete              Suprimeix els identificadors de clau "
-"especificats."
+msgstr "  -d, --delete              Suprimeix els identificadors de clau especificats."
 
 #: scripts/pacman-key.sh.in:65
 msgid "  -e, --export              Export the specified or all keyids"
-msgstr ""
-"  -e, --export              Exporta tots els identificadors de clau o els "
-"especificats."
+msgstr "  -e, --export              Exporta tots els identificadors de clau o els especificats."
 
 #: scripts/pacman-key.sh.in:66
 msgid ""
 "  -f, --finger              List fingerprint for specified or all keyids"
-msgstr ""
-"  -f, --finger              Llista les empremtes per a tots els "
-"identificadors de clau o els especificats."
+msgstr "  -f, --finger              Llista les empremtes per a tots els identificadors de clau o els especificats."
 
 #: scripts/pacman-key.sh.in:67
 msgid "  -l, --list-keys           List the specified or all keys"
@@ -640,28 +589,21 @@ msgstr "  -l, --list-keys           Llista les claus especificades o totes."
 
 #: scripts/pacman-key.sh.in:68
 msgid "  -r, --recv-keys           Fetch the specified keyids"
-msgstr ""
-"  -r, --recv-keys           Recull els identificadors de clau especificats."
+msgstr "  -r, --recv-keys           Recull els identificadors de clau especificats."
 
 #: scripts/pacman-key.sh.in:69
 msgid "  -u, --updatedb            Update the trustdb of pacman"
-msgstr ""
-"  -u, --updatedb            Actualitza la base de dades de confiança del "
-"Pacman."
+msgstr "  -u, --updatedb            Actualitza la base de dades de confiança del Pacman."
 
 #: scripts/pacman-key.sh.in:70
 msgid ""
 "  -v, --verify              Verify the file(s) specified by the signature(s)"
-msgstr ""
-"  -v, --verify              Verifica els fitxers especificats per les "
-"signatures."
+msgstr "  -v, --verify              Verifica els fitxers especificats per les signatures."
 
 #: scripts/pacman-key.sh.in:71
 msgid ""
 "  --edit-key                Present a menu for key management task on keyids"
-msgstr ""
-"  --edit-key                Mostra un menú per a la tasca de gestió de claus "
-"sobre els identificadors de clau."
+msgstr "  --edit-key                Mostra un menú per a la tasca de gestió de claus sobre els identificadors de clau."
 
 #: scripts/pacman-key.sh.in:72
 msgid "  --import                  Imports pubring.gpg from dir(s)"
@@ -671,41 +613,30 @@ msgstr "  --import                  Importa pubring.gpg del/s dirirectori/s."
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"  --import-trustdb          Importa valors de confiança de trustdb.gpg al/s "
-"directori/s."
+msgstr "  --import-trustdb          Importa valors de confiança de trustdb.gpg al/s directori/s."
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
-msgstr ""
-"  --init                    Assegura que el clauer s'hagi iniciat "
-"correctament."
+msgstr "  --init                    Assegura que el clauer s'hagi iniciat correctament."
 
 #: scripts/pacman-key.sh.in:75
 msgid "  --list-sigs               List keys and their signatures"
-msgstr ""
-"  --list-sigs               Llista claus i les signatures corresponents ."
+msgstr "  --list-sigs               Llista claus i les signatures corresponents ."
 
 #: scripts/pacman-key.sh.in:76
 msgid "  --lsign-key               Locally sign the specified keyid"
-msgstr ""
-"  --lsign-key               Signa localment l'identificador de clau "
-"especificat."
+msgstr "  --lsign-key               Signa localment l'identificador de clau especificat."
 
 #: scripts/pacman-key.sh.in:77
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate                Recarrega les claus per defecte dels clauers "
-"(indicats)\\n a \"%s\"."
+msgstr "  --populate                Recarrega les claus per defecte dels clauers (indicats)\\n a \"%s\"."
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"  --refresh-keys            Actualitza totes les claus o les especificades "
-"d'un servidor de claus."
+msgstr "  --refresh-keys            Actualitza totes les claus o les especificades d'un servidor de claus."
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -713,27 +644,21 @@ msgstr "  --verbose                 Mostra informació complementària."
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <file>           Usa un fitxer de configuració alternatiu (en "
-"lloc de\\n \"%s\")."
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <file>           Usa un fitxer de configuració alternatiu (en lloc de\\n \"%s\")."
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <dir>            Estableix un directori alternatiu per a GnuPG "
-"(en lloc\\n de \"%s\")."
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <dir>            Estableix un directori alternatiu per a GnuPG (en lloc\\n de \"%s\")."
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
 "  --populate-from <dir>     Set an alternate directory for --populate "
 "(instead\\n                            of '%s')"
-msgstr ""
-"  --populate-from <dir>     Estableix un directori alternatiu per a --"
-"populate (en lloc de\\n %s)."
+msgstr "  --populate-from <dir>     Estableix un directori alternatiu per a --populate (en lloc de\\n %s)."
 
 #: scripts/pacman-key.sh.in:89
 msgid "  --keyserver <server-url>  Specify a keyserver to use if necessary"
@@ -878,9 +803,7 @@ msgstr[1] "Claus signades localment: %s"
 
 #: scripts/pacman-key.sh.in:529
 msgid "Remote key not fetched correctly from WKD or keyserver."
-msgstr ""
-"Clau remota no recollida correctament del servidor de claus o del WKD "
-"(directori de claus web)."
+msgstr "Clau remota no recollida correctament del servidor de claus o del WKD (directori de claus web)."
 
 #: scripts/pacman-key.sh.in:534
 msgid "Remote key not fetched correctly from keyserver."
@@ -944,12 +867,9 @@ msgstr "Ús: repo-add [opcions] <path-to-db> <package> ...\\n"
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add actualitzarà una base de dades de paquets mitjançant la lectura "
-"d'un fitxer de paquet.\\nA la línia d'ordres es poden especificar paquets "
-"múltiples per afegir.\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add actualitzarà una base de dades de paquets mitjançant la lectura d'un fitxer de paquet.\\nA la línia d'ordres es poden especificar paquets múltiples per afegir.\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -957,26 +877,21 @@ msgstr "Opcions:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
-msgstr ""
-"  -n, --new         Afegeix només els paquets que encara no són a la base de "
-"dades.\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
+msgstr "  -n, --new         Afegeix només els paquets que encara no són a la base de dades.\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"  -R, --remove      Suprimeix el fitxer antic del paquet del disc després "
-"d'actualitzar la base de dades.\\n"
+msgstr "  -R, --remove      Suprimeix el fitxer antic del paquet del disc després d'actualitzar la base de dades.\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
-msgstr ""
-"  -p, --prevent-downgrade  No afegeixis el paquet a la base de dades si ja "
-"n'hi ha una versió més nova\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
+msgstr "  -p, --prevent-downgrade  No afegeixis el paquet a la base de dades si ja n'hi ha una versió més nova\\n"
 
 #: scripts/repo-add.sh.in:72
 msgid "Usage: repo-remove [options] <path-to-db> <packagename> ...\\n"
@@ -987,11 +902,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove actualitzarà una base de dades de paquets suprimint el nom del "
-"paquet,\\nespecificat a la línia d'ordres de la base de dades del repositori "
-"indicat.\\nA la línia d'ordres es poden especificar paquets múltiples per "
-"suprimir.\\n"
+msgstr "repo-remove actualitzarà una base de dades de paquets suprimint el nom del paquet,\\nespecificat a la línia d'ordres de la base de dades del repositori indicat.\\nA la línia d'ordres es poden especificar paquets múltiples per suprimir.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -1007,34 +918,25 @@ msgstr "  -q, --quiet       Minimitza'n la sortida.\\n"
 
 #: scripts/repo-add.sh.in:86
 msgid "  -s, --sign        sign database with GnuPG after update\\n"
-msgstr ""
-"  -s, --sign        Signa la base de dades amb GnuPG després de "
-"l'actualització.\\n"
+msgstr "  -s, --sign        Signa la base de dades amb GnuPG després de l'actualització.\\n"
 
 #: scripts/repo-add.sh.in:87
 msgid "  -k, --key <key>   use the specified key to sign the database\\n"
-msgstr ""
-"  -k, --key <key>   Usa la clau especificada per signar la base de dades.\\n"
+msgstr "  -k, --key <key>   Usa la clau especificada per signar la base de dades.\\n"
 
 #: scripts/repo-add.sh.in:88
 msgid "  -v, --verify      verify database's signature before update\\n"
-msgstr ""
-"  -v, --verify      Verifica la signatura de la base de dades abans de "
-"l'actualització.\\n"
+msgstr "  -v, --verify      Verifica la signatura de la base de dades abans de l'actualització.\\n"
 
 #: scripts/repo-add.sh.in:89
 msgid ""
 "\\nSee %s(8) for more details and descriptions of the available options.\\n"
-msgstr ""
-"\\nVegeu %s(8) per a més detalls i descripcions sobre les opcions "
-"disponibles.\\n"
+msgstr "\\nVegeu %s(8) per a més detalls i descripcions sobre les opcions disponibles.\\n"
 
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Exemple:  repo-add /camí/a/repositori.db.tar.gz pacman-3.0.0-1-i686.pkg.tar."
-"gz\\n"
+msgstr "Exemple:  repo-add /camí/a/repositori.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1054,8 +956,7 @@ msgstr "S'ha creat el fitxer de signatura \"%s\"."
 
 #: scripts/repo-add.sh.in:171
 msgid "Failed to sign package database file '%s'"
-msgstr ""
-"Ha fallat la signatura del fitxer de la base de dades de paquets \"%s\"."
+msgstr "Ha fallat la signatura del fitxer de la base de dades de paquets \"%s\"."
 
 #: scripts/repo-add.sh.in:180
 msgid "Verifying database signature..."
@@ -1123,8 +1024,7 @@ msgstr "Retingut pel procés %s."
 
 #: scripts/repo-add.sh.in:418
 msgid "Repository file '%s' is not a proper pacman database."
-msgstr ""
-"El fitxer de repositori \"%s\" no és una base de dades de Pacman adequada."
+msgstr "El fitxer de repositori \"%s\" no és una base de dades de Pacman adequada."
 
 #: scripts/repo-add.sh.in:423
 msgid "Extracting %s to a temporary location..."
@@ -1168,8 +1068,7 @@ msgstr "S'ha especificat un nom d'ordre \"%s\" no vàlid."
 
 #: scripts/repo-add.sh.in:593
 msgid "Cannot create temp directory for database building."
-msgstr ""
-"No s'ha pogut crear el directori temporal per construir la base de dades."
+msgstr "No s'ha pogut crear el directori temporal per construir la base de dades."
 
 #: scripts/repo-add.sh.in:704
 msgid "Package database was not modified due to errors."
@@ -1189,8 +1088,7 @@ msgstr "S'ometen tots els controls d'integritat de fitxers de codi font."
 
 #: scripts/libmakepkg/integrity.sh.in:36
 msgid "Skipping verification of source file checksums."
-msgstr ""
-"S'omet la verificació de les sumes de comprovació de fitxers de codi font."
+msgstr "S'omet la verificació de les sumes de comprovació de fitxers de codi font."
 
 #: scripts/libmakepkg/integrity.sh.in:39
 msgid "Skipping verification of source file PGP signatures."
@@ -1250,9 +1148,7 @@ msgstr "Un o més fitxers no han passat la comprovació de la validació!"
 
 #: scripts/libmakepkg/integrity/verify_checksum.sh.in:125
 msgid "Integrity checks (%s) differ in size from the source array."
-msgstr ""
-"Les comprovacions de la integritat (%s) difereixen en mida de la cadena de "
-"les fonts."
+msgstr "Les comprovacions de la integritat (%s) difereixen en mida de la cadena de les fonts."
 
 #: scripts/libmakepkg/integrity/verify_signature.sh.in:39
 msgid "Verifying source file signatures with %s..."
@@ -1339,9 +1235,7 @@ msgstr "%s no hauria de ser una matriu."
 
 #: scripts/libmakepkg/lint_config/variable.sh.in:66
 msgid "PACKAGER should have the format 'Example Name <email@address.invalid>'"
-msgstr ""
-"L'EMPAQUETADOR hauria de tenir el format \"Nom i cognoms "
-"<adreçaelectronical@adreça.novalida>\"."
+msgstr "L'EMPAQUETADOR hauria de tenir el format \"Nom i cognoms <adreçaelectronical@adreça.novalida>\"."
 
 #: scripts/libmakepkg/lint_package.sh.in:41
 msgid "Checking for packaging issues..."
@@ -1431,8 +1325,7 @@ msgstr "%s ha de tenir el format \"enter[.enter]\", no %s."
 #: scripts/libmakepkg/lint_pkgbuild/pkgver.sh.in:41
 msgid ""
 "%s is not allowed to contain colons, forward slashes, hyphens or whitespace."
-msgstr ""
-"%s no pot contenir dos punts, barres inclinades, guionets o espais en blanc."
+msgstr "%s no pot contenir dos punts, barres inclinades, guionets o espais en blanc."
 
 #: scripts/libmakepkg/lint_pkgbuild/provides.sh.in:46
 msgid "%s array cannot contain comparison (< or >) operators."
@@ -1476,12 +1369,14 @@ msgstr "Fallada durant l'obtenció de %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Referència desconeguda: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "Es crea una còpia de treball del repositori %s %s..."
@@ -1490,8 +1385,7 @@ msgstr "Es crea una còpia de treball del repositori %s %s..."
 #: scripts/libmakepkg/source/git.sh.in:97
 #: scripts/libmakepkg/source/hg.sh.in:102
 msgid "Failure while updating working copy of %s %s repo"
-msgstr ""
-"Fallada durant l'actualització de la còpia de treball del repositori %s %s"
+msgstr "Fallada durant l'actualització de la còpia de treball del repositori %s %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:105
 #: scripts/libmakepkg/source/git.sh.in:103
@@ -1525,12 +1419,14 @@ msgstr "Ha fallat extreure %s."
 msgid "NOT FOUND"
 msgstr "NO S'HA TROBAT"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "Es clona el repositori %s %s..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "Fallada durant la baixada del repositori %s %s"
@@ -1539,21 +1435,21 @@ msgstr "Fallada durant la baixada del repositori %s %s"
 msgid "%s is not a clone of %s"
 msgstr "%s no és un clon de %s"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "S'actualitza el repositori %s %s..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "Fallada durant l'actualització del repositori %s %s"
 
 #: scripts/libmakepkg/source/git.sh.in:129
 msgid "Failure while checking out version %s, the git tag has been forged"
-msgstr ""
-"Fallada durant la comprovació de la versió %s. S'ha falsificat l'etiqueta de "
-"git."
+msgstr "Fallada durant la comprovació de la versió %s. S'ha falsificat l'etiqueta de git."
 
 #: scripts/libmakepkg/source/local.sh.in:39
 msgid "%s was not found in the build directory and is not a URL."

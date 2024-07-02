@@ -15,12 +15,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Sebastien Zurfluh <sebastien.zurfluh@gmail.com>, 2017\n"
-"Language-Team: Esperanto (http://app.transifex.com/toofishes/archlinux-"
-"pacman/language/eo/)\n"
-"Language: eo\n"
+"Language-Team: Esperanto (http://app.transifex.com/toofishes/archlinux-pacman/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: eo\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -61,9 +60,7 @@ msgstr "ne eblis renomi %s al %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"dosiero ne trovita en la dosierlisto por pakaĵo %s. preterpasado de eltiro "
-"de %s\n"
+msgstr "dosiero ne trovita en la dosierlisto por pakaĵo %s. preterpasado de eltiro de %s\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -75,18 +72,14 @@ msgstr "ne eblas eltiri %s%s: dosierindiko tro longa"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"diferencas dosierujaj permesoj de %s\n"
-"dosiersistema: %o  pakaĵa: %o\n"
+msgstr "diferencas dosierujaj permesoj de %s\ndosiersistema: %o  pakaĵa: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"diferencas dosieruja posedo de %s\n"
-"dosiersistema: %u:%u  pakaĵa: %u:%u\n"
+msgstr "diferencas dosieruja posedo de %s\ndosiersistema: %u:%u  pakaĵa: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -266,8 +259,7 @@ msgstr "ne povis legi datumbazon '%s' (%s)\n"
 #: lib/libalpm/be_sync.c:502 lib/libalpm/be_sync.c:507
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is illegal\n"
-msgstr ""
-"datumbazo %s estas nekohera: dosiernomo de pakaĵo %s estas malpermesita\n"
+msgstr "datumbazo %s estas nekohera: dosiernomo de pakaĵo %s estas malpermesita\n"
 
 #: lib/libalpm/be_sync.c:512
 #, c-format
@@ -393,9 +385,7 @@ msgstr "malsukcesis ekstrakti dosieron '%s' de %s: %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"malsukcesis ekstrakti dosieron '%s' de %s : atendita elŝuta grando "
-"transpaŝita\n"
+msgstr "malsukcesis ekstrakti dosieron '%s' de %s : atendita elŝuta grando transpaŝita\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -832,8 +822,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -1026,9 +1015,7 @@ msgstr "ne estas sufiĉe granda malokupata diskspaco\n"
 #: lib/libalpm/sync.c:1328
 #, c-format
 msgid "could not commit removal transaction\n"
-msgstr ""
-"malsukcesis enmeti forigan transakcion\n"
-"\n"
+msgstr "malsukcesis enmeti forigan transakcion\n\n"
 
 #: lib/libalpm/sync.c:1336
 #, c-format

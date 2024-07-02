@@ -21,12 +21,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: Thomas Sungjin Kang <potopro@gmail.com>, 2012-2013\n"
-"Language-Team: Korean (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/ko/)\n"
-"Language: ko\n"
+"Language-Team: Korean (http://app.transifex.com/toofishes/archlinux-pacman/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: scripts/makepkg.sh.in:139
@@ -205,9 +204,9 @@ msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "꾸러미 그룹을 이미 빌드했습니다(덮어 쓰려면 %s 옵션을 사용하십시오)."
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
-msgstr ""
-"꾸러미 그룹 일부를 이미 빌드했습니다(덮어 쓰려면 %s 옵션을 사용하십시오)."
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
+msgstr "꾸러미 그룹 일부를 이미 빌드했습니다(덮어 쓰려면 %s 옵션을 사용하십시오)."
 
 #: scripts/makepkg.sh.in:874
 msgid "Make packages compatible for use with pacman"
@@ -238,13 +237,13 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     모든 의존성 검사를 건너뜁니다"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
 msgstr ""
 
 #: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
-msgstr ""
-"  -e, --noextract  원본 파일을 추출하지 않습니다(기존 %s 디렉터리 사용)"
+msgstr "  -e, --noextract  원본 파일을 추출하지 않습니다(기존 %s 디렉터리 사용)"
 
 #: scripts/makepkg.sh.in:885
 msgid "  -f, --force      Overwrite existing package"
@@ -281,13 +280,12 @@ msgstr "  -p <파일>        ('%s' 대신) 대체 빌드 스크립트를 사용�
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps     빌드가 성공적으로 끝나면 설치한 의존 요소를 제거합니다"
+msgstr "  -r, --rmdeps     빌드가 성공적으로 끝나면 설치한 의존 요소를 제거합니다"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
-msgstr ""
-"  -R, --repackage  꾸러미의 내용을 다시 빌드하지 않고 꾸러미를 다시 만듭니다"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
+msgstr "  -R, --repackage  꾸러미의 내용을 다시 빌드하지 않고 꾸러미를 다시 만듭니다"
 
 #: scripts/makepkg.sh.in:895
 msgid "  -s, --syncdeps   Install missing dependencies with %s"
@@ -322,7 +320,8 @@ msgstr "  --holdver        VCS 원본을 업데이트하지 않습니다"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
 msgstr "  --key <키>       서명을 위해 %s에 대한 키를 기본값 대신 지정합니다"
 
 #: scripts/makepkg.sh.in:903
@@ -370,9 +369,7 @@ msgstr "  --skippgpcheck   PGP 서명으로 원본 파일을 검증하지 않습
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"  --verifysource   (필요하면) 원본 파일을 다운로드하고 무결성 검사를 수행합니"
-"다"
+msgstr "  --verifysource   (필요하면) 원본 파일을 다운로드하고 무결성 검사를 수행합니다"
 
 #: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
@@ -394,8 +391,7 @@ msgstr "  --noconfirm      의존성을 해결할 때 확인하지 않습니다"
 
 #: scripts/makepkg.sh.in:920
 msgid "  --noprogressbar  Do not show a progress bar when downloading files"
-msgstr ""
-"  --noprogressbar  파일을 다운로드할 때 진행 표시줄을 표시하지 않습니다"
+msgstr "  --noprogressbar  파일을 다운로드할 때 진행 표시줄을 표시하지 않습니다"
 
 #: scripts/makepkg.sh.in:922
 msgid "If %s is not specified, %s will look for '%s'"
@@ -406,9 +402,7 @@ msgstr "%s를 지정하지 않으면, %s는 %s를 찾습니다"
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
 "WARRANTY, to the extent permitted by law.\\n"
-msgstr ""
-"이것은 자유소프트웨어입니다. 복제조건에 대해서는 소스코드를 참조하십시오.\\n"
-"법이 허용하는 한에서 어떤 보증도 하지 않습니다.\\n"
+msgstr "이것은 자유소프트웨어입니다. 복제조건에 대해서는 소스코드를 참조하십시오.\\n법이 허용하는 한에서 어떤 보증도 하지 않습니다.\\n"
 
 #: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
@@ -418,9 +412,7 @@ msgstr "%s 시그널이 발생했습니다. 빠져나가는 중..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"%s를 root로서 실행하는 것은 허용되지 않습니다. 당신의 시스템에 영구적이고 큰 "
-"손상을\\n줄 수 있기 때문입니다."
+msgstr "%s를 root로서 실행하는 것은 허용되지 않습니다. 당신의 시스템에 영구적이고 큰 손상을\\n줄 수 있기 때문입니다."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
@@ -548,8 +540,7 @@ msgstr "데이터베이스를 업그레이드하려면 권한을 올바르게 �
 
 #: scripts/pacman-db-upgrade.sh.in:140
 msgid "Pacman lock file was found. Cannot run while pacman is running."
-msgstr ""
-"pacman 잠금 파일이 있습니다. pacman이 실행중인 동안에는 실행할 수 없습니다."
+msgstr "pacman 잠금 파일이 있습니다. pacman이 실행중인 동안에는 실행할 수 없습니다."
 
 #: scripts/pacman-db-upgrade.sh.in:152
 msgid "Pre-3.5 database format detected - upgrading..."
@@ -565,8 +556,7 @@ msgstr "4.2 이전 데이터베이스 형식을 감지했습니다 - 업그레�
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"심볼릭 연결 '%s'가 pacman 최상위 디렉터리 바깥을 가리킵니다. 수동 조치 필요"
+msgstr "심볼릭 연결 '%s'가 pacman 최상위 디렉터리 바깥을 가리킵니다. 수동 조치 필요"
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -595,8 +585,7 @@ msgstr "  -e, --export              지정한 또는 모든 키 ID를 내보냅�
 #: scripts/pacman-key.sh.in:66
 msgid ""
 "  -f, --finger              List fingerprint for specified or all keyids"
-msgstr ""
-"  -f, --finger              지정한 또는 모든 키 ID에 대한 지문키를 출력합니다"
+msgstr "  -f, --finger              지정한 또는 모든 키 ID에 대한 지문키를 출력합니다"
 
 #: scripts/pacman-key.sh.in:67
 msgid "  -l, --list-keys           List the specified or all keys"
@@ -618,8 +607,7 @@ msgstr "  -v, --verify              지정한 파일을 서명으로 검증합�
 #: scripts/pacman-key.sh.in:71
 msgid ""
 "  --edit-key                Present a menu for key management task on keyids"
-msgstr ""
-"  --edit-key                키 ID에 대한 키 관리 작업 메뉴를 나타냅니다"
+msgstr "  --edit-key                키 ID에 대한 키 관리 작업 메뉴를 나타냅니다"
 
 #: scripts/pacman-key.sh.in:72
 msgid "  --import                  Imports pubring.gpg from dir(s)"
@@ -629,14 +617,11 @@ msgstr "  --import                  디렉터리에서 pubring.gpg를 가져옵�
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"  --import-trustdb          디렉터리의 trustdb.gpg에서 소유자 신뢰 값을 가져"
-"옵니다"
+msgstr "  --import-trustdb          디렉터리의 trustdb.gpg에서 소유자 신뢰 값을 가져옵니다"
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
-msgstr ""
-"  --init                    키 모음이 제대로 초기화 되었는지 확인합니다"
+msgstr "  --init                    키 모음이 제대로 초기화 되었는지 확인합니다"
 
 #: scripts/pacman-key.sh.in:75
 msgid "  --list-sigs               List keys and their signatures"
@@ -650,15 +635,12 @@ msgstr "  --lsign-key               지정한 키 ID로 로컬 서명합니다"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate                '%s'의(주어진) 키 모음에서 기본값을 다시 불러옵니"
-"다"
+msgstr "  --populate                '%s'의(주어진) 키 모음에서 기본값을 다시 불러옵니다"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"  --refresh-keys            키 서버에서 지정한 또는 모든 키를 업데이트합니다"
+msgstr "  --refresh-keys            키 서버에서 지정한 또는 모든 키를 업데이트합니다"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -666,25 +648,21 @@ msgstr "  --verbose                 추가 정보 표시"
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
 msgstr "  --config <파일>           ('%s' 대신) 지정한 설정 파일을 사용합니다"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <디렉터리>            ('%s' 대신) GnuPG에서 사용할 대체 디렉터리를"
-"\\n                            설정합니다."
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <디렉터리>            ('%s' 대신) GnuPG에서 사용할 대체 디렉터리를\\n                            설정합니다."
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
 "  --populate-from <dir>     Set an alternate directory for --populate "
 "(instead\\n                            of '%s')"
-msgstr ""
-"  --populate-from <dir>     --populate 옵션의 대안 디렉터리 값을 설정 합니다 "
-"('%s'\\n                            대신)"
+msgstr "  --populate-from <dir>     --populate 옵션의 대안 디렉터리 값을 설정 합니다 ('%s'\\n                            대신)"
 
 #: scripts/pacman-key.sh.in:89
 msgid "  --keyserver <server-url>  Specify a keyserver to use if necessary"
@@ -891,11 +869,9 @@ msgstr "사용법: repo-add [옵션] <DB 경로> <꾸러미> ...\\n"
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add에서 꾸러미 파일을 읽어 꾸러미 데이터베이스를 업데이트합니다.\\n여러 "
-"꾸러미를 추가하려면 명령줄에서 지정할 수 있습니다.\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add에서 꾸러미 파일을 읽어 꾸러미 데이터베이스를 업데이트합니다.\\n여러 꾸러미를 추가하려면 명령줄에서 지정할 수 있습니다.\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -903,24 +879,21 @@ msgstr "옵션:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
 msgstr "  -n, --new         데이터베이스에 없는 꾸러미만 추가합니다\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"  -R, --remove      데이터베이스 갱신 후 디스크로부터 오래된 꾸러미 파일 삭제"
-"\\n"
+msgstr "  -R, --remove      데이터베이스 갱신 후 디스크로부터 오래된 꾸러미 파일 삭제\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
-msgstr ""
-"  -p, --prevent-downgrade  더 새 버전이 이미 있다면 꾸러미를 데이터베이스에 "
-"추가하지 않습니다\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
+msgstr "  -p, --prevent-downgrade  더 새 버전이 이미 있다면 꾸러미를 데이터베이스에 추가하지 않습니다\\n"
 
 #: scripts/repo-add.sh.in:72
 msgid "Usage: repo-remove [options] <path-to-db> <packagename> ...\\n"
@@ -931,10 +904,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove는 명령줄 상에서 repo 데이터베이스에 주어진 꾸러미 이름을 지우고"
-"\\n꾸러미 데이터베이스를 업데이트합니다. 여러 꾸러미를 추가하려면 명령줄에서"
-"\\n지정할 수 있습니다.\\n"
+msgstr "repo-remove는 명령줄 상에서 repo 데이터베이스에 주어진 꾸러미 이름을 지우고\\n꾸러미 데이터베이스를 업데이트합니다. 여러 꾸러미를 추가하려면 명령줄에서\\n지정할 수 있습니다.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -950,8 +920,7 @@ msgstr "  -q, --quiet       출력 내용을 줄입니다\\n"
 
 #: scripts/repo-add.sh.in:86
 msgid "  -s, --sign        sign database with GnuPG after update\\n"
-msgstr ""
-"  -s, --sign        업데이트가 끝나면 GnuPG로 데이터베이스에 서명합니다\\n"
+msgstr "  -s, --sign        업데이트가 끝나면 GnuPG로 데이터베이스에 서명합니다\\n"
 
 #: scripts/repo-add.sh.in:87
 msgid "  -k, --key <key>   use the specified key to sign the database\\n"
@@ -964,15 +933,12 @@ msgstr "  -v, --verify      업데이트 전 데이터베이스 서명을 검증
 #: scripts/repo-add.sh.in:89
 msgid ""
 "\\nSee %s(8) for more details and descriptions of the available options.\\n"
-msgstr ""
-"\\n사용할 수 있는 옵션에 대한 더 자세한 설명을 보려면 %s(8)을 참조하십시오."
-"\\n"
+msgstr "\\n사용할 수 있는 옵션에 대한 더 자세한 설명을 보려면 %s(8)을 참조하십시오.\\n"
 
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"예시:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
+msgstr "예시:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1405,12 +1371,14 @@ msgstr "%s를 끌어 오다가 실패했습니다"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "알 수 없는 참조입니다: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "%s %s 저장소의 작업 사본 만드는 중..."
@@ -1453,12 +1421,14 @@ msgstr "%s 추출에 실패했습니다"
 msgid "NOT FOUND"
 msgstr "찾을 수 없음"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "%s %s 저장소 클로닝중..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "%s %s 저장소를 다운로드하는 중 실패했습니다"
@@ -1467,12 +1437,14 @@ msgstr "%s %s 저장소를 다운로드하는 중 실패했습니다"
 msgid "%s is not a clone of %s"
 msgstr "%s는 %s의 클론이 아닙니다"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "%s %s 저장소 업데이트 중..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "%s %s 저장소 업데이트 중 실패했습니다"

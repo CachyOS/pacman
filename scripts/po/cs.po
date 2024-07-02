@@ -22,15 +22,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
-"Last-Translator: Jiří Podhorný <jp@email.cz>, 2023-2024\n"
-"Language-Team: Czech (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/cs/)\n"
-"Language: cs\n"
+"Last-Translator: Vojtěch Gondžala <vojtech.gondzala@gmail.com>, 2011,2013\n"
+"Language-Team: Czech (http://app.transifex.com/toofishes/archlinux-pacman/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
-"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: scripts/makepkg.sh.in:139
 msgid "Cleaning up..."
@@ -208,7 +206,8 @@ msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "Skupina balíčků je již sestavena. (použijte %s pro přepsání)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
 msgstr "Část skupiny balíčků je již sestavena. (použijte %s pro přepsání)"
 
 #: scripts/makepkg.sh.in:874
@@ -240,14 +239,13 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     Přeskočit všechny kontroly závislostí"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
 msgstr ""
 
 #: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
-msgstr ""
-"  -e, --noextract  Nerozbalovat zdrojové soubory (použít existující %s "
-"složku)"
+msgstr "  -e, --noextract  Nerozbalovat zdrojové soubory (použít existující %s složku)"
 
 #: scripts/makepkg.sh.in:885
 msgid "  -f, --force      Overwrite existing package"
@@ -284,11 +282,11 @@ msgstr "  -p <file>        Použít alternativní build skript (namísto '%s')"
 #: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps     Po úspěšném sestavení odstranit nainstalované závislosti"
+msgstr "  -r, --rmdeps     Po úspěšném sestavení odstranit nainstalované závislosti"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
 msgstr "  -R, --repackage  Znovu zabalit obsah balícku bez sestavení"
 
 #: scripts/makepkg.sh.in:895
@@ -308,8 +306,7 @@ msgstr "  -V, --version    Verze programu"
 msgid ""
 "  --allsource      Generate a source-only tarball including downloaded "
 "sources"
-msgstr ""
-"  --allsource      Vytvořit zdrojový archiv, včetně stahovaných souborů"
+msgstr "  --allsource      Vytvořit zdrojový archiv, včetně stahovaných souborů"
 
 #: scripts/makepkg.sh.in:899
 msgid "  --check          Run the %s function in the %s"
@@ -317,8 +314,7 @@ msgstr "  --check          Spustí funkci %s v %s"
 
 #: scripts/makepkg.sh.in:900
 msgid "  --config <file>  Use an alternate config file (instead of '%s')"
-msgstr ""
-"  --config <file>  Použít alternativní konfigurační soubor (namísto '%s')"
+msgstr "  --config <file>  Použít alternativní konfigurační soubor (namísto '%s')"
 
 #: scripts/makepkg.sh.in:901
 msgid "  --holdver        Do not update VCS sources"
@@ -326,7 +322,8 @@ msgstr "  --holdver        Neaktualizuje VCS zdroje"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
 msgstr "  --key <klíč>     Určí klíč pro podepisování %s namísto výchozího"
 
 #: scripts/makepkg.sh.in:903
@@ -347,8 +344,7 @@ msgstr "  --nosign         Nepodepisovat balíček"
 
 #: scripts/makepkg.sh.in:907
 msgid "  --packagelist    Only list package filepaths that would be produced"
-msgstr ""
-"  --packagelist    Zobrazit pouze seznam balíčků, který by byl vytvořen"
+msgstr "  --packagelist    Zobrazit pouze seznam balíčků, který by byl vytvořen"
 
 #: scripts/makepkg.sh.in:908
 msgid "  --printsrcinfo   Print the generated SRCINFO and exit"
@@ -375,9 +371,7 @@ msgstr "  --skippgpcheck   Neověřovat PGP podpisy u zdrojových souborů"
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"  --verifysource   Stáhne zdrojové soubory (pokud je to potřeba) a provede "
-"kontrolu integrity"
+msgstr "  --verifysource   Stáhne zdrojové soubory (pokud je to potřeba) a provede kontrolu integrity"
 
 #: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
@@ -390,8 +384,7 @@ msgstr "  --asdeps         Nainstalovat balíčky jako závislosti"
 #: scripts/makepkg.sh.in:918
 msgid ""
 "  --needed         Do not reinstall the targets that are already up to date"
-msgstr ""
-"  --needed         Nepřeinstalovávát balíčky, které jsou stále aktuální"
+msgstr "  --needed         Nepřeinstalovávát balíčky, které jsou stále aktuální"
 
 #: scripts/makepkg.sh.in:919
 msgid ""
@@ -411,9 +404,7 @@ msgstr "Když není zadáno %s, %s bude hledat '%s'"
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
 "WARRANTY, to the extent permitted by law.\\n"
-msgstr ""
-"Toto je svobodný software; podmínky pro kopírování viz. zdrojový "
-"kód\\nNejsou poskytovány ŽÁDNÉ ZÁRUKY, v rozsahu povoleném zákonem.\\n"
+msgstr "Toto je svobodný software; podmínky pro kopírování viz. zdrojový kód\\nNejsou poskytovány ŽÁDNÉ ZÁRUKY, v rozsahu povoleném zákonem.\\n"
 
 #: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
@@ -423,9 +414,7 @@ msgstr "Zachycen signál %s. Ukončování..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"Spuštění %s jako root není povoleno, protože může způsobit trvalou,"
-"\\nkatastrofickou škodu na vašem systému."
+msgstr "Spuštění %s jako root není povoleno, protože může způsobit trvalou,\\nkatastrofickou škodu na vašem systému."
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
@@ -525,8 +514,7 @@ msgstr "  -h, --help           vypsat tuto nápovědu a ukončit program"
 
 #: scripts/pacman-db-upgrade.sh.in:46
 msgid "  -r, --root <path>    set an alternate installation root"
-msgstr ""
-"  -r, --root <path>    nastavit alternativní kořenový adresář instalace"
+msgstr "  -r, --root <path>    nastavit alternativní kořenový adresář instalace"
 
 #: scripts/pacman-db-upgrade.sh.in:47
 msgid "  -V, --version        show version information and exit"
@@ -570,8 +558,7 @@ msgstr "Zjištěn formát databáze před verzí 4.2 - aktualizuje se..."
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"symlink '%s' míří mimo kořen programu pacman, vyžadována manuální náprava"
+msgstr "symlink '%s' míří mimo kořen programu pacman, vyžadována manuální náprava"
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -612,8 +599,7 @@ msgstr "  -r, --recv-keys           Stáhne uvedené klíče"
 
 #: scripts/pacman-key.sh.in:69
 msgid "  -u, --updatedb            Update the trustdb of pacman"
-msgstr ""
-"  -u, --updatedb            Aktualizuje databázi důvěry (trustdb) v pacmanovi"
+msgstr "  -u, --updatedb            Aktualizuje databázi důvěry (trustdb) v pacmanovi"
 
 #: scripts/pacman-key.sh.in:70
 msgid ""
@@ -633,9 +619,7 @@ msgstr "  --import                  Načte pubring.gpg z adresáře(ů)"
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"  --import-trustdb          Načte důvěryhodnost vlastníků z trustdb.gpg ze "
-"zadaných složek"
+msgstr "  --import-trustdb          Načte důvěryhodnost vlastníků z trustdb.gpg ze zadaných složek"
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
@@ -653,16 +637,12 @@ msgstr "  --lsign-key               Lokálně podepíše uvedené keyid"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate                Znovu načte výchozí klíče z (zadaných) "
-"klíčenek\\n                            v '%s'"
+msgstr "  --populate                Znovu načte výchozí klíče z (zadaných) klíčenek\\n                            v '%s'"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"  --refresh-keys            Aktualizuje uvedené (nebo všechny) klíče ze "
-"serveru s klíči"
+msgstr "  --refresh-keys            Aktualizuje uvedené (nebo všechny) klíče ze serveru s klíči"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -670,33 +650,25 @@ msgstr "  --verbose                 Zobrazit doplňující informace"
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <soubor>         Použije zadaný konfigurační soubor "
-"(namísto\\n                            '%s')"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <soubor>         Použije zadaný konfigurační soubor (namísto\\n                            '%s')"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <dir>            Nastaví vlastní adresář pro GnuPG (namísto "
-"\\n                            '%s')"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <dir>            Nastaví vlastní adresář pro GnuPG (namísto \\n                            '%s')"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
 "  --populate-from <dir>     Set an alternate directory for --populate "
 "(instead\\n                            of '%s')"
-msgstr ""
-"  --populate-from <dir>     Nastaví vlastní adresář pro --populate "
-"(namísto\\n                            '%s')"
+msgstr "  --populate-from <dir>     Nastaví vlastní adresář pro --populate (namísto\\n                            '%s')"
 
 #: scripts/pacman-key.sh.in:89
 msgid "  --keyserver <server-url>  Specify a keyserver to use if necessary"
-msgstr ""
-"  --keyserver <server-url>  Určí, který server s klíči se má v případě "
-"potřeby použít"
+msgstr "  --keyserver <server-url>  Určí, který server s klíči se má v případě potřeby použít"
 
 #: scripts/pacman-key.sh.in:91
 msgid "  -h, --help                Show this help message and exit"
@@ -905,11 +877,9 @@ msgstr "Použití: repo-add [parametry] <path-to-db> <package> ...\\n"
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add aktualizuje databázi balíčků pomocí čtení souboru balíčku.\\nNa "
-"příkazové řádce může být uvedeno více balíčků pro přidání.\\n\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add aktualizuje databázi balíčků pomocí čtení souboru balíčku.\\nNa příkazové řádce může být uvedeno více balíčků pro přidání.\\n\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -917,24 +887,21 @@ msgstr "Volby:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
 msgstr "  -n, --new         přidat pouze balíčky, které ještě nejsou v DB\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"  -R, --remove      odstranit starý soubor balíčku z disku po aktualizaci "
-"databáze\\n"
+msgstr "  -R, --remove      odstranit starý soubor balíčku z disku po aktualizaci databáze\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
-msgstr ""
-"  -p, --prevent-downgrade  nepřidávat balíček do databáze, pokud již "
-"existuje novější verze\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
+msgstr "  -p, --prevent-downgrade  nepřidávat balíček do databáze, pokud již existuje novější verze\\n"
 
 #: scripts/repo-add.sh.in:72
 msgid "Usage: repo-remove [options] <path-to-db> <packagename> ...\\n"
@@ -945,10 +912,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove aktualizuje databázi balíčků odstraňováním balíčků podle "
-"jména\\nuvedeného na příkazové řádce z dané databáze. Na příkazové řádce "
-"může být\\nuvedeno více balíčků pro odebrání.\\n"
+msgstr "repo-remove aktualizuje databázi balíčků odstraňováním balíčků podle jména\\nuvedeného na příkazové řádce z dané databáze. Na příkazové řádce může být\\nuvedeno více balíčků pro odebrání.\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -982,8 +946,7 @@ msgstr "\\nViz %s(8) pro více informací a popis dostupných voleb. \\n"
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"Příklad:  repo-add /cesta/k/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
+msgstr "Příklad:  repo-add /cesta/k/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1282,9 +1245,7 @@ msgstr "%s nemá být pole"
 
 #: scripts/libmakepkg/lint_config/variable.sh.in:66
 msgid "PACKAGER should have the format 'Example Name <email@address.invalid>'"
-msgstr ""
-"Parametr PACKAGER by měl být ve formátu 'Jméno Příjmení <email@address."
-"invalid>'"
+msgstr "Parametr PACKAGER by měl být ve formátu 'Jméno Příjmení <email@address.invalid>'"
 
 #: scripts/libmakepkg/lint_package.sh.in:41
 msgid "Checking for packaging issues..."
@@ -1418,12 +1379,14 @@ msgstr "Selhalo stažení %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "Nerozpoznaný odkaz: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "Vytváření pracovní kopie repozitáře %s %s ..."
@@ -1466,12 +1429,14 @@ msgstr "Selhalo rozbalení %s"
 msgid "NOT FOUND"
 msgstr "NENALEZEN"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "Klonování repozitáře %s %s ..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "Chyba při stahování repozitáře %s %s "
@@ -1480,12 +1445,14 @@ msgstr "Chyba při stahování repozitáře %s %s "
 msgid "%s is not a clone of %s"
 msgstr "%s není klonem %s "
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "Aktualizuji repozitář %s %s ..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "Chyba při aktualizaci repozitáře %s %s "
@@ -1496,8 +1463,7 @@ msgstr "Chyba při přepínání na verzi %s, štítek v gitu byl podvržen"
 
 #: scripts/libmakepkg/source/local.sh.in:39
 msgid "%s was not found in the build directory and is not a URL."
-msgstr ""
-"Soubor %s nebyl nalezen v adresáři, kde se provádí sestavení, a není ani URL."
+msgstr "Soubor %s nebyl nalezen v adresáři, kde se provádí sestavení, a není ani URL."
 
 #: scripts/libmakepkg/tidy.sh.in:41
 msgid "Tidying install..."
@@ -1525,8 +1491,7 @@ msgstr "Odstraňování souborů statických knihoven..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:145
 msgid "Stripping unneeded symbols from binaries and libraries..."
-msgstr ""
-"Odstraňují se nepotřebné ladící informace z binárních souborů a knihoven..."
+msgstr "Odstraňují se nepotřebné ladící informace z binárních souborů a knihoven..."
 
 #: scripts/libmakepkg/tidy/strip.sh.in:190
 msgid "Copying source files needed for debug symbols..."

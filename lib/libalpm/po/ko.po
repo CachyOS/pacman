@@ -20,12 +20,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Thomas Sungjin Kang <potopro@gmail.com>, 2013\n"
-"Language-Team: Korean (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/ko/)\n"
-"Language: ko\n"
+"Language-Team: Korean (http://app.transifex.com/toofishes/archlinux-pacman/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -66,9 +65,7 @@ msgstr "%s의 이름을 %s로 바꾸지 못했습니다.(%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"꾸러미 %s의 파일 목록에서 파일을 찾을 수가 없습니다. %s의 추출을 건너뜁니"
-"다.\n"
+msgstr "꾸러미 %s의 파일 목록에서 파일을 찾을 수가 없습니다. %s의 추출을 건너뜁니다.\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -80,18 +77,14 @@ msgstr "%s%s를 추출할 수 없습니다: 경로가 너무 깁니다"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"%s 디렉터리 권한이 다릅니다.\n"
-"파일시스템: %o 꾸러미: %o\n"
+msgstr "%s 디렉터리 권한이 다릅니다.\n파일시스템: %o 꾸러미: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"%s 디렉터리의 소유주가 다릅니다.\n"
-"파일시스템: %u:%u 꾸러미: %u:%u\n"
+msgstr "%s 디렉터리의 소유주가 다릅니다.\n파일시스템: %u:%u 꾸러미: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -816,30 +809,25 @@ msgstr "부적절한 꾸러미 메타데이터 (이름 또는 버전 빠짐)"
 msgid ""
 "invalid metadata for package %s-%s (package name cannot start with '.' or "
 "'-')\n"
-msgstr ""
-"%s-%s 꾸러미에 부적절한 메타데이터 (꾸러미 이름은 '.' 또는 '-'(으)로 시작할 "
-"수 없음)\n"
+msgstr "%s-%s 꾸러미에 부적절한 메타데이터 (꾸러미 이름은 '.' 또는 '-'(으)로 시작할 수 없음)\n"
 
 #: lib/libalpm/package.c:878
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package name contains invalid "
 "characters)\n"
-msgstr ""
-"%s-%s 꾸러미에 부적절한 메타데이터 (꾸러미 이름에 부적절한 문자가 들어있음)\n"
+msgstr "%s-%s 꾸러미에 부적절한 메타데이터 (꾸러미 이름에 부적절한 문자가 들어있음)\n"
 
 #: lib/libalpm/package.c:885 lib/libalpm/package.c:889
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package version contains invalid "
 "characters)\n"
-msgstr ""
-"%s-%s 꾸러미에 부적절한 메타데이터 (꾸러미 버전에 부적절한 문자가 들어감)\n"
+msgstr "%s-%s 꾸러미에 부적절한 메타데이터 (꾸러미 버전에 부적절한 문자가 들어감)\n"
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr "%s-%s 꾸러미에 부적절한 메타데이터 (꾸러미 이름과 버전이 너무 김)\n"
 
 #: lib/libalpm/remove.c:111

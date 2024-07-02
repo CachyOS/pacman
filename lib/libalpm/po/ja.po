@@ -15,12 +15,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Satoru Abe <s@polamjag.info>, 2015\n"
-"Language-Team: Japanese (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/ja/)\n"
-"Language: ja\n"
+"Language-Team: Japanese (http://app.transifex.com/toofishes/archlinux-pacman/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -61,9 +60,7 @@ msgstr "%s を %s に名前を変更できませんでした (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"パッケージ %s のファイルリストに含まれているファイルが見つかりませんでし"
-"た。%s の展開をスキップします。\n"
+msgstr "パッケージ %s のファイルリストに含まれているファイルが見つかりませんでした。%s の展開をスキップします。\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -75,18 +72,14 @@ msgstr "%s%s を展開できませんでした: パスが長すぎます"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"%s のディレクトリのパーミッションが異なっています\n"
-"ファイルシステム: %o  パッケージ: %o\n"
+msgstr "%s のディレクトリのパーミッションが異なっています\nファイルシステム: %o  パッケージ: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"%s のディレクトリ所有者が異なっています\n"
-"ファイルシステム: %u:%u  パッケージ: %u:%u\n"
+msgstr "%s のディレクトリ所有者が異なっています\nファイルシステム: %u:%u  パッケージ: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -256,8 +249,7 @@ msgstr "無効なファイルを削除: %s\n"
 #: lib/libalpm/be_sync.c:454
 #, c-format
 msgid "could not parse package description file '%s' from db '%s'\n"
-msgstr ""
-"パッケージ定義ファイル '%s' (データベース '%s') をパースできませんでした\n"
+msgstr "パッケージ定義ファイル '%s' (データベース '%s') をパースできませんでした\n"
 
 #: lib/libalpm/be_sync.c:469
 #, c-format
@@ -267,14 +259,12 @@ msgstr "データベース '%s' を読み込めませんでした (%s)\n"
 #: lib/libalpm/be_sync.c:502 lib/libalpm/be_sync.c:507
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is illegal\n"
-msgstr ""
-"%s データベースは矛盾しています: パッケージ %s のファイル名が不正です\n"
+msgstr "%s データベースは矛盾しています: パッケージ %s のファイル名が不正です\n"
 
 #: lib/libalpm/be_sync.c:512
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is too long\n"
-msgstr ""
-"%s データベースは矛盾しています: パッケージ %s のファイル名が長すぎます\n"
+msgstr "%s データベースは矛盾しています: パッケージ %s のファイル名が長すぎます\n"
 
 #: lib/libalpm/be_sync.c:577
 #, c-format
@@ -395,9 +385,7 @@ msgstr "ファイル '%s' を %s から取得するのに失敗しました : %s
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"ファイル '%s' を %s から取得するのに失敗しました : 想定されるダウンロードサイ"
-"ズを超過しています\n"
+msgstr "ファイル '%s' を %s から取得するのに失敗しました : 想定されるダウンロードサイズを超過しています\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -834,8 +822,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -1113,5 +1100,4 @@ msgstr "%s キャッシュが存在しません、作成します...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"パッケージキャッシュを発見・作成できませんでした、かわりに %s を使用します\n"
+msgstr "パッケージキャッシュを発見・作成できませんでした、かわりに %s を使用します\n"

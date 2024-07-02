@@ -14,16 +14,12 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Данило Коростіль <ted.korostiled@gmail.com>, 2011,2014\n"
-"Language-Team: Ukrainian (http://app.transifex.com/toofishes/archlinux-"
-"pacman/language/uk/)\n"
-"Language: uk\n"
+"Language-Team: Ukrainian (http://app.transifex.com/toofishes/archlinux-pacman/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
-"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
-"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
-"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
 #, c-format
@@ -63,9 +59,7 @@ msgstr "неможливо перейменувати %s на %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"файл не знайдено в переліку файлів для пакунка %s, пропускаємо витягування з "
-"%s\n"
+msgstr "файл не знайдено в переліку файлів для пакунка %s, пропускаємо витягування з %s\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -77,18 +71,14 @@ msgstr "не вдається витягти %s%s: шлях занадто до�
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"права на теку відрізняються для %s\n"
-"файлова система: %o  пакунок: %o\n"
+msgstr "права на теку відрізняються для %s\nфайлова система: %o  пакунок: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"власник теки відрізняється для %s\n"
-"файлова система: %u:%u  пакунок: %u:%u\n"
+msgstr "власник теки відрізняється для %s\nфайлова система: %u:%u  пакунок: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -139,9 +129,7 @@ msgstr "неможливо додати запис \"%s\" у кеш\n"
 #: lib/libalpm/be_local.c:271
 #, c-format
 msgid "error while reading file %s: %s\n"
-msgstr ""
-"помилка при читанні пакунка %s: %s\n"
-"\n"
+msgstr "помилка при читанні пакунка %s: %s\n\n"
 
 #: lib/libalpm/be_local.c:382
 #, c-format
@@ -260,8 +248,7 @@ msgstr "вилучення недійсного файлу: %s\n"
 #: lib/libalpm/be_sync.c:454
 #, c-format
 msgid "could not parse package description file '%s' from db '%s'\n"
-msgstr ""
-"неможливо провести аналіз файлу опису пакунка \"%s\" з бази даних \"%s\"\n"
+msgstr "неможливо провести аналіз файлу опису пакунка \"%s\" з бази даних \"%s\"\n"
 
 #: lib/libalpm/be_sync.c:469
 #, c-format
@@ -834,8 +821,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -1113,5 +1099,4 @@ msgstr "кеш %s не існує, створюємо...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"неможливо знайти або створити кеш пакунків, використовуємо %s натомість\n"
+msgstr "неможливо знайти або створити кеш пакунків, використовуємо %s натомість\n"

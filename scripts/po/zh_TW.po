@@ -25,12 +25,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2019,2021,2024\n"
-"Language-Team: Chinese (Taiwan) (http://app.transifex.com/toofishes/"
-"archlinux-pacman/language/zh_TW/)\n"
-"Language: zh_TW\n"
+"Language-Team: Chinese (Taiwan) (http://app.transifex.com/toofishes/archlinux-pacman/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: scripts/makepkg.sh.in:139
@@ -209,7 +208,8 @@ msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "軟體包群組早已建置過。(使用 %s 將之覆蓋)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
 msgstr "軟體包群組的其中一部份早已建置過。(使用 %s 將之覆蓋)"
 
 #: scripts/makepkg.sh.in:874
@@ -241,8 +241,9 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     略過所有依賴關係檢查"
 
 #: scripts/makepkg.sh.in:883
-msgid "  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
-msgstr ""
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgstr "  -D, --dir <dir>  在處理 PKGBUILD 前先變更至目錄 <dir>"
 
 #: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
@@ -286,7 +287,8 @@ msgid ""
 msgstr "  -r, --rmdeps     在建置成功後移除安裝的依賴關係"
 
 #: scripts/makepkg.sh.in:894
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
 msgstr "  -R, --repackage  重新打包軟體包的內容但不重新建置"
 
 #: scripts/makepkg.sh.in:895
@@ -322,7 +324,8 @@ msgstr "  --holdver        不更新 VCS 來源檔案"
 
 #: scripts/makepkg.sh.in:902
 msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
 msgstr "  --key <key>      指定一個金鑰用以簽署 %s ，而非使用預設的"
 
 #: scripts/makepkg.sh.in:903
@@ -403,9 +406,7 @@ msgstr "若未指定 %s，則 %s 將查找「%s」"
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
 "WARRANTY, to the extent permitted by law.\\n"
-msgstr ""
-"這是自由軟體；請見源碼瞭解授權規約。\\n於法律許可範圍之內「不予任何保"
-"證」。\\n"
+msgstr "這是自由軟體；請見源碼瞭解授權規約。\\n於法律許可範圍之內「不予任何保證」。\\n"
 
 #: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
@@ -415,9 +416,7 @@ msgstr "捕捉到 %s 訊號。離開中..."
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"由於以 root 身份執行 %s 會導致永恆的、無法收拾的\\n悲劇性系統毀滅，所以很抱"
-"歉，不能允許這麼做。"
+msgstr "由於以 root 身份執行 %s 會導致永恆的、無法收拾的\\n悲劇性系統毀滅，所以很抱歉，不能允許這麼做。"
 
 #: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
@@ -640,9 +639,7 @@ msgstr "  --lsign-key               本地端簽署指定的金鑰代號"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate                重新自鑰匙圈載入預設的金鑰"
-"\\n                            自 '%s'"
+msgstr "  --populate                重新自鑰匙圈載入預設的金鑰\\n                            自 '%s'"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
@@ -655,19 +652,15 @@ msgstr "  --verbose                 顯示額外資訊"
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <file>           另行指定設定檔(代替"
-"\\n                            '%s')"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <file>           另行指定設定檔(代替\\n                            '%s')"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <dir>            給 GnuPG 設定其他的目錄 (代替"
-"\\n                             '%s')"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <dir>            給 GnuPG 設定其他的目錄 (代替\\n                             '%s')"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
@@ -880,11 +873,9 @@ msgstr "用法：repo-add [選項] <path-to-db> <package> ...\\n"
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add 會讀取軟體包檔案來更新軟體包資料庫。\\n可以在指令列指定要加入多份軟"
-"體包。\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add 會讀取軟體包檔案來更新軟體包資料庫。\\n可以在指令列指定要加入多份軟體包。\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -892,7 +883,8 @@ msgstr "選項：\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
 msgstr "  -n, --new         僅加入尚未在資料庫中的軟體包\\n"
 
 #: scripts/repo-add.sh.in:69
@@ -903,11 +895,9 @@ msgstr "  -R, --remove      更新資料庫後從磁碟移除舊的軟體包檔�
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
-msgstr ""
-"  -p, --prevent-downgrade  如果已經有較新的版本，就不要將軟體包加入到資料庫中"
-"\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
+msgstr "  -p, --prevent-downgrade  如果已經有較新的版本，就不要將軟體包加入到資料庫中\\n"
 
 #: scripts/repo-add.sh.in:72
 msgid "Usage: repo-remove [options] <path-to-db> <packagename> ...\\n"
@@ -918,9 +908,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove 會從給定的軟體包資料庫中移除指令列內指定的\\n軟體包名稱來更新軟體"
-"包資料庫。可以在指令列中\\n指定多個要移除的軟體包。\\n"
+msgstr "repo-remove 會從給定的軟體包資料庫中移除指令列內指定的\\n軟體包名稱來更新軟體包資料庫。可以在指令列中\\n指定多個要移除的軟體包。\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -954,8 +942,7 @@ msgstr "\\n請見 %s(8) 瞭解更多可用選項的細節與描述。\\n"
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"範例：repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
+msgstr "範例：repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1388,12 +1375,14 @@ msgstr "拉出 %s 時失敗"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
 #: scripts/libmakepkg/source/git.sh.in:120
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "無法辨識的參考點：%s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:89 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "正在建立 %s %s 庫的工作副本..."
@@ -1436,12 +1425,14 @@ msgstr "無法解壓縮 %s"
 msgid "NOT FOUND"
 msgstr "找不到"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "再製 %s %s 庫中..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "下載 %s %s 庫時失敗"
@@ -1450,12 +1441,14 @@ msgstr "下載 %s %s 庫時失敗"
 msgid "%s is not a clone of %s"
 msgstr "%s 並非 %s 的再製本"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "更新 %s %s 庫中..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "更新 %s %s 庫時失敗"

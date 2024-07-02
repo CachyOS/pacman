@@ -21,12 +21,11 @@ msgstr ""
 "POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: zenlord <zenlord@gmail.com>, 2013,2015,2019\n"
-"Language-Team: Dutch (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/nl/)\n"
-"Language: nl\n"
+"Language-Team: Dutch (http://app.transifex.com/toofishes/archlinux-pacman/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -67,9 +66,7 @@ msgstr "kan %s niet hernoemen als %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"bestand niet gevonden in de bestandslijst voor pakket %s. Uitpakken %s wordt "
-"overgeslaan\n"
+msgstr "bestand niet gevonden in de bestandslijst voor pakket %s. Uitpakken %s wordt overgeslaan\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -81,18 +78,14 @@ msgstr "kan %s%s niet uitpakken: pad te lang"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"rechten voor map %s verschillen\n"
-"bestandssysteem: %o pakket: %o\n"
+msgstr "rechten voor map %s verschillen\nbestandssysteem: %o pakket: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"eigenaar van map %s verschilt\n"
-"bestandssysteem: %u:%u pakket: %u:%u\n"
+msgstr "eigenaar van map %s verschilt\nbestandssysteem: %u:%u pakket: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -191,9 +184,7 @@ msgstr "%s database is inconsistent: naam onjuist voor pakket %s\n"
 #: lib/libalpm/be_local.c:765 lib/libalpm/be_sync.c:601
 #, c-format
 msgid "%s database is inconsistent: version mismatch on package %s\n"
-msgstr ""
-"%s database is inconsistent: versie onjuist voor pakket %s\n"
-"\n"
+msgstr "%s database is inconsistent: versie onjuist voor pakket %s\n\n"
 
 #: lib/libalpm/be_local.c:806
 #, c-format
@@ -375,8 +366,7 @@ msgstr "Partitie %s is gekoppeld als alleen-lezen\n"
 #, c-format
 msgid ""
 "too many errors from %s, skipping for the remainder of this transaction\n"
-msgstr ""
-"te veel fouten van %s, wordt overgeslagen voor de rest van deze transactie\n"
+msgstr "te veel fouten van %s, wordt overgeslagen voor de rest van deze transactie\n"
 
 #: lib/libalpm/dload.c:145
 #, c-format
@@ -401,9 +391,7 @@ msgstr "kan het bestand '%s' niet ophalen van %s : %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"kon het bestand '%s' niet ophalen van %s : verwachte download grootte "
-"overschreden\n"
+msgstr "kon het bestand '%s' niet ophalen van %s : verwachte download grootte overschreden\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -840,8 +828,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
