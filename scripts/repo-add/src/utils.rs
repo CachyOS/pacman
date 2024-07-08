@@ -311,6 +311,10 @@ pub fn gen_pkg_integrity(
     true
 }
 
+pub fn is_file_in_archive(arc_filepath: &str, needle_pattern: &str) -> bool {
+    exec(&format!("bsdtar -tqf '{arc_filepath}' '{needle_pattern}' >/dev/null 2>&1"), true).1
+}
+
 #[cfg(test)]
 mod tests {
     use std::fs;
@@ -650,5 +654,11 @@ sh
 "#;
 
         assert_eq!(pkgentry_content, K_DB_DESC_TEST_DATA);
+    }
+    #[test]
+    fn check_file_presence_in_arc() {
+        assert!(crate::utils::is_file_in_archive(PKGPATH, ".PKGINFO"));
+        assert!(!crate::utils::is_file_in_archive(PKGPATH, ".PKGIFO"));
+        assert!(crate::utils::is_file_in_archive(PKGPATH, "*"));
     }
 }
