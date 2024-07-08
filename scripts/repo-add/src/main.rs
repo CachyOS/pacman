@@ -101,7 +101,7 @@ fn print_elephant() {
 
     print!(
         "{}",
-        utils::exec(&format!("printf \"%s\" '{encoded_elephant}' | base64 -d | gzip -d"), true).0
+        utils::exec(&format!("printf '%s' '{encoded_elephant}' | base64 -d | gzip -d"), true).0
     );
 }
 
@@ -143,7 +143,7 @@ fn db_remove_entry(pkgname: &str, is_db_modified: &Arc<&mut AtomicBool>) -> bool
 
         // remove entries in "files" database
         let (filesentry, _) = utils::exec(
-            &format!("echo \"{}\" | sed 's/\\(.*\\)\\/db\\//\\1\\/files\\//'", &pkgentry),
+            &format!("echo '{}' | sed 's/\\(.*\\)\\/db\\//\\1\\/files\\//'", &pkgentry),
             false,
         );
         fs::remove_dir_all(filesentry).unwrap();
@@ -196,12 +196,12 @@ fn create_signature(dbfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> boo
 
     let mut signwithkey = String::new();
     if argstruct.gpgkey.is_some() && !argstruct.gpgkey.as_ref().unwrap().is_empty() {
-        signwithkey = format!("-u \"{}\"", argstruct.gpgkey.as_ref().unwrap());
+        signwithkey = format!("-u '{}'", argstruct.gpgkey.as_ref().unwrap());
     }
 
     let (_, ret_code) = utils::exec(
         &format!(
-            "gpg --batch --yes --detach-sign --use-agent --no-armor {} \"{}\" &>/dev/null",
+            "gpg --batch --yes --detach-sign --use-agent --no-armor {} '{}' &>/dev/null",
             signwithkey, dbfile
         ),
         true,
@@ -221,12 +221,13 @@ fn verify_signature(dbfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> boo
     }
 
     log::info!("Verifying database signature...");
-    if !Path::new(&format!("{}.sig", dbfile)).exists() {
+    let dbfile_sig = format!("{}.sig", dbfile);
+    if !Path::new(&dbfile_sig).exists() {
         log::warn!("No existing signature found, skipping verification.");
         return true;
     }
 
-    let (_, ret_code) = utils::exec(&format!("gpg --verify \"{}.sig\"", dbfile), true);
+    let (_, ret_code) = utils::exec(&format!("gpg --verify '{}'", dbfile_sig), true);
     if ret_code {
         log::info!("Database signature file verified.");
         return true;
@@ -276,7 +277,7 @@ fn db_write_entry(
         }
     } else if let Some(pkgentry) = find_pkgentry(pkginfo.pkgname.as_ref().unwrap()) {
         let version = utils::exec(
-            &format!("sed -n '/^%VERSION%$/ {}' \"{}/desc\"", "{n;p;q}", pkgentry),
+            &format!("sed -n '/^%VERSION%$/ {}' '{}/desc'", "{n;p;q}", pkgentry),
             false,
         )
         .0;
@@ -295,7 +296,7 @@ fn db_write_entry(
         if argstruct.rm_existing {
             oldfilename = Some(
                 utils::exec(
-                    &format!("sed -n '/^%FILENAME%$/ {}' \"{}/desc\"", "{n;p;q;}", pkgentry),
+                    &format!("sed -n '/^%FILENAME%$/ {}' '{}/desc'", "{n;p;q;}", pkgentry),
                     false,
                 )
                 .0,
@@ -516,11 +517,11 @@ fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bo
         if Path::new(&dbfile).exists() {
             // there are two situations we can have here:
             // a DB with some entries, or a DB with no contents at all.
-            if !utils::exec(&format!("bsdtar -tqf \"{}\" '*/desc' >/dev/null 2>&1", &dbfile), true)
+            if !utils::exec(&format!("bsdtar -tqf '{}' '*/desc' >/dev/null 2>&1", &dbfile), true)
                 .1
             {
                 // check empty case
-                if !utils::exec(&format!("bsdtar -tqf \"{}\" '*' 2>/dev/null", &dbfile), false)
+                if !utils::exec(&format!("bsdtar -tqf '{}' '*' 2>/dev/null", &dbfile), false)
                     .0
                     .is_empty()
                 {
@@ -537,7 +538,7 @@ fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bo
             );
             utils::exec(
                 &format!(
-                    "bsdtar -xf \"{}\" -C \"{}/{}\"",
+                    "bsdtar -xf '{}' -C '{}/{}'",
                     dbfile,
                     *G_TMPWORKINGDIR.lock().unwrap(),
                     repo
@@ -588,13 +589,13 @@ fn prepare_repo_db_nf(
             // there are two situations we can have here:
             // a DB with some entries, or a DB with no contents at all.
             if !utils::exec(
-                &format!("bsdtar -tqf \"{}\" 'pacman.db' >/dev/null 2>&1", &dbfile),
+                &format!("bsdtar -tqf '{}' 'pacman.db' >/dev/null 2>&1", &dbfile),
                 true,
             )
             .1
             {
                 // check empty case
-                if !utils::exec(&format!("bsdtar -tqf \"{}\" '*' 2>/dev/null", &dbfile), false)
+                if !utils::exec(&format!("bsdtar -tqf '{}' '*' 2>/dev/null", &dbfile), false)
                     .0
                     .is_empty()
                 {
@@ -611,7 +612,7 @@ fn prepare_repo_db_nf(
             );
             utils::exec(
                 &format!(
-                    "bsdtar -xf \"{}\" -C \"{}/{}\"",
+                    "bsdtar -xf '{}' -C '{}/{}'",
                     dbfile,
                     *G_TMPWORKINGDIR.lock().unwrap(),
                     repo
@@ -809,7 +810,7 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
         );
         utils::exec(
             &format!(
-                "cd \"{}\"; bsdtar -cf - {} | {} > \"{}\"",
+                "cd '{}'; bsdtar -cf - {} | {} > '{}'",
                 &workingdb_path, working_tar_arg, compress_cmd, tempname
             ),
             false,
@@ -837,7 +838,7 @@ fn add_pkg_to_db(
         return false;
     }
 
-    if !utils::exec(&format!("bsdtar -tqf \"{}\" .PKGINFO >/dev/null 2>&1", pkgfile), true).1 {
+    if !utils::exec(&format!("bsdtar -tqf '{}' '.PKGINFO' >/dev/null 2>&1", pkgfile), true).1 {
         log::error!("'{}' is not a package file, skipping", pkgfile);
         return false;
     }
@@ -857,7 +858,7 @@ fn add_pkg_to_db_nf(
         return false;
     }
 
-    if !utils::exec(&format!("bsdtar -tqf \"{}\" .PKGINFO >/dev/null 2>&1", pkgfile), true).1 {
+    if !utils::exec(&format!("bsdtar -tqf '{}' '.PKGINFO' >/dev/null 2>&1", pkgfile), true).1 {
         log::error!("'{}' is not a package file, skipping", pkgfile);
         return false;
     }
