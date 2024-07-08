@@ -281,7 +281,7 @@ pub fn gen_pkg_integrity(
 
     let sig_filename = format!("{pkgpath}.sig");
     if include_sigs && Path::new(&sig_filename).exists() {
-        if exec(&format!("grep -q 'BEGIN PGP SIGNATURE' \"{}\"", &sig_filename), true).1 {
+        if exec(&format!("grep -q 'BEGIN PGP SIGNATURE' '{}'", &sig_filename), true).1 {
             log::error!("Cannot use armored signatures for packages: {}", &sig_filename);
             return false;
         }
