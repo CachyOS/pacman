@@ -519,10 +519,7 @@ fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bo
             // a DB with some entries, or a DB with no contents at all.
             if !utils::is_file_in_archive(&dbfile, "*/desc") {
                 // check empty case
-                if !utils::exec(&format!("bsdtar -tqf '{}' '*' 2>/dev/null", &dbfile), false)
-                    .0
-                    .is_empty()
-                {
+                if utils::is_file_in_archive(&dbfile, "*") {
                     log::error!("Repository file '{}' is not a proper pacman database.", &dbfile);
                     return false;
                 }
@@ -588,10 +585,7 @@ fn prepare_repo_db_nf(
             // a DB with some entries, or a DB with no contents at all.
             if !utils::is_file_in_archive(&dbfile, "pacman.db") {
                 // check empty case
-                if !utils::exec(&format!("bsdtar -tqf '{}' '*' 2>/dev/null", &dbfile), false)
-                    .0
-                    .is_empty()
-                {
+                if utils::is_file_in_archive(&dbfile, "*") {
                     log::error!("Repository file '{}' is not a proper pacman database.", &dbfile);
                     return Ok(false);
                 }
