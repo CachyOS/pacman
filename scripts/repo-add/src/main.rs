@@ -517,9 +517,7 @@ fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bo
         if Path::new(&dbfile).exists() {
             // there are two situations we can have here:
             // a DB with some entries, or a DB with no contents at all.
-            if !utils::exec(&format!("bsdtar -tqf '{}' '*/desc' >/dev/null 2>&1", &dbfile), true)
-                .1
-            {
+            if !utils::is_file_in_archive(&dbfile, "*/desc") {
                 // check empty case
                 if !utils::exec(&format!("bsdtar -tqf '{}' '*' 2>/dev/null", &dbfile), false)
                     .0
@@ -588,12 +586,7 @@ fn prepare_repo_db_nf(
         if Path::new(&dbfile).exists() {
             // there are two situations we can have here:
             // a DB with some entries, or a DB with no contents at all.
-            if !utils::exec(
-                &format!("bsdtar -tqf '{}' 'pacman.db' >/dev/null 2>&1", &dbfile),
-                true,
-            )
-            .1
-            {
+            if !utils::is_file_in_archive(&dbfile, "pacman.db") {
                 // check empty case
                 if !utils::exec(&format!("bsdtar -tqf '{}' '*' 2>/dev/null", &dbfile), false)
                     .0
@@ -804,10 +797,8 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
             format!("$(cat {})", &tmpfile_path.as_ref().unwrap())
         };
 
-        let compress_cmd = utils::get_compression_command(
-            argstruct.repo_db_suffix.as_ref().unwrap(),
-            None,
-        );
+        let compress_cmd =
+            utils::get_compression_command(argstruct.repo_db_suffix.as_ref().unwrap(), None);
         utils::exec(
             &format!(
                 "cd '{}'; bsdtar -cf - {} | {} > '{}'",
@@ -838,7 +829,7 @@ fn add_pkg_to_db(
         return false;
     }
 
-    if !utils::exec(&format!("bsdtar -tqf '{}' '.PKGINFO' >/dev/null 2>&1", pkgfile), true).1 {
+    if !utils::is_file_in_archive(pkgfile, ".PKGINFO") {
         log::error!("'{}' is not a package file, skipping", pkgfile);
         return false;
     }
@@ -858,7 +849,7 @@ fn add_pkg_to_db_nf(
         return false;
     }
 
-    if !utils::exec(&format!("bsdtar -tqf '{}' '.PKGINFO' >/dev/null 2>&1", pkgfile), true).1 {
+    if !utils::is_file_in_archive(pkgfile, ".PKGINFO") {
         log::error!("'{}' is not a package file, skipping", pkgfile);
         return false;
     }
