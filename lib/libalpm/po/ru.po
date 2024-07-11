@@ -19,19 +19,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Анатолий Валерианович <ffox909@mail.ru>, 2016\n"
-"Language-Team: Russian (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/ru/)\n"
-"Language: ru\n"
+"Language-Team: Russian (http://app.transifex.com/toofishes/archlinux-pacman/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
 #, c-format
@@ -63,7 +60,7 @@ msgstr "получено предупреждение при извлечени�
 msgid "could not extract %s (%s)\n"
 msgstr "не удалось извлечь %s (%s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "не удалось переименовать %s в %s (%s)\n"
@@ -83,18 +80,14 @@ msgstr "не удалось извлечь %s%s: путь слишком дли�
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"права доступа различаются у каталога %s\n"
-"файловая система: %o  пакет: %o\n"
+msgstr "права доступа различаются у каталога %s\nфайловая система: %o  пакет: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"различаются владельцы директории '%s'\n"
-"файловая система: %u:%u  пакет: %u:%u\n"
+msgstr "различаются владельцы директории '%s'\nфайловая система: %u:%u  пакет: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -188,14 +181,12 @@ msgstr "не удалось открыть файл %s: %s\n"
 #: lib/libalpm/be_local.c:759 lib/libalpm/be_sync.c:595
 #, c-format
 msgid "%s database is inconsistent: name mismatch on package %s\n"
-msgstr ""
-"противоречивая информация в базе данных %s: не совпадает имя пакета %s\n"
+msgstr "противоречивая информация в базе данных %s: не совпадает имя пакета %s\n"
 
 #: lib/libalpm/be_local.c:765 lib/libalpm/be_sync.c:601
 #, c-format
 msgid "%s database is inconsistent: version mismatch on package %s\n"
-msgstr ""
-"противоречивая информация в базе данных %s: не совпадает версия пакета %s\n"
+msgstr "противоречивая информация в базе данных %s: не совпадает версия пакета %s\n"
 
 #: lib/libalpm/be_local.c:806
 #, c-format
@@ -204,7 +195,7 @@ msgstr "неизвестный тип валидации для пакета %s:
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
+msgid "%s: unknown key '%s' in local database\n"
 msgstr ""
 
 #: lib/libalpm/be_package.c:255
@@ -276,16 +267,12 @@ msgstr "не удалось прочитать базу данных '%s' (%s)\n
 #: lib/libalpm/be_sync.c:502 lib/libalpm/be_sync.c:507
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is illegal\n"
-msgstr ""
-"противоречивая информация в базе данных %s: неправильное имя файла для "
-"пакета %s\n"
+msgstr "противоречивая информация в базе данных %s: неправильное имя файла для пакета %s\n"
 
 #: lib/libalpm/be_sync.c:512
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is too long\n"
-msgstr ""
-"противоречивая информация в базе данных %s: имя файла пакета %s слишком "
-"длинное\n"
+msgstr "противоречивая информация в базе данных %s: имя файла пакета %s слишком длинное\n"
 
 #: lib/libalpm/be_sync.c:577
 #, c-format
@@ -294,7 +281,7 @@ msgstr "неизвестный файл базы данных: '%s'\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
+msgid "%s: unknown key '%s' in sync database\n"
 msgstr ""
 
 #: lib/libalpm/db.c:413
@@ -433,12 +420,12 @@ msgstr ""
 msgid "curl transfer error: %d\n"
 msgstr ""
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "не удалось получить некоторые файлы\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr ""
@@ -843,8 +830,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -867,17 +853,17 @@ msgstr "не удалось удалить файл '%s': %s\n"
 msgid "could not backup %s due to PATH_MAX overflow\n"
 msgstr "не удалось создать резервную копию %s из-за превышения PATH_MAX\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "не удается удалить %s (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "не удалось удалить из базы данных запись %s-%s\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "не удалось удалить запись '%s' из кэша\n"

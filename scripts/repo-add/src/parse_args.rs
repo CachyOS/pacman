@@ -9,6 +9,7 @@ pub struct ArgStruct {
     pub clean_lock: bool,
     pub use_colors: bool,
     pub prevent_downgrade: bool,
+    pub include_sigs: bool,
     pub use_new_db_format: bool,
 
     pub repo_db_file: Option<String>,
@@ -30,6 +31,7 @@ impl ArgStruct {
             clean_lock: false,
             use_colors: true,
             prevent_downgrade: false,
+            include_sigs: false,
             use_new_db_format: false,
 
             repo_db_file: None,
@@ -69,6 +71,8 @@ pub fn parse_args(pargs: &mut Vec<String>) -> (Option<&[String]>, ArgStruct) {
             argstruct.verify = true;
         } else if argument == "--prevent-downgrade" || argument == "-p" {
             argstruct.prevent_downgrade = true;
+        } else if argument == "--include-sigs" {
+            argstruct.include_sigs = true;
         } else if argument == "--use-new-db-format" {
             argstruct.use_new_db_format = true;
         } else if argument == "--" {
@@ -106,11 +110,12 @@ mod tests {
             "pacman-6.0.2-9-x86_64.pkg.tar.zst".to_owned(),
         ];
         assert_eq!(pos_args, Some(expected_pos.as_slice()));
-        assert_eq!(argstruct.sign, true);
-        assert_eq!(argstruct.verify, true);
-        assert_eq!(argstruct.prevent_downgrade, true);
-        assert_eq!(argstruct.only_add_new, true);
-        assert_eq!(argstruct.quiet, false);
+        assert!(argstruct.sign);
+        assert!(argstruct.verify);
+        assert!(argstruct.prevent_downgrade);
+        assert!(argstruct.only_add_new);
+        assert!(!argstruct.quiet);
+        assert!(argstruct.use_colors);
     }
 
     #[test]
@@ -135,11 +140,12 @@ mod tests {
             "-s".to_owned(),
         ];
         assert_eq!(pos_args, Some(expected_pos.as_slice()));
-        assert_eq!(argstruct.sign, false);
-        assert_eq!(argstruct.verify, true);
-        assert_eq!(argstruct.prevent_downgrade, true);
-        assert_eq!(argstruct.only_add_new, true);
-        assert_eq!(argstruct.quiet, false);
+        assert!(!argstruct.sign);
+        assert!(argstruct.verify);
+        assert!(argstruct.prevent_downgrade);
+        assert!(argstruct.only_add_new);
+        assert!(!argstruct.quiet);
+        assert!(argstruct.use_colors);
     }
 
     #[test]
@@ -150,17 +156,30 @@ mod tests {
             "-p".to_owned(),
             "-n".to_owned(),
             "-s".to_owned(),
+            "-R".to_owned(),
+            "-k".to_owned(),
+            "F3B607488DB35A47".to_owned(),
+            "-q".to_owned(),
+            "--nocolor".to_owned(),
+            "--include-sigs".to_owned(),
+            "--use-new-db-format".to_owned(),
             "core.db.tar.zst".to_owned(),
         ];
         let (pos_args, argstruct) = crate::parse_args::parse_args(&mut args);
 
         let expected_pos = vec!["core.db.tar.zst".to_owned()];
         assert_eq!(pos_args, Some(expected_pos.as_slice()));
-        assert_eq!(argstruct.sign, true);
-        assert_eq!(argstruct.verify, true);
-        assert_eq!(argstruct.prevent_downgrade, true);
-        assert_eq!(argstruct.only_add_new, true);
-        assert_eq!(argstruct.quiet, false);
+        assert!(argstruct.sign);
+        assert!(argstruct.verify);
+        assert!(argstruct.prevent_downgrade);
+        assert!(argstruct.only_add_new);
+        assert!(argstruct.quiet);
+        assert!(argstruct.rm_existing);
+        assert!(!argstruct.use_colors);
+        assert!(argstruct.include_sigs);
+        assert!(argstruct.use_new_db_format);
+        assert!(argstruct.key);
+        assert_eq!(argstruct.gpgkey, Some("F3B607488DB35A47".to_owned()));
     }
 
     #[test]
@@ -171,15 +190,28 @@ mod tests {
             "-p".to_owned(),
             "-n".to_owned(),
             "-s".to_owned(),
+            "-R".to_owned(),
+            "-k".to_owned(),
+            "F3B607488DB35A47".to_owned(),
+            "-q".to_owned(),
+            "--nocolor".to_owned(),
+            "--include-sigs".to_owned(),
+            "--use-new-db-format".to_owned(),
         ];
         let (pos_args, argstruct) = crate::parse_args::parse_args(&mut args);
 
         let expected_pos = vec![];
         assert_eq!(pos_args, Some(expected_pos.as_slice()));
-        assert_eq!(argstruct.sign, true);
-        assert_eq!(argstruct.verify, true);
-        assert_eq!(argstruct.prevent_downgrade, true);
-        assert_eq!(argstruct.only_add_new, true);
-        assert_eq!(argstruct.quiet, false);
+        assert!(argstruct.sign);
+        assert!(argstruct.verify);
+        assert!(argstruct.prevent_downgrade);
+        assert!(argstruct.only_add_new);
+        assert!(argstruct.quiet);
+        assert!(argstruct.rm_existing);
+        assert!(!argstruct.use_colors);
+        assert!(argstruct.include_sigs);
+        assert!(argstruct.use_new_db_format);
+        assert!(argstruct.key);
+        assert_eq!(argstruct.gpgkey, Some("F3B607488DB35A47".to_owned()));
     }
 }

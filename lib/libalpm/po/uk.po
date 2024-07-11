@@ -10,20 +10,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Данило Коростіль <ted.korostiled@gmail.com>, 2011,2014\n"
-"Language-Team: Ukrainian (http://app.transifex.com/toofishes/archlinux-"
-"pacman/language/uk/)\n"
-"Language: uk\n"
+"Language-Team: Ukrainian (http://app.transifex.com/toofishes/archlinux-pacman/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
-"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
-"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
-"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
 #, c-format
@@ -55,7 +51,7 @@ msgstr "попередження протягом витягування %s (%s)
 msgid "could not extract %s (%s)\n"
 msgstr "неможливо витягти %s (%s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "неможливо перейменувати %s на %s (%s)\n"
@@ -63,9 +59,7 @@ msgstr "неможливо перейменувати %s на %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"файл не знайдено в переліку файлів для пакунка %s, пропускаємо витягування з "
-"%s\n"
+msgstr "файл не знайдено в переліку файлів для пакунка %s, пропускаємо витягування з %s\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -77,18 +71,14 @@ msgstr "не вдається витягти %s%s: шлях занадто до�
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"права на теку відрізняються для %s\n"
-"файлова система: %o  пакунок: %o\n"
+msgstr "права на теку відрізняються для %s\nфайлова система: %o  пакунок: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"власник теки відрізняється для %s\n"
-"файлова система: %u:%u  пакунок: %u:%u\n"
+msgstr "власник теки відрізняється для %s\nфайлова система: %u:%u  пакунок: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -139,9 +129,7 @@ msgstr "неможливо додати запис \"%s\" у кеш\n"
 #: lib/libalpm/be_local.c:271
 #, c-format
 msgid "error while reading file %s: %s\n"
-msgstr ""
-"помилка при читанні пакунка %s: %s\n"
-"\n"
+msgstr "помилка при читанні пакунка %s: %s\n\n"
 
 #: lib/libalpm/be_local.c:382
 #, c-format
@@ -198,7 +186,7 @@ msgstr "невідомий тип перевірки для пакунка %s: %
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
+msgid "%s: unknown key '%s' in local database\n"
 msgstr ""
 
 #: lib/libalpm/be_package.c:255
@@ -260,8 +248,7 @@ msgstr "вилучення недійсного файлу: %s\n"
 #: lib/libalpm/be_sync.c:454
 #, c-format
 msgid "could not parse package description file '%s' from db '%s'\n"
-msgstr ""
-"неможливо провести аналіз файлу опису пакунка \"%s\" з бази даних \"%s\"\n"
+msgstr "неможливо провести аналіз файлу опису пакунка \"%s\" з бази даних \"%s\"\n"
 
 #: lib/libalpm/be_sync.c:469
 #, c-format
@@ -285,7 +272,7 @@ msgstr "невідомий файл бази даних: %s\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
+msgid "%s: unknown key '%s' in sync database\n"
 msgstr ""
 
 #: lib/libalpm/db.c:413
@@ -424,12 +411,12 @@ msgstr "curl повернув помилку %d при передачі\n"
 msgid "curl transfer error: %d\n"
 msgstr "помилка передачі curl: %d\n"
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "не вдалось одержати деякі файли\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr "завантаження виконано успішно, але файл відсутній у кеші\n"
@@ -834,8 +821,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -858,17 +844,17 @@ msgstr "неможливо вилучити файл \"%s\": %s\n"
 msgid "could not backup %s due to PATH_MAX overflow\n"
 msgstr "неможливо створити резервну копію %s через переповнення PATH_MAX\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "неможливо вилучити %s (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "неможливо вилучити запис бази даних %s-%s\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "неможливо вилучити запис \"%s\" з кешу\n"
@@ -1113,5 +1099,4 @@ msgstr "кеш %s не існує, створюємо...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"неможливо знайти або створити кеш пакунків, використовуємо %s натомість\n"
+msgstr "неможливо знайти або створити кеш пакунків, використовуємо %s натомість\n"

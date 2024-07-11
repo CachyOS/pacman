@@ -10,16 +10,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2011-08-08 22:35+0000\n"
 "Last-Translator: Takuro Onoue <kusanaginoturugi@gmail.com>, 2021\n"
-"Language-Team: Japanese (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/ja/)\n"
-"Language: ja\n"
+"Language-Team: Japanese (http://app.transifex.com/toofishes/archlinux-pacman/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: scripts/makepkg.sh.in:139
@@ -55,9 +54,9 @@ msgid "Unable to find source file %s."
 msgstr "ソースファイル %s を見つけられません。"
 
 #: scripts/makepkg.sh.in:226 scripts/makepkg.sh.in:368
-#: scripts/makepkg.sh.in:580 scripts/makepkg.sh.in:1077
-#: scripts/makepkg.sh.in:1082 scripts/makepkg.sh.in:1087
-#: scripts/makepkg.sh.in:1093 scripts/makepkg.sh.in:1103
+#: scripts/makepkg.sh.in:580 scripts/makepkg.sh.in:1078
+#: scripts/makepkg.sh.in:1083 scripts/makepkg.sh.in:1088
+#: scripts/makepkg.sh.in:1094 scripts/makepkg.sh.in:1104
 #: scripts/libmakepkg/integrity/generate_checksum.sh.in:62
 #: scripts/libmakepkg/source/bzr.sh.in:55
 #: scripts/libmakepkg/source/bzr.sh.in:86
@@ -67,11 +66,11 @@ msgstr "ソースファイル %s を見つけられません。"
 #: scripts/libmakepkg/source/file.sh.in:145
 #: scripts/libmakepkg/source/git.sh.in:53
 #: scripts/libmakepkg/source/git.sh.in:62
-#: scripts/libmakepkg/source/git.sh.in:91
-#: scripts/libmakepkg/source/git.sh.in:97
-#: scripts/libmakepkg/source/git.sh.in:114
-#: scripts/libmakepkg/source/git.sh.in:123
-#: scripts/libmakepkg/source/git.sh.in:131
+#: scripts/libmakepkg/source/git.sh.in:98
+#: scripts/libmakepkg/source/git.sh.in:104
+#: scripts/libmakepkg/source/git.sh.in:121
+#: scripts/libmakepkg/source/git.sh.in:130
+#: scripts/libmakepkg/source/git.sh.in:138
 #: scripts/libmakepkg/source/hg.sh.in:52 scripts/libmakepkg/source/hg.sh.in:94
 #: scripts/libmakepkg/source/hg.sh.in:103
 #: scripts/libmakepkg/source/hg.sh.in:108
@@ -182,8 +181,7 @@ msgstr "ビルドしたパッケージのインストールがされませんで
 
 #: scripts/makepkg.sh.in:788
 msgid "A package has already been built, installing existing package..."
-msgstr ""
-"パッケージはすでにビルドされています。既存のパッケージをインストール..."
+msgstr "パッケージはすでにビルドされています。既存のパッケージをインストール..."
 
 #: scripts/makepkg.sh.in:792
 msgid "A package has already been built. (use %s to overwrite)"
@@ -192,18 +190,16 @@ msgstr "パッケージはすでにビルドされています。(%s で上書�
 #: scripts/makepkg.sh.in:811
 msgid ""
 "The package group has already been built, installing existing packages..."
-msgstr ""
-"パッケージグループはすでにビルドされています。既存のパッケージをインストー"
-"ル..."
+msgstr "パッケージグループはすでにビルドされています。既存のパッケージをインストール..."
 
 #: scripts/makepkg.sh.in:815
 msgid "The package group has already been built. (use %s to overwrite)"
 msgstr "パッケージグループはすでにビルドされています。(%s で上書きします)"
 
 #: scripts/makepkg.sh.in:820
-msgid "Part of the package group has already been built. (use %s to overwrite)"
-msgstr ""
-"パッケージグループの一部がすでにビルドされています。(%s で上書きします)"
+msgid ""
+"Part of the package group has already been built. (use %s to overwrite)"
+msgstr "パッケージグループの一部がすでにビルドされています。(%s で上書きします)"
 
 #: scripts/makepkg.sh.in:874
 msgid "Make packages compatible for use with pacman"
@@ -234,271 +230,260 @@ msgid "  -d, --nodeps     Skip all dependency checks"
 msgstr "  -d, --nodeps     全ての依存関係チェックをスキップ"
 
 #: scripts/makepkg.sh.in:883
+msgid ""
+"  -D, --dir <dir>  Change to directory <dir> before processing PKGBUILD"
+msgstr ""
+
+#: scripts/makepkg.sh.in:884
 msgid "  -e, --noextract  Do not extract source files (use existing %s dir)"
 msgstr "  -e, --noextract  ソースファイルを展開しない (%s ディレクトリを使う)"
 
-#: scripts/makepkg.sh.in:884
+#: scripts/makepkg.sh.in:885
 msgid "  -f, --force      Overwrite existing package"
 msgstr "  -f, --force      既存のパッケージに上書きする"
 
-#: scripts/makepkg.sh.in:885
+#: scripts/makepkg.sh.in:886
 msgid "  -g, --geninteg   Generate integrity checks for source files"
 msgstr "  -g, --geninteg   ソースファイルの整合性チェックを生成"
 
-#: scripts/makepkg.sh.in:886
+#: scripts/makepkg.sh.in:887
 msgid "  -h, --help       Show this help message and exit"
 msgstr "  -h, --help       このヘルプメッセージを表示"
 
-#: scripts/makepkg.sh.in:887
+#: scripts/makepkg.sh.in:888
 msgid "  -i, --install    Install package after successful build"
 msgstr "  -i, --install    ビルドが成功した後にパッケージをインストール"
 
-#: scripts/makepkg.sh.in:888
+#: scripts/makepkg.sh.in:889
 msgid "  -L, --log        Log package build process"
 msgstr "  -L, --log        パッケージのビルドプロセスのログをとる"
 
-#: scripts/makepkg.sh.in:889
+#: scripts/makepkg.sh.in:890
 msgid "  -m, --nocolor    Disable colorized output messages"
 msgstr "  -m, --nocolor    メッセージの出力をカラーにしない"
 
-#: scripts/makepkg.sh.in:890
+#: scripts/makepkg.sh.in:891
 msgid "  -o, --nobuild    Download and extract files only"
 msgstr "  -o, --nobuild    ファイルのダウンロードと展開だけ行う"
 
-#: scripts/makepkg.sh.in:891
+#: scripts/makepkg.sh.in:892
 msgid "  -p <file>        Use an alternate build script (instead of '%s')"
 msgstr "  -p <file>        指定したビルドスクリプトを使う (デフォルトは '%s')"
 
-#: scripts/makepkg.sh.in:892
+#: scripts/makepkg.sh.in:893
 msgid ""
 "  -r, --rmdeps     Remove installed dependencies after a successful build"
-msgstr ""
-"  -r, --rmdeps     ビルドが成功した後にインストールされた依存パッケージを削除"
-
-#: scripts/makepkg.sh.in:893
-msgid "  -R, --repackage  Repackage contents of the package without rebuilding"
-msgstr "  -R, --repackage  リビルドをせずにパッケージの中身を再パッケージ"
+msgstr "  -r, --rmdeps     ビルドが成功した後にインストールされた依存パッケージを削除"
 
 #: scripts/makepkg.sh.in:894
+msgid ""
+"  -R, --repackage  Repackage contents of the package without rebuilding"
+msgstr "  -R, --repackage  リビルドをせずにパッケージの中身を再パッケージ"
+
+#: scripts/makepkg.sh.in:895
 msgid "  -s, --syncdeps   Install missing dependencies with %s"
 msgstr "  -s, --syncdeps   欠けている依存パッケージを %s でインストール"
 
-#: scripts/makepkg.sh.in:895
+#: scripts/makepkg.sh.in:896
 msgid ""
 "  -S, --source     Generate a source-only tarball without downloaded sources"
-msgstr ""
-"  -S, --source     ダウンロードされたソースが含まれないソースだけの tarball "
-"を生成"
+msgstr "  -S, --source     ダウンロードされたソースが含まれないソースだけの tarball を生成"
 
-#: scripts/makepkg.sh.in:896
+#: scripts/makepkg.sh.in:897
 msgid "  -V, --version    Show version information and exit"
 msgstr "  -V, --version    バージョン情報を表示して終了する"
 
-#: scripts/makepkg.sh.in:897
+#: scripts/makepkg.sh.in:898
 msgid ""
 "  --allsource      Generate a source-only tarball including downloaded "
 "sources"
-msgstr ""
-"  --allsource      ダウンロードされたソースが含まれるソースだけの tarball を"
-"生成"
+msgstr "  --allsource      ダウンロードされたソースが含まれるソースだけの tarball を生成"
 
-#: scripts/makepkg.sh.in:898
+#: scripts/makepkg.sh.in:899
 msgid "  --check          Run the %s function in the %s"
 msgstr "  --check          %s 関数を %s で実行"
 
-#: scripts/makepkg.sh.in:899
+#: scripts/makepkg.sh.in:900
 msgid "  --config <file>  Use an alternate config file (instead of '%s')"
 msgstr "  --config <file>  指定した設定ファイルを使う (デフォルトは '%s')"
 
-#: scripts/makepkg.sh.in:900
+#: scripts/makepkg.sh.in:901
 msgid "  --holdver        Do not update VCS sources"
 msgstr "  --holdver        VCS ソースを更新しない"
 
-#: scripts/makepkg.sh.in:901
-msgid ""
-"  --key <key>      Specify a key to use for %s signing instead of the default"
-msgstr ""
-"  --key <key>      デフォルトのキーのかわりに指定したキーを使って %s 署名を行"
-"う"
-
 #: scripts/makepkg.sh.in:902
+msgid ""
+"  --key <key>      Specify a key to use for %s signing instead of the "
+"default"
+msgstr "  --key <key>      デフォルトのキーのかわりに指定したキーを使って %s 署名を行う"
+
+#: scripts/makepkg.sh.in:903
 msgid "  --noarchive      Do not create package archive"
 msgstr "  --noarchive      パッケージアーカイブを作成しない"
 
-#: scripts/makepkg.sh.in:903
+#: scripts/makepkg.sh.in:904
 msgid "  --nocheck        Do not run the %s function in the %s"
 msgstr "  --nocheck        %s 関数を %s で実行しない"
 
-#: scripts/makepkg.sh.in:904
+#: scripts/makepkg.sh.in:905
 msgid "  --noprepare      Do not run the %s function in the %s"
 msgstr "  --noprepare      %s 関数を %s で実行しない"
 
-#: scripts/makepkg.sh.in:905
+#: scripts/makepkg.sh.in:906
 msgid "  --nosign         Do not create a signature for the package"
 msgstr "  --nosign         パッケージに署名を作成しない"
 
-#: scripts/makepkg.sh.in:906
+#: scripts/makepkg.sh.in:907
 msgid "  --packagelist    Only list package filepaths that would be produced"
 msgstr "  --packagelist    生成されるパッケージのファイルパスだけを表示"
 
-#: scripts/makepkg.sh.in:907
+#: scripts/makepkg.sh.in:908
 msgid "  --printsrcinfo   Print the generated SRCINFO and exit"
 msgstr "  --printsrcinfo   生成された SRCINFO を出力して終了"
 
-#: scripts/makepkg.sh.in:908
+#: scripts/makepkg.sh.in:909
 msgid "  --sign           Sign the resulting package with %s"
 msgstr "  --sign           作られたパッケージに %s で署名する"
 
-#: scripts/makepkg.sh.in:909
+#: scripts/makepkg.sh.in:910
 msgid "  --skipchecksums  Do not verify checksums of the source files"
 msgstr "  --skipchecksums  ソースファイルのチェックサムを検証しない"
 
-#: scripts/makepkg.sh.in:910
+#: scripts/makepkg.sh.in:911
 msgid ""
 "  --skipinteg      Do not perform any verification checks on source files"
 msgstr "  --skipinteg      ソースファイルの検証チェックを行わない"
 
-#: scripts/makepkg.sh.in:911
+#: scripts/makepkg.sh.in:912
 msgid "  --skippgpcheck   Do not verify source files with PGP signatures"
 msgstr "  --skippgpcheck   ソースファイルの PGP 鍵を検証しない"
 
-#: scripts/makepkg.sh.in:912
+#: scripts/makepkg.sh.in:913
 msgid ""
 "  --verifysource   Download source files (if needed) and perform integrity "
 "checks"
-msgstr ""
-"  --verifysource   (必要な) ソースファイルをダウンロードして整合性チェックを"
-"行う"
+msgstr "  --verifysource   (必要な) ソースファイルをダウンロードして整合性チェックを行う"
 
-#: scripts/makepkg.sh.in:914
+#: scripts/makepkg.sh.in:915
 msgid "These options can be passed to %s:"
 msgstr "以下のオプションを %s に渡すことができます:"
 
-#: scripts/makepkg.sh.in:916
-msgid "  --asdeps         Install packages as non-explicitly installed"
-msgstr ""
-"  --asdeps         依存関係としてインストールされたとしてパッケージをインス"
-"トール"
-
 #: scripts/makepkg.sh.in:917
+msgid "  --asdeps         Install packages as non-explicitly installed"
+msgstr "  --asdeps         依存関係としてインストールされたとしてパッケージをインストール"
+
+#: scripts/makepkg.sh.in:918
 msgid ""
 "  --needed         Do not reinstall the targets that are already up to date"
 msgstr "  --needed         対象が最新の場合は再インストールしない"
 
-#: scripts/makepkg.sh.in:918
+#: scripts/makepkg.sh.in:919
 msgid ""
 "  --noconfirm      Do not ask for confirmation when resolving dependencies"
 msgstr "  --noconfirm      依存関係を解決するときに確認をしない"
 
-#: scripts/makepkg.sh.in:919
+#: scripts/makepkg.sh.in:920
 msgid "  --noprogressbar  Do not show a progress bar when downloading files"
-msgstr ""
-"  --noprogressbar  ファイルのダウンロード中にプログレスバーを表示しない"
+msgstr "  --noprogressbar  ファイルのダウンロード中にプログレスバーを表示しない"
 
-#: scripts/makepkg.sh.in:921
+#: scripts/makepkg.sh.in:922
 msgid "If %s is not specified, %s will look for '%s'"
 msgstr "%s が指定されていない場合、%s は '%s' を探します"
 
-#: scripts/makepkg.sh.in:930 scripts/pacman-db-upgrade.sh.in:57
+#: scripts/makepkg.sh.in:931 scripts/pacman-db-upgrade.sh.in:57
 #: scripts/pacman-key.sh.in:99 scripts/repo-add.sh.in:104
 msgid ""
 "This is free software; see the source for copying conditions.\\nThere is NO "
 "WARRANTY, to the extent permitted by law.\\n"
-msgstr ""
-"This is free software; see the source for copying conditions.\\nThere is NO "
-"WARRANTY, to the extent permitted by law.\\n"
+msgstr "This is free software; see the source for copying conditions.\\nThere is NO WARRANTY, to the extent permitted by law.\\n"
 
-#: scripts/makepkg.sh.in:1039 scripts/repo-add.sh.in:602
+#: scripts/makepkg.sh.in:1040 scripts/repo-add.sh.in:602
 msgid "%s signal caught. Exiting..."
 msgstr "%s シグナルを受け取りました。終了..."
 
-#: scripts/makepkg.sh.in:1109
+#: scripts/makepkg.sh.in:1110
 msgid ""
 "Running %s as root is not allowed as it can cause permanent,\\ncatastrophic "
 "damage to your system."
-msgstr ""
-"%s を root で実行することはできません。\\nシステムに致命的なダメージを与える"
-"可能性があります。"
+msgstr "%s を root で実行することはできません。\\nシステムに致命的なダメージを与える可能性があります。"
 
-#: scripts/makepkg.sh.in:1115
+#: scripts/makepkg.sh.in:1116
 msgid "Do not use the %s option. This option is only for internal use by %s."
-msgstr ""
-"%s オプションを使わないでください。このオプションは %s で内部的に使うためのも"
-"のです。"
+msgstr "%s オプションを使わないでください。このオプションは %s で内部的に使うためのものです。"
 
-#: scripts/makepkg.sh.in:1130
+#: scripts/makepkg.sh.in:1131
 msgid "%s does not exist."
 msgstr "%s が存在しません。"
 
-#: scripts/makepkg.sh.in:1135
+#: scripts/makepkg.sh.in:1136
 msgid "%s contains %s characters and cannot be sourced."
 msgstr "%s に利用できない %s 文字が含まれています。"
 
-#: scripts/makepkg.sh.in:1140
+#: scripts/makepkg.sh.in:1141
 msgid "%s must be in the current working directory."
 msgstr "%s は現在の作業ディレクトリの中にある必要があります。"
 
-#: scripts/makepkg.sh.in:1234 scripts/makepkg.sh.in:1249
+#: scripts/makepkg.sh.in:1235 scripts/makepkg.sh.in:1250
 msgid "Leaving %s environment."
 msgstr "%s 環境を終了。"
 
-#: scripts/makepkg.sh.in:1261
+#: scripts/makepkg.sh.in:1262
 msgid "The key %s does not exist in your keyring."
 msgstr "キーリングにキー %s が存在しません。"
 
-#: scripts/makepkg.sh.in:1263 scripts/repo-add.sh.in:148
+#: scripts/makepkg.sh.in:1264 scripts/repo-add.sh.in:148
 msgid "There is no key in your keyring."
 msgstr "キーリングにキーがひとつもありません。"
 
-#: scripts/makepkg.sh.in:1269
+#: scripts/makepkg.sh.in:1270
 msgid "Making package: %s"
 msgstr "パッケージを作成: %s"
 
-#: scripts/makepkg.sh.in:1275
+#: scripts/makepkg.sh.in:1276
 msgid "A source package has already been built. (use %s to overwrite)"
 msgstr "ソースパッケージはすでにビルドされています。 (%s で上書きします)"
 
-#: scripts/makepkg.sh.in:1295
+#: scripts/makepkg.sh.in:1296
 msgid "Signing package..."
 msgstr "パッケージの署名..."
 
-#: scripts/makepkg.sh.in:1299
+#: scripts/makepkg.sh.in:1300
 msgid "Source package created: %s"
 msgstr "ソースパッケージが作成されました: %s"
 
-#: scripts/makepkg.sh.in:1305
+#: scripts/makepkg.sh.in:1306
 msgid "Skipping dependency checks."
 msgstr "依存関係のチェックをスキップ。"
 
-#: scripts/makepkg.sh.in:1313
+#: scripts/makepkg.sh.in:1314
 msgid "Checking runtime dependencies..."
 msgstr "ランタイムの依存関係を確認..."
 
-#: scripts/makepkg.sh.in:1320
+#: scripts/makepkg.sh.in:1321
 msgid "Checking buildtime dependencies..."
 msgstr "ビルドタイムの依存関係を確認..."
 
-#: scripts/makepkg.sh.in:1332
+#: scripts/makepkg.sh.in:1333
 msgid "Could not resolve all dependencies."
 msgstr "全ての依存関係を解決できませんでした。"
 
-#: scripts/makepkg.sh.in:1343
+#: scripts/makepkg.sh.in:1344
 msgid "Using existing %s tree"
 msgstr "既存の %s ツリーを使用"
 
-#: scripts/makepkg.sh.in:1350 scripts/makepkg.sh.in:1381
+#: scripts/makepkg.sh.in:1351 scripts/makepkg.sh.in:1382
 msgid "Removing existing %s directory..."
 msgstr "既存の %s ディレクトリを削除..."
 
-#: scripts/makepkg.sh.in:1376
+#: scripts/makepkg.sh.in:1377
 msgid "Sources are ready."
 msgstr "ソースの準備ができました。"
 
-#: scripts/makepkg.sh.in:1403
+#: scripts/makepkg.sh.in:1404
 msgid "Package directory is ready."
 msgstr "パッケージディレクトリの準備ができました。"
 
-#: scripts/makepkg.sh.in:1407
+#: scripts/makepkg.sh.in:1408
 msgid "Finished making: %s"
 msgstr "作成完了: %s"
 
@@ -548,8 +533,7 @@ msgstr "データベースを更新するには適切な権限が必要です。
 
 #: scripts/pacman-db-upgrade.sh.in:140
 msgid "Pacman lock file was found. Cannot run while pacman is running."
-msgstr ""
-"Pacman ロックファイルが存在します。pacman が動作している間は実行できません。"
+msgstr "Pacman ロックファイルが存在します。pacman が動作している間は実行できません。"
 
 #: scripts/pacman-db-upgrade.sh.in:152
 msgid "Pre-3.5 database format detected - upgrading..."
@@ -561,15 +545,11 @@ msgstr "完了。"
 
 #: scripts/pacman-db-upgrade.sh.in:163
 msgid "Pre-4.2 database format detected - upgrading..."
-msgstr ""
-"4.2 以前のデータベースフォーマットが検出されました - アップグレードしていま"
-"す..."
+msgstr "4.2 以前のデータベースフォーマットが検出されました - アップグレードしています..."
 
 #: scripts/pacman-db-upgrade.sh.in:185
 msgid "symlink '%s' points outside pacman root, manual repair required"
-msgstr ""
-"シンボリックリンク '%s' の先が pacman のルートの外になっています。手動で修正"
-"する必要があります"
+msgstr "シンボリックリンク '%s' の先が pacman のルートの外になっています。手動で修正する必要があります"
 
 #: scripts/pacman-key.sh.in:58
 msgid "Usage: %s [options] operation [targets]"
@@ -593,15 +573,12 @@ msgstr "  -d, --delete              指定された keyid を削除"
 
 #: scripts/pacman-key.sh.in:65
 msgid "  -e, --export              Export the specified or all keyids"
-msgstr ""
-"  -e, --export              指定された、もしくは全ての keyid をエクスポート"
+msgstr "  -e, --export              指定された、もしくは全ての keyid をエクスポート"
 
 #: scripts/pacman-key.sh.in:66
 msgid ""
 "  -f, --finger              List fingerprint for specified or all keyids"
-msgstr ""
-"  -f, --finger              指定された、もしくは全ての keyid のフィンガープリ"
-"ントを一覧"
+msgstr "  -f, --finger              指定された、もしくは全ての keyid のフィンガープリントを一覧"
 
 #: scripts/pacman-key.sh.in:67
 msgid "  -l, --list-keys           List the specified or all keys"
@@ -633,9 +610,7 @@ msgstr "  --import                  ディレクトリから pubring.gpg をイ�
 msgid ""
 "  --import-trustdb          Imports ownertrust values from trustdb.gpg in "
 "dir(s)"
-msgstr ""
-"  --import-trustdb          ディレクトリ内の trustdb.gpg から所有者信頼値をイ"
-"ンポート"
+msgstr "  --import-trustdb          ディレクトリ内の trustdb.gpg から所有者信頼値をインポート"
 
 #: scripts/pacman-key.sh.in:74
 msgid "  --init                    Ensure the keyring is properly initialized"
@@ -653,16 +628,12 @@ msgstr "  --lsign-key               指定された keyid に署名"
 msgid ""
 "  --populate                Reload the default keys from the (given) "
 "keyrings\\n                            in '%s'"
-msgstr ""
-"  --populate                (指定された) キーリングからデフォルトキーをリロー"
-"ド\\n                            キーリングのディレクトリ: '%s'"
+msgstr "  --populate                (指定された) キーリングからデフォルトキーをリロード\\n                            キーリングのディレクトリ: '%s'"
 
 #: scripts/pacman-key.sh.in:79
 msgid ""
 "  --refresh-keys            Update specified or all keys from a keyserver"
-msgstr ""
-"  --refresh-keys            指定された、もしくは全てのキーをキーサーバから更"
-"新"
+msgstr "  --refresh-keys            指定された、もしくは全てのキーをキーサーバから更新"
 
 #: scripts/pacman-key.sh.in:80
 msgid "  --verbose                 Show extra information"
@@ -670,19 +641,15 @@ msgstr "  --verbose                 追加情報を表示"
 
 #: scripts/pacman-key.sh.in:83
 msgid ""
-"  --config <file>           Use an alternate config file (instead "
-"of\\n                            '%s')"
-msgstr ""
-"  --config <file>           指定された設定ファイルを使う (デフォルトは"
-"\\n                            '%s')"
+"  --config <file>           Use an alternate config file (instead of\\n"
+"                            '%s')"
+msgstr "  --config <file>           指定された設定ファイルを使う (デフォルトは\\n                            '%s')"
 
 #: scripts/pacman-key.sh.in:85
 msgid ""
-"  --gpgdir <dir>            Set an alternate directory for GnuPG "
-"(instead\\n                            of '%s')"
-msgstr ""
-"  --gpgdir <dir>            GnuPG のディレクトリを指定する (デフォルトは"
-"\\n                            '%s')"
+"  --gpgdir <dir>            Set an alternate directory for GnuPG (instead\\n"
+"                            of '%s')"
+msgstr "  --gpgdir <dir>            GnuPG のディレクトリを指定する (デフォルトは\\n                            '%s')"
 
 #: scripts/pacman-key.sh.in:87
 msgid ""
@@ -731,161 +698,161 @@ msgstr "フラグ"
 msgid "You do not have sufficient permissions to read the %s keyring."
 msgstr "%s キーリングを読み込むのに十分な権限がありません。"
 
-#: scripts/pacman-key.sh.in:265 scripts/pacman-key.sh.in:272
+#: scripts/pacman-key.sh.in:265
 msgid "Use '%s' to correct the keyring permissions."
 msgstr "キーリングパーミッションを修正するには '%s' を使って下さい。"
 
-#: scripts/pacman-key.sh.in:271
+#: scripts/pacman-key.sh.in:270
 msgid "You do not have sufficient permissions to run this command."
 msgstr "このコマンドを実行するのに十分な権限がありません。"
 
-#: scripts/pacman-key.sh.in:279
+#: scripts/pacman-key.sh.in:276
 msgid "There is no secret key available to sign with."
 msgstr "署名するべき秘密鍵がありません。"
 
-#: scripts/pacman-key.sh.in:280
+#: scripts/pacman-key.sh.in:277
 msgid "Use '%s' to generate a default secret key."
 msgstr "デフォルトの秘密鍵を生成するには '%s' を使ってください。"
 
-#: scripts/pacman-key.sh.in:298
+#: scripts/pacman-key.sh.in:295
 msgid "No keyring files exist in %s."
 msgstr "キーリングファイルが %s に存在しません。"
 
-#: scripts/pacman-key.sh.in:305
+#: scripts/pacman-key.sh.in:302
 msgid "The keyring file %s does not exist."
 msgstr "キーリングファイル %s が存在しません。"
 
-#: scripts/pacman-key.sh.in:320
+#: scripts/pacman-key.sh.in:317
 msgid "Appending keys from %s.gpg..."
 msgstr "%s.gpg からキーを追加..."
 
-#: scripts/pacman-key.sh.in:360
+#: scripts/pacman-key.sh.in:357
 msgid "Locally signing trusted keys in keyring..."
 msgstr "キーリングの信頼されたキーに署名..."
 
-#: scripts/pacman-key.sh.in:362
+#: scripts/pacman-key.sh.in:359
 msgid "Importing owner trust values..."
 msgstr "所有者信頼値をインポート..."
 
-#: scripts/pacman-key.sh.in:372
+#: scripts/pacman-key.sh.in:369
 msgid "Disabling revoked keys in keyring..."
 msgstr "キーリングの破棄されたキーを無効化..."
 
-#: scripts/pacman-key.sh.in:375
+#: scripts/pacman-key.sh.in:372
 msgid "Disabling key %s..."
 msgstr "キー %s を無効化..."
 
-#: scripts/pacman-key.sh.in:381
+#: scripts/pacman-key.sh.in:378
 msgid "Disabled %s key."
 msgid_plural "Disabled %s keys."
 msgstr[0] ""
 
-#: scripts/pacman-key.sh.in:388
+#: scripts/pacman-key.sh.in:385
 msgid "A specified keyfile could not be added to the keyring."
 msgstr "キーリングに指定されたキーファイルを追加できませんでした。"
 
-#: scripts/pacman-key.sh.in:396
+#: scripts/pacman-key.sh.in:393
 msgid "A specified key could not be removed from the keyring."
 msgstr "キーリングから指定されたキーを削除できませんでした。"
 
-#: scripts/pacman-key.sh.in:406
+#: scripts/pacman-key.sh.in:403
 msgid "The key identified by %s could not be edited."
 msgstr "%s によって確認されたキーを編集できませんでした。"
 
-#: scripts/pacman-key.sh.in:418
+#: scripts/pacman-key.sh.in:415
 msgid "A specified key could not be exported from the keyring."
 msgstr "キーリングから指定されたキーをエクスポートできませんでした。"
 
-#: scripts/pacman-key.sh.in:426
+#: scripts/pacman-key.sh.in:423
 msgid "The fingerprint of a specified key could not be determined."
 msgstr "指定されたキーのフィンガープリントが見つかりません。"
 
-#: scripts/pacman-key.sh.in:439 scripts/pacman-key.sh.in:458
+#: scripts/pacman-key.sh.in:436 scripts/pacman-key.sh.in:455
 msgid "%s could not be imported."
 msgstr "%s をインポートできませんでした。"
 
-#: scripts/pacman-key.sh.in:443 scripts/pacman-key.sh.in:462
+#: scripts/pacman-key.sh.in:440 scripts/pacman-key.sh.in:459
 msgid "File %s does not exist and could not be imported."
 msgstr "ファイル %s が存在しません。インポートできませんでした。"
 
-#: scripts/pacman-key.sh.in:474
+#: scripts/pacman-key.sh.in:471
 msgid "A specified key could not be listed."
 msgstr "指定されたキーを記入できませんでした。"
 
-#: scripts/pacman-key.sh.in:482
+#: scripts/pacman-key.sh.in:479
 msgid "A specified signature could not be listed."
 msgstr "指定された署名を記入できませんでした。"
 
-#: scripts/pacman-key.sh.in:494
+#: scripts/pacman-key.sh.in:491
 msgid "Locally signing key %s..."
 msgstr "キーに署名 %s..."
 
-#: scripts/pacman-key.sh.in:499
+#: scripts/pacman-key.sh.in:496
 msgid "%s could not be locally signed."
 msgstr "%s に署名できませんでした。"
 
-#: scripts/pacman-key.sh.in:509
+#: scripts/pacman-key.sh.in:506
 msgid "Locally signed %s key."
 msgid_plural "Locally signed %s keys."
 msgstr[0] ""
 
-#: scripts/pacman-key.sh.in:532
+#: scripts/pacman-key.sh.in:529
 msgid "Remote key not fetched correctly from WKD or keyserver."
 msgstr "リモートキーを WKD またはキーサーバから正しく取得できませんでした。"
 
-#: scripts/pacman-key.sh.in:537
+#: scripts/pacman-key.sh.in:534
 msgid "Remote key not fetched correctly from keyserver."
 msgstr "キーサーバから正しくキーを取得できませんでした。"
 
-#: scripts/pacman-key.sh.in:569
+#: scripts/pacman-key.sh.in:566
 msgid "Could not update key: %s"
 msgstr "キーを更新できませんでした: %s"
 
-#: scripts/pacman-key.sh.in:590 scripts/repo-add.sh.in:268
+#: scripts/pacman-key.sh.in:587 scripts/repo-add.sh.in:268
 msgid "Cannot use armored signatures for packages: %s"
 msgstr "パッケージに armored 署名を使うことはできません: %s"
 
-#: scripts/pacman-key.sh.in:598
+#: scripts/pacman-key.sh.in:595
 msgid "The signature verification for %s failed."
 msgstr ""
 
-#: scripts/pacman-key.sh.in:604
+#: scripts/pacman-key.sh.in:601
 msgid "The signature %s is not trusted."
 msgstr ""
 
-#: scripts/pacman-key.sh.in:612
+#: scripts/pacman-key.sh.in:609
 msgid "Updating trust database..."
 msgstr "信頼データベースを更新..."
 
-#: scripts/pacman-key.sh.in:614
+#: scripts/pacman-key.sh.in:611
 msgid "Trust database could not be updated."
 msgstr "信頼データベースを更新できませんでした。"
 
-#: scripts/pacman-key.sh.in:693
+#: scripts/pacman-key.sh.in:690
 msgid "Cannot find the %s binary required for all %s operations."
 msgstr "全ての %s オペレーションをするのに必要な %s バイナリが見つかりません。"
 
-#: scripts/pacman-key.sh.in:698
+#: scripts/pacman-key.sh.in:695
 msgid "%s needs to be run as root for this operation."
 msgstr "この操作をするには %s を root で実行する必要があります。"
 
-#: scripts/pacman-key.sh.in:704
+#: scripts/pacman-key.sh.in:701
 msgid "%s configuration file '%s' not found."
 msgstr "%s 設定ファイル '%s' が見つかりませんでした。"
 
-#: scripts/pacman-key.sh.in:727
+#: scripts/pacman-key.sh.in:724
 msgid "no operation specified (use -h for help)"
 msgstr "オペレーションが指定されていません (-h でヘルプを見て下さい)"
 
-#: scripts/pacman-key.sh.in:732
+#: scripts/pacman-key.sh.in:729
 msgid "Multiple operations specified."
 msgstr "複数のオペレーションが指定されました。"
 
-#: scripts/pacman-key.sh.in:733
+#: scripts/pacman-key.sh.in:730
 msgid "Please run %s with each operation separately."
 msgstr "それぞれのオペレーションを分割して %s を実行してください。"
 
-#: scripts/pacman-key.sh.in:741
+#: scripts/pacman-key.sh.in:738
 msgid "No targets specified"
 msgstr "対象が指定されていません"
 
@@ -895,11 +862,9 @@ msgstr "使用方法: repo-add [オプション] <path-to-db> <package> ...\\n"
 
 #: scripts/repo-add.sh.in:63
 msgid ""
-"repo-add will update a package database by reading a package file."
-"\\nMultiple packages to add can be specified on the command line.\\n"
-msgstr ""
-"repo-add はパッケージファイルを読み込んでパッケージデータベースを更新しま"
-"す。\\n追加するパッケージはコマンドラインから複数指定することができます。\\n"
+"repo-add will update a package database by reading a package "
+"file.\\nMultiple packages to add can be specified on the command line.\\n"
+msgstr "repo-add はパッケージファイルを読み込んでパッケージデータベースを更新します。\\n追加するパッケージはコマンドラインから複数指定することができます。\\n"
 
 #: scripts/repo-add.sh.in:67 scripts/repo-add.sh.in:79
 msgid "Options:\\n"
@@ -907,24 +872,21 @@ msgstr "オプション:\\n"
 
 #: scripts/repo-add.sh.in:68
 msgid ""
-"  -n, --new         only add packages that are not already in the database\\n"
+"  -n, --new         only add packages that are not already in the "
+"database\\n"
 msgstr "  -n, --new         データベースにないパッケージのみを追加\\n"
 
 #: scripts/repo-add.sh.in:69
 msgid ""
 "  -R, --remove      remove old package file from disk after updating "
 "database\\n"
-msgstr ""
-"  -R, --remove      データベースの更新後に古いパッケージファイルをディスクか"
-"ら削除\\n"
+msgstr "  -R, --remove      データベースの更新後に古いパッケージファイルをディスクから削除\\n"
 
 #: scripts/repo-add.sh.in:70
 msgid ""
-"  -p, --prevent-downgrade  do not add package to database if a newer version "
-"is already present\\n"
-msgstr ""
-"  -p, --prevent-downgrade  新しいバージョンが存在する場合はパッケージをデータ"
-"ベースに追加しない\\n"
+"  -p, --prevent-downgrade  do not add package to database if a newer version"
+" is already present\\n"
+msgstr "  -p, --prevent-downgrade  新しいバージョンが存在する場合はパッケージをデータベースに追加しない\\n"
 
 #: scripts/repo-add.sh.in:72
 msgid "Usage: repo-remove [options] <path-to-db> <packagename> ...\\n"
@@ -935,10 +897,7 @@ msgid ""
 "repo-remove will update a package database by removing the package "
 "name\\nspecified on the command line from the given repo database. "
 "Multiple\\npackages to remove can be specified on the command line.\\n"
-msgstr ""
-"repo-remove はコマンドラインから指定されたパッケージ名をデータベースから\\n削"
-"除してパッケージデータベースを更新します。一度に複数の\\nパッケージをコマンド"
-"ラインから指定して削除できます。\\n"
+msgstr "repo-remove はコマンドラインから指定されたパッケージ名をデータベースから\\n削除してパッケージデータベースを更新します。一度に複数の\\nパッケージをコマンドラインから指定して削除できます。\\n"
 
 #: scripts/repo-add.sh.in:81
 msgid "Please move along, there is nothing to see here.\\n"
@@ -972,8 +931,7 @@ msgstr "\\n詳細とオプションの説明は %s(8) を見てください。\\
 #: scripts/repo-add.sh.in:93
 msgid ""
 "Example:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
-msgstr ""
-"例:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
+msgstr "例:  repo-add /path/to/repo.db.tar.gz pacman-3.0.0-1-i686.pkg.tar.gz\\n"
 
 #: scripts/repo-add.sh.in:95
 msgid "Example:  repo-remove /path/to/repo.db.tar.gz kernel26\\n"
@@ -1272,9 +1230,7 @@ msgstr "%s は配列にはできません"
 
 #: scripts/libmakepkg/lint_config/variable.sh.in:66
 msgid "PACKAGER should have the format 'Example Name <email@address.invalid>'"
-msgstr ""
-"PACKAGER は 'Example Name <email@address.invalid>' という形式である必要があり"
-"ます"
+msgstr "PACKAGER は 'Example Name <email@address.invalid>' という形式である必要があります"
 
 #: scripts/libmakepkg/lint_package.sh.in:41
 msgid "Checking for packaging issues..."
@@ -1359,8 +1315,7 @@ msgstr "%s に使用できる文字列は ascii 文字だけです。"
 
 #: scripts/libmakepkg/lint_pkgbuild/pkgrel.sh.in:40
 msgid "%s must be of the form 'integer[.integer]', not %s."
-msgstr ""
-"%s は 'integer[.integer]' という形式にする必要があります、%s ではありません。"
+msgstr "%s は 'integer[.integer]' という形式にする必要があります、%s ではありません。"
 
 #: scripts/libmakepkg/lint_pkgbuild/pkgver.sh.in:41
 msgid ""
@@ -1408,26 +1363,28 @@ msgid "Failure while pulling %s"
 msgstr "Failure while pulling %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:85
-#: scripts/libmakepkg/source/git.sh.in:113
-#: scripts/libmakepkg/source/hg.sh.in:93 scripts/libmakepkg/source/svn.sh.in:62
+#: scripts/libmakepkg/source/git.sh.in:120
+#: scripts/libmakepkg/source/hg.sh.in:93
+#: scripts/libmakepkg/source/svn.sh.in:62
 msgid "Unrecognized reference: %s"
 msgstr "認識できない参照: %s"
 
 #: scripts/libmakepkg/source/bzr.sh.in:94
-#: scripts/libmakepkg/source/git.sh.in:82 scripts/libmakepkg/source/hg.sh.in:79
+#: scripts/libmakepkg/source/git.sh.in:89
+#: scripts/libmakepkg/source/hg.sh.in:79
 #: scripts/libmakepkg/source/svn.sh.in:95
 msgid "Creating working copy of %s %s repo..."
 msgstr "%s %s リポジトリの作業コピーを作成..."
 
 #: scripts/libmakepkg/source/bzr.sh.in:100
-#: scripts/libmakepkg/source/git.sh.in:90
+#: scripts/libmakepkg/source/git.sh.in:97
 #: scripts/libmakepkg/source/hg.sh.in:102
 msgid "Failure while updating working copy of %s %s repo"
 msgstr "%s %s リポジトリの作業コピーの更新中にエラー"
 
 #: scripts/libmakepkg/source/bzr.sh.in:105
-#: scripts/libmakepkg/source/git.sh.in:96
-#: scripts/libmakepkg/source/git.sh.in:130
+#: scripts/libmakepkg/source/git.sh.in:103
+#: scripts/libmakepkg/source/git.sh.in:137
 #: scripts/libmakepkg/source/hg.sh.in:107
 msgid "Failure while creating working copy of %s %s repo"
 msgstr "%s %s リポジトリの作業コピーの作成に失敗"
@@ -1457,12 +1414,14 @@ msgstr "%s の展開に失敗しました"
 msgid "NOT FOUND"
 msgstr "見つかりません"
 
-#: scripts/libmakepkg/source/git.sh.in:50 scripts/libmakepkg/source/hg.sh.in:49
+#: scripts/libmakepkg/source/git.sh.in:50
+#: scripts/libmakepkg/source/hg.sh.in:49
 #: scripts/libmakepkg/source/svn.sh.in:69
 msgid "Cloning %s %s repo..."
 msgstr "%s %s リポジトリを複製..."
 
-#: scripts/libmakepkg/source/git.sh.in:52 scripts/libmakepkg/source/hg.sh.in:51
+#: scripts/libmakepkg/source/git.sh.in:52
+#: scripts/libmakepkg/source/hg.sh.in:51
 #: scripts/libmakepkg/source/svn.sh.in:72
 msgid "Failure while downloading %s %s repo"
 msgstr "%s %s リポジトリのダウンロードに失敗"
@@ -1471,17 +1430,19 @@ msgstr "%s %s リポジトリのダウンロードに失敗"
 msgid "%s is not a clone of %s"
 msgstr "%s は %s の複製ではありません"
 
-#: scripts/libmakepkg/source/git.sh.in:65 scripts/libmakepkg/source/hg.sh.in:56
+#: scripts/libmakepkg/source/git.sh.in:65
+#: scripts/libmakepkg/source/hg.sh.in:56
 #: scripts/libmakepkg/source/svn.sh.in:77
 msgid "Updating %s %s repo..."
 msgstr "%s %s リポジトリを更新..."
 
-#: scripts/libmakepkg/source/git.sh.in:68 scripts/libmakepkg/source/hg.sh.in:60
+#: scripts/libmakepkg/source/git.sh.in:68
+#: scripts/libmakepkg/source/hg.sh.in:60
 #: scripts/libmakepkg/source/svn.sh.in:81
 msgid "Failure while updating %s %s repo"
 msgstr "%s %s リポジトリの更新に失敗"
 
-#: scripts/libmakepkg/source/git.sh.in:122
+#: scripts/libmakepkg/source/git.sh.in:129
 msgid "Failure while checking out version %s, the git tag has been forged"
 msgstr "バージョン %s のチェックアウトができません、git タグが不正です"
 

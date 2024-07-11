@@ -22,16 +22,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Wieland Hoffmann <themineo+transifex@googlemail.com>, 2013\n"
-"Language-Team: German (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/de/)\n"
-"Language: de\n"
+"Language-Team: German (http://app.transifex.com/toofishes/archlinux-pacman/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -64,7 +63,7 @@ msgstr "Es erscheint eine Warnung, wenn %s extrahiert wird (%s)\n"
 msgid "could not extract %s (%s)\n"
 msgstr "Konnte %s nicht entpacken (%s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "Konnte %s nicht in %s umbenennen (%s)\n"
@@ -72,9 +71,7 @@ msgstr "Konnte %s nicht in %s umbenennen (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"Datei nicht in Dateiliste des Pakets %s gefunden. Überspringe Entpacken von "
-"%s\n"
+msgstr "Datei nicht in Dateiliste des Pakets %s gefunden. Überspringe Entpacken von %s\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -86,18 +83,14 @@ msgstr "konnte %s%s nicht entpacken: Pfad zu lang"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"Verzeichnis-Berechtigungen unterscheiden sich für %s\n"
-"Dateisystem: %o  Paket: %o\n"
+msgstr "Verzeichnis-Berechtigungen unterscheiden sich für %s\nDateisystem: %o  Paket: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"Verzeichnis-Eigentümer unterscheidet sich für %s\n"
-"Dateisystem: %u:%u  Paket: %u:%u\n"
+msgstr "Verzeichnis-Eigentümer unterscheidet sich für %s\nDateisystem: %u:%u  Paket: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -191,16 +184,12 @@ msgstr "Konnte Datei %s nicht öffnen: %s\n"
 #: lib/libalpm/be_local.c:759 lib/libalpm/be_sync.c:595
 #, c-format
 msgid "%s database is inconsistent: name mismatch on package %s\n"
-msgstr ""
-"Die Datenbank von %s ist inkonsistent: Die Paketnamen für %s stimmen nicht "
-"überein\n"
+msgstr "Die Datenbank von %s ist inkonsistent: Die Paketnamen für %s stimmen nicht überein\n"
 
 #: lib/libalpm/be_local.c:765 lib/libalpm/be_sync.c:601
 #, c-format
 msgid "%s database is inconsistent: version mismatch on package %s\n"
-msgstr ""
-"Die Datenbank von %s ist inkonsistent: Die Versionsnummern für das Paket %s "
-"stimmen nicht überein\n"
+msgstr "Die Datenbank von %s ist inkonsistent: Die Versionsnummern für das Paket %s stimmen nicht überein\n"
 
 #: lib/libalpm/be_local.c:806
 #, c-format
@@ -209,7 +198,7 @@ msgstr "Unbekannter Validierungstyp für das Paket %s: %s\n"
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
+msgid "%s: unknown key '%s' in local database\n"
 msgstr ""
 
 #: lib/libalpm/be_package.c:255
@@ -271,8 +260,7 @@ msgstr "Entferne ungültige Datei: %s\n"
 #: lib/libalpm/be_sync.c:454
 #, c-format
 msgid "could not parse package description file '%s' from db '%s'\n"
-msgstr ""
-"Konnte Paket-Beschreibungsdatei '%s' der Datenbank '%s' nicht analysieren\n"
+msgstr "Konnte Paket-Beschreibungsdatei '%s' der Datenbank '%s' nicht analysieren\n"
 
 #: lib/libalpm/be_sync.c:469
 #, c-format
@@ -282,16 +270,12 @@ msgstr "konnte Datenbank '%s' (%s) nicht lesen\n"
 #: lib/libalpm/be_sync.c:502 lib/libalpm/be_sync.c:507
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is illegal\n"
-msgstr ""
-"Datenbank %s ist inkonsistent: Der Dateiname des Paketes %s ist nicht "
-"erlaubt\n"
+msgstr "Datenbank %s ist inkonsistent: Der Dateiname des Paketes %s ist nicht erlaubt\n"
 
 #: lib/libalpm/be_sync.c:512
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is too long\n"
-msgstr ""
-"Die Datenbank von %s ist inkonsistent: Der Dateiname des Paketes %s ist zu "
-"lang\n"
+msgstr "Die Datenbank von %s ist inkonsistent: Der Dateiname des Paketes %s ist zu lang\n"
 
 #: lib/libalpm/be_sync.c:577
 #, c-format
@@ -300,7 +284,7 @@ msgstr "Unbekannte Datenbankdatei: %s\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
+msgid "%s: unknown key '%s' in sync database\n"
 msgstr ""
 
 #: lib/libalpm/db.c:413
@@ -361,9 +345,7 @@ msgstr "Konnte keinen Einhänge-Punkt für die Datei %s ermitteln\n"
 #: lib/libalpm/diskspace.c:366
 #, c-format
 msgid "Partition %s too full: %jd blocks needed, %ju blocks free\n"
-msgstr ""
-"Partition %s ist überfüllt: %jd Blöcke werden benötigt, %ju Blöcke sind "
-"frei\n"
+msgstr "Partition %s ist überfüllt: %jd Blöcke werden benötigt, %ju Blöcke sind frei\n"
 
 #: lib/libalpm/diskspace.c:391 lib/libalpm/diskspace.c:445
 #, c-format
@@ -414,9 +396,7 @@ msgstr "Konnte Datei '%s' nicht von %s übertragen : %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"Konnte Datei '%s' nicht von %s empfangen: Erwartete Downloadgröße "
-"überschritten\n"
+msgstr "Konnte Datei '%s' nicht von %s empfangen: Erwartete Downloadgröße überschritten\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -443,12 +423,12 @@ msgstr "curl(=Programm) meldet Fehler %d von der Übertragung\n"
 msgid "curl transfer error: %d\n"
 msgstr "curl(=Programm) Übertragungsfehler %d\n"
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "Konnte einige Dateien nicht übertragen\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr "Download vollständig und keine Datei im Zwischenspeicher\n"
@@ -601,8 +581,7 @@ msgstr "Operation nicht mit dem Vorgangs-Typ kompatibel"
 #: lib/libalpm/error.c:104
 #, c-format
 msgid "transaction commit attempt when database is not locked"
-msgstr ""
-"Vorgang sollte übertragen werden, während die Datenbank nicht geschlossen war"
+msgstr "Vorgang sollte übertragen werden, während die Datenbank nicht geschlossen war"
 
 #: lib/libalpm/error.c:106
 #, c-format
@@ -854,8 +833,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -878,17 +856,17 @@ msgstr "Kann Datei '%s' nicht entfernen: %s\n"
 msgid "could not backup %s due to PATH_MAX overflow\n"
 msgstr "Kann kein Backup von %s erstellen, auf Grund eines PATH_MAX overflow\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "Konnte %s nicht entfernen (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "Konnte Datenbank-Eintrag %s-%s nicht entfernen\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "Konnte Eintrag '%s' nicht aus dem Puffer entfernen\n"
@@ -1133,5 +1111,4 @@ msgstr "Es existiert kein %s-Puffer, erstelle...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"Konnte den Paket-Puffer nicht finden oder erstellen, benutze stattdessen %s\n"
+msgstr "Konnte den Paket-Puffer nicht finden oder erstellen, benutze stattdessen %s\n"

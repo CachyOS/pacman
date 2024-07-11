@@ -21,16 +21,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
-"Last-Translator: Jiachen YANG <farseerfc@gmail.com>, 2019,2024\n"
-"Language-Team: Chinese (China) (http://app.transifex.com/toofishes/archlinux-"
-"pacman/language/zh_CN/)\n"
-"Language: zh_CN\n"
+"Last-Translator: 甘 露 <rhythm.gan@gmail.com>, 2011\n"
+"Language-Team: Chinese (China) (http://app.transifex.com/toofishes/archlinux-pacman/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -63,7 +62,7 @@ msgstr "解压 %s 时出现警告 (%s)\n"
 msgid "could not extract %s (%s)\n"
 msgstr "无法解压缩 %1$s (%2$s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "无法将 %1$s 重命名为 %2$s (%3$s)\n"
@@ -83,18 +82,14 @@ msgstr "无法解压缩 %s%s：路径过长"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"目录权限不一致 %1$s\n"
-"文件系统：%2$o  软件包：%3$o\n"
+msgstr "目录权限不一致 %1$s\n文件系统：%2$o  软件包：%3$o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"目录权限不一致 %s\n"
-"文件系统：%u:%u 软件包：%u:%u\n"
+msgstr "目录权限不一致 %s\n文件系统：%u:%u 软件包：%u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -202,8 +197,8 @@ msgstr "软件包 %s 的验证类型未知：%s\n"
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
-msgstr "%s：同步数据库中有未知的密钥 '%s'\n"
+msgid "%s: unknown key '%s' in local database\n"
+msgstr "%s：本地数据库中有未知的密钥 '%s'\n"
 
 #: lib/libalpm/be_package.c:255
 #, c-format
@@ -288,8 +283,8 @@ msgstr "未知的数据库文件： %s\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
-msgstr "%s：本地数据库中有未知的密钥 '%s'\n"
+msgid "%s: unknown key '%s' in sync database\n"
+msgstr "%s：同步数据库中有未知的密钥 '%s'\n"
 
 #: lib/libalpm/db.c:413
 #, c-format
@@ -359,9 +354,7 @@ msgstr "无法确定文件系统挂载点\n"
 #: lib/libalpm/diskspace.c:397
 #, c-format
 msgid "could not determine cachedir mount point %s\n"
-msgstr ""
-"无法确定缓存目录挂载点 %s\n"
-"\n"
+msgstr "无法确定缓存目录挂载点 %s\n\n"
 
 #: lib/libalpm/diskspace.c:450
 #, c-format
@@ -371,9 +364,7 @@ msgstr "无法确定根分区挂载点 %s\n"
 #: lib/libalpm/diskspace.c:498
 #, c-format
 msgid "Partition %s is mounted read only\n"
-msgstr ""
-"分区 %s 被挂载为只读\n"
-"\n"
+msgstr "分区 %s 被挂载为只读\n\n"
 
 #: lib/libalpm/dload.c:128
 #, c-format
@@ -431,12 +422,12 @@ msgstr "curl 在传输中返回了错误 %d\n"
 msgid "curl transfer error: %d\n"
 msgstr "curl 传输错误：%d\n"
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "无法获取某些文件\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr "下载已成功完成但缓存中没有文件\n"
@@ -841,8 +832,7 @@ msgstr "软件包 %s-%s 的元数据无效（软件包版本包含无效字符�
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr "软件包 %s-%s 的元数据无效（软件包名称及版本过长）\n"
 
 #: lib/libalpm/remove.c:111
@@ -865,17 +855,17 @@ msgstr "无法删除文件 '%1$s': %2$s\n"
 msgid "could not backup %s due to PATH_MAX overflow\n"
 msgstr "由于 PATH_MAX 溢出无法备份 %s\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "无法删除 %s (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "无法删除数据库记录 %1$s-%2$s\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "无法从缓存中删除记录 '%s'\n"

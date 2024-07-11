@@ -3,6 +3,8 @@ use std::io::Write;
 use std::path::Path;
 use std::{env, fs, io, slice, str};
 
+use base64::engine::general_purpose::STANDARD;
+use base64::write::EncoderStringWriter;
 use rand::Rng;
 use sha2::Sha256;
 use subprocess::{Exec, Redirection};
@@ -37,14 +39,10 @@ pub fn get_current_cmdname(cmd_line: &str) -> &str {
     cmd_line
 }
 
-pub fn write_to_file(filepath: &str, data: &str) -> bool {
-    let file = File::create(filepath);
-    if let Ok(mut file) = file {
-        let _ = file.write_all(data.as_bytes());
-        return true;
-    }
-    log::error!("'{}' open failed: {:?}", filepath, file.err());
-    false
+pub fn write_to_file(filepath: &str, data: &str) -> io::Result<()> {
+    let mut file = File::create(filepath)?;
+    file.write_all(data.as_bytes())?;
+    Ok(())
 }
 
 pub fn create_temporary_directory(max_tries: Option<u32>) -> Option<String> {
@@ -63,6 +61,24 @@ pub fn create_temporary_directory(max_tries: Option<u32>) -> Option<String> {
         }
         i += 1;
     }
+}
+
+pub fn touch_file(filepath: &str) -> io::Result<()> {
+    if !Path::new(&filepath).exists() {
+        File::options().write(true).create_new(true).open(filepath)?;
+        return Ok(());
+    }
+
+    use std::fs::FileTimes;
+    use std::time::SystemTime;
+
+    let file_dest = File::open(filepath)?;
+
+    let curr_time = SystemTime::now();
+    let times = FileTimes::new().set_accessed(curr_time).set_modified(curr_time);
+    file_dest.set_times(times)?;
+
+    Ok(())
 }
 
 pub fn create_tempfile(max_tries: Option<u32>) -> Option<(File, String)> {
@@ -85,8 +101,7 @@ pub fn create_tempfile(max_tries: Option<u32>) -> Option<(File, String)> {
     }
 }
 
-pub fn exec(command: &str, interactive: Option<bool>) -> (String, bool) {
-    let interactive = interactive.unwrap_or(false);
+pub fn exec(command: &str, interactive: bool) -> (String, bool) {
     if interactive {
         let ret_code = Exec::shell(command).join().unwrap();
         return (String::new(), ret_code.success());
@@ -105,7 +120,7 @@ pub fn generate_sha256sum(filepath: &str) -> Option<String> {
     // create a Sha256 hasher instance
     use sha2::Digest;
     let mut hasher = Sha256::new();
-    let _ = io::copy(&mut file_obj, &mut hasher);
+    io::copy(&mut file_obj, &mut hasher).ok()?;
 
     // process input message
     let result = format!("{:x}", hasher.finalize());
@@ -147,36 +162,8 @@ fn format_entry_mul(field_name: &str, values: &[String]) -> String {
     result
 }
 
-#[inline]
-fn insert_entry_nf(
-    insert_fields: &mut Vec<String>,
-    insert_params: &mut Vec<String>,
-    field_name: &str,
-    value: &Option<String>,
-) {
-    if value.is_none() {
-        return;
-    }
-    insert_fields.push(field_name.to_owned());
-    insert_params.push(value.as_ref().unwrap().clone());
-}
-
-#[inline]
-fn insert_entry_mul_nf(
-    insert_fields: &mut Vec<String>,
-    insert_params: &mut Vec<String>,
-    field_name: &str,
-    values: &[String],
-) {
-    if values.is_empty() {
-        return;
-    }
-    insert_fields.push(field_name.to_owned());
-    insert_params.push(values.join(","));
-}
-
 // Retrieve the compression command for an archive extension, or cat for .tar
-pub fn get_compression_command(db_extension: &str) -> String {
+pub fn get_compression_command(db_extension: &str, makepkgconf_path: Option<&str>) -> String {
     let fallback_cmd = match db_extension {
         "tar.gz" => "gzip -c -f -n".to_owned(),
         "tar.bz2" => "bzip2 -c -f".to_owned(),
@@ -197,11 +184,11 @@ pub fn get_compression_command(db_extension: &str) -> String {
         ""
     };
 
-    if db_extension.is_empty() {
+    if db_extension.is_empty() || makepkgconf_path.is_none() {
         return fallback_cmd;
     }
 
-    if let Ok(makepkgconfig_content) = fs::read_to_string("/etc/makepkg.conf") {
+    if let Ok(makepkgconfig_content) = fs::read_to_string(makepkgconf_path.unwrap()) {
         let temp_compress_cmd = makepkgconfig_content
             .lines()
             .filter(|elem| elem.starts_with(&format!("COMPRESS{}", db_extension.to_uppercase())))
@@ -242,7 +229,7 @@ pub fn create_db_desc_entry(
     csize: String,
     pkg_sha256sum: Option<String>,
     pkg_pgpsig: Option<String>,
-) {
+) -> io::Result<()> {
     let mut desc_content = String::new();
     desc_content.push_str(&format_entry(
         "FILENAME",
@@ -276,23 +263,25 @@ pub fn create_db_desc_entry(
     desc_content.push_str(&format_entry_mul("MAKEDEPENDS", &pkginfo.makedepends));
     desc_content.push_str(&format_entry_mul("CHECKDEPENDS", &pkginfo.checkdepends));
 
-    let mut desc_entry_file =
-        File::create(format!("{}/{}/desc", &workingdb_path, &pkg_entrypath)).unwrap();
-    let _ = desc_entry_file.write_all(desc_content.as_bytes());
+    let mut desc_entry_file = File::create(format!("{}/{}/desc", &workingdb_path, &pkg_entrypath))?;
+    desc_entry_file.write_all(desc_content.as_bytes())?;
+
+    Ok(())
 }
 
 pub fn gen_pkg_integrity(
     pkgpath: &str,
-    pkg_info: &crate::pkginfo::PkgInfo,
     csize: &mut String,
+    include_sigs: bool,
     pkg_sha256sum: &mut Option<String>,
     pkg_pgpsig: &mut Option<String>,
 ) -> bool {
     // compute base64'd PGP signature
     *pkg_pgpsig = None;
-    if Path::new(&format!("{}.sig", pkg_info.pkgname.as_ref().unwrap())).exists() {
-        let sig_filename = format!("{}.sig", pkg_info.pkgname.as_ref().unwrap());
-        if exec(&format!("grep -q 'BEGIN PGP SIGNATURE' \"{}\"", &sig_filename), Some(true)).1 {
+
+    let sig_filename = format!("{pkgpath}.sig");
+    if include_sigs && Path::new(&sig_filename).exists() {
+        if exec(&format!("grep -q 'BEGIN PGP SIGNATURE' '{}'", &sig_filename), true).1 {
             log::error!("Cannot use armored signatures for packages: {}", &sig_filename);
             return false;
         }
@@ -303,7 +292,14 @@ pub fn gen_pkg_integrity(
             return false;
         }
         log::info!("Adding package signature...");
-        *pkg_pgpsig = Some(exec(&format!("base64 \"{}\" | tr -d '\n'", sig_filename), None).0);
+
+        {
+            let mut encoder = EncoderStringWriter::new(&STANDARD);
+            let mut file_obj = File::open(sig_filename).expect("Failed to open sig file to read");
+            io::copy(&mut file_obj, &mut encoder).expect("Failed to read sig file");
+
+            *pkg_pgpsig = Some(encoder.into_inner());
+        }
     }
 
     *csize = format!("{}", fs::metadata(pkgpath).unwrap().len());
@@ -315,214 +311,118 @@ pub fn gen_pkg_integrity(
     true
 }
 
-pub fn create_db_entry_nf(
-    conn: &mut rusqlite::Connection,
-    pkgpath: &str,
-    pkg_info: &crate::pkginfo::PkgInfo,
-    csize: String,
-    pkg_sha256sum: &Option<String>,
-    pkg_pgpsig: &Option<String>,
-) -> anyhow::Result<()> {
-    let mut insert_fields: Vec<String> = vec![];
-    let mut insert_params: Vec<String> = vec![];
-
-    // 1. Get package id
-    let package_id = make_lookup_pkgentry_nf(conn, pkg_info);
-
-    // 2. Insert available fields into buffer
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "name", &pkg_info.pkgname);
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "version", &pkg_info.pkgver);
-    insert_entry_nf(
-        &mut insert_fields,
-        &mut insert_params,
-        "filename",
-        &Some(Path::new(pkgpath).file_name().unwrap().to_string_lossy().to_string()),
-    );
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "base", &pkg_info.pkgbase);
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "desc", &pkg_info.pkgdesc);
-
-    insert_entry_mul_nf(&mut insert_fields, &mut insert_params, "groups", &pkg_info.groups);
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "csize", &Some(csize));
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "isize", &pkg_info.pkg_isize);
-
-    // add checksums
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "sha256sum", pkg_sha256sum);
-
-    // add PGP sig
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "pgpsig", pkg_pgpsig);
-
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "url", &pkg_info.url);
-    insert_entry_mul_nf(&mut insert_fields, &mut insert_params, "license", &pkg_info.licenses);
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "arch", &pkg_info.arch);
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "builddate", &pkg_info.builddate);
-    insert_entry_nf(&mut insert_fields, &mut insert_params, "packager", &pkg_info.packager);
-    insert_entry_mul_nf(&mut insert_fields, &mut insert_params, "replaces", &pkg_info.replaces);
-    insert_entry_mul_nf(&mut insert_fields, &mut insert_params, "conflicts", &pkg_info.conflicts);
-    insert_entry_mul_nf(&mut insert_fields, &mut insert_params, "provides", &pkg_info.provides);
-
-    insert_entry_mul_nf(&mut insert_fields, &mut insert_params, "depends", &pkg_info.depends);
-    insert_entry_mul_nf(&mut insert_fields, &mut insert_params, "optdepends", &pkg_info.optdepends);
-    insert_entry_mul_nf(
-        &mut insert_fields,
-        &mut insert_params,
-        "makedepends",
-        &pkg_info.makedepends,
-    );
-    insert_entry_mul_nf(
-        &mut insert_fields,
-        &mut insert_params,
-        "checkdepends",
-        &pkg_info.checkdepends,
-    );
-
-    let param_args_q = insert_params.iter().map(|_| "?").collect::<Vec<_>>().join(",");
-
-    // 3. Construct query
-    let insert_query = if package_id.is_some() {
-        format!(
-            "INSERT OR REPLACE INTO packages (id, {}) VALUES ({}, {})",
-            insert_fields.join(","),
-            package_id.unwrap(),
-            param_args_q
-        )
-    } else {
-        format!(
-            "INSERT OR REPLACE INTO packages ({}) VALUES ({})",
-            insert_fields.join(","),
-            param_args_q
-        )
-    };
-
-    // 4. Insert the package entry into the database
-    let mut stmt = conn.prepare(&insert_query)?;
-    let row = stmt.execute(rusqlite::params_from_iter(insert_params.clone()))?;
-
-    if row == 0 {
-        anyhow::bail!("ZERO rows inserted!");
-    }
-
-    Ok(())
-}
-
-pub fn create_db_files_entry_nf(
-    conn: &mut rusqlite::Connection,
-    pkgpath: &str,
-    pkg_info: &crate::pkginfo::PkgInfo,
-) -> bool {
-    // 1. Get package id
-    let package_id = make_lookup_pkgentry_nf(conn, pkg_info);
-    if package_id.is_none() {
-        log::error!("Failed to get package from db");
-        return false;
-    }
-
-    // 2. Get files
-    let sorted_files = get_pkg_files(pkgpath);
-
-    // 3. Add files for the package entry in the database
-    conn.execute("UPDATE packages SET files = ?2 WHERE id = ?1", rusqlite::params![
-        package_id,
-        sorted_files.join(",")
-    ])
-    .unwrap();
-
-    true
-}
-
-pub fn remove_from_db_by_id_nf(conn: &mut rusqlite::Connection, package_id: i64) -> bool {
-    // 1. Delete entry from table
-    conn.execute("DELETE FROM packages WHERE id = ?", [package_id]).unwrap();
-
-    true
-}
-
-pub fn get_old_entryval_nf(
-    conn: &rusqlite::Connection,
-    package_id: i64,
-) -> Option<(String, String, String)> {
-    let select_query = "SELECT name, version, filename FROM packages WHERE id = ?";
-    if let Ok(mut stmt) = conn.prepare_cached(select_query) {
-        return stmt
-            .query_row([package_id], |row| {
-                Ok((row.get(0).unwrap(), row.get(1).unwrap(), row.get(2).unwrap()))
-            })
-            .ok();
-    }
-
-    None
-}
-
-pub fn get_pkgentry_nf(
-    conn: &rusqlite::Connection,
-    pkg_info: &crate::pkginfo::PkgInfo,
-) -> Option<i64> {
-    let select_query = "SELECT id FROM packages WHERE name = ? AND version = ? AND arch = ?";
-    if let Ok(mut stmt) = conn.prepare_cached(select_query) {
-        return stmt
-            .query_row(
-                [
-                    pkg_info.pkgname.as_ref().unwrap(),
-                    pkg_info.pkgver.as_ref().unwrap(),
-                    pkg_info.arch.as_ref().unwrap(),
-                ],
-                |row| row.get(0),
-            )
-            .ok();
-    }
-
-    None
-}
-
-pub fn make_lookup_pkgentry_nf(
-    conn: &rusqlite::Connection,
-    pkg_info: &crate::pkginfo::PkgInfo,
-) -> Option<i64> {
-    let select_query = "SELECT id FROM packages WHERE name = ? AND arch = ?";
-    if let Ok(mut stmt) = conn.prepare_cached(select_query) {
-        if let Ok(pkg_id) = stmt.query_row(
-            [pkg_info.pkgname.as_ref().unwrap(), pkg_info.arch.as_ref().unwrap()],
-            |row| row.get(0),
-        ) {
-            return Some(pkg_id);
-        }
-    }
-
-    None
-}
-
-pub fn make_simple_lookup_pkgentry_nf(conn: &rusqlite::Connection, pkgname: &str) -> Option<i64> {
-    let select_query = "SELECT id FROM packages WHERE name = ?";
-    if let Ok(mut stmt) = conn.prepare_cached(select_query) {
-        if let Ok(pkg_id) = stmt.query_row([pkgname], |row| row.get(0)) {
-            return Some(pkg_id);
-        }
-    }
-
-    None
-}
-
-pub fn make_db_connections(
-    tmp_work_dir: &str,
-) -> rusqlite::Result<(Option<rusqlite::Connection>, Option<rusqlite::Connection>)> {
-    Ok((
-        Some(rusqlite::Connection::open(format!("{}/db/pacman.db", tmp_work_dir))?),
-        Some(rusqlite::Connection::open(format!("{}/files/pacman.db", tmp_work_dir))?),
-    ))
+pub fn is_file_in_archive(arc_filepath: &str, needle_pattern: &str) -> bool {
+    exec(&format!("bsdtar -tqf '{arc_filepath}' '{needle_pattern}' >/dev/null 2>&1"), true).1
 }
 
 #[cfg(test)]
 mod tests {
     use std::fs;
+    use std::path::Path;
 
     const PKGPATH: &str = "xz-5.4.5-2-x86_64.pkg.tar.zst";
 
     #[test]
+    fn getting_min_val() {
+        assert_eq!(crate::utils::const_min(4, 4), 4);
+        assert_eq!(crate::utils::const_min(4, 1), 1);
+        assert_eq!(crate::utils::const_min(1, 4), 1);
+    }
+    #[test]
+    fn getting_string_substr() {
+        assert_eq!(crate::utils::string_substr("ABCDEF", 4, 42), Ok("EF"));
+        assert_eq!(crate::utils::string_substr("ABCDEF", 1, 10), Ok("BCDEF"));
+        assert_eq!(crate::utils::string_substr("ABCDEF", 2, 3), Ok("CDE"));
+    }
+    #[test]
+    fn getting_current_cmdline() {
+        assert_eq!(crate::utils::get_current_cmdname("../../repo-add"), "repo-add");
+        assert_eq!(crate::utils::get_current_cmdname("../../../../repo-remove"), "repo-remove");
+        assert_eq!(crate::utils::get_current_cmdname("./repo-remove"), "repo-remove");
+        assert_eq!(crate::utils::get_current_cmdname("/usr/bin/repo-add"), "repo-add");
+    }
+    #[test]
+    fn write_data_tofile() {
+        // empty file
+        let filepath = {
+            use rand::Rng;
+            use std::env;
+
+            let tmp_dir = env::temp_dir();
+            let mut rng = rand::thread_rng();
+            format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.gen::<u64>())
+        };
+
+        assert!(crate::utils::write_to_file(&filepath, "123451231231").is_ok());
+        assert!(Path::new(&filepath).exists());
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), "123451231231");
+        assert!(crate::utils::write_to_file(&filepath, "1234").is_ok());
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), "1234");
+
+        // cleanup
+        assert!(fs::remove_file(&filepath).is_ok());
+
+        assert!(crate::utils::write_to_file(&filepath, "562").is_ok());
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), "562");
+        assert!(fs::remove_file(&filepath).is_ok());
+    }
+    #[test]
+    fn running_execs() {
+        assert_eq!(crate::utils::exec("echo long text", false), ("long text".to_owned(), true));
+        assert_eq!(crate::utils::exec("echo 123124", false), ("123124".to_owned(), true));
+        assert_eq!(
+            crate::utils::exec("echo long text &>/dev/null; false", true),
+            ("".to_owned(), false)
+        );
+        assert_eq!(
+            crate::utils::exec("echo 123124 &>/dev/null; true", true),
+            ("".to_owned(), true)
+        );
+    }
+    #[test]
     fn getting_pkgname_from_path() {
         assert_eq!(crate::utils::get_name_of_pkg(PKGPATH, false), "xz");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, false), "xzz");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, false), " ");
     }
     #[test]
     fn getting_pkgname_from_dbentry() {
         assert_eq!(crate::utils::get_name_of_pkg(PKGPATH, true), "xz-5.4.5");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, true), "xzz-5.4.5");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, true), "xz-5.4");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, true), "xz-5.4.");
+        assert_ne!(crate::utils::get_name_of_pkg(PKGPATH, true), " ");
+    }
+    #[test]
+    fn touch_file() {
+        use rand::Rng;
+        use std::env;
+
+        let tmp_dir = env::temp_dir();
+        let mut rng = rand::thread_rng();
+        let filepath = format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.gen::<u64>());
+
+        assert!(!Path::new(&filepath).exists());
+        assert!(crate::utils::touch_file(&filepath).is_ok());
+        assert!(Path::new(&filepath).exists());
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), "".to_owned());
+
+        let desc_content = "testdata: abcd";
+        {
+            let mut desc_file = fs::File::options().write(true).open(&filepath).unwrap();
+            use std::io::prelude::*;
+            desc_file.write_all(desc_content.as_bytes()).unwrap();
+        }
+
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), desc_content.to_owned());
+        assert!(crate::utils::touch_file(&filepath).is_ok());
+        assert_eq!(fs::read_to_string(&filepath).unwrap(), desc_content.to_owned());
+
+        // cleanup
+        assert!(fs::remove_file(&filepath).is_ok());
+
+        // test perms
+        assert!(crate::utils::touch_file("/.testfile-rust-repo-add").is_err());
     }
     #[test]
     fn getting_pkgfiles() {
@@ -533,5 +433,232 @@ mod tests {
             .map(String::from)
             .collect::<Vec<_>>();
         assert_eq!(crate::utils::get_pkg_files(PKGPATH), expected_pkgfiles);
+        assert_ne!(crate::utils::get_pkg_files(PKGPATH), [" "]);
+        assert_ne!(crate::utils::get_pkg_files(PKGPATH), vec![] as Vec<String>);
+    }
+    #[test]
+    fn getting_compression_cmd() {
+        let makepkgconf_path = Some("makepkg.conf");
+
+        // custom
+        assert_eq!(
+            crate::utils::get_compression_command("tar.gz", makepkgconf_path),
+            "gzip -c -f -n -h"
+        );
+        assert_eq!(
+            crate::utils::get_compression_command("tar.bz2", makepkgconf_path),
+            "bzip2 -c -f -h"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar.xz", makepkgconf_path), "xz -c -z -");
+        assert_eq!(
+            crate::utils::get_compression_command("tar.zst", makepkgconf_path),
+            "zstd -c -T0 --ultra -20 -"
+        );
+        assert_eq!(
+            crate::utils::get_compression_command("tar.lrz", makepkgconf_path),
+            "lrzip -q -h"
+        );
+        assert_eq!(
+            crate::utils::get_compression_command("tar.lzo", makepkgconf_path),
+            "lzop -q -h"
+        );
+        assert_eq!(
+            crate::utils::get_compression_command("tar.Z", makepkgconf_path),
+            "compress -c -f -h"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar.lz4", makepkgconf_path), "lz4 -q -h");
+        assert_eq!(
+            crate::utils::get_compression_command("tar.lz", makepkgconf_path),
+            "lzip -c -f -h"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar", makepkgconf_path), "cat");
+        assert_eq!(crate::utils::get_compression_command("", makepkgconf_path), "");
+
+        // fallback
+        let makepkgconf_path = Some("makepkg-nonexist.conf");
+        assert_eq!(
+            crate::utils::get_compression_command("tar.gz", makepkgconf_path),
+            "gzip -c -f -n"
+        );
+        assert_eq!(
+            crate::utils::get_compression_command("tar.bz2", makepkgconf_path),
+            "bzip2 -c -f"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar.xz", makepkgconf_path), "xz -c -z -");
+        assert_eq!(
+            crate::utils::get_compression_command("tar.zst", makepkgconf_path),
+            "zstd -c -z -q -"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar.lrz", makepkgconf_path), "lrzip -q");
+        assert_eq!(crate::utils::get_compression_command("tar.lzo", makepkgconf_path), "lzop -q");
+        assert_eq!(
+            crate::utils::get_compression_command("tar.Z", makepkgconf_path),
+            "compress -c -f"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar.lz4", makepkgconf_path), "lz4 -q");
+        assert_eq!(crate::utils::get_compression_command("tar.lz", makepkgconf_path), "lzip -c -f");
+        assert_eq!(crate::utils::get_compression_command("tar", makepkgconf_path), "cat");
+        assert_eq!(crate::utils::get_compression_command("", makepkgconf_path), "");
+
+        // fallback on None
+        let makepkgconf_path = None;
+        assert_eq!(
+            crate::utils::get_compression_command("tar.gz", makepkgconf_path),
+            "gzip -c -f -n"
+        );
+        assert_eq!(
+            crate::utils::get_compression_command("tar.bz2", makepkgconf_path),
+            "bzip2 -c -f"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar.xz", makepkgconf_path), "xz -c -z -");
+        assert_eq!(
+            crate::utils::get_compression_command("tar.zst", makepkgconf_path),
+            "zstd -c -z -q -"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar.lrz", makepkgconf_path), "lrzip -q");
+        assert_eq!(crate::utils::get_compression_command("tar.lzo", makepkgconf_path), "lzop -q");
+        assert_eq!(
+            crate::utils::get_compression_command("tar.Z", makepkgconf_path),
+            "compress -c -f"
+        );
+        assert_eq!(crate::utils::get_compression_command("tar.lz4", makepkgconf_path), "lz4 -q");
+        assert_eq!(crate::utils::get_compression_command("tar.lz", makepkgconf_path), "lzip -c -f");
+        assert_eq!(crate::utils::get_compression_command("tar", makepkgconf_path), "cat");
+        assert_eq!(crate::utils::get_compression_command("", makepkgconf_path), "");
+    }
+    #[test]
+    fn generating_pkg_integrity() {
+        let pkg_info = crate::pkginfo::PkgInfo::from_archive(PKGPATH);
+
+        let mut pkg_csize = String::new();
+        let mut pkg_sha256sum: Option<String> = None;
+        let mut pkg_pgpsig: Option<String> = None;
+
+        assert!(crate::utils::gen_pkg_integrity(
+            PKGPATH,
+            &mut pkg_csize,
+            true,
+            &mut pkg_sha256sum,
+            &mut pkg_pgpsig,
+        ));
+        assert_eq!(pkg_csize, "648678".to_owned());
+        assert_eq!(
+            pkg_sha256sum,
+            Some("6bcf35ecc6869a74926b204f16f01704c60115b956b098d3e59b655d1d36a2aa".to_owned())
+        );
+        assert_eq!(pkg_pgpsig, Some("iQGzBAABCAAdFiEEiC3P5I4gUdSOJWKr87YHSI2zWkcFAmZHWccACgkQ87YHSI2zWkca+wv+NwT5s2m93pO+A7p9vs1XfrIEroK44wyYqqVqleBT0/1xIdVcDlZJCfN2ef6s56C+ZVf60EYaIo328VLzTY2dFARH+I9ILbpXfHPR2o8DPD0VnRMzgvI+k945pJd8xS+Oh9nGGUnf84hXLYsEZJAh134+Tefiqwukc50Mnlits0tlxIlFroNzOJT3F+xQ/PhiWMygeCSMg8fMORlUt3pV3FB8Dz826Yn+MxPcu6b8C001+kgCyjMJLUo8uxecQpHeuBJzcmK+PYdt0x3jNmJd2IVmH2XWXgn0lkqkOsofge8i22kbdrsS7E46Bt5FBI5BFt8R2zhkpCr4zInkNV4XUmW2zqvWZ88axNvYSx7NO4rCWmIw2hjJTsjkrVRD+qifJo5xzYXhQSSgzWEU7S8TvDwfTmT2ArOgI1+uCQ+dDtTviv4bTT/jQTKUHsj4jvZzCXEe7TkQAnckjZwNXMIeT0T8OWfneGc3j/CkeGYSm9+rZRsYqFa7GFbs47T0tQ8N".to_owned()));
+
+        let mut pkg_csize = String::new();
+        let mut pkg_sha256sum: Option<String> = None;
+        let mut pkg_pgpsig: Option<String> = None;
+
+        assert!(crate::utils::gen_pkg_integrity(
+            PKGPATH,
+            &mut pkg_csize,
+            false,
+            &mut pkg_sha256sum,
+            &mut pkg_pgpsig,
+        ));
+        assert_eq!(pkg_csize, "648678".to_owned());
+        assert_eq!(
+            pkg_sha256sum,
+            Some("6bcf35ecc6869a74926b204f16f01704c60115b956b098d3e59b655d1d36a2aa".to_owned())
+        );
+        assert_eq!(pkg_pgpsig, None);
+    }
+    #[test]
+    fn creating_db_entry() {
+        let pkg_info = crate::pkginfo::PkgInfo::from_archive(PKGPATH);
+
+        let workingdb_path =
+            crate::utils::create_temporary_directory(None).expect("Failed to create temp dir");
+        let pkg_entrypath =
+            format!("{}-{}", pkg_info.pkgname.as_ref().unwrap(), pkg_info.pkgver.as_ref().unwrap());
+
+        fs::create_dir(format!("{}/{}", &workingdb_path, &pkg_entrypath))
+            .expect("Failed to create dir");
+
+        let mut pkg_csize = String::new();
+        let mut pkg_sha256sum: Option<String> = None;
+
+        assert!(crate::utils::gen_pkg_integrity(
+            PKGPATH,
+            &mut pkg_csize,
+            true,
+            &mut pkg_sha256sum,
+            &mut None,
+        ));
+
+        crate::utils::create_db_desc_entry(
+            PKGPATH,
+            &pkg_entrypath,
+            &workingdb_path,
+            &pkg_info,
+            pkg_csize.clone(),
+            pkg_sha256sum,
+            None,
+        )
+        .expect("Failed to create db entry");
+
+        let pkgentry_content =
+            fs::read_to_string(format!("{}/{}/desc", &workingdb_path, &pkg_entrypath)).unwrap();
+        fs::remove_dir_all(&workingdb_path).expect("Failed to cleanup");
+
+        const K_DB_DESC_TEST_DATA: &str = r#"%FILENAME%
+xz-5.4.5-2-x86_64.pkg.tar.zst
+
+%NAME%
+xz
+
+%BASE%
+xz
+
+%VERSION%
+5.4.5-2
+
+%DESC%
+Library and command line tools for XZ and LZMA compressed files
+
+%CSIZE%
+648678
+
+%ISIZE%
+2513790
+
+%SHA256SUM%
+6bcf35ecc6869a74926b204f16f01704c60115b956b098d3e59b655d1d36a2aa
+
+%URL%
+https://tukaani.org/xz/
+
+%LICENSE%
+GPL
+LGPL
+custom
+
+%ARCH%
+x86_64
+
+%BUILDDATE%
+1704482661
+
+%PACKAGER%
+CachyOS <admin@cachyos.org>
+
+%PROVIDES%
+liblzma.so=5-64
+
+%DEPENDS%
+sh
+
+"#;
+
+        assert_eq!(pkgentry_content, K_DB_DESC_TEST_DATA);
+    }
+    #[test]
+    fn check_file_presence_in_arc() {
+        assert!(crate::utils::is_file_in_archive(PKGPATH, ".PKGINFO"));
+        assert!(!crate::utils::is_file_in_archive(PKGPATH, ".PKGIFO"));
+        assert!(crate::utils::is_file_in_archive(PKGPATH, "*"));
     }
 }

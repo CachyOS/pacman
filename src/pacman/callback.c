@@ -590,7 +590,7 @@ void cb_progress(void *ctx, alpm_progress_t event, const char *pkgname,
 	} else {
 		if(current != prevcurrent) {
 			/* update always */
-		} else if(has_pkgname || percent == prevpercent ||
+		} else if(!has_pkgname || percent == prevpercent ||
 				get_update_timediff(0) < UPDATE_SPEED_MS) {
 			/* only update the progress bar when we have a package name, the
 			 * percentage has changed, and it has been long enough. */
@@ -805,7 +805,7 @@ static void draw_pacman_progress_bar(struct pacman_progress_bar *bar)
 		// fname + digits +  ( /) + \0
 		size_t needed = strlen(fname) + (digits * 2) + 4 + 1;
 		char *name = malloc(needed);
-		sprintf(name, "%s (%*zu/%*zu)", fname, digits, bar->downloaded, digits, bar->howmany);
+		snprintf(name, needed, "%s (%*zu/%*zu)", fname, digits, bar->downloaded, digits, bar->howmany);
 		free(fname);
 		fname = name;
 	}

@@ -20,19 +20,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
 "Last-Translator: Sebastian Jakubiak, 2019\n"
-"Language-Team: Polish (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/pl/)\n"
-"Language: pl\n"
+"Language-Team: Polish (http://app.transifex.com/toofishes/archlinux-pacman/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
-"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
-"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
 #, c-format
@@ -64,7 +61,7 @@ msgstr "wystąpił błąd podczas rozpakowywania %s (%s)\n"
 msgid "could not extract %s (%s)\n"
 msgstr "nie udało się rozpakować %s (%s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "nie udało się zmienić nazwy %s na %s (%s)\n"
@@ -72,9 +69,7 @@ msgstr "nie udało się zmienić nazwy %s na %s (%s)\n"
 #: lib/libalpm/add.c:210
 #, c-format
 msgid "file not found in file list for package %s. skipping extraction of %s\n"
-msgstr ""
-"plik nie został znaleziony na liście plików pakietu %s, pomijam rozpakowanie "
-"%s\n"
+msgstr "plik nie został znaleziony na liście plików pakietu %s, pomijam rozpakowanie %s\n"
 
 #: lib/libalpm/add.c:219
 #, c-format
@@ -86,18 +81,14 @@ msgstr "nie można wyodrębnić %s%s: ścieżka zbyt długa"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"Różne uprawnienia dla katalogu dla %s\n"
-"system plików: %o pakiet: %o\n"
+msgstr "Różne uprawnienia dla katalogu dla %s\nsystem plików: %o pakiet: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"różne uprawnienia dla katalogu dla %s\n"
-"system plików: %u:%u pakiet: %u:%u\n"
+msgstr "różne uprawnienia dla katalogu dla %s\nsystem plików: %u:%u pakiet: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -205,7 +196,7 @@ msgstr "nieznany rodzaj walidacji dla pakietu %s: %s\n"
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
+msgid "%s: unknown key '%s' in local database\n"
 msgstr ""
 
 #: lib/libalpm/be_package.c:255
@@ -277,8 +268,7 @@ msgstr "nie można odczytać bazy danych '%s' (%s)\n"
 #: lib/libalpm/be_sync.c:502 lib/libalpm/be_sync.c:507
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is illegal\n"
-msgstr ""
-"Baza danych %s jest niespójna: nazwa pliku pakietu %s jest niedozwolona\n"
+msgstr "Baza danych %s jest niespójna: nazwa pliku pakietu %s jest niedozwolona\n"
 
 #: lib/libalpm/be_sync.c:512
 #, c-format
@@ -292,7 +282,7 @@ msgstr "nieznana baza danych pliku: %s\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
+msgid "%s: unknown key '%s' in sync database\n"
 msgstr ""
 
 #: lib/libalpm/db.c:413
@@ -404,9 +394,7 @@ msgstr "nie udało się pobrać pliku '%s' z %s : %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"nie powiodło się pobieranie pliku '%s' z %s : oczekiwany rozmiar pobierania "
-"został przekroczony\n"
+msgstr "nie powiodło się pobieranie pliku '%s' z %s : oczekiwany rozmiar pobierania został przekroczony\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -433,12 +421,12 @@ msgstr "curl zwrócił błąd %d z transferu\n"
 msgid "curl transfer error: %d\n"
 msgstr "błąd transferu curl: %d\n"
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "nie udało się pobrać niektórych plików\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr "pobieranie zakończone pomyślnie, ale brak pliku w pamięci podręcznej\n"
@@ -701,8 +689,7 @@ msgstr "błąd gpgme"
 #: lib/libalpm/error.c:156
 #, c-format
 msgid "error invoking external downloader"
-msgstr ""
-"wystąpił błąd podczas odwoływania się do zewnętrznego programu pobierającego"
+msgstr "wystąpił błąd podczas odwoływania się do zewnętrznego programu pobierającego"
 
 #: lib/libalpm/error.c:159
 #, c-format
@@ -844,8 +831,7 @@ msgstr ""
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr ""
 
 #: lib/libalpm/remove.c:111
@@ -866,20 +852,19 @@ msgstr "nie udało się usunąć pliku '%s': %s\n"
 #: lib/libalpm/remove.c:403 lib/libalpm/remove.c:412
 #, c-format
 msgid "could not backup %s due to PATH_MAX overflow\n"
-msgstr ""
-"nie udało się utworzyć kopii zapasowej %s z powodu przekroczenia PATH_MAX\n"
+msgstr "nie udało się utworzyć kopii zapasowej %s z powodu przekroczenia PATH_MAX\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "nie można usunąć %s (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "nie udało się usunąć wpisu %s-%s z bazy danych\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "nie udało się usunąć wpisu '%s' z pamięci podręcznej\n"
@@ -887,8 +872,7 @@ msgstr "nie udało się usunąć wpisu '%s' z pamięci podręcznej\n"
 #: lib/libalpm/signing.c:163
 #, c-format
 msgid "Public keyring not found; have you run '%s'?\n"
-msgstr ""
-"Publiczny zestaw kluczy nie został odnaleziony; czy uruchomiłeś '%s'?\n"
+msgstr "Publiczny zestaw kluczy nie został odnaleziony; czy uruchomiłeś '%s'?\n"
 
 #: lib/libalpm/signing.c:199 lib/libalpm/signing.c:773
 #, c-format
@@ -1125,6 +1109,4 @@ msgstr "brak pamięci podręcznej dla %s, tworzenie...\n"
 #: lib/libalpm/util.c:928
 #, c-format
 msgid "couldn't find or create package cache, using %s instead\n"
-msgstr ""
-"nie można odnaleźć lub stworzyć pamięci podręcznej pakietu, używam %s w "
-"zamian\n"
+msgstr "nie można odnaleźć lub stworzyć pamięci podręcznej pakietu, używam %s w zamian\n"

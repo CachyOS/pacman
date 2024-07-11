@@ -19,16 +19,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Arch Linux Pacman package manager\n"
-"Report-Msgid-Bugs-To: http://bugs.archlinux.org/index.php?project=3\n"
-"POT-Creation-Date: 2024-03-04 11:45+1000\n"
+"Report-Msgid-Bugs-To: https://gitlab.archlinux.org/pacman/pacman/-/issues\n"
+"POT-Creation-Date: 2024-05-10 16:53+1000\n"
 "PO-Revision-Date: 2010-11-29 23:17+0000\n"
-"Last-Translator: Luna Jernberg <droidbittin@gmail.com>, 2024\n"
-"Language-Team: Swedish (http://app.transifex.com/toofishes/archlinux-pacman/"
-"language/sv/)\n"
-"Language: sv\n"
+"Last-Translator: riiga <riiga_92@hotmail.com>, 2024\n"
+"Language-Team: Swedish (http://app.transifex.com/toofishes/archlinux-pacman/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/libalpm/add.c:90 lib/libalpm/sync.c:279
@@ -61,7 +60,7 @@ msgstr "varning given vid extrahering av %s (%s)\n"
 msgid "could not extract %s (%s)\n"
 msgstr "kunde inte extrahera %s (%s)\n"
 
-#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:536
+#: lib/libalpm/add.c:159 lib/libalpm/dload.c:750 lib/libalpm/remove.c:550
 #, c-format
 msgid "could not rename %s to %s (%s)\n"
 msgstr "kunde inte döpa om %s till %s (%s)\n"
@@ -81,18 +80,14 @@ msgstr "kunde inte extrahera %s%s: sökvägen är för lång"
 msgid ""
 "directory permissions differ on %s\n"
 "filesystem: %o  package: %o\n"
-msgstr ""
-"katalogrättigheter skiljer sig på %s\n"
-"filsystem: %o  paket: %o\n"
+msgstr "katalogrättigheter skiljer sig på %s\nfilsystem: %o  paket: %o\n"
 
 #: lib/libalpm/add.c:276
 #, c-format
 msgid ""
 "directory ownership differs on %s\n"
 "filesystem: %u:%u  package: %u:%u\n"
-msgstr ""
-"katalogens ägare skiljer sig på %s\n"
-"filsystem: %u:%u paket: %u:%u\n"
+msgstr "katalogens ägare skiljer sig på %s\nfilsystem: %u:%u paket: %u:%u\n"
 
 #: lib/libalpm/add.c:292
 #, c-format
@@ -200,8 +195,8 @@ msgstr "Okänd valideringstyp för packet %s: %s⏎\n"
 
 #: lib/libalpm/be_local.c:841
 #, c-format
-msgid "%s: unknown key '%s' in sync database\n"
-msgstr "%s: okänd nyckel '%s' i sync databas\n"
+msgid "%s: unknown key '%s' in local database\n"
+msgstr "%s: okänd nyckel '%s' i lokal databas\n"
 
 #: lib/libalpm/be_package.c:255
 #, c-format
@@ -272,9 +267,7 @@ msgstr "kunde inte läsa db '%s'(%s)\n"
 #: lib/libalpm/be_sync.c:502 lib/libalpm/be_sync.c:507
 #, c-format
 msgid "%s database is inconsistent: filename of package %s is illegal\n"
-msgstr ""
-"%s databasen är inkonsekvent: namn på paketet %s är ogiltig⏎\n"
-"\n"
+msgstr "%s databasen är inkonsekvent: namn på paketet %s är ogiltig⏎\n\n"
 
 #: lib/libalpm/be_sync.c:512
 #, c-format
@@ -288,8 +281,8 @@ msgstr "okänd databasfil: %s\n"
 
 #: lib/libalpm/be_sync.c:695
 #, c-format
-msgid "%s: unknown key '%s' in local database\n"
-msgstr "%s: okänd nyckel '%s' i lokal databas\n"
+msgid "%s: unknown key '%s' in sync database\n"
+msgstr "%s: okänd nyckel '%s' i sync databas\n"
 
 #: lib/libalpm/db.c:413
 #, c-format
@@ -380,8 +373,7 @@ msgstr "för många fel från %s, hoppar över under resten av denna transaktion
 #: lib/libalpm/dload.c:145
 #, c-format
 msgid "fatal error from %s, skipping for the remainder of this transaction\n"
-msgstr ""
-"allvarligt fel från %s, hoppar över under resten av denna transaktion\n"
+msgstr "allvarligt fel från %s, hoppar över under resten av denna transaktion\n"
 
 #: lib/libalpm/dload.c:263
 #, c-format
@@ -401,9 +393,7 @@ msgstr "misslyckades hämta filen '%s' från %s : %s\n"
 #: lib/libalpm/dload.c:580
 #, c-format
 msgid "failed retrieving file '%s' from %s : expected download size exceeded\n"
-msgstr ""
-"misslyckades hämta filen '%s' från %s : förväntad nedladdningsstorlek "
-"överskreds\n"
+msgstr "misslyckades hämta filen '%s' från %s : förväntad nedladdningsstorlek överskreds\n"
 
 #: lib/libalpm/dload.c:728
 #, c-format
@@ -430,12 +420,12 @@ msgstr "curl returnerade fel %d från överföring\n"
 msgid "curl transfer error: %d\n"
 msgstr "curl överföringsfel: %d\n"
 
-#: lib/libalpm/dload.c:1137 lib/libalpm/sync.c:845
+#: lib/libalpm/dload.c:1144 lib/libalpm/sync.c:845
 #, c-format
 msgid "failed to retrieve some files\n"
 msgstr "misslyckades att hämta några filer⏎\n"
 
-#: lib/libalpm/dload.c:1160
+#: lib/libalpm/dload.c:1167
 #, c-format
 msgid "download completed successfully but no file in the cache\n"
 msgstr "nedladdningen är klar men ingen fil i cachen\n"
@@ -822,30 +812,25 @@ msgstr "ogiltig paketmetadata (namn eller version saknas)"
 msgid ""
 "invalid metadata for package %s-%s (package name cannot start with '.' or "
 "'-')\n"
-msgstr ""
-"ogiltig metadata för paket %s-%s (paketnamn kan inte börja med '.' eller "
-"'-')\n"
+msgstr "ogiltig metadata för paket %s-%s (paketnamn kan inte börja med '.' eller '-')\n"
 
 #: lib/libalpm/package.c:878
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package name contains invalid "
 "characters)\n"
-msgstr ""
-"ogiltig metadata för paket %s-%s (paketnamn innehåller ogiltiga tecken)\n"
+msgstr "ogiltig metadata för paket %s-%s (paketnamn innehåller ogiltiga tecken)\n"
 
 #: lib/libalpm/package.c:885 lib/libalpm/package.c:889
 #, c-format
 msgid ""
 "invalid metadata for package %s-%s (package version contains invalid "
 "characters)\n"
-msgstr ""
-"ogiltig metadata för paket %s-%s (paketversion innehåller ogiltiga tecken)\n"
+msgstr "ogiltig metadata för paket %s-%s (paketversion innehåller ogiltiga tecken)\n"
 
 #: lib/libalpm/package.c:895
 #, c-format
-msgid ""
-"invalid metadata for package %s-%s (package name and version too long)\n"
+msgid "invalid metadata for package %s-%s (package name and version too long)\n"
 msgstr "ogiltig metadata för paket %s-%s (paketnamn och version för lång)\n"
 
 #: lib/libalpm/remove.c:111
@@ -868,17 +853,17 @@ msgstr "kan inte ta bort '%s': %s\n"
 msgid "could not backup %s due to PATH_MAX overflow\n"
 msgstr "kunde inte säkerhetskopiera %s på grund av PATH_MAX-överflöd\n"
 
-#: lib/libalpm/remove.c:556
+#: lib/libalpm/remove.c:570
 #, c-format
 msgid "cannot remove %s (%s)\n"
 msgstr "kunde ej ta bort %s (%s)\n"
 
-#: lib/libalpm/remove.c:729
+#: lib/libalpm/remove.c:743
 #, c-format
 msgid "could not remove database entry %s-%s\n"
 msgstr "kunde inte ta bort databasinlägget %s-%s\n"
 
-#: lib/libalpm/remove.c:734
+#: lib/libalpm/remove.c:748
 #, c-format
 msgid "could not remove entry '%s' from cache\n"
 msgstr "kunde inte ta bort '%s' från cachen\n"

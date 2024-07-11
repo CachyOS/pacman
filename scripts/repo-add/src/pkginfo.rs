@@ -3,7 +3,7 @@ use std::{fs, io};
 
 use akv::reader::ArchiveReader;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Default, PartialEq)]
 pub struct PkgInfo {
     pub pkgname: Option<String>,
     pub pkgbase: Option<String>,
@@ -117,21 +117,22 @@ impl PkgInfo {
 
     pub fn from_archive(file_path: &str) -> Self {
         let file_archive = File::open(file_path);
-        if file_archive.is_err() {
-            log::error!("could not open file {}: {:?}", file_path, file_archive.err());
+        if let Err(err_msg) = file_archive {
+            log::error!("could not open file {}: {:?}", file_path, err_msg);
             return PkgInfo::new();
         }
+
+        let mut archive_reader = ArchiveReader::open_io(file_archive.unwrap());
+        if let Err(err_msg) = archive_reader {
+            log::error!("error while reading package  {}: {:?}\n", file_path, err_msg);
+            return PkgInfo::new();
+        }
+
         let file_metadata = fs::metadata(file_path);
         let pkg_isize = format!("{}", file_metadata.unwrap().len());
 
         let mut pkginfo = PkgInfo::new();
         pkginfo.pkg_isize = Some(pkg_isize);
-
-        let mut archive_reader = ArchiveReader::open_io(file_archive.unwrap());
-        if archive_reader.is_err() {
-            log::error!("error while reading package  {}: {:?}\n", file_path, archive_reader.err());
-            return PkgInfo::new();
-        }
         while let Some(entry) = archive_reader.as_mut().unwrap().next_entry().unwrap() {
             if entry.pathname_utf8().unwrap() != ".PKGINFO" {
                 continue;
@@ -151,16 +152,16 @@ impl PkgInfo {
 
 pub fn list_archive(file_path: &str) -> Vec<String> {
     let file_archive = File::open(file_path);
-    if file_archive.is_err() {
-        log::error!("could not open file {}: {:?}", file_path, file_archive.err());
+    if let Err(err_msg) = file_archive {
+        log::error!("could not open file {}: {:?}", file_path, err_msg);
         return vec![];
     }
 
     let mut arc_files = vec![];
 
     let mut archive_reader = ArchiveReader::open_io(file_archive.unwrap());
-    if archive_reader.is_err() {
-        log::error!("error while reading package  {}: {:?}\n", file_path, archive_reader.err());
+    if let Err(err_msg) = archive_reader {
+        log::error!("error while reading package  {}: {:?}\n", file_path, err_msg);
         return vec![];
     }
     while let Some(entry) = archive_reader.as_mut().unwrap().next_entry().unwrap() {
@@ -182,6 +183,8 @@ pub fn list_archive(file_path: &str) -> Vec<String> {
 #[cfg(test)]
 mod tests {
     use crate::pkginfo::PkgInfo;
+    use std::fs;
+    use std::path::Path;
 
     #[test]
     fn basic_xz() {
@@ -214,5 +217,48 @@ mod tests {
         };
 
         assert_eq!(pkg_info, pkg_info_expected);
+        assert_eq!(PkgInfo::from_file("xz-pkginfo"), pkg_info_expected);
+        assert_eq!(
+            PkgInfo::from_string(&fs::read_to_string("xz-pkginfo").unwrap()),
+            pkg_info_expected
+        );
+        assert_eq!(PkgInfo::from_file("xz-pkginfo-wrong"), PkgInfo::new());
+        assert_eq!(PkgInfo::from_file(""), PkgInfo::new());
+        assert_eq!(PkgInfo::from_string(""), PkgInfo::new());
+
+        let mut pkg_info = PkgInfo::new();
+        assert!(!pkg_info.parse_line(""));
+        assert!(!pkg_info.parse_line("wrongfield = value"));
+        assert!(pkg_info.parse_line("backup = usr/bin/yes"));
+        assert_eq!(pkg_info.backup, vec!["usr/bin/yes".to_owned()]);
+    }
+    #[test]
+    fn incorrect_archive() {
+        // nonexistent
+        assert_eq!(crate::pkginfo::list_archive("/.testfile-rust-repo-add"), vec![] as Vec<String>);
+        assert_eq!(PkgInfo::from_archive("/.testfile-rust-repo-add"), PkgInfo::new());
+
+        // empty file
+        let filepath = {
+            use rand::Rng;
+            use std::env;
+
+            let tmp_dir = env::temp_dir();
+            let mut rng = rand::thread_rng();
+            format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.gen::<u64>())
+        };
+
+        assert!(crate::utils::touch_file(&filepath).is_ok());
+        assert!(Path::new(&filepath).exists());
+
+        assert_eq!(crate::pkginfo::list_archive(&filepath), vec![] as Vec<String>);
+        // assert_eq!(PkgInfo::from_archive(&filepath), PkgInfo::new());
+        assert_eq!(PkgInfo::from_archive(&filepath), PkgInfo {
+            pkg_isize: Some("0".to_owned()),
+            ..Default::default()
+        });
+
+        // cleanup
+        assert!(fs::remove_file(&filepath).is_ok());
     }
 }
