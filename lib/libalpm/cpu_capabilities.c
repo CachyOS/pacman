@@ -28,6 +28,7 @@
 #include "log.h"
 #include "util.h"
 
+#if !defined(__aarch64__)
 
 static uint64_t xgetbv(void) {
 #if defined(_MSC_VER)
@@ -146,6 +147,8 @@ static enum cpu_feature get_cpu_features(void) {
 #endif
 }
 
+#endif
+
 alpm_list_t SYMEXPORT *alpm_option_get_physical_architectures(alpm_handle_t *handle)
 {
     alpm_list_t *supported_architectures = NULL;
@@ -157,6 +160,7 @@ alpm_list_t SYMEXPORT *alpm_option_get_physical_architectures(alpm_handle_t *han
         supported_architectures = alpm_list_add(supported_architectures, strdup(un.machine));
     }
 
+#if !defined(__aarch64__)
     const enum cpu_feature features = get_cpu_features();
 
     /* Check for x86_64_v2 */
@@ -172,13 +176,14 @@ alpm_list_t SYMEXPORT *alpm_option_get_physical_architectures(alpm_handle_t *han
         _alpm_log(handle, ALPM_LOG_DEBUG, "cpu supports x86_64_v3\n");
         supported_architectures = alpm_list_add(supported_architectures, strdup("x86_64_v3"));
     }
-    
+
     /* Check for x86_64_v4 */
     const bool supports_v4 = (supports_v3) && (features & AVX512F) && (features & AVX512VL) && (features & AVX512BW) && (features & AVX512CD) && (features & AVX512DQ);
     if (supports_v4) {
         _alpm_log(handle, ALPM_LOG_DEBUG, "cpu supports x86_64_v4\n");
         supported_architectures = alpm_list_add(supported_architectures, strdup("x86_64_v4"));
     }
+#endif
 
     return supported_architectures;
 }
