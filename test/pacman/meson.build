@@ -127,6 +127,7 @@ pacman_tests = [
   'tests/remove-assumeinstalled.py',
   'tests/remove-directory-replaced-with-symlink.py',
   'tests/remove-optdepend-of-installed-package.py',
+  'tests/remove-print-empty-replacements.py',
   'tests/remove-recursive-cycle.py',
   'tests/remove001.py',
   'tests/remove002.py',
