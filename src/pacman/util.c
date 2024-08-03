@@ -363,12 +363,16 @@ char *strreplace(const char *str, const char *needle, const char *replace)
 	const char *p = NULL, *q = NULL;
 	char *newstr = NULL, *newp = NULL;
 	alpm_list_t *i = NULL, *list = NULL;
-	size_t needlesz = strlen(needle), replacesz = strlen(replace);
+	size_t needlesz = strlen(needle), replacesz;
 	size_t newsz;
 
 	if(!str) {
 		return NULL;
 	}
+	if(!replace) {
+		replace = "";
+	}
+	replacesz = strlen(replace);
 
 	p = str;
 	q = strstr(p, needle);
