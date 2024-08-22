@@ -388,7 +388,14 @@ pub fn gen_pkg_integrity(
 }
 
 pub fn is_file_in_archive(arc_filepath: &str, needle_pattern: &str) -> bool {
-    exec(&format!("bsdtar -tqf '{arc_filepath}' '{needle_pattern}' >/dev/null 2>&1"), true).1
+    let exit_status = Exec::cmd("bsdtar")
+        .args(&["-tqf", arc_filepath, needle_pattern])
+        .stderr(subprocess::NullFile)
+        .stdout(subprocess::NullFile)
+        .join()
+        .expect("Failed to run bsdtar binary");
+
+    exit_status.success()
 }
 
 #[cfg(test)]
