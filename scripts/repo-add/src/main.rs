@@ -160,19 +160,10 @@ fn check_gpg(argstruct: &parse_args::ArgStruct) -> bool {
         return false;
     }
     if !argstruct.verify {
-        let (_, ret_status) = utils::exec(
-            &format!(
-                "gpg --list-secret-key {} &>/dev/null",
-                argstruct.gpgkey.as_ref().unwrap_or(&String::new())
-            ),
-            true,
-        );
-        if !ret_status {
-            if argstruct.gpgkey.is_some() && !argstruct.gpgkey.as_ref().unwrap().is_empty() {
-                log::error!(
-                    "The key {} does not exist in your keyring.",
-                    argstruct.gpgkey.as_ref().unwrap()
-                );
+        let gpg_sign_key = argstruct.gpgkey.as_ref().map(String::clone).unwrap_or_default();
+        if !utils::is_gpg_key_exist(&gpg_sign_key) {
+            if gpg_sign_key.is_empty() {
+                log::error!("The key {gpg_sign_key} does not exist in your keyring.");
             } else if !argstruct.key {
                 log::error!("There is no key in your keyring.");
             }
