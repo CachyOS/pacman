@@ -114,6 +114,40 @@ pub fn exec(command: &str, interactive: bool) -> (String, bool) {
     (child_out, child_proc.success())
 }
 
+pub fn read_filenames_of_dir(dir_path: &str) -> Vec<String> {
+    fs::read_dir(dir_path)
+        .expect("Failed to read dir")
+        .flat_map(Result::ok)
+        .map(|entry| entry.path().file_name().unwrap().to_str().unwrap().to_owned())
+        .collect()
+}
+
+pub fn compress_into_db_file(
+    working_path: &str,
+    files_arg: &[String],
+    compress_cmd: &str,
+    db_filepath: &str,
+) -> anyhow::Result<()> {
+    // create file if it doesn't exist or truncate if it does
+    let db_fileobj = File::create(db_filepath)?;
+
+    // construct args for bsdtar
+    let mut bsdtar_args: Vec<String> = vec!["-cf".into(), "-".into()];
+    bsdtar_args.extend_from_slice(files_arg);
+
+    let bsdtar_cmd = Exec::cmd("bsdtar").args(&bsdtar_args).cwd(working_path);
+
+    // run our pipeline
+    let exit_status =
+        { bsdtar_cmd | Exec::shell(&compress_cmd) }.stdout(Redirection::File(db_fileobj)).join()?;
+
+    if !exit_status.success() {
+        anyhow::bail!("pipeline failed with exit status: {exit_status:?}");
+    }
+
+    Ok(())
+}
+
 pub fn generate_sha256sum(filepath: &str) -> Option<String> {
     let mut file_obj = File::open(filepath).ok()?;
 
