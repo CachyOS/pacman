@@ -114,9 +114,17 @@ pub fn exec(command: &str, interactive: bool) -> (String, bool) {
     (child_out, child_proc.success())
 }
 
-pub fn is_gpg_key_exist(sign_key: &str) -> bool {
+// NOTE: if the None value is provided as sign key, then we just check if gpg is fine and contain
+// some keys which can be used
+pub fn is_gpg_key_exist(sign_key: Option<&str>) -> bool {
+    // construct args for gpg
+    let mut gpg_args: Vec<&str> = vec!["--list-secret-key"];
+    if let Some(sign_key) = sign_key {
+        gpg_args.push(sign_key);
+    }
+
     let exit_status = Exec::cmd("gpg")
-        .args(&["--list-secret-key", sign_key])
+        .args(&gpg_args)
         .stderr(subprocess::NullFile)
         .stdout(subprocess::NullFile)
         .join()
