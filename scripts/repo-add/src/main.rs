@@ -188,30 +188,25 @@ fn create_signature(dbfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> boo
         return true;
     }
 
-    let mut db_name = String::from(dbfile);
+    let mut db_name = dbfile.to_owned();
     if let Some(strpos) = db_name.find(".tmp.") {
-        db_name = String::from(utils::string_substr(&db_name, strpos + 5, usize::MAX).unwrap());
+        db_name = utils::string_substr(&db_name, strpos + 5, usize::MAX).unwrap().to_owned();
     }
     log::info!("Signing database '{db_name}'...");
 
-    let mut signwithkey = String::new();
+    let mut signwithkey: Option<&str> = None;
     if argstruct.gpgkey.is_some() && !argstruct.gpgkey.as_ref().unwrap().is_empty() {
-        signwithkey = format!("-u '{}'", argstruct.gpgkey.as_ref().unwrap());
+        signwithkey = Some(argstruct.gpgkey.as_ref().unwrap());
     }
 
-    let (_, ret_code) = utils::exec(
-        &format!(
-            "gpg --batch --yes --detach-sign --use-agent --no-armor {signwithkey} '{dbfile}' \
-             &>/dev/null",
-        ),
-        true,
-    );
-    if ret_code {
-        log::info!("Created signature file '{db_name}.sig'");
-        return true;
+    // run gpg detach to create signature
+    if let Err(sign_err) = utils::create_file_sign(dbfile, signwithkey) {
+        log::error!("Failed to sign package database file '{db_name}': {sign_err}");
+        return false;
     }
-    log::error!("Failed to sign package database file '{db_name}'");
-    false
+
+    log::info!("Created signature file '{db_name}.sig'");
+    true
 }
 
 // verify the existing package database signature
@@ -221,7 +216,7 @@ fn verify_signature(dbfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> boo
     }
 
     log::info!("Verifying database signature...");
-    let dbfile_sig = format!("{}.sig", dbfile);
+    let dbfile_sig = format!("{dbfile}.sig");
     if !Path::new(&dbfile_sig).exists() {
         log::warn!("No existing signature found, skipping verification.");
         return true;
