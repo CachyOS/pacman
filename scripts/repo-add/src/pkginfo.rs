@@ -118,13 +118,13 @@ impl PkgInfo {
     pub fn from_archive(file_path: &str) -> Self {
         let file_archive = File::open(file_path);
         if let Err(err_msg) = file_archive {
-            log::error!("could not open file {}: {:?}", file_path, err_msg);
+            log::error!("could not open file {file_path}: {err_msg:?}");
             return PkgInfo::new();
         }
 
         let mut archive_reader = ArchiveReader::open_io(file_archive.unwrap());
         if let Err(err_msg) = archive_reader {
-            log::error!("error while reading package  {}: {:?}\n", file_path, err_msg);
+            log::error!("error while reading package  {file_path}: {err_msg:?}\n");
             return PkgInfo::new();
         }
 

@@ -143,7 +143,7 @@ fn db_remove_entry(pkgname: &str, is_db_modified: &Arc<&mut AtomicBool>) -> bool
 
         // remove entries in "files" database
         let (filesentry, _) = utils::exec(
-            &format!("echo '{}' | sed 's/\\(.*\\)\\/db\\//\\1\\/files\\//'", &pkgentry),
+            &format!("echo '{pkgentry}' | sed 's/\\(.*\\)\\/db\\//\\1\\/files\\//'"),
             false,
         );
         fs::remove_dir_all(filesentry).unwrap();
@@ -192,7 +192,7 @@ fn create_signature(dbfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> boo
     if let Some(strpos) = db_name.find(".tmp.") {
         db_name = String::from(utils::string_substr(&db_name, strpos + 5, usize::MAX).unwrap());
     }
-    log::info!("Signing database '{}'...", db_name);
+    log::info!("Signing database '{db_name}'...");
 
     let mut signwithkey = String::new();
     if argstruct.gpgkey.is_some() && !argstruct.gpgkey.as_ref().unwrap().is_empty() {
@@ -201,16 +201,16 @@ fn create_signature(dbfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> boo
 
     let (_, ret_code) = utils::exec(
         &format!(
-            "gpg --batch --yes --detach-sign --use-agent --no-armor {} '{}' &>/dev/null",
-            signwithkey, dbfile
+            "gpg --batch --yes --detach-sign --use-agent --no-armor {signwithkey} '{dbfile}' \
+             &>/dev/null",
         ),
         true,
     );
     if ret_code {
-        log::info!("Created signature file '{}.sig'", db_name);
+        log::info!("Created signature file '{db_name}.sig'");
         return true;
     }
-    log::error!("Failed to sign package database file '{}'", db_name);
+    log::error!("Failed to sign package database file '{db_name}'");
     false
 }
 
@@ -227,7 +227,7 @@ fn verify_signature(dbfile: &str, argstruct: &Arc<parse_args::ArgStruct>) -> boo
         return true;
     }
 
-    let (_, ret_code) = utils::exec(&format!("gpg --verify '{}'", dbfile_sig), true);
+    let (_, ret_code) = utils::exec(&format!("gpg --verify '{dbfile_sig}'"), true);
     if ret_code {
         log::info!("Database signature file verified.");
         return true;
@@ -245,7 +245,7 @@ fn verify_repo_extension(dbpath: &str) -> bool {
         }
     }
 
-    log::error!("'{}' does not have a valid database archive extension.", dbpath);
+    log::error!("'{dbpath}' does not have a valid database archive extension.");
     false
 }
 
@@ -260,7 +260,7 @@ fn db_write_entry(
 
     // ensure 'pkgname' and 'pkgver' variables were found
     if pkginfo.pkgname.is_none() || pkginfo.pkgver.is_none() {
-        log::error!("Invalid package file '{}'.", pkgpath);
+        log::error!("Invalid package file '{pkgpath}'.");
         return false;
     }
 
@@ -270,17 +270,15 @@ fn db_write_entry(
     let workingdb_path = format!("{}/db", *G_TMPWORKINGDIR.lock().unwrap());
     let pkg_entrypath =
         format!("{}-{}", pkginfo.pkgname.as_ref().unwrap(), pkginfo.pkgver.as_ref().unwrap());
-    if Path::new(&format!("{}/{}", &workingdb_path, &pkg_entrypath)).exists() {
-        log::warn!("An entry for '{}' already existed", &pkg_entrypath);
+    if Path::new(&format!("{workingdb_path}/{pkg_entrypath}")).exists() {
+        log::warn!("An entry for '{pkg_entrypath}' already existed");
         if argstruct.only_add_new {
             return true;
         }
     } else if let Some(pkgentry) = find_pkgentry(pkginfo.pkgname.as_ref().unwrap()) {
-        let version = utils::exec(
-            &format!("sed -n '/^%VERSION%$/ {}' '{}/desc'", "{n;p;q}", pkgentry),
-            false,
-        )
-        .0;
+        let version =
+            utils::exec(&format!("sed -n '/^%VERSION%$/ {}' '{pkgentry}/desc'", "{n;p;q}"), false)
+                .0;
         // "version" is newer than version from pkginfo(incomming package)
         if alpm::Version::new(version)
             > alpm::Version::new(pkginfo.pkgver.as_ref().unwrap().as_bytes())
@@ -329,8 +327,7 @@ fn db_write_entry(
     db_remove_entry(pkginfo.pkgname.as_ref().unwrap(), is_db_modified);
 
     // create package directory
-    fs::create_dir(format!("{}/{}", &workingdb_path, &pkg_entrypath))
-        .expect("Failed to create dir");
+    fs::create_dir(format!("{workingdb_path}/{pkg_entrypath}")).expect("Failed to create dir");
 
     // create desc entry
     log::info!("Creating 'desc' db entry...");
@@ -352,15 +349,15 @@ fn db_write_entry(
     options.overwrite = true;
     options.copy_inside = true;
     let _ = fs_extra::dir::copy(
-        format!("{}/db/{}", *G_TMPWORKINGDIR.lock().unwrap(), &pkg_entrypath),
-        format!("{}/files/{}", *G_TMPWORKINGDIR.lock().unwrap(), &pkg_entrypath),
+        format!("{}/db/{pkg_entrypath}", *G_TMPWORKINGDIR.lock().unwrap()),
+        format!("{}/files/{pkg_entrypath}", *G_TMPWORKINGDIR.lock().unwrap()),
         &options,
     )
     .unwrap();
 
     // create files file
     log::info!("Creating 'files' db entry...");
-    let files_path = format!("{}/files/{}/files", *G_TMPWORKINGDIR.lock().unwrap(), &pkg_entrypath);
+    let files_path = format!("{}/files/{pkg_entrypath}/files", *G_TMPWORKINGDIR.lock().unwrap());
 
     let sorted_files = utils::get_pkg_files(pkgpath);
     utils::write_to_file(&files_path, &format!("%FILES%\n{}\n", sorted_files.join("\n")))
@@ -388,7 +385,7 @@ fn db_write_entry_nf(
 
     // ensure 'pkgname' and 'pkgver' variables were found
     if pkginfo.pkgname.is_none() || pkginfo.pkgver.is_none() {
-        log::error!("Invalid package file '{}'.", pkgpath);
+        log::error!("Invalid package file '{pkgpath}'.");
         return false;
     }
 
@@ -506,13 +503,12 @@ fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bo
     }
     let repos = ["db", "files"];
     for repo in repos {
-        let dbfile = format!(
-            "{}/{}.{}.{}",
-            repodir.as_ref().unwrap().to_string_lossy(),
+        let db_filename = utils::make_db_filename(
             argstruct.repo_db_prefix.as_ref().unwrap(),
             repo,
-            argstruct.repo_db_suffix.as_ref().unwrap()
+            argstruct.repo_db_suffix.as_ref().unwrap(),
         );
+        let dbfile = format!("{}/{db_filename}", repodir.as_ref().unwrap().to_string_lossy());
 
         if Path::new(&dbfile).exists() {
             // there are two situations we can have here:
@@ -520,7 +516,7 @@ fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bo
             if !utils::is_file_in_archive(&dbfile, "*/desc") {
                 // check empty case
                 if utils::is_file_in_archive(&dbfile, "*") {
-                    log::error!("Repository file '{}' is not a proper pacman database.", &dbfile);
+                    log::error!("Repository file '{dbfile}' is not a proper pacman database.");
                     return false;
                 }
             }
@@ -532,23 +528,18 @@ fn prepare_repo_db(cmd_line: &str, argstruct: &Arc<parse_args::ArgStruct>) -> bo
                 Path::new(&dbfile).file_name().unwrap().to_str().unwrap()
             );
             utils::exec(
-                &format!(
-                    "bsdtar -xf '{}' -C '{}/{}'",
-                    dbfile,
-                    *G_TMPWORKINGDIR.lock().unwrap(),
-                    repo
-                ),
+                &format!("bsdtar -xf '{dbfile}' -C '{}/{repo}'", *G_TMPWORKINGDIR.lock().unwrap()),
                 false,
             );
         } else {
             // only a missing "db" database is currently an error
             if cmd_line == "repo-remove" && repo == "db" {
-                log::error!("Repository file '{}' was not found.", dbfile);
+                log::error!("Repository file '{dbfile}' was not found.");
                 return false;
             } else if cmd_line == "repo-add" {
                 // check if the file can be created (write permission, directory existence, etc)
                 if utils::touch_file(&dbfile).is_err() {
-                    log::error!("Repository file '{}' could not be created.", &dbfile);
+                    log::error!("Repository file '{dbfile}' could not be created.");
                     return false;
                 }
                 fs::remove_file(dbfile).expect("Failed to remove db file");
@@ -572,13 +563,12 @@ fn prepare_repo_db_nf(
     }
     let repos = ["db", "files"];
     for repo in repos {
-        let dbfile = format!(
-            "{}/{}.{}.{}",
-            repodir.to_string_lossy(),
+        let db_filename = utils::make_db_filename(
             argstruct.repo_db_prefix.as_ref().unwrap(),
             repo,
-            argstruct.repo_db_suffix.as_ref().unwrap()
+            argstruct.repo_db_suffix.as_ref().unwrap(),
         );
+        let dbfile = format!("{}/{db_filename}", repodir.to_string_lossy());
 
         if Path::new(&dbfile).exists() {
             // there are two situations we can have here:
@@ -586,7 +576,7 @@ fn prepare_repo_db_nf(
             if !utils::is_file_in_archive(&dbfile, "pacman.db") {
                 // check empty case
                 if utils::is_file_in_archive(&dbfile, "*") {
-                    log::error!("Repository file '{}' is not a proper pacman database.", &dbfile);
+                    log::error!("Repository file '{dbfile}' is not a proper pacman database.");
                     return Ok(false);
                 }
             }
@@ -598,12 +588,7 @@ fn prepare_repo_db_nf(
                 Path::new(&dbfile).file_name().unwrap().to_str().unwrap()
             );
             utils::exec(
-                &format!(
-                    "bsdtar -xf '{}' -C '{}/{}'",
-                    dbfile,
-                    *G_TMPWORKINGDIR.lock().unwrap(),
-                    repo
-                ),
+                &format!("bsdtar -xf '{dbfile}' -C '{}/{repo}'", *G_TMPWORKINGDIR.lock().unwrap()),
                 false,
             );
 
@@ -619,7 +604,7 @@ fn prepare_repo_db_nf(
                 ])
                 .is_err()
             {
-                log::error!("Repository file '{}' is not a proper pacman database.", &dbfile);
+                log::error!("Repository file '{dbfile}' is not a proper pacman database.");
                 return Ok(false);
             }
 
@@ -627,18 +612,18 @@ fn prepare_repo_db_nf(
             let mut stmt = conn.prepare("SELECT COUNT(*) FROM packages")?;
             let count: i64 = stmt.query_row([], |row| row.get(0))?;
             if count <= 0 {
-                log::error!("Repository file '{}' is not a proper pacman database.", &dbfile);
+                log::error!("Repository file '{dbfile}' is not a proper pacman database.");
                 return Ok(false);
             }
         } else {
             // only a missing "db" database is currently an error
             if cmd_line == "repo-remove" && repo == "db" {
-                log::error!("Repository file '{}' was not found.", dbfile);
+                log::error!("Repository file '{dbfile}' was not found.");
                 return Ok(false);
             } else if cmd_line == "repo-add" {
                 // check if the file can be created (write permission, directory existence, etc)
                 if utils::touch_file(&dbfile).is_err() {
-                    log::error!("Repository file '{}' could not be created.", &dbfile);
+                    log::error!("Repository file '{dbfile}' could not be created.");
                     return Ok(false);
                 }
                 fs::remove_file(dbfile).expect("Failed to remove db file");
@@ -677,26 +662,22 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
         let dirname = Path::new(argstruct.lockfile.as_ref().unwrap())
             .parent()
             .expect("Failed to get parent path");
-        let filename = format!(
-            "{}.{}.{}",
+        let db_filename = utils::make_db_filename(
             argstruct.repo_db_prefix.as_ref().unwrap(),
             repo,
-            argstruct.repo_db_suffix.as_ref().unwrap()
+            argstruct.repo_db_suffix.as_ref().unwrap(),
         );
-        let tempname = format!("{}/.tmp.{}", dirname.to_string_lossy(), &filename);
-        let sig_filename = format!("{}.sig", &filename);
+        let tempname = format!("{}/.tmp.{db_filename}", dirname.to_string_lossy());
+        let sig_filename = format!("{db_filename}.sig");
 
         // hardlink or move the previous version of the database and signature to .old
         // extension as a backup measure
-        if Path::new(&filename).exists() {
-            let old_filename = format!("{}.old", &filename);
-            if fs::hard_link(&filename, &old_filename).is_err() {
-                if let Err(err_msg) = fs::rename(&filename, &old_filename) {
+        if Path::new(&db_filename).exists() {
+            let old_filename = format!("{db_filename}.old");
+            if fs::hard_link(&db_filename, &old_filename).is_err() {
+                if let Err(err_msg) = fs::rename(&db_filename, &old_filename) {
                     log::error!(
-                        "Failed to rename file '{}'->'{}': {}",
-                        &filename,
-                        &old_filename,
-                        err_msg
+                        "Failed to rename file '{db_filename}'->'{old_filename}': {err_msg}",
                     );
                 }
             }
@@ -706,10 +687,8 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
                 if fs::hard_link(&sig_filename, &old_sig_filename).is_err() {
                     if let Err(err_msg) = fs::rename(&sig_filename, &old_sig_filename) {
                         log::error!(
-                            "Failed to rename file '{}'->'{}': {}",
-                            &sig_filename,
-                            &old_sig_filename,
-                            err_msg
+                            "Failed to rename file '{sig_filename}'->'{old_sig_filename}': \
+                             {err_msg}",
                         );
                     }
                 }
@@ -719,14 +698,14 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
         }
 
         // rotate the newly-created database and signature into place
-        fs::rename(&tempname, &filename).unwrap();
-        let sig_tempname = format!("{}.sig", &tempname);
+        fs::rename(&tempname, &db_filename).unwrap();
+        let sig_tempname = format!("{tempname}.sig");
         if Path::new(&sig_tempname).exists() {
             fs::rename(&sig_tempname, &sig_filename).unwrap();
         }
 
-        let dblink = format!("{}.{}", argstruct.repo_db_prefix.as_ref().unwrap(), repo);
-        let sig_dblink = format!("{}.sig", &dblink);
+        let dblink = format!("{}.{repo}", argstruct.repo_db_prefix.as_ref().unwrap());
+        let sig_dblink = format!("{dblink}.sig");
         if Path::new(&dblink).exists() {
             fs::remove_file(&dblink).unwrap();
         }
@@ -734,10 +713,10 @@ fn rotate_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
             fs::remove_file(&sig_dblink).unwrap();
         }
 
-        if std::os::unix::fs::symlink(&filename, &dblink).is_err()
-            && fs::hard_link(&filename, &dblink).is_err()
+        if std::os::unix::fs::symlink(&db_filename, &dblink).is_err()
+            && fs::hard_link(&db_filename, &dblink).is_err()
         {
-            let _ = fs::copy(&filename, &dblink).expect("Failed to copy");
+            let _ = fs::copy(&db_filename, &dblink).expect("Failed to copy");
         }
 
         if Path::new(&sig_filename).exists()
@@ -758,15 +737,13 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
         handle_signal!(is_signaled);
         // LOCKFILE is already guaranteed to be absolute so this is safe
         let dirname = Path::new(argstruct.lockfile.as_ref().unwrap()).parent();
-        let filename = format!(
-            "{}.{}.{}",
+        let filename = utils::make_db_filename(
             argstruct.repo_db_prefix.as_ref().unwrap(),
             repo,
-            argstruct.repo_db_suffix.as_ref().unwrap()
+            argstruct.repo_db_suffix.as_ref().unwrap(),
         );
         // this ensures we create it on the same filesystem, making moves atomic
-        let tempname =
-            format!("{}/.tmp.{}", dirname.as_ref().unwrap().to_string_lossy(), &filename);
+        let tempname = format!("{}/.tmp.{filename}", dirname.as_ref().unwrap().to_string_lossy());
 
         let workingdb_path = format!("{}/{}", *G_TMPWORKINGDIR.lock().unwrap(), repo);
         let files = utils::read_filenames_of_dir(&workingdb_path).join("\n");
@@ -820,16 +797,16 @@ fn add_pkg_to_db(
     argstruct: &Arc<parse_args::ArgStruct>,
 ) -> bool {
     if !Path::new(pkgfile).exists() {
-        log::error!("File '{}' not found.", pkgfile);
+        log::error!("File '{pkgfile}' not found.");
         return false;
     }
 
     if !utils::is_file_in_archive(pkgfile, ".PKGINFO") {
-        log::error!("'{}' is not a package file, skipping", pkgfile);
+        log::error!("'{pkgfile}' is not a package file, skipping");
         return false;
     }
 
-    log::info!("Adding package '{}'", pkgfile);
+    log::info!("Adding package '{pkgfile}'");
     db_write_entry(pkgfile, is_db_modified, argstruct)
 }
 
@@ -840,16 +817,16 @@ fn add_pkg_to_db_nf(
     argstruct: &Arc<parse_args::ArgStruct>,
 ) -> bool {
     if !Path::new(pkgfile).exists() {
-        log::error!("File '{}' not found.", pkgfile);
+        log::error!("File '{pkgfile}' not found.");
         return false;
     }
 
     if !utils::is_file_in_archive(pkgfile, ".PKGINFO") {
-        log::error!("'{}' is not a package file, skipping", pkgfile);
+        log::error!("'{pkgfile}' is not a package file, skipping");
         return false;
     }
 
-    log::info!("Adding package '{}'", pkgfile);
+    log::info!("Adding package '{pkgfile}'");
     db_write_entry_nf(connections, pkgfile, is_db_modified, argstruct)
 }
 
@@ -858,7 +835,7 @@ fn remove_pkg_from_db(
     is_db_modified: &Arc<&mut AtomicBool>,
     _argstruct: &Arc<parse_args::ArgStruct>,
 ) -> bool {
-    log::info!("Searching for package '{}'...", pkgname);
+    log::info!("Searching for package '{pkgname}'...");
     db_remove_entry(pkgname, is_db_modified)
 }
 
@@ -868,7 +845,7 @@ fn remove_pkg_from_db_nf(
     is_db_modified: &Arc<&mut AtomicBool>,
     _argstruct: &Arc<parse_args::ArgStruct>,
 ) -> bool {
-    log::info!("Searching for package '{}'...", pkgname);
+    log::info!("Searching for package '{pkgname}'...");
     let remove_one_pkg = |conn: &mut rusqlite::Connection, needle| {
         if let Some(package_id) = database_sqlite::make_simple_lookup_pkgentry_nf(conn, needle) {
             database_sqlite::remove_from_db_by_id_nf(conn, package_id);
@@ -879,7 +856,7 @@ fn remove_pkg_from_db_nf(
     };
 
     let mut is_found = false;
-    log::info!("Removing existing entry '{}'...", pkgname);
+    log::info!("Removing existing entry '{pkgname}'...");
     {
         let mut connection_lock = connections.lock().unwrap();
         while remove_one_pkg(connection_lock.0, pkgname) {
@@ -920,7 +897,7 @@ fn main() {
     }
 
     if cmd_line != "repo-add" && cmd_line != "repo-remove" {
-        log::error!("Invalid command name '{}' specified.", cmd_line);
+        log::error!("Invalid command name '{cmd_line}' specified.");
         std::process::exit(1);
     }
 
