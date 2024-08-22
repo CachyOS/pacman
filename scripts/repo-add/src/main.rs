@@ -162,7 +162,7 @@ fn check_gpg(argstruct: &parse_args::ArgStruct) -> bool {
     if !argstruct.verify {
         let gpg_sign_key = argstruct.gpgkey.as_ref().map(String::clone).unwrap_or_default();
         if !utils::is_gpg_key_exist(&gpg_sign_key) {
-            if gpg_sign_key.is_empty() {
+            if !gpg_sign_key.is_empty() {
                 log::error!("The key {gpg_sign_key} does not exist in your keyring.");
             } else if !argstruct.key {
                 log::error!("There is no key in your keyring.");
