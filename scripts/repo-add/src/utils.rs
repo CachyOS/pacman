@@ -114,6 +114,17 @@ pub fn exec(command: &str, interactive: bool) -> (String, bool) {
     (child_out, child_proc.success())
 }
 
+pub fn is_gpg_key_exist(sign_key: &str) -> bool {
+    let exit_status = Exec::cmd("gpg")
+        .args(&["--list-secret-key", sign_key])
+        .stderr(subprocess::NullFile)
+        .stdout(subprocess::NullFile)
+        .join()
+        .expect("Failed to run gpg binary");
+
+    exit_status.success()
+}
+
 pub fn create_file_sign(filepath: &str, sign_key: Option<&str>) -> anyhow::Result<()> {
     // construct args for gpg
     let mut gpg_args: Vec<&str> =
