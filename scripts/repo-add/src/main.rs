@@ -769,37 +769,38 @@ fn create_db(argstruct: &Arc<parse_args::ArgStruct>, is_signaled: &Arc<AtomicBoo
             format!("{}/.tmp.{}", dirname.as_ref().unwrap().to_string_lossy(), &filename);
 
         let workingdb_path = format!("{}/{}", *G_TMPWORKINGDIR.lock().unwrap(), repo);
-        let files = fs::read_dir(&workingdb_path)
-            .unwrap()
-            .map(|res| {
-                res.map(|e| String::from(e.path().file_name().unwrap().to_str().unwrap())).unwrap()
-            })
-            .collect::<Vec<String>>()
-            .join("\n");
+        let files = utils::read_filenames_of_dir(&workingdb_path).join("\n");
 
         let mut tmpfile_path: Option<String> = None;
-        let working_tar_arg = if files.is_empty() {
+        let files_arg = if files.is_empty() {
             // we have no packages remaining? zip up some emptyness
             log::warn!("No packages remain, creating empty database.");
-            "-T /dev/null".to_owned()
+            ["-T".into(), "/dev/null".into()]
         } else {
             use std::io::Write;
             let (mut tmpfile, filepath) =
                 utils::create_tempfile(None).expect("Failed to create tmpfile");
             tmpfile.write_all(files.as_bytes()).unwrap();
             tmpfile_path = Some(filepath);
-            format!("$(cat {})", &tmpfile_path.as_ref().unwrap())
+
+            // file contains input names of files for bsdtar separated by newline
+            ["-T".into(), tmpfile_path.as_ref().unwrap().clone()]
         };
 
         let compress_cmd =
             utils::get_compression_command(argstruct.repo_db_suffix.as_ref().unwrap(), None);
-        utils::exec(
-            &format!(
-                "cd '{}'; bsdtar -cf - {} | {} > '{}'",
-                &workingdb_path, working_tar_arg, compress_cmd, tempname
-            ),
-            false,
-        );
+
+        if let Err(compress_err) =
+            utils::compress_into_db_file(&workingdb_path, &files_arg, &compress_cmd, &tempname)
+        {
+            if let Some(tmpfile_path) = tmpfile_path {
+                fs::remove_file(tmpfile_path).unwrap();
+            }
+
+            log::error!("Failed to create db: {compress_err}");
+            is_fail.store(true, Ordering::Relaxed);
+            return;
+        }
 
         if let Some(tmpfile_path) = tmpfile_path {
             fs::remove_file(tmpfile_path).unwrap();
