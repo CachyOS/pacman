@@ -411,6 +411,13 @@ mod tests {
         assert_eq!(crate::utils::string_substr("ABCDEF", 2, 3), Ok("CDE"));
     }
     #[test]
+    fn test_make_db_filename() {
+        assert_eq!(crate::utils::make_db_filename("ads", "b", "c"), "ads.b.c".to_owned());
+        assert_eq!(crate::utils::make_db_filename("a", "bsd", "c"), "a.bsd.c".to_owned());
+        assert_eq!(crate::utils::make_db_filename("a", "b", "csd"), "a.b.csd".to_owned());
+        assert_eq!(crate::utils::make_db_filename("a", "b", "c"), "a.b.c".to_owned());
+    }
+    #[test]
     fn getting_current_cmdline() {
         assert_eq!(crate::utils::get_current_cmdname("../../repo-add"), "repo-add");
         assert_eq!(crate::utils::get_current_cmdname("../../../../repo-remove"), "repo-remove");
