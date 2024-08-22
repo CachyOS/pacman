@@ -114,6 +114,11 @@ pub fn exec(command: &str, interactive: bool) -> (String, bool) {
     (child_out, child_proc.success())
 }
 
+#[inline]
+pub fn make_db_filename(db_prefix: &str, db_type: &str, db_suffix: &str) -> String {
+    format!("{db_prefix}.{db_type}.{db_suffix}")
+}
+
 pub fn read_filenames_of_dir(dir_path: &str) -> Vec<String> {
     fs::read_dir(dir_path)
         .expect("Failed to read dir")
@@ -139,7 +144,7 @@ pub fn compress_into_db_file(
 
     // run our pipeline
     let exit_status =
-        { bsdtar_cmd | Exec::shell(&compress_cmd) }.stdout(Redirection::File(db_fileobj)).join()?;
+        { bsdtar_cmd | Exec::shell(compress_cmd) }.stdout(Redirection::File(db_fileobj)).join()?;
 
     if !exit_status.success() {
         anyhow::bail!("pipeline failed with exit status: {exit_status:?}");
@@ -179,7 +184,7 @@ fn format_entry(field_name: &str, value: &Option<String>) -> String {
     if value.is_none() {
         return String::new();
     }
-    format!("%{}%\n{}\n\n", field_name, value.as_ref().unwrap())
+    format!("%{field_name}%\n{}\n\n", value.as_ref().unwrap())
 }
 
 fn format_entry_mul(field_name: &str, values: &[String]) -> String {
@@ -187,9 +192,9 @@ fn format_entry_mul(field_name: &str, values: &[String]) -> String {
         return String::new();
     }
 
-    let mut result = String::from(&format!("%{}%\n", field_name));
+    let mut result = String::from(&format!("%{field_name}%\n"));
     for value in values.iter() {
-        result.push_str(&format!("{}\n", value));
+        result.push_str(&format!("{value}\n"));
     }
 
     result += "\n";
@@ -297,7 +302,7 @@ pub fn create_db_desc_entry(
     desc_content.push_str(&format_entry_mul("MAKEDEPENDS", &pkginfo.makedepends));
     desc_content.push_str(&format_entry_mul("CHECKDEPENDS", &pkginfo.checkdepends));
 
-    let mut desc_entry_file = File::create(format!("{}/{}/desc", &workingdb_path, &pkg_entrypath))?;
+    let mut desc_entry_file = File::create(format!("{workingdb_path}/{pkg_entrypath}/desc"))?;
     desc_entry_file.write_all(desc_content.as_bytes())?;
 
     Ok(())
@@ -315,14 +320,14 @@ pub fn gen_pkg_integrity(
 
     let sig_filename = format!("{pkgpath}.sig");
     if include_sigs && Path::new(&sig_filename).exists() {
-        if exec(&format!("grep -q 'BEGIN PGP SIGNATURE' '{}'", &sig_filename), true).1 {
-            log::error!("Cannot use armored signatures for packages: {}", &sig_filename);
+        if exec(&format!("grep -q 'BEGIN PGP SIGNATURE' '{sig_filename}'"), true).1 {
+            log::error!("Cannot use armored signatures for packages: {sig_filename}");
             return false;
         }
 
         let pgpsigsize = fs::metadata(&sig_filename).unwrap().len();
         if pgpsigsize > 16384 {
-            log::error!("Invalid package signature file '{}'.", &sig_filename);
+            log::error!("Invalid package signature file '{sig_filename}'.");
             return false;
         }
         log::info!("Adding package signature...");

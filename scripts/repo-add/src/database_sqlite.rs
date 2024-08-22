@@ -94,16 +94,14 @@ pub fn create_db_entry_nf(
     // 3. Construct query
     let insert_query = if package_id.is_some() {
         format!(
-            "INSERT OR REPLACE INTO packages (id, {}) VALUES ({}, {})",
+            "INSERT OR REPLACE INTO packages (id, {}) VALUES ({}, {param_args_q})",
             insert_fields.join(","),
             package_id.unwrap(),
-            param_args_q
         )
     } else {
         format!(
-            "INSERT OR REPLACE INTO packages ({}) VALUES ({})",
+            "INSERT OR REPLACE INTO packages ({}) VALUES ({param_args_q})",
             insert_fields.join(","),
-            param_args_q
         )
     };
 
@@ -217,8 +215,8 @@ pub fn make_db_connections(
     tmp_work_dir: &str,
 ) -> rusqlite::Result<(Option<rusqlite::Connection>, Option<rusqlite::Connection>)> {
     Ok((
-        Some(rusqlite::Connection::open(format!("{}/db/pacman.db", tmp_work_dir))?),
-        Some(rusqlite::Connection::open(format!("{}/files/pacman.db", tmp_work_dir))?),
+        Some(rusqlite::Connection::open(format!("{tmp_work_dir}/db/pacman.db"))?),
+        Some(rusqlite::Connection::open(format!("{tmp_work_dir}/files/pacman.db"))?),
     ))
 }
 
