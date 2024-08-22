@@ -114,6 +114,32 @@ pub fn exec(command: &str, interactive: bool) -> (String, bool) {
     (child_out, child_proc.success())
 }
 
+pub fn create_file_sign(filepath: &str, sign_key: Option<&str>) -> anyhow::Result<()> {
+    // construct args for gpg
+    let mut gpg_args: Vec<&str> =
+        vec!["--batch", "--yes", "--detach-sign", "--use-agent", "--no-armor"];
+
+    if let Some(sign_key) = sign_key {
+        gpg_args.extend_from_slice(&["-u", sign_key]);
+    }
+    gpg_args.push(filepath);
+
+    let gpg_proc = Exec::cmd("gpg")
+        .args(&gpg_args)
+        .stderr(Redirection::Merge)
+        .stdout(Redirection::Pipe)
+        .capture()?;
+    if !gpg_proc.success() {
+        anyhow::bail!(
+            "failed to sign file with exit status {:?}: {}",
+            gpg_proc.exit_status,
+            gpg_proc.stdout_str()
+        );
+    }
+
+    Ok(())
+}
+
 #[inline]
 pub fn make_db_filename(db_prefix: &str, db_type: &str, db_suffix: &str) -> String {
     format!("{db_prefix}.{db_type}.{db_suffix}")
