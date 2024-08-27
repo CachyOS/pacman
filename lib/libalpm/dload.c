@@ -1115,6 +1115,8 @@ static int finalize_download_locations(alpm_list_t *payloads, const char *localp
 			if(ret == -1) {
 				/* ignore error if the file already existed - only signature file was downloaded */
 				if(payload->mtime_existing_file == 0) {
+					_alpm_log(payload->handle, ALPM_LOG_ERROR, _("could not move %s into %s (%s)\n"),
+							payload->destfile_name, localpath, strerror(errno));
 					returnvalue = -1;
 				}
 			}
@@ -1266,7 +1268,7 @@ download_signature:
 	}
 
 	if (finalize_download_locations(payloads, localpath) != 0 && ret == 0) {
-		return -1;
+		RET_ERR(handle, ALPM_ERR_RETRIEVE, -1);
 	}
 	return ret;
 }
