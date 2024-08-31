@@ -351,8 +351,11 @@ fn db_write_entry(
 
     if argstruct.rm_existing && oldfile.is_some() {
         log::info!("Removing old package file '{}'", oldfilename.as_ref().unwrap());
-        fs::remove_file(oldfile.as_ref().unwrap()).unwrap();
-        fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap())).unwrap();
+        if let Err(remove_err) = fs::remove_file(oldfile.as_ref().unwrap()) {
+            log::error!("Cannot remove file {}: {remove_err}", oldfile.as_ref().unwrap());
+        }
+        // ignore errors in case we cannot remove the signature file
+        let _ = fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap()));
     }
 
     is_db_modified.store(true, Ordering::Relaxed);
@@ -460,8 +463,11 @@ fn db_write_entry_nf(
 
     if argstruct.rm_existing && oldfile.is_some() {
         log::info!("Removing old package file '{}'", oldfilename.as_ref().unwrap());
-        fs::remove_file(oldfile.as_ref().unwrap()).unwrap();
-        fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap())).unwrap();
+        if let Err(remove_err) = fs::remove_file(oldfile.as_ref().unwrap()) {
+            log::error!("Cannot remove file {}: {remove_err}", oldfile.as_ref().unwrap());
+        }
+        // ignore errors in case we cannot remove the signature file
+        let _ = fs::remove_file(format!("{}.sig", oldfile.as_ref().unwrap()));
     }
 
     is_db_modified.store(true, Ordering::Relaxed);
