@@ -76,13 +76,16 @@ static mode_t _getumask(void)
 static int finalize_download_file(const char *filename)
 {
 	struct stat st;
+	uid_t myuid = getuid();
 	ASSERT(filename != NULL, return -1);
 	ASSERT(stat(filename, &st) == 0, return -1);
 	if(st.st_size == 0) {
 		unlink(filename);
                 return 1;
 	}
-	ASSERT(chown(filename, 0, 0) != -1, return -1);
+	if(myuid == 0) {
+		ASSERT(chown(filename, 0, 0) != -1, return -1);
+	}
 	ASSERT(chmod(filename, ~(_getumask()) & 0666) != -1, return -1);
 	return 0;
 }
