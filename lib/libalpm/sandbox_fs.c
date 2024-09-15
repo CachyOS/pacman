@@ -150,6 +150,9 @@ bool _alpm_sandbox_fs_restrict_writes_to(alpm_handle_t *handle, const char *path
 	path_beneath.parent_fd = open(path, O_PATH | O_CLOEXEC | O_DIRECTORY);
 	path_beneath.allowed_access = _LANDLOCK_ACCESS_FS_READ | _LANDLOCK_ACCESS_FS_WRITE | _LANDLOCK_ACCESS_FS_TRUNCATE;
 
+	/* make sure allowed_access is a subset of handled_access_fs, which may change for older landlock ABI */
+	path_beneath.allowed_access &= ruleset_attr.handled_access_fs;
+
 	if(landlock_add_rule(ruleset_fd, LANDLOCK_RULE_PATH_BENEATH, &path_beneath, 0) == 0) {
 		if(landlock_restrict_self(ruleset_fd, 0)) {
 			_alpm_log(handle, ALPM_LOG_ERROR, _("restricting filesystem access failed because the landlock ruleset could not be applied!\n"));
