@@ -222,7 +222,9 @@ bool _alpm_sandbox_process_cb_download(alpm_handle_t *handle, int callback_pipe)
 	ASSERT(read_from_pipe(callback_pipe, filename, filename_size) != -1, FREE(filename); return false);
 	filename[filename_size] = '\0';
 
-	handle->dlcb(handle->dlcb_ctx, filename, type, &cb_data);
+	if(handle->dlcb) {
+		handle->dlcb(handle->dlcb_ctx, filename, type, &cb_data);
+	}
 	FREE(filename);
 	return true;
 }
