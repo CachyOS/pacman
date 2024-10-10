@@ -893,6 +893,8 @@ static int sync_db_read_nf(alpm_db_t *db, struct archive *archive,
 				}
 			} else if(strcmp(col_name, "base") == 0) {
 				READ_SQL_TEXT_AND_STORE(pkg->base);
+			} else if(strcmp(col_name, "desc") == 0) {
+				READ_SQL_TEXT_AND_STORE(pkg->desc);
 			} else if(strcmp(col_name, "groups") == 0) {
 				READ_SQL_AND_STORE_ALL(pkg->groups);
 			} else if(strcmp(col_name, "url") == 0) {
