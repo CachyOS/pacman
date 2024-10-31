@@ -919,12 +919,10 @@ static int curl_download_internal_sandboxed(alpm_handle_t *handle,
 {
 	int pid, err = 0, ret = -1, callbacks_fd[2];
 	sigset_t oldblock;
-	struct sigaction sa_ign, oldint, oldquit;
+	struct sigaction sa_ign = { .sa_handler = SIG_IGN }, oldint, oldquit;
 	_alpm_sandbox_callback_context callbacks_ctx;
 
 	sigemptyset(&sa_ign.sa_mask);
-	sa_ign.sa_handler = SIG_IGN;
-	sa_ign.sa_flags=0;
 
 	if(pipe(callbacks_fd) != 0) {
 		return -1;

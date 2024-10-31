@@ -40,10 +40,8 @@ static ssize_t xwrite(int fd, const void *buf, size_t count)
 
 static void _reset_handler(int signum)
 {
-	struct sigaction new_action;
+	struct sigaction new_action = { .sa_handler = SIG_DFL };
 	sigemptyset(&new_action.sa_mask);
-	new_action.sa_handler = SIG_DFL;
-	new_action.sa_flags = 0;
 	sigaction(signum, &new_action, NULL);
 }
 
@@ -76,9 +74,11 @@ static void soft_interrupt_handler(int signum)
 
 void install_soft_interrupt_handler(void)
 {
-	struct sigaction new_action;
-	new_action.sa_handler = soft_interrupt_handler;
-	new_action.sa_flags = SA_RESTART;
+	struct sigaction new_action = {
+		.sa_handler = soft_interrupt_handler,
+		.sa_flags = SA_RESTART,
+	};
+
 	sigemptyset(&new_action.sa_mask);
 	sigaddset(&new_action.sa_mask, SIGINT);
 	sigaddset(&new_action.sa_mask, SIGHUP);
@@ -118,10 +118,12 @@ static void segv_handler(int signum)
 
 void install_segv_handler(void)
 {
-	struct sigaction new_action;
-	new_action.sa_handler = segv_handler;
+	struct sigaction new_action = {
+		.sa_handler = segv_handler,
+		.sa_flags = SA_RESTART,
+	};
+
 	sigfillset(&new_action.sa_mask);
-	new_action.sa_flags = SA_RESTART;
 	sigaction(SIGSEGV, &new_action, NULL);
 }
 
@@ -133,9 +135,11 @@ static void winch_handler(int signum)
 
 void install_winch_handler(void)
 {
-	struct sigaction new_action;
-	new_action.sa_handler = winch_handler;
+	struct sigaction new_action = {
+		.sa_handler = winch_handler,
+		.sa_flags = SA_RESTART,
+	};
+
 	sigemptyset(&new_action.sa_mask);
-	new_action.sa_flags = SA_RESTART;
 	sigaction(SIGWINCH, &new_action, NULL);
 }
