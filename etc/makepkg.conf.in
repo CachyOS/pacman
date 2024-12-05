@@ -85,12 +85,13 @@ BUILDENV=(!distcc color !ccache check !sign)
 #-- staticlibs: Leave static library (.a) files in packages
 #-- emptydirs:  Leave empty directories in packages
 #-- zipman:     Compress manual (man and info) pages in MAN_DIRS with gzip
+#-- zipkmod:    Compress kernel modules with zstd
 #-- purge:      Remove files specified by PURGE_TARGETS
 #-- debug:      Add debugging flags as specified in DEBUG_* variables
 #-- lto:        Add compile flags for building with link time optimization
 #-- autodeps:   Automatically add depends/provides
 #
-OPTIONS=(strip docs libtool staticlibs emptydirs zipman purge !debug !lto !autodeps)
+OPTIONS=(strip docs libtool staticlibs emptydirs zipman !zipkmod purge !debug !lto !autodeps)
 
 #-- File integrity checks to use. Valid: ck, md5, sha1, sha224, sha256, sha384, sha512, b2
 INTEGRITY_CHECK=(ck)

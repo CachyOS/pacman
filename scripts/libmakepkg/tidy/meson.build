@@ -7,6 +7,7 @@ sources = [
   'purge.sh.in',
   'staticlibs.sh.in',
   'strip.sh.in',
+  'zipkmod.sh.in',
   'zipman.sh.in',
 ]
 

@@ -175,6 +175,9 @@ Options
 	*emptydirs*;;
 		Leave empty directories in packages.
 
+	*zipkmod*;;
+		Compress manual kernel modules with zstd.
+
 	*zipman*;;
 		Compress manual (man and info) pages with gzip. The directories
 		affected are specified by the `MAN_DIRS` variable.

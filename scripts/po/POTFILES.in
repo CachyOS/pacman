@@ -55,6 +55,7 @@ scripts/libmakepkg/tidy/libtool.sh.in
 scripts/libmakepkg/tidy/purge.sh.in
 scripts/libmakepkg/tidy/staticlibs.sh.in
 scripts/libmakepkg/tidy/strip.sh.in
+scripts/libmakepkg/tidy/zipkmod.sh.in
 scripts/libmakepkg/tidy/zipman.sh.in
 scripts/libmakepkg/util.sh.in
 scripts/libmakepkg/util/compress.sh.in
