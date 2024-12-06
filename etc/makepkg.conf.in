@@ -111,6 +111,8 @@ PURGE_TARGETS=(usr/{,share}/info/dir .packlist *.pod)
 DBGSRCDIR="/usr/src/debug"
 #-- Prefix and directories for library autodeps
 LIB_DIRS=('lib:usr/lib' 'lib32:usr/lib32')
+#-- Zstd compression level for kernel modules (if zipkmod is specified)
+KMOD_COMPRESSION_LEVEL="19"
 
 #########################################################################
 # PACKAGE OUTPUT

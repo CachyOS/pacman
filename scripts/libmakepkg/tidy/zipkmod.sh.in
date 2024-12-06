@@ -33,6 +33,6 @@ tidy_modify+=('tidy_zipkmod')
 tidy_zipkmod() {
     if check_option "zipkmod" "y"; then
         msg2 "$(gettext "Compressing kernel modules...")"
-        find . -name '*.ko' -exec zstd --rm -f -q -19 {} +
+        ZSTD_CLEVEL="${KMOD_COMPRESSION_LEVEL:-19}" find .  -type f -name "*.ko" -exec zstd --rm -f -q {} +
     fi
 }
