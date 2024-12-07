@@ -371,46 +371,6 @@ static int key_search_keyserver(alpm_handle_t *handle, const char *fpr,
 	pgpkey->expires = key->subkeys->expires;
 	pgpkey->length = key->subkeys->length;
 	pgpkey->revoked = key->subkeys->revoked;
-	/* Initialize with '?', this is overwritten unless public key
-	 * algorithm is unknown. */
-	pgpkey->pubkey_algo = '?';
-
-	switch(key->subkeys->pubkey_algo) {
-		case GPGME_PK_RSA:
-		case GPGME_PK_RSA_E:
-		case GPGME_PK_RSA_S:
-			pgpkey->pubkey_algo = 'R';
-			break;
-
-		case GPGME_PK_DSA:
-			pgpkey->pubkey_algo = 'D';
-			break;
-
-		case GPGME_PK_ELG_E:
-		case GPGME_PK_ELG:
-		case GPGME_PK_ECDSA:
-		case GPGME_PK_ECDH:
-/* value added in gpgme 1.5.0 */
-#if GPGME_VERSION_NUMBER >= 0x010500
-		case GPGME_PK_ECC:
-#endif
-/* value added in gpgme 1.7.0 */
-#if GPGME_VERSION_NUMBER >= 0x010700
-		case GPGME_PK_EDDSA:
-#endif
-			pgpkey->pubkey_algo = 'E';
-			break;
-	}
-
-	ret = 1;
-
-	/* We do not want to add a default switch case above to receive
-	 * compiler error on new public key algorithm in gpgme. So check
-	 * here if we have a valid pubkey_algo. */
-	if (pgpkey->pubkey_algo == '?') {
-		_alpm_log(handle, ALPM_LOG_DEBUG,
-			"unknown public key algorithm: %d\n", key->subkeys->pubkey_algo);
-	}
 
 gpg_error:
 	if(ret != 1) {
