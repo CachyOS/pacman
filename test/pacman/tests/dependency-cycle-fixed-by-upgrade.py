@@ -23,7 +23,7 @@ sp3.depends = ["pkg1"]
 for p in sp1, sp2, sp3:
 	self.addpkg2db("sync", p);
 
-self.args = "-S %s %s %s" % (sp1.name, sp2.name, sp3.name)
+self.args = "-S %s %s %s --debug" % (sp1.name, sp2.name, sp3.name)
 
 self.addrule("PACMAN_RETCODE=0")
 self.addrule("PKG_VERSION=pkg1|1-2")
