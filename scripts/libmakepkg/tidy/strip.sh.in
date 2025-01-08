@@ -81,6 +81,11 @@ collect_debug_symbols() {
 			return
 		fi
 
+		# add GDB index if gdb-add-index is present
+		if type -p gdb-add-index >/dev/null; then
+			gdb-add-index "$binary"
+		fi
+
 		# copy source files to debug directory
 		package_source_files "$binary"
 
