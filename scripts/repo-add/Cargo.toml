@@ -9,7 +9,7 @@ edition = "2021"
 log = { version = "0.4", default-features = false }
 subprocess = { version = "0.2", default-features = false }
 lazy_static = { version = "1", default-features = false }
-akv = { git = "https://github.com/vnepogodin/akv.git", rev = "1441b075d1a271e96a5f5b4f70940d4ba38824a7", default-features = false }
+akv = { git = "https://github.com/vnepogodin/akv.git", rev = "0d1b8c6c4b8db6acf4051d4b1a938e26dc1c4ad0", default-features = false }
 fern = { version = "0.6", features = ["colored"], default-features = false }
 rand = { version = "0.8", features = ["std", "std_rng"], default-features = false }
 path-absolutize = { version = "3", default-features = false }
