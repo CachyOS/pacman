@@ -967,8 +967,7 @@ char *_alpm_temporary_download_dir_setup(const char *dir, const char *user)
 	char *newdir = NULL;
 	MALLOC(newdir, newdirlen, return NULL);
 	snprintf(newdir, newdirlen - 1, "%s%s", dir, template);
-	newdir = mkdtemp(newdir);
-	if(newdir == NULL) {
+	if(mkdtemp(newdir) == NULL) {
 		free(newdir);
 		return NULL;
 	}
