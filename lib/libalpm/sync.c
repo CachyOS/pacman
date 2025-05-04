@@ -823,6 +823,8 @@ static int download_files(alpm_handle_t *handle)
 		}
 
 		event.type = ALPM_EVENT_PKG_RETRIEVE_START;
+		event.pkg_retrieve.total_size = 0;
+		event.pkg_retrieve.num = 0;
 
 		/* sum up the number of packages to download and its total size */
 		for(i = files; i; i = i->next) {
