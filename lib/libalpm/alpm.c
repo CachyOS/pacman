@@ -85,7 +85,7 @@ alpm_handle_t SYMEXPORT *alpm_initialize(const char *root, const char *dbpath,
 	/* set default sandboxuser */
 	ASSERT((pw = getpwuid(0)) != NULL, myerr = errno; goto cleanup);
 	STRDUP(myhandle->sandboxuser, pw->pw_name, goto nomem);
-
+	
 #ifdef ENABLE_NLS
 	bindtextdomain("libalpm", LOCALEDIR);
 #endif
