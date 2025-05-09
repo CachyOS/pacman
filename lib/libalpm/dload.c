@@ -698,9 +698,9 @@ cleanup:
 	 * only applies to FTP transfers. */
 	curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
 	curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, (char *)NULL);
-
 	if(payload->localf != NULL) {
 		fclose(payload->localf);
+		payload->localf = NULL;
 		utimes_long(payload->tempfile_name, remote_time);
 	}
 
@@ -880,7 +880,6 @@ static int curl_download_internal(alpm_handle_t *handle,
 			p = NULL;
 			err = -1;
 		}
-
 		while(true) {
 			int msgs_left = 0;
 			CURLMsg *msg = curl_multi_info_read(curlm, &msgs_left);
@@ -904,7 +903,6 @@ static int curl_download_internal(alpm_handle_t *handle,
 			}
 		}
 	}
-
 	int ret = err ? -1 : updated ? 0 : 1;
 	_alpm_log(handle, ALPM_LOG_DEBUG, "curl_download_internal return code is %d\n", ret);
 	alpm_list_free(payloads);
@@ -1365,7 +1363,6 @@ int SYMEXPORT alpm_fetch_pkgurl(alpm_handle_t *handle, const alpm_list_t *urls,
 			_alpm_log(handle, ALPM_LOG_WARNING, _("failed to retrieve some files\n"));
 			event.type = ALPM_EVENT_PKG_RETRIEVE_FAILED;
 			EVENT(handle, &event);
-
 			GOTO_ERR(handle, ALPM_ERR_RETRIEVE, err);
 		} else {
 			event.type = ALPM_EVENT_PKG_RETRIEVE_DONE;
@@ -1411,6 +1408,11 @@ err:
 void _alpm_dload_payload_reset(struct dload_payload *payload)
 {
 	ASSERT(payload, return);
+
+	if(payload->localf != NULL) {
+		fclose(payload->localf);
+		payload->localf = NULL;
+	}
 
 	FREE(payload->remote_name);
 	FREE(payload->tempfile_name);
