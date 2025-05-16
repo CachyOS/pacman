@@ -1104,30 +1104,33 @@ static int finalize_download_locations(alpm_list_t *payloads, const char *localp
 	int returnvalue = 0;
 	for(p = payloads; p; p = p->next) {
 		struct dload_payload *payload = p->data;
-		if(payload->tempfile_name) {
-			move_file(payload->tempfile_name, localpath);
-		}
+		const char *filename;
+
 		if(payload->destfile_name) {
-			int ret = move_file(payload->destfile_name, localpath);
+			filename = payload->destfile_name;
+		} else {
+			filename = payload->tempfile_name;
+		}
 
-			if(ret == -1) {
-				/* ignore error if the file already existed - only signature file was downloaded */
-				if(payload->mtime_existing_file == 0) {
-					_alpm_log(payload->handle, ALPM_LOG_ERROR, _("could not move %s into %s (%s)\n"),
-							payload->destfile_name, localpath, strerror(errno));
-					returnvalue = -1;
-				}
-			}
+		int ret = move_file(filename, localpath);
 
-			if (payload->download_signature) {
-				const char sig_suffix[] = ".sig";
-				char *sig_filename = NULL;
-				size_t sig_filename_len = strlen(payload->destfile_name) + sizeof(sig_suffix);
-				MALLOC(sig_filename, sig_filename_len, continue);
-				snprintf(sig_filename, sig_filename_len, "%s%s", payload->destfile_name, sig_suffix);
-				move_file(sig_filename, localpath);
-				FREE(sig_filename);
+		if(ret == -1) {
+			/* ignore error if the file already existed - only signature file was downloaded */
+			if(payload->mtime_existing_file == 0) {
+				_alpm_log(payload->handle, ALPM_LOG_ERROR, _("could not move %s into %s (%s)\n"),
+						filename, localpath, strerror(errno));
+				returnvalue = -1;
 			}
+		}
+
+		if (payload->download_signature) {
+			const char sig_suffix[] = ".sig";
+			char *sig_filename = NULL;
+			size_t sig_filename_len = strlen(filename) + sizeof(sig_suffix);
+			MALLOC(sig_filename, sig_filename_len, continue);
+			snprintf(sig_filename, sig_filename_len, "%s%s", filename, sig_suffix);
+			move_file(sig_filename, localpath);
+			FREE(sig_filename);
 		}
 	}
 	return returnvalue;
