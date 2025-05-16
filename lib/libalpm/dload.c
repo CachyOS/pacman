@@ -1377,7 +1377,8 @@ int SYMEXPORT alpm_fetch_pkgurl(alpm_handle_t *handle, const alpm_list_t *urls,
 				const char *filename = mbasename(payload->destfile_name);
 				filepath = _alpm_filecache_find(handle, filename);
 			} else {
-				STRDUP(filepath, payload->tempfile_name, GOTO_ERR(handle, ALPM_ERR_MEMORY, err));
+				const char *filename = mbasename(payload->tempfile_name);
+				filepath = _alpm_filecache_find(handle, filename);
 			}
 			if(filepath) {
 				alpm_list_append(fetched, filepath);
