@@ -1102,15 +1102,22 @@ static int finalize_download_locations(alpm_list_t *payloads, const char *localp
 	ASSERT(payloads != NULL, return -1);
 	ASSERT(localpath != NULL, return -1);
 	alpm_list_t *p;
+	struct stat st;
 	int returnvalue = 0;
 	for(p = payloads; p; p = p->next) {
 		struct dload_payload *payload = p->data;
-		const char *filename;
+		const char *filename = NULL;
 
-		if(payload->destfile_name) {
+		if(payload->destfile_name && stat(payload->destfile_name, &st) == 0) {
 			filename = payload->destfile_name;
-		} else {
+		} else if(stat(payload->tempfile_name, &st) == 0) {
 			filename = payload->tempfile_name;
+		}
+
+		/* if neither file exists then the download failed and logged an error for us */
+		if(!filename) {
+			returnvalue = -1;
+			continue;
 		}
 
 		int ret = move_file(filename, localpath);
