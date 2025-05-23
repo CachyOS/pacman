@@ -916,7 +916,8 @@ static int curl_download_internal(alpm_handle_t *handle,
  */
 static int curl_download_internal_sandboxed(alpm_handle_t *handle,
 		alpm_list_t *payloads /* struct dload_payload */,
-		const char *localpath)
+		const char *localpath,
+		int *childsig)
 {
 	int pid, err = 0, ret = -1, callbacks_fd[2];
 	sigset_t oldblock;
@@ -1021,6 +1022,9 @@ static int curl_download_internal_sandboxed(alpm_handle_t *handle,
 		int wret;
 		while((wret = waitpid(pid, &ret, 0)) == -1 && errno == EINTR);
 		if(wret > 0) {
+			if(WIFSIGNALED(ret)) {
+				*childsig = WTERMSIG(ret);
+			}
 			if(!WIFEXITED(ret)) {
 				/* the child did not terminate normally */
 				handle->pm_errno = ALPM_ERR_RETRIEVE;
@@ -1196,12 +1200,14 @@ int _alpm_download(alpm_handle_t *handle,
 		const char *temporary_localpath)
 {
 	int ret;
+	int finalize_ret;
+	int childsig = 0;
 	prepare_resumable_downloads(payloads, localpath, handle->sandboxuser);
 
 	if(handle->fetchcb == NULL) {
 #ifdef HAVE_LIBCURL
 		if(handle->sandboxuser) {
-			ret = curl_download_internal_sandboxed(handle, payloads, temporary_localpath);
+			ret = curl_download_internal_sandboxed(handle, payloads, temporary_localpath, &childsig);
 		} else {
 			ret = curl_download_internal(handle, payloads);
 		}
@@ -1276,9 +1282,16 @@ download_signature:
 		ret = updated ? 0 : 1;
 	}
 
-	if (finalize_download_locations(payloads, localpath) != 0 && ret == 0) {
+	finalize_ret = finalize_download_locations(payloads, localpath);
+
+	/* propagate after finalizing so .part files get copied over */
+	if(childsig != 0) {
+		kill(getpid(), childsig);
+	}
+	if(finalize_ret != 0 && ret == 0) {
 		RET_ERR(handle, ALPM_ERR_RETRIEVE, -1);
 	}
+
 	return ret;
 }
 
