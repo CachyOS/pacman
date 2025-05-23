@@ -273,7 +273,6 @@ cleanup:
 		alpm_list_free_inner(payloads, (alpm_list_fn_free)_alpm_dload_payload_reset);
 		FREELIST(payloads);
 	}
-	_alpm_remove_temporary_download_dir(temporary_syncpath);
 	FREE(temporary_syncpath);
 	FREE(syncpath);
 	umask(oldmask);

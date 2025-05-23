@@ -888,7 +888,6 @@ finish:
 		pkg->infolevel &= ~INFRQ_DSIZE;
 		pkg->download_size = 0;
 	}
-	_alpm_remove_temporary_download_dir(temporary_cachedir);
 	FREE(temporary_cachedir);
 
 	return ret;
