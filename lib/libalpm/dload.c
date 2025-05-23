@@ -1023,6 +1023,7 @@ static int curl_download_internal_sandboxed(alpm_handle_t *handle,
 		if(wret > 0) {
 			if(!WIFEXITED(ret)) {
 				/* the child did not terminate normally */
+				handle->pm_errno = ALPM_ERR_RETRIEVE;
 				ret = -1;
 			}
 			else {
