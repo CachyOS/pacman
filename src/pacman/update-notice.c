@@ -219,8 +219,8 @@ int do_update_notice(void) {
     char* msg_id = NULL;
     char* msg_body = NULL;
     if (retrieve_data_from_json(data, &msg_id, &msg_body) != 0) {
-        pm_printf(ALPM_LOG_ERROR, _("invalid update notice server response\n"));
-        ret = -1;
+        pm_printf(ALPM_LOG_WARNING, _("invalid update notice server response\n"));
+        ret = 0;
         goto cleanup;
     }
 
