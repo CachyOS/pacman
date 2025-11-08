@@ -63,7 +63,8 @@ defined the hook will run if the transaction matches *any* of the triggers.
 	Paths refer to the files in the package archive; the installation root
 	should *not* be included in the path.  Shell-style glob patterns are
 	allowed. It is possible to invert matches by prepending a target with an
-	exclamation mark. May be specified multiple times. Required.
+	exclamation mark. May be specified multiple times, with subsequent
+	matches overriding previous ones. Required.
 
 ACTIONS
 -------
