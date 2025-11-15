@@ -968,6 +968,26 @@ int SYMEXPORT alpm_option_set_parallel_downloads(alpm_handle_t *handle,
 	return 0;
 }
 
+int alpm_option_get_disable_sandbox(alpm_handle_t *handle)
+{
+	CHECK_HANDLE(handle, return -1);
+
+	if(handle->disable_sandbox_filesystem && handle->disable_sandbox_syscalls) {
+		return 2;
+	} else if (handle->disable_sandbox_filesystem || handle->disable_sandbox_syscalls) {
+		return 1;
+	}
+
+	return 0;
+}
+
+int alpm_option_set_disable_sandbox(alpm_handle_t *handle, unsigned short disable_sandbox) {
+	CHECK_HANDLE(handle, return -1);
+	handle->disable_sandbox_filesystem = disable_sandbox;
+	handle->disable_sandbox_syscalls = disable_sandbox;
+	return 0;
+}
+
 int SYMEXPORT alpm_option_get_disable_sandbox_filesystem(alpm_handle_t *handle)
 {
 	CHECK_HANDLE(handle, return -1);

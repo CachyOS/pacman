@@ -10,7 +10,7 @@ project('pacman',
         ],
         meson_version : '>= 0.61')
 
-libalpm_version = '16.0.0'
+libalpm_version = '16.0.1'
 
 cc = meson.get_compiler('c')
 
