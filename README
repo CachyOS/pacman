@@ -765,8 +765,6 @@ Fine-grained sandbox controls:
 - ALPM_ERR_RETRUEVE_PREPARE
 
 [CHANGED]
-- error codes:
-    PM_ERR_TRANS_COMMITING renamed to PM_ERR_TRANS_COMMITTING
 - alpm_pubkey_t - removed pubkey_algo member
 - alpm_sandbox_setup_child() - added parameter to restrict syscalls
 - alpm_option_get_disable_standbox() - returns 1 if any component is
