@@ -89,7 +89,7 @@ validate_arch_override() {
 
 	for o in "${override[@]}"; do
 		if ! in_array "$o" "${arch[@]}"; then
-			error "$(gettext "Overriden %s in package_%s() contains value not in global directive: '%s'")" "arch" "$package" "$o"
+			error "$(gettext "Overridden %s in package_%s() contains value not in global directive: '%s'")" "arch" "$package" "$o"
 			ret=1
 		fi
 	done
