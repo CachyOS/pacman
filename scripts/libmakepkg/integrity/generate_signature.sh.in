@@ -63,8 +63,11 @@ create_package_signatures() {
 
 	for pkg in "${pkgname[@]}"; do
 		# Skip split package if not relevant for current CARCH
-		if ! pkgarch=$(get_pkg_arch $pkg); then
+		if ! pkgarch=$(get_pkg_arch $pkg) && [[ "x${PACKAGECARCH}" == "x" ]]; then
 			continue
+		fi
+		if [[ "x${PACKAGECARCH}" != "x" ]]; then
+			pkgarch="${PACKAGECARCH}"
 		fi
 		pkg_file="$PKGDEST/${pkg}-${fullver}-${pkgarch}${PKGEXT}"
 
