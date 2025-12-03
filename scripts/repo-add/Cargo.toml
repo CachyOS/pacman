@@ -9,16 +9,16 @@ edition = "2021"
 log = { version = "0.4", default-features = false }
 subprocess = { version = "0.2", default-features = false }
 lazy_static = { version = "1", default-features = false }
-akv = { git = "https://github.com/vnepogodin/akv.git", rev = "57a9639a614575e36db50a518247591cc1c717db", default-features = false }
+akv = { git = "https://github.com/vnepogodin/akv.git", rev = "5c704299bc2053892a75fb671b2e79ee96c2abfb", default-features = false }
 fern = { version = "0.7", features = ["colored"], default-features = false }
 rand = { version = "0.9", features = ["std", "std_rng", "thread_rng"], default-features = false }
 path-absolutize = { version = "3", default-features = false }
-rayon = { version = "1.10", default-features = false }
+rayon = { version = "1.11", default-features = false }
 sha2 = { version = "0.10", features = ["std"], default-features = false }
 base64 = { version = "0.22", features = ["std"], default-features = false }
 fs_extra = { version = "1.3", default-features = false }
 signal-hook = { version = "0.3", features = ["iterator"], default-features = false }
-rusqlite = { version = "0.36", features = ["bundled"], default-features = false }
+rusqlite = { version = "0.37", features = ["bundled"], default-features = false }
 anyhow = { version = "1.0", features = ["std"], default-features = false }
 alpm = { version = "4", features = ["checkver"], default-features = false }
 
