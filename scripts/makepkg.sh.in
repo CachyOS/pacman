@@ -808,7 +808,11 @@ create_srcpackage() {
 			local absfile
 			absfile=$(get_filepath "$file") || missing_source_file "$file"
 			msg2 "$(gettext "Adding %s...")" "${absfile##*/}"
-			ln -s "$absfile" "$srclinks/$pkgbase"
+			if [[ ! -d "$absfile" ]]; then
+				ln -s "$absfile" "$srclinks/$pkgbase"
+			else
+				cp -as "$absfile" "$srclinks/$pkgbase"
+			fi
 		fi
 	done
 
