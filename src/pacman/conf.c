@@ -659,19 +659,26 @@ static int _parse_options(const char *key, char *value,
 		} else if(strcmp(key, "HoldPkg") == 0) {
 			setrepeatingoption(value, "HoldPkg", &(config->holdpkg));
 		} else if(strcmp(key, "CacheDir") == 0) {
+			/* FIXME - fails when multiple paths are specified on one line (#289)
+			   FIXME - fails when directory does not exist (#292)
 			char *path = resolve_path(value, "CacheDir");
 			if(path != NULL) {
 				setrepeatingoption(path, "CacheDir", &(config->cachedirs));
 			} else {
 				return 1;
 			}
+			*/
+			setrepeatingoption(value, "CacheDir", &(config->cachedirs));
 		} else if(strcmp(key, "HookDir") == 0) {
+			/* FIXME - fails when multiple paths are specified on one line (#289)
 			char *path = resolve_path(value, "HookDir");
 			if(path != NULL) {
 				setrepeatingoption(path, "HookDir", &(config->hookdirs));
 			} else {
 				return 1;
 			}
+			*/
+			setrepeatingoption(value, "HookDir", &(config->hookdirs));
 		} else if(strcmp(key, "Architecture") == 0) {
 			alpm_list_t *i, *arches = NULL;
 			setrepeatingoption(value, "Architecture", &arches);
