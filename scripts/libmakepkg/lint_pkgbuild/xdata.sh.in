@@ -39,7 +39,7 @@ lint_xdata() {
 		key="${entry%%=*}"
 		value="${entry##*=}"
 
-		if [[ "${entry}" == "${key}=${value}" ]]; then
+		if [[ "${entry}" != "${key}=${value}" ]]; then
 			# Entries must contain exactly one equal sign.
 			error "$(gettext "%s array: Entries must contain exactly one equal sign, e.g. key=value.")" "xdata"
 			ret=1
