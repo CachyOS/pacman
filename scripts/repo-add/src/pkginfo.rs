@@ -240,12 +240,10 @@ mod tests {
 
         // empty file
         let filepath = {
-            use rand::Rng;
             use std::env;
 
             let tmp_dir = env::temp_dir();
-            let mut rng = rand::thread_rng();
-            format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.gen::<u64>())
+            format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rand::random::<u64>())
         };
 
         assert!(crate::utils::touch_file(&filepath).is_ok());

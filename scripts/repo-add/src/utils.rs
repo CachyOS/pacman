@@ -11,11 +11,7 @@ use subprocess::{Exec, Redirection};
 
 #[inline]
 pub const fn const_min(v1: usize, v2: usize) -> usize {
-    if v1 <= v2 {
-        v1
-    } else {
-        v2
-    }
+    if v1 <= v2 { v1 } else { v2 }
 }
 
 #[inline]
@@ -50,9 +46,9 @@ pub fn create_temporary_directory(max_tries: Option<u32>) -> Option<String> {
     let max_tries = max_tries.unwrap_or(1000);
 
     let mut i: u32 = 0;
-    let mut rng = rand::thread_rng();
+    let mut rng = rand::rng();
     loop {
-        let res_path = format!("{}/{}", tmp_dir.to_string_lossy(), rng.gen::<u64>());
+        let res_path = format!("{}/{}", tmp_dir.to_string_lossy(), rng.random::<u64>());
         if fs::create_dir_all(res_path.as_str()).is_ok() {
             return Some(res_path);
         }
@@ -86,9 +82,9 @@ pub fn create_tempfile(max_tries: Option<u32>) -> Option<(File, String)> {
     let max_tries = max_tries.unwrap_or(1000);
 
     let mut i: u32 = 0;
-    let mut rng = rand::thread_rng();
+    let mut rng = rand::rng();
     loop {
-        let res_path = format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.gen::<u64>());
+        let res_path = format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.random::<u64>());
         if !Path::new(&res_path).exists() {
             if let Ok(file_obj) = File::options().write(true).create_new(true).open(&res_path) {
                 return Some((file_obj, res_path));
@@ -443,12 +439,10 @@ mod tests {
     fn write_data_tofile() {
         // empty file
         let filepath = {
-            use rand::Rng;
             use std::env;
 
             let tmp_dir = env::temp_dir();
-            let mut rng = rand::thread_rng();
-            format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.gen::<u64>())
+            format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rand::random::<u64>())
         };
 
         assert!(crate::utils::write_to_file(&filepath, "123451231231").is_ok());
@@ -493,12 +487,10 @@ mod tests {
     }
     #[test]
     fn touch_file() {
-        use rand::Rng;
         use std::env;
 
         let tmp_dir = env::temp_dir();
-        let mut rng = rand::thread_rng();
-        let filepath = format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rng.gen::<u64>());
+        let filepath = format!("{}/.tempfile-{}", tmp_dir.to_string_lossy(), rand::random::<u64>());
 
         assert!(!Path::new(&filepath).exists());
         assert!(crate::utils::touch_file(&filepath).is_ok());

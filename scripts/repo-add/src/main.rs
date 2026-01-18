@@ -8,7 +8,6 @@ use config::VERSION;
 use fern::colors::{Color, ColoredLevelConfig};
 use lazy_static::lazy_static;
 use path_absolutize::*;
-use rand::Rng;
 use rayon::prelude::*;
 use signal_hook::consts::{SIGABRT, SIGINT, SIGTERM};
 use signal_hook::iterator::Signals;
@@ -90,10 +89,9 @@ fn print_version(cmd_line: &str) {
 
 // print elephant
 fn print_elephant() {
-    let mut rng = rand::thread_rng();
-    let random_num = rng.gen::<u8>() % 2;
+    let random_num = rand::random::<bool>();
     #[rustfmt::skip]
-    let encoded_elephant = if random_num == 0 {
+    let encoded_elephant = if !random_num {
         "H4sIAL3qBE4CAyWLwQ3AMAgD/0xh5UPzYiFUMgjq7LUJsk7yIQNAQTAikFUDnqkrOQFOUm0Wd9pHCi13ONjBpVdqcWx+EdXVX4vXvGv5cgztB9+fJxZ7AAAA\n"
     } else {
         "H4sIAJVWBU4CA21RMQ7DIBDbeYWrDgQJ7rZ+IA/IB05l69alcx5fc0ASVXUk4jOO\n7yAAUWtorygwJ4hlMii0YkJKKRKGvsMsiykl1SalvrMD1gUXyXRkGZPx5OPft81K\ntNAiAjyGjYO47h1JjizPkJrCWbK/4C+uLkT7bzpGc7CT9bmOzNSW5WLSO5vexjmH\nZL9JFFZeAa0a2+lKjL2anpYfV+0Zx9LJ+/MC8nRayuDlSNy2rfAPibOzsiWHL0jLSsjFAQAA\n"
