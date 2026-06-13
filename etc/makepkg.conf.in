@@ -56,16 +56,20 @@ PACKAGECARCH="@CARCH@"
 # BUILD ENVIRONMENT
 #########################################################################
 #
-# Makepkg defaults: BUILDENV=(!distcc !color !ccache check !sign)
+# Makepkg defaults: BUILDENV=(!distcc !color !ccache check !sign netsandbox netprepare)
 #  A negated environment option will do the opposite of the comments below.
 #
-#-- distcc:   Use the Distributed C/C++/ObjC compiler
-#-- color:    Colorize output messages
-#-- ccache:   Use ccache to cache compilation
-#-- check:    Run the check() function if present in the PKGBUILD
-#-- sign:     Generate PGP signature file
+#-- distcc:     Use the Distributed C/C++/ObjC compiler
+#-- color:      Colorize output messages
+#-- ccache:     Use ccache to cache compilation
+#-- check:      Run the check() function if present in the PKGBUILD
+#-- sign:       Generate PGP signature file
+#-- netsandbox: Isolate the build from the network; makepkg downloads the
+#               sources and the build runs with no network access
+#-- netprepare: Run the prepare() function with network access; disable with
+#               !netprepare to isolate prepare() too
 #
-BUILDENV=(!distcc color !ccache check !sign)
+BUILDENV=(!distcc color !ccache check !sign netsandbox netprepare)
 #
 #-- If using DistCC, your MAKEFLAGS will also need modification. In addition,
 #-- specify a space-delimited list of hosts running in the DistCC cluster.

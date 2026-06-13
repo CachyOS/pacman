@@ -55,14 +55,20 @@ CHECKFUNC=0
 CLEANBUILD=0
 CLEANUP=0
 DEP_BIN=0
+DUMPMETA=0
 FORCE=0
 GENINTEG=0
 HOLDVER=0
 IGNOREARCH=0
 INFAKEROOT=0
+INNETNS=0
 INSTALL=0
 LOGGING=0
+METADATA_LOADED=0
 NEEDED=0
+NETPREPARE=''
+INNETPREPARE=0
+NETSANDBOX=''
 NOARCHIVE=0
 NOBUILD=0
 NODEPS=0
@@ -78,6 +84,7 @@ SKIPPGPCHECK=0
 SIGNPKG=''
 SPLITPKG=0
 SOURCEONLY=0
+VERIFYFUNC=0
 VERIFYSOURCE=0
 
 MAKEPKG_LINT_PKGBUILD=${MAKEPKG_LINT_PKGBUILD:-1}
@@ -183,6 +190,34 @@ clean_up() {
 enter_fakeroot() {
 	msg "$(gettext "Entering %s environment...")" "fakeroot"
 	fakeroot -- bash -$- "${BASH_SOURCE[0]}" -F "${ARGLIST[@]}" || exit $?
+}
+
+enter_netns() {
+	msg "$(gettext "Entering network-isolated environment...")"
+	MAKEPKG_NETNS_INTERNAL=1 unshare "${NETNS_UNSHARE_ARGS[@]}" -- \
+		bash -$- "${BASH_SOURCE[0]}" --in-netns "${ARGLIST[@]}" "$@" || exit $?
+}
+
+# re-run makepkg inside a no-network namespace where it sources the PKGBUILD
+# and writes the build metadata to stdout.
+dump_build_metadata() {
+	MAKEPKG_NETNS_INTERNAL=1 unshare "${NETNS_UNSHARE_ARGS[@]}" -- \
+		bash "${BASH_SOURCE[0]}" --dump-metadata "${ARGLIST[@]}"
+}
+
+# re-source the PKGBUILD in a no-network child and load the fresh metadata into
+# this process
+reload_build_metadata() {
+	local build_metadata
+	build_metadata=$(dump_build_metadata) || exit $?
+	load_build_metadata <<< "$build_metadata"
+}
+
+# re-run makepkg with network access up to and including prepare()
+run_net_prepare() {
+	msg "$(gettext "Preparing sources with network access...")"
+	MAKEPKG_NETNS_INTERNAL=1 \
+		bash -$- "${BASH_SOURCE[0]}" --net-prepare "${ARGLIST[@]}" || exit $?
 }
 
 # Automatically update pkgver variable if a pkgver() function is provided
@@ -335,6 +370,9 @@ resolve_deps() {
 
 remove_deps() {
 	(( ! RMDEPS )) && return 0
+	# pacman cannot be run from inside the build namespace; the parent
+	# process takes care of dependency removal
+	(( INNETNS || INNETPREPARE )) && return 0
 
 	# check for packages removed during dependency install (e.g. due to conflicts)
 	# removing all installed packages is risky in this case
@@ -875,6 +913,10 @@ create_srcpackage() {
 install_package() {
 	(( ! INSTALL )) && return 0
 
+	# pacman cannot be run from inside the build namespace; the parent
+	# process performs the installation after the namespace exits
+	(( INNETNS || INNETPREPARE )) && return 0
+
 	remove_deps || return $?
 	RMDEPS=0
 
@@ -1039,12 +1081,14 @@ usage() {
 	printf -- "$(gettext "  -S, --source     Generate a source-only tarball without downloaded sources")\n"
 	printf -- "$(gettext "  -V, --version    Show version information and exit")\n"
 	printf -- "$(gettext "  --allsource      Generate a source-only tarball including downloaded sources")\n"
+	printf -- "$(gettext "  --allow-net-prepare\n                   Run the %s function with network access")\n" "prepare()"
 	printf -- "$(gettext "  --check          Run the %s function in the %s")\n" "check()" "$BUILDSCRIPT"
 	printf -- "$(gettext "  --config <file>  Use an alternate config file (instead of '%s')")\n" "$confdir/makepkg.conf"
 	printf -- "$(gettext "  --holdver        Do not update VCS sources")\n"
 	printf -- "$(gettext "  --key <key>      Specify a key to use for %s signing instead of the default")\n" "gpg"
 	printf -- "$(gettext "  --noarchive      Do not create package archive")\n"
 	printf -- "$(gettext "  --nocheck        Do not run the %s function in the %s")\n" "check()" "$BUILDSCRIPT"
+	printf -- "$(gettext "  --nonetsandbox   Do not isolate the build from the network")\n"
 	printf -- "$(gettext "  --noprepare      Do not run the %s function in the %s")\n" "prepare()" "$BUILDSCRIPT"
 	printf -- "$(gettext "  --nosign         Do not create a signature for the package")\n"
 	printf -- "$(gettext "  --packagelist    Only list package filepaths that would be produced")\n"
@@ -1092,11 +1136,15 @@ ARGLIST=("$@")
 
 # Parse Command Line Options.
 OPT_SHORT="AcCdD:efFghiLmop:rRsSV"
-OPT_LONG=('allsource' 'check' 'clean' 'cleanbuild' 'config:' 'dir:' 'force' 'geninteg'
-          'help' 'holdver' 'ignorearch' 'install' 'key:' 'log' 'noarchive' 'nobuild'
-          'nocolor' 'nocheck' 'nodeps' 'noextract' 'noprepare' 'nosign' 'packagelist'
-          'printsrcinfo' 'repackage' 'rmdeps' 'sign' 'skipchecksums' 'skipinteg'
-          'skippgpcheck' 'source' 'syncdeps' 'verifysource' 'version')
+OPT_LONG=('allow-net-prepare' 'allsource' 'check' 'clean' 'cleanbuild' 'config:' 'dir:'
+          'force' 'geninteg' 'help' 'holdver' 'ignorearch' 'install' 'key:' 'log'
+          'noarchive' 'nobuild' 'nocolor' 'nocheck' 'nodeps' 'noextract' 'nonetsandbox'
+          'noprepare' 'nosign' 'packagelist' 'printsrcinfo' 'repackage' 'rmdeps' 'sign'
+          'skipchecksums' 'skipinteg' 'skippgpcheck' 'source' 'syncdeps' 'verifysource'
+          'version')
+
+# Internal options for re-invoking makepkg inside namespaces
+OPT_LONG+=('dump-metadata' 'in-netns' 'net-prepare')
 
 # Pacman Options
 OPT_LONG+=('asdeps' 'noconfirm' 'needed' 'noprogressbar')
@@ -1116,8 +1164,13 @@ while true; do
 		--noprogressbar)  PACMAN_OPTS+=("--noprogressbar") ;;
 
 		# Makepkg Options
+		--allow-net-prepare) NETPREPARE=1 ;;
 		--allsource)      BUILDPKG=0 SOURCEONLY=2 ;;
 		-A|--ignorearch)  IGNOREARCH=1 ;;
+		--dump-metadata)  DUMPMETA=1 ;;
+		--in-netns)       INNETNS=1 ;;
+		--net-prepare)    INNETPREPARE=1 ;;
+		--nonetsandbox)   NETSANDBOX=0 ;;
 		-c|--clean)       CLEANUP=1 ;;
 		-C|--cleanbuild)  CLEANBUILD=1 ;;
 		--check)          RUN_CHECK='y' ;;
@@ -1215,6 +1268,22 @@ fi
 # check makepkg.conf for some basic requirements
 lint_config || exit $E_CONFIG_ERROR
 
+# decide whether the build is isolated from the network
+if [[ -z $NETSANDBOX ]]; then
+	if check_buildenv "netsandbox" "n"; then
+		NETSANDBOX=0
+	else
+		NETSANDBOX=1
+	fi
+fi
+if [[ -z $NETPREPARE ]]; then
+	if check_buildenv "netprepare" "n"; then
+		NETPREPARE=0
+	else
+		NETPREPARE=1
+	fi
+fi
+
 
 # check that all settings directories are user-writable
 if ! ensure_writable_dir "BUILDDIR" "$BUILDDIR"; then
@@ -1261,6 +1330,22 @@ else
 	fi
 fi
 
+if (( INNETNS || DUMPMETA || INNETPREPARE )) && [[ -z $MAKEPKG_NETNS_INTERNAL ]]; then
+	error "$(gettext "Do not use the %s option. This option is only for internal use by %s.")" "'--in-netns'" "makepkg"
+	exit $E_INVALID_OPTION
+fi
+
+if (( INNETNS )); then
+	# sources were fetched by the parent before entering the namespace
+	HOLDVER=1
+fi
+
+if (( DUMPMETA )); then
+	# reserve the original stdout for the metadata dump; anything else
+	# printed while sourcing the PKGBUILD goes to stderr
+	exec {METADATA_FD}>&1 1>&2
+fi
+
 unset pkgname "${pkgbuild_schema_strings[@]}" "${pkgbuild_schema_arrays[@]}"
 unset "${known_hash_algos[@]/%/sums}"
 unset -f pkgver verify prepare build check package "${!package_@}"
@@ -1288,13 +1373,19 @@ else
 	if [[ ${BUILDFILE:0:1} != "/" ]]; then
 		BUILDFILE="$startdir/$BUILDFILE"
 	fi
-	source_buildfile "$BUILDFILE"
+	if (( NETSANDBOX && ! INNETNS && ! DUMPMETA && ! INNETPREPARE && ! INFAKEROOT )); then
+		# never source the PKGBUILD in this network-facing process
+		netns_assert_supported
+		reload_build_metadata
+	else
+		source_buildfile "$BUILDFILE"
+	fi
 fi
 
 pkgbase=${pkgbase:-${pkgname[0]}}
 
 # check the PKGBUILD for some basic requirements
-if (( MAKEPKG_LINT_PKGBUILD != 0 )); then
+if (( MAKEPKG_LINT_PKGBUILD != 0 && ! METADATA_LOADED )); then
 	lint_pkgbuild || exit $E_PKGBUILD_ERROR
 fi
 
@@ -1316,6 +1407,47 @@ fi
 # set pkgdir to something "sensible" for (not recommended) use during build()
 pkgdir="$pkgdirbase/$pkgbase"
 
+if (( ! METADATA_LOADED )); then
+	if have_function pkgver; then
+		PKGVERFUNC=1
+	fi
+
+	if (( ${#pkgname[@]} > 1 )) || have_function package_${pkgname}; then
+		SPLITPKG=1
+	fi
+
+	# test for available PKGBUILD functions
+	if have_function verify; then
+		# "Hide" verify() function if not going to be run
+		if [[ $RUN_VERIFY != "n" ]] && (( ! SKIPCHECKSUMS && ! SKIPPGPCHECK )); then
+			VERIFYFUNC=1
+		fi
+	fi
+	if have_function prepare; then
+		# "Hide" prepare() function if not going to be run
+		if [[ $RUN_PREPARE != "n" ]]; then
+			PREPAREFUNC=1
+		fi
+	fi
+	if have_function build; then
+		BUILDFUNC=1
+	fi
+	if have_function check; then
+		# "Hide" check() function if not going to be run
+		if [[ $RUN_CHECK = 'y' ]] || { ! check_buildenv "check" "n" && [[ $RUN_CHECK != "n" ]]; }; then
+			CHECKFUNC=1
+		fi
+	fi
+	if have_function package; then
+		PKGFUNC=1
+	fi
+fi
+
+if (( DUMPMETA )); then
+	write_build_metadata >&$METADATA_FD
+	exit $E_OK
+fi
+
 if (( GENINTEG )); then
 	mkdir -p "$srcdir"
 	chmod a-s "$srcdir"
@@ -1325,47 +1457,17 @@ if (( GENINTEG )); then
 	exit $E_OK
 fi
 
-if have_function pkgver; then
-	PKGVERFUNC=1
-fi
-
-if (( ${#pkgname[@]} > 1 )) || have_function package_${pkgname}; then
-	SPLITPKG=1
-fi
-
-# test for available PKGBUILD functions
-if have_function verify; then
-	# "Hide" verify() function if not going to be run
-	if [[ $RUN_VERIFY != "n" ]] && (( ! SKIPCHECKSUMS && ! SKIPPGPCHECK )); then
-		VERIFYFUNC=1
-	fi
-fi
-if have_function prepare; then
-	# "Hide" prepare() function if not going to be run
-	if [[ $RUN_PREPARE != "n" ]]; then
-		PREPAREFUNC=1
-	fi
-fi
-if have_function build; then
-	BUILDFUNC=1
-fi
-if have_function check; then
-	# "Hide" check() function if not going to be run
-	if [[ $RUN_CHECK = 'y' ]] || { ! check_buildenv "check" "n" && [[ $RUN_CHECK != "n" ]]; }; then
-		CHECKFUNC=1
-	fi
-fi
-if have_function package; then
-	PKGFUNC=1
-fi
-
 if (( PACKAGELIST )); then
 	print_all_package_names
 	exit $E_OK
 fi
 
 if (( PRINTSRCINFO )); then
-	write_srcinfo_content
+	if (( METADATA_LOADED )); then
+		printf '%s' "$METADATA_SRCINFO"
+	else
+		write_srcinfo_content
+	fi
 	exit $E_OK
 fi
 
@@ -1412,7 +1514,9 @@ if { [[ -z $SIGNPKG ]] && check_buildenv "sign" "y"; } || [[ $SIGNPKG == 'y' ]];
 	fi
 fi
 
-msg "$(gettext "Making package: %s")" "$pkgbase $basever ($(date +%c))"
+if (( ! INNETNS && ! INNETPREPARE )); then
+	msg "$(gettext "Making package: %s")" "$pkgbase $basever ($(date +%c))"
+fi
 
 # if we are creating a source-only package, go no further
 if (( SOURCEONLY )); then
@@ -1426,11 +1530,21 @@ if (( SOURCEONLY )); then
 	mkdir -p "$srcdir"
 	chmod a-s "$srcdir"
 	cd_safe "$srcdir"
-	if (( SOURCEONLY == 2 )); then
-		download_sources allarch
-	elif ( (( ! SKIPCHECKSUMS )) || \
-			( (( ! SKIPPGPCHECK )) && source_has_signatures ) ); then
-		download_sources allarch
+	# the parent fetches the sources; inside the namespace the network is
+	# down and the files are already present
+	if (( ! INNETNS )); then
+		if (( SOURCEONLY == 2 )); then
+			download_sources allarch
+		elif ( (( ! SKIPCHECKSUMS )) || \
+				( (( ! SKIPPGPCHECK )) && source_has_signatures ) ); then
+			download_sources allarch
+		fi
+	fi
+	if (( NETSANDBOX && ! INNETNS )); then
+		# integrity checking and source packaging run PKGBUILD code
+		cd_safe "$startdir"
+		enter_netns
+		exit $E_OK
 	fi
 	check_source_integrity all
 	cd_safe "$startdir"
@@ -1446,7 +1560,10 @@ if (( SOURCEONLY )); then
 	exit $E_OK
 fi
 
-if (( NODEPS || ( VERIFYSOURCE && !DEP_BIN ) )); then
+if (( INNETNS || INNETPREPARE )); then
+	# dependencies were resolved by the parent process
+	:
+elif (( NODEPS || ( VERIFYSOURCE && !DEP_BIN ) )); then
 	if (( NODEPS )); then
 		warning "$(gettext "Skipping dependency checks.")"
 	fi
@@ -1486,11 +1603,38 @@ fi
 mkdir -p "$srcdir"
 chmod a-s "$srcdir"
 
+if (( NETSANDBOX && ! INNETNS && ! INNETPREPARE )); then
+	want_sources=0
+	if (( ! REPKG )) && ! (( NOEXTRACT && ! VERIFYSOURCE )); then
+		want_sources=1
+	fi
+	if (( want_sources && NETPREPARE && ! VERIFYSOURCE )); then
+		# netprepare: sources are downloaded, extracted and
+		# prepared by a child with network access, then steps
+		# continue in the no-network namespace
+		run_net_prepare
+		enter_netns --noextract
+	else
+		(( want_sources )) && download_sources
+		enter_netns
+	fi
+	if (( PKGVERFUNC && INSTALL && ! REPKG && ! NOBUILD && ! VERIFYSOURCE && ! NOARCHIVE )); then
+		# refresh the metadata so the right package files are installed
+		reload_build_metadata
+		basever=$(get_full_version)
+	fi
+	if (( VERIFYSOURCE || NOBUILD || NOARCHIVE )); then
+		exit $E_OK
+	fi
+	install_package && exit $E_OK || exit $E_INSTALL_FAILED
+fi
+
 if (( !REPKG )); then
 	if (( NOEXTRACT && ! VERIFYSOURCE )); then
 		warning "$(gettext "Using existing %s tree")" "\$srcdir/"
 	else
-		download_sources
+		# inside the build namespace the parent already fetched the sources
+		(( ! INNETNS )) && download_sources
 		check_source_integrity
 		(( VERIFYSOURCE )) && exit $E_OK
 
@@ -1510,6 +1654,11 @@ if (( !REPKG )); then
 			# We have activated reproducible builds, so unify source times before
 			# building
 			find "$srcdir" -exec touch -h -d @$SOURCE_DATE_EPOCH {} +
+		fi
+
+		if (( INNETPREPARE )); then
+			# the build continues in the no-network namespace
+			exit $E_OK
 		fi
 	fi
 

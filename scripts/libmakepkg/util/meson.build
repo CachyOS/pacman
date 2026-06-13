@@ -6,6 +6,8 @@ sources = [
   'dirsize.sh.in',
   'error.sh.in',
   'message.sh.in',
+  'metadata.sh.in',
+  'netns.sh.in',
   'option.sh.in',
   'parseopts.sh.in',
   'pkgbuild.sh.in',

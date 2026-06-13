@@ -149,7 +149,12 @@ Options
 
 *-D* <dir>, *\--dir* <dir> ::
 	Change to directory <dir> before reading the PKGBUILD or doing anything else.
-	
+
+*\--allow-net-prepare*::
+	Run the prepare() function with network access. This is the default
+	behaviour. Equivalent to adding 'netprepare' to BUILDENV. To isolate
+	prepare() as well, set '!netprepare' in BUILDENV.
+
 *\--allsource*::
 	Do not actually build the package, but build a source-only tarball that
 	includes all sources, including those that are normally downloaded via
@@ -168,6 +173,17 @@ Options
 
 *\--nocheck*::
 	Do not run the check() function in the PKGBUILD or handle the checkdepends.
+
+*\--nonetsandbox*::
+	Do not isolate the build from the network. By default, when the
+	'netsandbox' build environment option is enabled, everything that runs
+	PKGBUILD code runs inside a network-isolated namespace,
+	while sources are downloaded by makepkg itself beforehand. This option
+	disables that isolation and runs the build with full network access.
+	Equivalent to adding '!netsandbox' to BUILDENV in linkman:makepkg.conf[5].
+	This is also required on systems that cannot create unprivileged
+	user/network namespaces, and for builds that rely on `localhost`
+	(127.0.0.1), as the isolated namespace has no usable loopback interface.
 
 *\--noprepare*::
 	Do not run the prepare() function in the PKGBUILD.

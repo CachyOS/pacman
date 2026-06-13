@@ -30,7 +30,7 @@ lint_config_functions+=('lint_buildenv')
 
 lint_buildenv() {
 	local ret=0 kopt 
-	local known_buildenv=(ccache check color distcc sign)
+	local known_buildenv=(ccache check color distcc netprepare netsandbox sign)
 	local known_option=(autodeps debug docs emptydirs libtool lto purge staticlibs strip zipman)
 
 	for i in "${BUILDENV[@]}"; do

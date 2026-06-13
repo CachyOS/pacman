@@ -173,6 +173,23 @@ get_full_version() {
 }
 
 ##
+#  usage : resolve_pkg_arch( $arch_override... )
+# return : package arch for CARCH ("any" or $CARCH), or 1 if not built for CARCH
+##
+resolve_pkg_arch() {
+	local arch_override=("$@")
+	(( ${#arch_override[@]} == 0 )) && arch_override=("${arch[@]}")
+	if [[ $arch_override = "any" ]]; then
+		printf "%s\n" "any"
+	elif (( ! IGNOREARCH )) && ! in_array "$CARCH" "${arch_override[@]}"; then
+		# Split package not relevant for current CARCH
+		return 1
+	else
+		printf "%s\n" "$CARCH"
+	fi
+}
+
+##
 #  usage : get_pkg_arch( [$pkgname] )
 # return : architecture of the package if available for CARCH
 ##
@@ -186,16 +203,7 @@ get_pkg_arch() {
 	else
 		local arch_override
 		get_pkgbuild_attribute "$1" arch 1 arch_override
-		(( ${#arch_override[@]} == 0 )) && arch_override=("${arch[@]}")
-		if [[ $arch_override = "any" ]]; then
-			printf "%s\n" "any"
-		else
-			# Split package not relevant for current CARCH
-			if (( ! IGNOREARCH )) && ! in_array "$CARCH" "${arch_override[@]}"; then
-				return 1
-			fi
-			printf "%s\n" "$CARCH"
-		fi
+		resolve_pkg_arch "${arch_override[@]}"
 	fi
 }
 

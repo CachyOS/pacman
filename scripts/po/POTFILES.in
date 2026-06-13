@@ -96,6 +96,8 @@ scripts/libmakepkg/util/config.sh.in
 scripts/libmakepkg/util/dirsize.sh.in
 scripts/libmakepkg/util/error.sh.in
 scripts/libmakepkg/util/message.sh.in
+scripts/libmakepkg/util/metadata.sh.in
+scripts/libmakepkg/util/netns.sh.in
 scripts/libmakepkg/util/option.sh.in
 scripts/libmakepkg/util/parseopts.sh.in
 scripts/libmakepkg/util/pkgbuild.sh.in

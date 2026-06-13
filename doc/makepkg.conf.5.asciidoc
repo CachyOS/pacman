@@ -107,7 +107,7 @@ Options
 **DEBUG_CXXFLAGS=**"debug_cxxflags"::
 	Debug flags used for the C++ compiler; see DEBUG_CFLAGS for more info.
 
-**BUILDENV=(**!distcc !color !ccache check !sign**)**::
+**BUILDENV=(**!distcc !color !ccache check !sign netsandbox netprepare**)**::
 	This array contains options that affect the build environment; the defaults
 	are shown here. All options should always be left in the array; to enable
 	or disable an option, simply remove or add an ``!'' at the front of the
@@ -139,6 +139,32 @@ Options
 		signature file, using the GPG agent, if it is available. The signature
 		file will be the entire file name of the package with a ``.sig''
 		extension.
+
+	*netsandbox*;;
+		Isolate the build from the network. makepkg downloads all sources
+		itself beforehand using the configured `DLAGENTS`; everything that
+		runs PKGBUILD-supplied code -- top-level code, build(), check() and
+		package(), and also prepare() unless 'netprepare' is enabled -- then
+		runs inside a network namespace with no external connectivity, so a
+		malicious or compromised PKGBUILD cannot download or exfiltrate data
+		from there. The PKGBUILD cannot override this setting. Disable
+		it for an individual build with makepkg's '\--nonetsandbox' option.
+		The isolated namespace has no usable loopback interface, so a build
+		that relies on `localhost` (127.0.0.1), for example a check() that
+		starts a local test server, needs '\--nonetsandbox' as well.
+		This feature requires Linux with unprivileged user and network
+		namespaces; if they are unavailable makepkg aborts with an error
+		unless the option is disabled.
+
+	*netprepare*;;
+		Run the prepare() function with network access even when 'netsandbox'
+		is enabled. This is enabled by default because many packages fetch git
+		submodules or vendored dependencies -- for example cargo crates or go
+		modules -- during preparation. build(), check() and package() always
+		remain isolated. Disable it with '!netprepare' for stricter isolation,
+		in which case prepare() runs with no network access either; the
+		'\--allow-net-prepare' option re-enables it for an individual build.
+		The PKGBUILD cannot change this setting itself.
 
 **DISTCC_HOSTS=**"host1 ..."::
 	If using DistCC, this is used to specify a space-delimited list of hosts

@@ -1,0 +1,168 @@
+#!/bin/bash
+#
+#   metadata.sh - dump and load PKGBUILD metadata across process boundaries
+#
+#   Copyright (c) 2026 Pacman Development Team <pacman-dev@lists.archlinux.org>
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+[[ -n "$LIBMAKEPKG_UTIL_METADATA_SH" ]] && return
+LIBMAKEPKG_UTIL_METADATA_SH=1
+
+MAKEPKG_LIBRARY=${MAKEPKG_LIBRARY:-'@libmakepkgdir@'}
+
+source "$MAKEPKG_LIBRARY/util/error.sh"
+source "$MAKEPKG_LIBRARY/util/message.sh"
+source "$MAKEPKG_LIBRARY/util/pkgbuild.sh"
+source "$MAKEPKG_LIBRARY/util/schema.sh"
+source "$MAKEPKG_LIBRARY/util/util.sh"
+
+readonly METADATA_INTERNAL_MARKER='%MAKEPKG_INTERNAL%'
+
+metadata_internal_flags=(PKGVERFUNC VERIFYFUNC PREPAREFUNC BUILDFUNC CHECKFUNC
+                         PKGFUNC SPLITPKG)
+
+# emit srcinfo-formatted PKGBUILD
+# must only be called with the PKGBUILD sourced
+write_build_metadata() {
+	local flag
+
+	write_srcinfo_content
+
+	printf '%s\n' "$METADATA_INTERNAL_MARKER"
+	for flag in "${metadata_internal_flags[@]}"; do
+		printf '%s = %d\n' "$flag" "${!flag}"
+	done
+}
+
+metadata_known_string() {
+	in_array "$1" "${pkgbuild_schema_strings[@]}"
+}
+
+metadata_known_array() {
+	local key=$1 attr
+
+	in_array "$key" "${pkgbuild_schema_arrays[@]}" && return 0
+
+	# architecture-suffixed arrays, e.g. sha256sums_x86_64
+	for attr in "${pkgbuild_schema_arch_arrays[@]}"; do
+		[[ $key = "${attr}_"+([[:alnum:]_]) ]] && return 0
+	done
+
+	return 1
+}
+
+# load a metadata dump from stdin into the global variables a sourced
+# PKGBUILD would have provided
+load_build_metadata() {
+	local line key value curpkg= in_internal=0
+	local loaded_pkgname=()
+
+	METADATA_SRCINFO=''
+	declare -gA _metadata_pkg_arch=()
+
+	while IFS= read -r line; do
+		if (( ! in_internal )); then
+			if [[ $line = "$METADATA_INTERNAL_MARKER" ]]; then
+				in_internal=1
+				continue
+			fi
+			METADATA_SRCINFO+="$line"$'\n'
+		fi
+
+		# strip leading whitespace and skip blanks/comments
+		line=${line#"${line%%[![:space:]]*}"}
+		[[ -z $line || $line = '#'* || $line = %* ]] && continue
+
+		if [[ $line != +([[:alnum:]_])*( )=\ * ]]; then
+			error "$(gettext "invalid line in build metadata: %s")" "$line"
+			exit $E_PKGBUILD_ERROR
+		fi
+		key=${line%%*( )= *}
+		value=${line#*= }
+
+		if (( in_internal )); then
+			if in_array "$key" "${metadata_internal_flags[@]}" && [[ $value = [01] ]]; then
+				printf -v "$key" %d "$value"
+			else
+				error "$(gettext "invalid line in build metadata: %s")" "$line"
+				exit $E_PKGBUILD_ERROR
+			fi
+			continue
+		fi
+
+		case $key in
+			epoch)
+				# epoch is used in arithmetic context by get_full_version
+				# never accept anything but digits, even with linting off
+				if [[ $value != +([[:digit:]]) ]]; then
+					error "$(gettext "invalid line in build metadata: %s")" "$line"
+					exit $E_PKGBUILD_ERROR
+				fi
+				epoch=$value
+				;;
+			pkgbase)
+				pkgbase=$value
+				;;
+			pkgname)
+				curpkg=$value
+				loaded_pkgname+=("$value")
+				;;
+			*)
+				if [[ -n $curpkg ]]; then
+					# from the per-package sections only the arch override
+					# is relevant outside of packaging, which happens with
+					# the PKGBUILD properly sourced
+					if [[ $key = arch ]]; then
+						_metadata_pkg_arch[$curpkg]+="$value "
+					fi
+				elif metadata_known_string "$key"; then
+					printf -v "$key" %s "$value"
+				elif metadata_known_array "$key"; then
+					local -n _metadata_ref=$key
+					_metadata_ref+=("$value")
+					unset -n _metadata_ref
+				fi
+				;;
+		esac
+	done
+
+	if (( ${#loaded_pkgname[@]} )); then
+		pkgname=("${loaded_pkgname[@]}")
+	fi
+
+	# package functions are not available without sourcing the PKGBUILD;
+	# serve per-package arch overrides from the parsed metadata instead
+	get_pkg_arch() { metadata_get_pkg_arch "$@"; }
+
+	METADATA_LOADED=1
+}
+
+# get_pkg_arch replacement reading the per-package arch overrides collected
+# by load_build_metadata; mirrors get_pkg_arch() in pkgbuild.sh and shares its
+# arch policy through resolve_pkg_arch()
+metadata_get_pkg_arch() {
+	if [[ -z $1 ]]; then
+		if [[ $arch = "any" ]]; then
+			printf "%s\n" "any"
+		else
+			printf "%s\n" "$CARCH"
+		fi
+	else
+		local arch_override=()
+		read -ra arch_override <<< "${_metadata_pkg_arch[$1]}"
+		resolve_pkg_arch "${arch_override[@]}"
+	fi
+}

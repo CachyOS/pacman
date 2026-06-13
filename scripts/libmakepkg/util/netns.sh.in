@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+#   netns.sh - functions for isolating the build from the network
+#
+#   Copyright (c) 2026 Pacman Development Team <pacman-dev@lists.archlinux.org>
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+[[ -n "$LIBMAKEPKG_UTIL_NETNS_SH" ]] && return
+LIBMAKEPKG_UTIL_NETNS_SH=1
+
+MAKEPKG_LIBRARY=${MAKEPKG_LIBRARY:-'@libmakepkgdir@'}
+
+source "$MAKEPKG_LIBRARY/util/error.sh"
+source "$MAKEPKG_LIBRARY/util/message.sh"
+
+# options handed to unshare(1) to detach a process from the network while
+# keeping everything else shared
+NETNS_UNSHARE_ARGS=(--user --net --map-current-user)
+
+netns_supported() {
+	type -p unshare >/dev/null || return 1
+	unshare "${NETNS_UNSHARE_ARGS[@]}" -- true 2>/dev/null
+}
+
+netns_assert_supported() {
+	if ! netns_supported; then
+		error "$(gettext "Unable to create a network namespace for build isolation.")"
+		plainerr "$(gettext "This requires unshare(1) and a kernel with unprivileged user namespaces enabled.")"
+		plainerr "$(gettext "Set BUILDENV=(!netsandbox) in makepkg.conf or pass --nonetsandbox to disable isolation.")"
+		exit $E_CONFIG_ERROR
+	fi
+}
