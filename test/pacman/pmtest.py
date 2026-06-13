@@ -156,6 +156,10 @@ class pmtest(object):
 
         # Configuration file
         vprint("    Creating configuration file")
+        if not self.config.get("netns"):
+            # FIXME: environment lacks the privileges to create network
+            # namespaces, so fall back to the documented escape hatch
+            self.option.setdefault("DisableSandboxNetwork", [None])
         util.mkcfgfile(util.PACCONF, self.root, self.option, self.db)
 
         # Creating packages

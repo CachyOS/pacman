@@ -282,6 +282,7 @@ static void dump_config(void)
 	show_bool("NoProgressBar", config->noprogressbar);
 	show_bool("DisableSandboxFilesystem", config->disable_sandbox_filesystem);
 	show_bool("DisableSandboxSyscalls", config->disable_sandbox_syscalls);
+	show_bool("DisableSandboxNetwork", config->disable_sandbox_network);
 
 	show_int("ParallelDownloads", config->parallel_downloads);
 
@@ -402,10 +403,13 @@ static int list_directives(void)
 		} else if(strcasecmp(i->data, "DisableSandbox") == 0) {
 			show_bool("DisableSandboxFilesystem", config->disable_sandbox_filesystem);
 			show_bool("DisableSandboxSyscalls", config->disable_sandbox_syscalls);
-		} else if(strcasecmp(i->data, "DisableSandbox") == 0) {
+			show_bool("DisableSandboxNetwork", config->disable_sandbox_network);
+		} else if(strcasecmp(i->data, "DisableSandboxFilesystem") == 0) {
 			show_bool("DisableSandboxFilesystem", config->disable_sandbox_filesystem);
 		} else if(strcasecmp(i->data, "DisableSandboxSyscalls") == 0) {
 			show_bool("DisableSandboxSyscalls", config->disable_sandbox_syscalls);
+		} else if(strcasecmp(i->data, "DisableSandboxNetwork") == 0) {
+			show_bool("DisableSandboxNetwork", config->disable_sandbox_network);
 
 		} else if(strcasecmp(i->data, "ParallelDownloads") == 0) {
 			show_int("ParallelDownloads", config->parallel_downloads);

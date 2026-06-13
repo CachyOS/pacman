@@ -22,12 +22,21 @@
 #include <errno.h>
 #include <grp.h>
 #include <pwd.h>
+#include <string.h>
 #ifdef HAVE_SYS_PRCTL_H
 #include <sys/prctl.h>
 #endif /* HAVE_SYS_PRCTL_H */
 #include <sys/types.h>
 #include <unistd.h>
 #include <limits.h>
+
+#ifdef __linux__
+#include <fcntl.h>
+#include <net/if.h>
+#include <sched.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+#endif /* __linux__ */
 
 #include "alpm.h"
 #include "log.h"
@@ -38,14 +47,46 @@
 
 bool _alpm_use_sandbox(alpm_handle_t *handle)
 {
-	if(handle->user == 0 && 
-	   handle->sandboxuser != NULL && 
-	   (handle->disable_sandbox_filesystem == 0 || handle->disable_sandbox_syscalls == 0))
+	if(handle->user == 0 &&
+	   handle->sandboxuser != NULL &&
+	   (handle->disable_sandbox_filesystem == 0 || handle->disable_sandbox_syscalls == 0
+		|| handle->disable_sandbox_network == 0))
 	{
 		return true;
 	}
 
 	return false;
+}
+
+int _alpm_sandbox_isolate_network(void)
+{
+#if defined(__linux__) && defined(CLONE_NEWNET)
+	struct ifreq ifr;
+	int sockfd;
+
+	if(unshare(CLONE_NEWNET) != 0) {
+		return -1;
+	}
+
+	/* the new namespace only contains a downed loopback interface; */
+	sockfd = socket(AF_INET, SOCK_DGRAM | SOCK_CLOEXEC, 0);
+	if(sockfd < 0) {
+		return 0;
+	}
+
+	memset(&ifr, 0, sizeof(ifr));
+	strcpy(ifr.ifr_name, "lo");
+	if(ioctl(sockfd, SIOCGIFFLAGS, &ifr) == 0 && !(ifr.ifr_flags & IFF_UP)) {
+		ifr.ifr_flags |= IFF_UP;
+		ioctl(sockfd, SIOCSIFFLAGS, &ifr);
+	}
+	close(sockfd);
+
+	return 0;
+#else
+	errno = ENOSYS;
+	return -1;
+#endif /* __linux__ && CLONE_NEWNET */
 }
 
 int SYMEXPORT alpm_sandbox_setup_child(alpm_handle_t *handle, const char* sandboxuser, const char* sandbox_path, bool restrict_syscalls)

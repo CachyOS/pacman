@@ -60,6 +60,7 @@ typedef struct __config_t {
 	unsigned short disable_dl_timeout;
 	unsigned short disable_sandbox_filesystem;
 	unsigned short disable_sandbox_syscalls;
+	unsigned short disable_sandbox_network;
 	char *print_format;
 	/* unfortunately, we have to keep track of paths both here and in the library
 	 * because they can come from both the command line or config file, and we
@@ -217,7 +218,8 @@ enum {
 	OP_DISABLEDLTIMEOUT,
 	OP_DISABLESANDBOX,
 	OP_DISABLESANDBOXFILESYSTEM,
-	OP_DISABLESANDBOXSYSCALLS
+	OP_DISABLESANDBOXSYSCALLS,
+	OP_DISABLESANDBOXNETWORK
 };
 
 /* clean method */

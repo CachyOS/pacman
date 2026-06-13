@@ -131,8 +131,20 @@ ssize_t _alpm_files_in_directory(alpm_handle_t *handle, const char *path, int fu
 typedef ssize_t (*_alpm_cb_io)(void *buf, ssize_t len, void *ctx);
 
 void _alpm_reset_signals(void);
+
+/* network policy for processes spawned via _alpm_run_chroot() */
+enum _alpm_chroot_net_t {
+	/* must run without network access; abort the command if the network
+	 * cannot be isolated */
+	CHROOT_NET_ISOLATE_REQUIRED = 0,
+	/* isolate the network if possible, run anyway if isolation fails */
+	CHROOT_NET_ISOLATE_TRY,
+	/* command is allowed to access the network */
+	CHROOT_NET_ALLOW,
+};
+
 int _alpm_run_chroot(alpm_handle_t *handle, const char *cmd, char *const argv[],
-		_alpm_cb_io in_cb, void *in_ctx);
+		_alpm_cb_io in_cb, void *in_ctx, enum _alpm_chroot_net_t net);
 int _alpm_ldconfig(alpm_handle_t *handle);
 int _alpm_str_cmp(const void *s1, const void *s2);
 char *_alpm_filecache_find(alpm_handle_t *handle, const char *filename);

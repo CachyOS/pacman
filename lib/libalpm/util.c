@@ -605,10 +605,11 @@ void _alpm_reset_signals(void)
  * @param argv arguments to pass to cmd
  * @param stdin_cb callback to provide input to the chroot on stdin
  * @param stdin_ctx context to be passed to @a stdin_cb
+ * @param net network policy to apply to the command
  * @return 0 on success, 1 on error
  */
 int _alpm_run_chroot(alpm_handle_t *handle, const char *cmd, char *const argv[],
-		_alpm_cb_io stdin_cb, void *stdin_ctx)
+		_alpm_cb_io stdin_cb, void *stdin_ctx, enum _alpm_chroot_net_t net)
 {
 	pid_t pid;
 	int child2parent_pipefd[2], parent2child_pipefd[2];
@@ -674,6 +675,19 @@ int _alpm_run_chroot(alpm_handle_t *handle, const char *cmd, char *const argv[],
 		}
 
 		/* use fprintf instead of _alpm_log to send output through the parent */
+
+		/* cut the command off from the network unless explicitly allowed;
+		 * this must happen before chroot() while we still hold the
+		 * capabilities required by unshare() */
+		if(net != CHROOT_NET_ALLOW && !handle->disable_sandbox_network && _alpm_sandbox_isolate_network() != 0) {
+			if(net == CHROOT_NET_ISOLATE_REQUIRED) {
+				fprintf(stderr, _("could not isolate the network (%s)\n"), strerror(errno));
+				fprintf(stderr, _("refusing to run \"%s\" with network access; set DisableSandboxNetwork in pacman.conf to override\n"), cmd);
+				exit(1);
+			}
+			fprintf(stderr, _("warning: could not isolate the network for \"%s\" (%s)\n"), cmd, strerror(errno));
+		}
+
 		/* don't chroot() to "/": this allows running with less caps when the
 		 * caller puts us in the right root */
 		if(strcmp(handle->root, "/") != 0 && chroot(handle->root) != 0) {
@@ -830,7 +844,10 @@ int _alpm_ldconfig(alpm_handle_t *handle)
 			char arg0[32];
 			char *argv[] = { arg0, NULL };
 			strcpy(arg0, "ldconfig");
-			return _alpm_run_chroot(handle, LDCONFIG, argv, NULL, NULL);
+			/* try to isolate network so that environments without the
+			 * required capabilities can still run plain transactions */
+			return _alpm_run_chroot(handle, LDCONFIG, argv, NULL, NULL,
+					CHROOT_NET_ISOLATE_TRY);
 		}
 	}
 

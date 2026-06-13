@@ -213,8 +213,8 @@ Options
 
 *DisableSandbox*::
 	Completely disables the sandbox applied to the process of downloading files
-	on Linux systems.  Equivalent to jointly specifying `DisableSandboxFilesystem`
-	and `DisableSandboxSyscalls`.
+	on Linux systems.  Equivalent to jointly specifying `DisableSandboxFilesystem`,
+	`DisableSandboxSyscalls` and `DisableSandboxNetwork`.
 
 *DisableSandboxFilesystem*::
 	Disable the filesystem restrictions part of the sandbox applied to the process
@@ -227,6 +227,17 @@ Options
 	downloading files on Linux systems. Useful if experiencing seccomp related
 	failures while downloading files when running a Linux kernel that does not
 	support this feature.
+
+*DisableSandboxNetwork*::
+	Disable the network isolation applied to package scriptlets and hooks on
+	Linux systems. By default these are run inside a fresh network namespace
+	containing only a loopback interface, and are aborted entirely if that
+	namespace cannot be created (for example in unprivileged containers
+	lacking `CAP_SYS_ADMIN`, or on kernels without network namespace
+	support). Set this option in such environments to allow scriptlets and
+	hooks to run again. Individual hooks that legitimately require network
+	access can request it with the `NetworkAccess` option instead - see
+	linkman:alpm-hooks[5].
 
 Repository Sections
 -------------------

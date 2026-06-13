@@ -18,6 +18,7 @@
 import os
 import re
 import hashlib
+import subprocess
 
 import tap
 
@@ -110,11 +111,21 @@ def writedata(filename, data):
             fd.write("\n")
     fd.close()
 
+def netns_supported():
+    # privileges required to run unshare
+    if os.geteuid() != 0:
+        return False
+    try:
+        return subprocess.call(["unshare", "-n", "true"],
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) == 0
+    except OSError:
+        return False
+
 def mkcfgfile(filename, root, option, db):
     # Options
     data = ["[options]"]
     for key, value in option.items():
-        data.extend(["%s = %s" % (key, j) for j in value])
+        data.extend([key if j is None else "%s = %s" % (key, j) for j in value])
     if "SigLevel" not in option:
         data.append("SigLevel = Never\n")
 
