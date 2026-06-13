@@ -150,6 +150,7 @@ if __name__ == "__main__":
     env.config["gpg"] = not opts.missing_gpg
     env.config["nls"] = not opts.missing_nls
     env.config["curl"] = not opts.missing_curl
+    env.config["netns"] = util.netns_supported()
 
     try:
         for i in args:

@@ -25,6 +25,10 @@
 /* utility function to test if sandboxing should be used */
 bool _alpm_use_sandbox(alpm_handle_t *handle);
 
+/* detach the calling process from the network by moving it into a new
+ * network namespace; localhost keeps working */
+int _alpm_sandbox_isolate_network();
+
 /* The type of callbacks that can happen during a sandboxed operation */
 typedef enum {
 	ALPM_SANDBOX_CB_LOG,

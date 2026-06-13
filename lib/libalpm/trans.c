@@ -407,7 +407,8 @@ int _alpm_runscriptlet(alpm_handle_t *handle, const char *filepath,
 
 	_alpm_log(handle, ALPM_LOG_DEBUG, "executing \"%s\"\n", cmdline);
 
-	retval = _alpm_run_chroot(handle, SCRIPTLET_SHELL, argv, NULL, NULL);
+	retval = _alpm_run_chroot(handle, SCRIPTLET_SHELL, argv, NULL, NULL,
+			CHROOT_NET_ISOLATE_REQUIRED);
 
 cleanup:
 	if(scriptfn && unlink(scriptfn)) {

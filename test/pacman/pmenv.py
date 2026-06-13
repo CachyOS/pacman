@@ -39,7 +39,8 @@ class pmenv(object):
         self.config = {
             "gpg": True,
             "nls": True,
-            "curl": True
+            "curl": True,
+            "netns": False
         }
 
     def __str__(self):

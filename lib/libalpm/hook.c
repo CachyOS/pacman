@@ -54,7 +54,7 @@ struct _alpm_hook_t {
 	char **cmd;
 	alpm_list_t *matches;
 	alpm_hook_when_t when;
-	int abort_on_fail, needs_targets;
+	int abort_on_fail, needs_targets, allow_net;
 };
 
 struct _alpm_hook_cb_ctx {
@@ -229,6 +229,12 @@ static int _alpm_hook_parse_cb(const char *file, int line,
 			hook->depends = alpm_list_add(hook->depends, val);
 		} else if(strcmp(key, "AbortOnFail") == 0) {
 			hook->abort_on_fail = 1;
+		} else if(strcmp(key, "NetworkAccess") == 0) {
+			if(strcmp(value, "allowed") == 0) {
+				hook->allow_net = 1;
+			} else {
+				error(_("hook %s line %d: invalid value %s\n"), file, line, value);
+			}
 		} else if(strcmp(key, "NeedsTargets") == 0) {
 			hook->needs_targets = 1;
 		} else if(strcmp(key, "Exec") == 0) {
@@ -523,9 +529,11 @@ static int _alpm_hook_run_hook(alpm_handle_t *handle, struct _alpm_hook_t *hook)
 		/* hooks with multiple triggers could have duplicate matches */
 		ctx = hook->matches = _alpm_strlist_dedup(hook->matches);
 		return _alpm_run_chroot(handle, hook->cmd[0], hook->cmd,
-				(_alpm_cb_io) _alpm_hook_feed_targets, &ctx);
+				(_alpm_cb_io) _alpm_hook_feed_targets, &ctx,
+				hook->allow_net ? CHROOT_NET_ALLOW : CHROOT_NET_ISOLATE_REQUIRED);
 	} else {
-		return _alpm_run_chroot(handle, hook->cmd[0], hook->cmd, NULL, NULL);
+		return _alpm_run_chroot(handle, hook->cmd[0], hook->cmd, NULL, NULL,
+				hook->allow_net ? CHROOT_NET_ALLOW : CHROOT_NET_ISOLATE_REQUIRED);
 	}
 }
 

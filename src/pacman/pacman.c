@@ -232,6 +232,8 @@ static void usage(int op, const char * const myname)
 		          "                       disables the filesystem part of the downloader process sandbox\n"));
 		addlist(_("      --disable-sandbox-syscalls\n"
 		          "                       disables the syscalls part of the downloader process sandbox\n"));
+		addlist(_("      --disable-sandbox-network\n"
+		          "                       disables network isolation for scriptlets and hooks\n"));
 				}
 	list = alpm_list_msort(list, alpm_list_count(list), options_cmp);
 	for(i = list; i; i = alpm_list_next(i)) {
@@ -541,12 +543,16 @@ static int parsearg_global(int opt)
 		case OP_DISABLESANDBOX:
 			config->disable_sandbox_filesystem = 1;
 			config->disable_sandbox_syscalls = 1;
+			config->disable_sandbox_network = 1;
 			break;
 		case OP_DISABLESANDBOXFILESYSTEM:
 			config->disable_sandbox_filesystem = 1;
 			break;
 		case OP_DISABLESANDBOXSYSCALLS:
 			config->disable_sandbox_syscalls = 1;
+			break;
+		case OP_DISABLESANDBOXNETWORK:
+			config->disable_sandbox_network = 1;
 			break;
 		case OP_VERBOSE:
 		case 'v':
@@ -1037,6 +1043,7 @@ static int parseargs(int argc, char *argv[])
 		{"disable-sandbox", no_argument, 0, OP_DISABLESANDBOX},
 		{"disable-sandbox-filesystem", no_argument, 0, OP_DISABLESANDBOXFILESYSTEM},
 		{"disable-sandbox-syscalls", no_argument, 0, OP_DISABLESANDBOXSYSCALLS},
+		{"disable-sandbox-network", no_argument, 0, OP_DISABLESANDBOXNETWORK},
 		{0, 0, 0, 0}
 	};
 

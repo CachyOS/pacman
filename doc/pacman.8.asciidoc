@@ -204,7 +204,8 @@ Options
 *\--disable-sandbox*::
 	Completely disables the sandbox applied to the process of downloading files
 	on Linux systems.  Equivalent to jointly specifying
-	`--disable-sandbox-filesystem` and `--disable-sandbox-syscalls`.
+	`--disable-sandbox-filesystem`, `--disable-sandbox-syscalls` and
+	`--disable-sandbox-network`.
 
 *\--disable-sandbox-filesystem*::
 	Disable the filesystem restrictions part of the sandbox applied to the process
@@ -217,6 +218,12 @@ Options
 	downloading files on Linux systems. Useful if experiencing seccomp related
 	failures while downloading files when running a Linux kernel that does not
 	support this feature.
+
+*\--disable-sandbox-network*::
+	Disable the network isolation applied to package scriptlets and hooks on
+	Linux systems. Required in environments that cannot create network
+	namespaces, such as unprivileged containers. See `DisableSandboxNetwork`
+	in linkman:pacman.conf[5].
 
 Transaction Options (apply to '-S', '-R' and '-U')
 --------------------------------------------------

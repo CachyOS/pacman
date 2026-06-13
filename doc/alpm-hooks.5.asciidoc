@@ -22,6 +22,7 @@ Exec = <Command> (Required)
 Depends = <PkgName> (Optional)
 AbortOnFail (Optional, PreTransaction only)
 NeedsTargets (Optional)
+NetworkAccess = allowed (Optional)
 --------
 
 DESCRIPTION
@@ -91,6 +92,13 @@ ACTIONS
 *NeedsTargets*::
 	Causes the list of matched trigger targets to be passed to the running hook
 	on 'stdin'.
+
+*NetworkAccess =* allowed::
+	By default hooks are run inside a fresh network namespace with only a
+	loopback interface and are aborted if that namespace cannot be created.
+	Setting this option to 'allowed' runs the hook with full network access.
+	Only use this for hooks that genuinely need the network (e.g. fetching
+	mirror lists or keys).
 
 OVERRIDING HOOKS
 ----------------

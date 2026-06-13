@@ -985,6 +985,7 @@ int alpm_option_set_disable_sandbox(alpm_handle_t *handle, unsigned short disabl
 	CHECK_HANDLE(handle, return -1);
 	handle->disable_sandbox_filesystem = disable_sandbox;
 	handle->disable_sandbox_syscalls = disable_sandbox;
+	handle->disable_sandbox_network = disable_sandbox;
 	return 0;
 }
 
@@ -1013,5 +1014,19 @@ int SYMEXPORT alpm_option_set_disable_sandbox_syscalls(alpm_handle_t *handle,
 {
 	CHECK_HANDLE(handle, return -1);
 	handle->disable_sandbox_syscalls = disable_sandbox_syscalls;
+	return 0;
+}
+
+int SYMEXPORT alpm_option_get_disable_sandbox_network(alpm_handle_t *handle)
+{
+	CHECK_HANDLE(handle, return -1);
+	return handle->disable_sandbox_network;
+}
+
+int SYMEXPORT alpm_option_set_disable_sandbox_network(alpm_handle_t *handle,
+		unsigned short disable_sandbox_network)
+{
+	CHECK_HANDLE(handle, return -1);
+	handle->disable_sandbox_network = disable_sandbox_network;
 	return 0;
 }
