@@ -11,6 +11,7 @@ use path_absolutize::*;
 use rayon::prelude::*;
 use signal_hook::consts::{SIGABRT, SIGINT, SIGTERM};
 use signal_hook::iterator::Signals;
+use std::collections::HashMap;
 use std::path::Path;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex};
@@ -82,7 +83,7 @@ fn print_usage(cmd_line: &str) {
 // print version
 fn print_version(cmd_line: &str) {
     println!("{} (pacman) {}\n", cmd_line, VERSION);
-    println!("Copyright (c) 2023-2024 CachyOS Team.\n");
+    println!("Copyright (c) 2023-2026 CachyOS Team.\n");
     println!("This is free software; see the source for copying conditions.");
     println!("There is NO WARRANTY, to the extent permitted by law.");
 }
@@ -865,6 +866,28 @@ fn remove_pkg_from_db_nf(
     is_found
 }
 
+fn group_args_by_pkgname<'a>(args: &'a [String], is_remove: bool) -> Vec<Vec<&'a String>> {
+    use std::collections::hash_map::Entry;
+
+    // Maps a group key to its index in `groups`, so groups stay in first-seen
+    // order without a second pass over a separate ordering list.
+    let mut index: HashMap<String, usize> = HashMap::new();
+    let mut groups: Vec<Vec<&'a String>> = Vec::new();
+
+    for arg in args {
+        let key = if is_remove { arg.clone() } else { utils::get_name_of_pkg(arg, false) };
+        match index.entry(key) {
+            Entry::Vacant(e) => {
+                e.insert(groups.len());
+                groups.push(vec![arg]);
+            },
+            Entry::Occupied(e) => groups[*e.get()].push(arg),
+        }
+    }
+
+    groups
+}
+
 fn main() {
     let mut args: Vec<String> = env::args().collect();
     let cmd_line = utils::get_current_cmdname(args[0].as_str()).to_owned();
@@ -988,6 +1011,9 @@ fn main() {
 
     let pos_args = pos_args.unwrap().get(1..);
 
+    let is_remove = cmd_line == "repo-remove";
+    let groups = group_args_by_pkgname(pos_args.unwrap(), is_remove);
+
     let is_fail = AtomicBool::new(false);
     let mut is_db_modified = AtomicBool::new(false);
     let is_db_modified = Arc::new(&mut is_db_modified);
@@ -1005,22 +1031,24 @@ fn main() {
         let files_conn = &mut db_connections.1.unwrap();
         let connections = Arc::new(Mutex::from((db_conn, files_conn)));
 
-        pos_args.unwrap().into_par_iter().for_each(|elem| {
-            let action_func =
-                if cmd_line == "repo-remove" { remove_pkg_from_db_nf } else { add_pkg_to_db_nf };
-            handle_signal!(is_signaled);
-            let mut conn_handle = Arc::clone(&connections);
-            if !action_func(&mut conn_handle, elem, &is_db_modified, &arg_struct) {
-                is_fail.store(true, Ordering::Relaxed);
+        let action_func = if is_remove { remove_pkg_from_db_nf } else { add_pkg_to_db_nf };
+        groups.par_iter().for_each(|group| {
+            for elem in group {
+                handle_signal!(is_signaled);
+                let mut conn_handle = Arc::clone(&connections);
+                if !action_func(&mut conn_handle, elem, &is_db_modified, &arg_struct) {
+                    is_fail.store(true, Ordering::Relaxed);
+                }
             }
         });
     } else {
-        pos_args.unwrap().into_par_iter().for_each(|elem| {
-            let action_func =
-                if cmd_line == "repo-remove" { remove_pkg_from_db } else { add_pkg_to_db };
-            handle_signal!(is_signaled);
-            if !action_func(elem, &is_db_modified, &arg_struct) {
-                is_fail.store(true, Ordering::Relaxed);
+        let action_func = if is_remove { remove_pkg_from_db } else { add_pkg_to_db };
+        groups.par_iter().for_each(|group| {
+            for elem in group {
+                handle_signal!(is_signaled);
+                if !action_func(elem, &is_db_modified, &arg_struct) {
+                    is_fail.store(true, Ordering::Relaxed);
+                }
             }
         });
     }
@@ -1116,5 +1144,275 @@ fn set_up_logging(is_colored: bool) {
         .chain(std::io::stdout())
         .apply()
         .unwrap();
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::panic::{self, AssertUnwindSafe};
+    use std::path::PathBuf;
+    use std::sync::atomic::{AtomicBool, Ordering};
+    use std::sync::{Arc, Mutex};
+
+    #[test]
+    fn group_unique_pkgnames() {
+        let args: Vec<String> = vec![
+            "foo-1.0-1-x86_64.pkg.tar.zst".into(),
+            "bar-2.0-1-x86_64.pkg.tar.zst".into(),
+            "baz-3.0-1-x86_64.pkg.tar.zst".into(),
+        ];
+        let groups = group_args_by_pkgname(&args, false);
+        assert_eq!(groups.len(), 3);
+        assert_eq!(groups[0].len(), 1);
+        assert_eq!(groups[1].len(), 1);
+        assert_eq!(groups[2].len(), 1);
+    }
+
+    #[test]
+    fn group_exact_duplicates() {
+        let args: Vec<String> = vec![
+            "foo-1.0-1-x86_64.pkg.tar.zst".into(),
+            "foo-1.0-1-x86_64.pkg.tar.zst".into(),
+            "bar-2.0-1-x86_64.pkg.tar.zst".into(),
+        ];
+        let groups = group_args_by_pkgname(&args, false);
+        assert_eq!(groups.len(), 2);
+
+        let foo_group = groups.iter().find(|g| g[0].starts_with("foo")).unwrap();
+        assert_eq!(foo_group.len(), 2);
+
+        let bar_group = groups.iter().find(|g| g[0].starts_with("bar")).unwrap();
+        assert_eq!(bar_group.len(), 1);
+    }
+
+    #[test]
+    fn group_same_pkgname_different_versions() {
+        let args: Vec<String> = vec![
+            "java-openjdk-debug-26.u35-2-x86_64_v4.pkg.tar.zst".into(),
+            "jdk-openjdk-26.u35-2-x86_64_v4.pkg.tar.zst".into(),
+            "java-openjdk-debug-25.0.2.u10-2-x86_64_v4.pkg.tar.zst".into(),
+        ];
+        let groups = group_args_by_pkgname(&args, false);
+        assert_eq!(groups.len(), 2);
+
+        let java_group = groups.iter().find(|g| g[0].contains("java-openjdk-debug")).unwrap();
+        assert_eq!(java_group.len(), 2);
+    }
+
+    #[test]
+    fn group_preserves_insertion_order() {
+        let args: Vec<String> = vec![
+            "bbb-1.0-1-x86_64.pkg.tar.zst".into(),
+            "aaa-1.0-1-x86_64.pkg.tar.zst".into(),
+            "ccc-1.0-1-x86_64.pkg.tar.zst".into(),
+        ];
+        let groups = group_args_by_pkgname(&args, false);
+        assert_eq!(groups.len(), 3);
+        assert!(groups[0][0].starts_with("bbb"));
+        assert!(groups[1][0].starts_with("aaa"));
+        assert!(groups[2][0].starts_with("ccc"));
+    }
+
+    #[test]
+    fn group_preserves_order_within_group() {
+        let args: Vec<String> = vec![
+            "foo-1.0-1-x86_64.pkg.tar.zst".into(),
+            "bar-1.0-1-x86_64.pkg.tar.zst".into(),
+            "foo-2.0-1-x86_64.pkg.tar.zst".into(),
+            "foo-3.0-1-x86_64.pkg.tar.zst".into(),
+        ];
+        let groups = group_args_by_pkgname(&args, false);
+        let foo_group = groups.iter().find(|g| g[0].contains("foo")).unwrap();
+        assert_eq!(foo_group.len(), 3);
+        assert!(foo_group[0].contains("1.0"));
+        assert!(foo_group[1].contains("2.0"));
+        assert!(foo_group[2].contains("3.0"));
+    }
+
+    #[test]
+    fn group_empty_args() {
+        let args: Vec<String> = vec![];
+        let groups = group_args_by_pkgname(&args, false);
+        assert!(groups.is_empty());
+    }
+
+    #[test]
+    fn group_remove_mode() {
+        let args: Vec<String> = vec!["foo".into(), "bar".into(), "foo".into()];
+        let groups = group_args_by_pkgname(&args, true);
+        assert_eq!(groups.len(), 2);
+
+        let foo_group = groups.iter().find(|g| *g[0] == "foo").unwrap();
+        assert_eq!(foo_group.len(), 2);
+    }
+
+    #[test]
+    fn group_reproduces_reported_bug_input() {
+        let args: Vec<String> = vec![
+            "java-openjdk-debug-26.u35-2-x86_64_v4.pkg.tar.zst".into(),
+            "jdk-openjdk-26.u35-2-x86_64_v4.pkg.tar.zst".into(),
+            "jre-openjdk-26.u35-2-x86_64_v4.pkg.tar.zst".into(),
+            "jre-openjdk-headless-26.u35-2-x86_64_v4.pkg.tar.zst".into(),
+            "openjdk-doc-26.u35-2-x86_64_v4.pkg.tar.zst".into(),
+            "openjdk-src-26.u35-2-x86_64_v4.pkg.tar.zst".into(),
+            "java-openjdk-debug-25.0.2.u10-2-x86_64_v4.pkg.tar.zst".into(),
+            "java-openjdk-debug-26.u35-2-x86_64_v4.pkg.tar.zst".into(),
+        ];
+        let groups = group_args_by_pkgname(&args, false);
+
+        let java_group = groups.iter().find(|g| g[0].contains("java-openjdk-debug")).unwrap();
+        assert_eq!(java_group.len(), 3);
+
+        let jdk_group = groups.iter().find(|g| g[0].contains("jdk-openjdk-26")).unwrap();
+        assert_eq!(jdk_group.len(), 1);
+
+        assert_eq!(groups.len(), 6);
+    }
+
+    const FIXTURE_PKG: &str = "xz-5.4.5-2-x86_64.pkg.tar.zst";
+    // pkgname-pkgver stored inside the fixture's `.PKGINFO`
+    const FIXTURE_ENTRY: &str = "xz-5.4.5-2";
+
+    static TEST_LOCK: Mutex<()> = Mutex::new(());
+
+    fn fixture_path() -> PathBuf {
+        env::current_dir().unwrap().join(FIXTURE_PKG)
+    }
+
+    fn setup_global_workdir() -> String {
+        let tmp_dir = utils::create_temporary_directory(None).unwrap();
+        fs::create_dir(format!("{tmp_dir}/db")).unwrap();
+        fs::create_dir(format!("{tmp_dir}/files")).unwrap();
+        *G_TMPWORKINGDIR.lock().unwrap() = tmp_dir.clone();
+        tmp_dir
+    }
+
+    fn stage_pkg_copies(dir: &str, filenames: &[&str]) -> Vec<String> {
+        let src = fixture_path();
+        filenames
+            .iter()
+            .map(|name| {
+                let dst = format!("{dir}/{name}");
+                fs::copy(&src, &dst).unwrap();
+                dst
+            })
+            .collect()
+    }
+
+    fn run_grouped_real_add(workdir: &str, args: &[String]) {
+        let groups = group_args_by_pkgname(args, false);
+
+        let argstruct = Arc::new(parse_args::ArgStruct::new());
+        let mut is_db_modified = AtomicBool::new(false);
+        let is_db_modified = Arc::new(&mut is_db_modified);
+        let is_fail = AtomicBool::new(false);
+
+        groups.par_iter().for_each(|group| {
+            for elem in group {
+                if !add_pkg_to_db(elem, &is_db_modified, &argstruct) {
+                    is_fail.store(true, Ordering::Relaxed);
+                }
+            }
+        });
+
+        assert!(!is_fail.load(Ordering::Relaxed));
+
+        let db_entries: Vec<_> = fs::read_dir(format!("{workdir}/db")).unwrap().flatten().collect();
+        let files_entries: Vec<_> =
+            fs::read_dir(format!("{workdir}/files")).unwrap().flatten().collect();
+
+        assert_eq!(db_entries.len(), 1);
+        assert_eq!(files_entries.len(), 1);
+        assert_eq!(db_entries[0].file_name().to_string_lossy(), FIXTURE_ENTRY);
+        assert!(db_entries[0].path().join("desc").exists());
+        assert!(files_entries[0].path().join("files").exists());
+    }
+
+    #[test]
+    fn grouped_real_add_serializes_same_pkgname() {
+        let _guard = TEST_LOCK.lock().unwrap_or_else(|e| e.into_inner());
+        let workdir = setup_global_workdir();
+        let pkg_dir = utils::create_temporary_directory(None).unwrap();
+
+        let args = stage_pkg_copies(&pkg_dir, &[
+            "xz-5.4.5-2-x86_64.pkg.tar.zst",
+            "xz-5.4.5-3-x86_64.pkg.tar.zst",
+            "xz-5.4.6-1-x86_64.pkg.tar.zst",
+        ]);
+
+        let groups = group_args_by_pkgname(&args, false);
+        assert_eq!(groups.len(), 1);
+
+        run_grouped_real_add(&workdir, &args);
+
+        fs::remove_dir_all(&workdir).unwrap();
+        fs::remove_dir_all(&pkg_dir).unwrap();
+    }
+
+    #[test]
+    fn stress_grouped_real_add_no_race() {
+        let _guard = TEST_LOCK.lock().unwrap_or_else(|e| e.into_inner());
+
+        for iteration in 0..10 {
+            let workdir = setup_global_workdir();
+            let pkg_dir = utils::create_temporary_directory(None).unwrap();
+
+            let args = stage_pkg_copies(&pkg_dir, &[
+                "xz-5.4.5-2-x86_64.pkg.tar.zst",
+                "xz-5.4.5-3-x86_64.pkg.tar.zst",
+                "xz-5.4.6-1-x86_64.pkg.tar.zst",
+                "xz-5.4.5-2-x86_64.pkg.tar.zst",
+            ]);
+
+            run_grouped_real_add(&workdir, &args);
+
+            fs::remove_dir_all(&workdir).unwrap_or_else(|e| panic!("iter {iteration}: {e}"));
+            fs::remove_dir_all(&pkg_dir).unwrap();
+        }
+    }
+
+    #[test]
+    fn ungrouped_real_add_races_same_pkgname() {
+        let _guard = TEST_LOCK.lock().unwrap_or_else(|e| e.into_inner());
+
+        let prev_hook = panic::take_hook();
+        panic::set_hook(Box::new(|_| {}));
+
+        let total_attempts = 50;
+        let mut race_detected = 0;
+
+        for _ in 0..total_attempts {
+            let workdir = setup_global_workdir();
+            let pkg_dir = utils::create_temporary_directory(None).unwrap();
+
+            let args = stage_pkg_copies(&pkg_dir, &[
+                "xz-5.4.5-2-x86_64.pkg.tar.zst",
+                "xz-5.4.5-3-x86_64.pkg.tar.zst",
+                "xz-5.4.6-1-x86_64.pkg.tar.zst",
+                "xz-5.4.6-2-x86_64.pkg.tar.zst",
+            ]);
+
+            let argstruct = Arc::new(parse_args::ArgStruct::new());
+            let mut is_db_modified = AtomicBool::new(false);
+            let is_db_modified = Arc::new(&mut is_db_modified);
+
+            let result = panic::catch_unwind(AssertUnwindSafe(|| {
+                args.par_iter().for_each(|elem| {
+                    let _ = add_pkg_to_db(elem, &is_db_modified, &argstruct);
+                });
+            }));
+
+            if result.is_err() {
+                race_detected += 1;
+            }
+
+            let _ = fs::remove_dir_all(&workdir);
+            let _ = fs::remove_dir_all(&pkg_dir);
+        }
+
+        panic::set_hook(prev_hook);
+
+        assert!(race_detected > 0);
     }
 }
