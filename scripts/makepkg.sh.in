@@ -130,6 +130,11 @@ clean_up() {
 		rm "$logpipe"
 	fi
 
+	# restore rm permissions in case packaging never ran
+	if [[ -d $pkgdirbase ]]; then
+		chmod 755 "$pkgdirbase"
+	fi
+
 	if (( (EXIT_CODE == E_OK || EXIT_CODE == E_INSTALL_FAILED) && BUILDPKG && CLEANUP )); then
 		local pkg file
 
