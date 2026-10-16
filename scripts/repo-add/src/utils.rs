@@ -5,7 +5,7 @@ use std::{env, fs, io, slice, str};
 
 use base64::engine::general_purpose::STANDARD;
 use base64::write::EncoderStringWriter;
-use rand::Rng;
+use rand::RngExt;
 use sha2::Sha256;
 use subprocess::{Exec, Redirection};
 
@@ -121,8 +121,8 @@ pub fn is_gpg_key_exist(sign_key: Option<&str>) -> bool {
 
     let exit_status = Exec::cmd("gpg")
         .args(&gpg_args)
-        .stderr(subprocess::NullFile)
-        .stdout(subprocess::NullFile)
+        .stderr(Redirection::Null)
+        .stdout(Redirection::Null)
         .join()
         .expect("Failed to run gpg binary");
 
@@ -195,16 +195,14 @@ pub fn compress_into_db_file(
 }
 
 pub fn generate_sha256sum(filepath: &str) -> Option<String> {
+    use sha2::Digest;
+
     let mut file_obj = File::open(filepath).ok()?;
 
-    // create a Sha256 hasher instance
-    use sha2::Digest;
-    let mut hasher = Sha256::new();
+    let mut hasher = digest_io::IoWrapper(Sha256::new());
     io::copy(&mut file_obj, &mut hasher).ok()?;
 
-    // process input message
-    let result = format!("{:x}", hasher.finalize());
-    Some(result)
+    Some(base16ct::lower::encode_string(&hasher.0.finalize()))
 }
 
 // This function assumes that given pkg:
@@ -394,8 +392,8 @@ pub fn gen_pkg_integrity(
 pub fn is_file_in_archive(arc_filepath: &str, needle_pattern: &str) -> bool {
     let exit_status = Exec::cmd("bsdtar")
         .args(&["-tqf", arc_filepath, needle_pattern])
-        .stderr(subprocess::NullFile)
-        .stdout(subprocess::NullFile)
+        .stderr(Redirection::Null)
+        .stdout(Redirection::Null)
         .join()
         .expect("Failed to run bsdtar binary");
 
