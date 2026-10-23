@@ -226,7 +226,7 @@ int do_update_notice(void) {
 
     char* prev_file_id = NULL;
     char noticepath[PATH_MAX];
-    snprintf(noticepath, PATH_MAX, "%slocal/CACHY_UPDATE_NOTICE", config->dbpath);
+    snprintf(noticepath, PATH_MAX, "%s/local/CACHY_UPDATE_NOTICE", config->dbpath);
 
     if (msg_id && (prev_file_id = read_whole_file(noticepath)) != NULL
         && strcmp(msg_id, prev_file_id) == 0) {
