@@ -700,6 +700,11 @@ msgstr "軟體庫"
 msgid "Required By"
 msgstr "需要它"
 
+#: src/pacman/package.c:122
+#, c-format
+msgid "Installed From"
+msgstr "安裝來源"
+
 #: src/pacman/package.c:122 src/pacman/package.c:242
 #, c-format
 msgid "SHA-256 Sum"
