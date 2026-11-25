@@ -704,6 +704,11 @@ msgstr "软件库"
 msgid "Required By"
 msgstr "依赖它"
 
+#: src/pacman/package.c:122
+#, c-format
+msgid "Installed From"
+msgstr "安装来源"
+
 #: src/pacman/package.c:122 src/pacman/package.c:242
 #, c-format
 msgid "SHA-256 Sum"
